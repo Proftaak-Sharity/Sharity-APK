@@ -1,14 +1,18 @@
 <resources>
-    <string name="app_name">Sharity-APK</string>
+    <string name="app_name">Sharity</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">Sharity</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="second_fragment_label">Welkom</string>
     <string name="start_sharing">Start Sharing</string>
-    <string name="previous">Previous</string>
+    <string name="back">Back</string>
+    <string name="login">Login</string>
 
     <string name="hello_first_fragment">Welkom bij Sharity</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="copyright">Door Daniël, Rob en Bart</string>
     <string name="logo_sharity">logo_sharity</string>
+    <string name="background_sharity_application">background_sharity_application</string>
+    <string name="password">Wachtwoord</string>
+    <string name="email">Email</string>
 </resources>
