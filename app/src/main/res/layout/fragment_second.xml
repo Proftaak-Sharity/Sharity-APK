@@ -54,6 +54,25 @@
         app:layout_constraintTop_toBottomOf="@+id/password_input"
         tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
 
+    <TextView
+        android:id="@+id/new_to_sharity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/new_to_sharity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_login" />
 
+    <TextView
+        android:id="@+id/sign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/sharity_red"
+        android:layout_marginTop="10dp"
+        android:text="@string/sign_in"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_to_sharity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
