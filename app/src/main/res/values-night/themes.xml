@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/sharity_lightred</item>
         <item name="colorPrimaryVariant">@color/sharity_lightgreen</item>
         <item name="colorOnPrimary">@color/sharity_dark</item>
+
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/sharity_lightgreen</item>
         <item name="colorSecondaryVariant">@color/sharity_red</item>

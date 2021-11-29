@@ -37,4 +37,7 @@
     <string name="update_reservation">Update Reservation</string>
     <string name="action_logout">Logout</string>
     <string name="make_reservation">make reservation</string>
+    <string name="contact">Contact</string>
+    <string name="subject">Subject</string>
+    <string name="message">Message</string>
 </resources>
