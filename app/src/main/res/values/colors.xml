@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
 
-    <color name="sharity_dark">#132426</color>
-    <color name="sharity_green">#7ABFBF</color>
-    <color name="sharity_lightgreen">#D5F2F2</color>
-    <color name="sharity_red">#F23005</color>
-    <color name="sharity_lightred">#F28F79</color>
-    <color name="sharity_lightgray">#F2F2F2</color>
->
+    <color name="darkgreen">#132426</color>
+    <color name="lightgray">#F2F2F2</color>
+
+    <color name="primaryColor">#7abfbf</color>
+    <color name="primaryLightColor">#acf2f2</color>
+    <color name="primaryDarkColor">#498f8f</color>
+    <color name="secondaryColor">#f23005</color>
+    <color name="secondaryLightColor">#F28F79</color>
+    <color name="secondaryDarkColor">#b70000</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#FFFFFFFF</color>
 </resources>
