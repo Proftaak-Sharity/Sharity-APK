@@ -1,22 +1,20 @@
 <resources>
     <string name="app_name">Sharity</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
+
+<!--     Strings used for fragments for navigation -->
     <string name="first_fragment_label">Sharity</string>
     <string name="start_sharing">Start Sharing</string>
     <string name="back">Back</string>
     <string name="login">Login</string>
-    
     <string name="hello_first_fragment">Welcome to Sharity</string>
     <string name="copyright">by Daniël, Rob en Bart</string>
     <string name="logo_sharity">Sharity Logo</string>
     <string name="background_sharity_application">Breda map</string>
     <string name="password">Password</string>
-
     <string name="email">Email</string>
     <string name="new_to_sharity">New to Sharity?</string>
     <string name="sign_in">Sign in</string>
-
     <string name="new_customer">New Customer</string>
     <string name="add_drivers_license">Add Drivers License</string>
     <string name="add_bankaccount">Add Bank Account</string>
@@ -37,4 +35,6 @@
     <string name="my_reservations">My Reservations</string>
     <string name="reservation_details">Reservation Details</string>
     <string name="update_reservation">Update Reservation</string>
+    <string name="action_logout">Logout</string>
+    <string name="make_reservation">make reservation</string>
 </resources>
