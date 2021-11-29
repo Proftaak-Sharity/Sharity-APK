@@ -59,6 +59,9 @@
         <action
             android:id="@+id/action_AccountOverview_to_GetAllReservations"
             app:destination="@id/GetAllReservations" />
+        <action
+            android:id="@+id/action_AccountOverview_to_CreateReservation"
+            app:destination="@id/CreateReservation" />
     </fragment>
 
 <!--    Search fragments-->

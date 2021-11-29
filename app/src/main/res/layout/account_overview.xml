@@ -32,7 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/make_reservation"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <Button
             android:id="@+id/button_my_details"
@@ -66,7 +67,7 @@
     <ImageView
         android:id="@+id/img_account_overview_mobility"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="100dp"
         android:layout_marginTop="15dp"
         android:src="@drawable/ic_moblity_txt"
         app:layout_constraintBottom_toBottomOf="parent"

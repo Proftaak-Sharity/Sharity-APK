@@ -33,7 +33,7 @@ class AccountOverview : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonMakeReservation.setOnClickListener {
-            findNavController().navigate(R.id.action_AccountOverview_to_LoginFragment)
+            findNavController().navigate(R.id.action_AccountOverview_to_CreateReservation)
         }
 
         binding.buttonMyDetails.setOnClickListener {
