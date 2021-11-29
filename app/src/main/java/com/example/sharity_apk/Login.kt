@@ -33,11 +33,11 @@ class Login : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonLogin.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            findNavController().navigate(R.id.action_LoginFragment_to_FirstFragment)
         }
 
         binding.signIn.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            findNavController().navigate(R.id.action_LoginFragment_to_CreateCustomer)
         }
     }
 

@@ -3,20 +3,37 @@
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">Sharity</string>
-    <string name="second_fragment_label">Welkom</string>
     <string name="start_sharing">Start Sharing</string>
     <string name="back">Back</string>
     <string name="login">Login</string>
 
-    <string name="hello_first_fragment">Welkom bij Sharity</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="copyright">Door Daniël, Rob en Bart</string>
-    <string name="logo_sharity">logo_sharity</string>
-    <string name="background_sharity_application">background_sharity_application</string>
-    <string name="password">Wachtwoord</string>
+    <string name="hello_first_fragment">Welcome to Sharity</string>
+    <string name="copyright">by Daniël, Rob en Bart</string>
+    <string name="logo_sharity">Sharity Logo</string>
+    <string name="background_sharity_application">Breda map</string>
+    <string name="password">Password</string>
     <string name="email">Email</string>
-    <string name="new_to_sharity">Heb je nog geen account?</string>
-    <string name="sign_in">inschrijven</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="new_to_sharity">New to Sharity?</string>
+    <string name="sign_in">Sign in</string>
+
+    <string name="new_customer">New Customer</string>
+    <string name="add_drivers_license">Add Drivers License</string>
+    <string name="add_bankaccount">Add Bank Account</string>
+    <string name="my_account">My Account</string>
+    <string name="search_cars">Search Cars</string>
+    <string name="search_results">Search Results</string>
+    <string name="car_details">Car Details</string>
+    <string name="add_reservation">Add Reservation</string>
+    <string name="personal_details">My Personal Details</string>
+    <string name="my_details">My Details</string>
+    <string name="bankaccount">Bankaccount</string>
+    <string name="update_bankaccount">Update Bankaccount</string>
+    <string name="drivers_license">Drivers License</string>
+    <string name="update_drivers_license">Update Drivers License</string>
+    <string name="my_cars">My Cars</string>
+    <string name="update_car">Update Car</string>
+    <string name="add_car">Add Car</string>
+    <string name="my_reservations">My Reservations</string>
+    <string name="reservation_details">Reservation Details</string>
+    <string name="update_reservation">Update Reservation</string>
 </resources>
