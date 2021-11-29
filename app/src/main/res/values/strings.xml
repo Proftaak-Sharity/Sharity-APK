@@ -6,12 +6,13 @@
     <string name="start_sharing">Start Sharing</string>
     <string name="back">Back</string>
     <string name="login">Login</string>
-
+    
     <string name="hello_first_fragment">Welcome to Sharity</string>
     <string name="copyright">by Daniël, Rob en Bart</string>
     <string name="logo_sharity">Sharity Logo</string>
     <string name="background_sharity_application">Breda map</string>
     <string name="password">Password</string>
+
     <string name="email">Email</string>
     <string name="new_to_sharity">New to Sharity?</string>
     <string name="sign_in">Sign in</string>
