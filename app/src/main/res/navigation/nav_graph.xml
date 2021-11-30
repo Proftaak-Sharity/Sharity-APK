@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/LoginFragment">
 
     <fragment
         android:id="@+id/FirstFragment"
@@ -67,7 +67,7 @@
 <!--    Search fragments-->
     <fragment
         android:id="@+id/SearchCars"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.SearchCars"
         android:label="@string/search_cars"
         tools:layout="@layout/search_cars">
 
@@ -84,7 +84,7 @@
 
     <fragment
         android:id="@+id/SearchResults"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.SearchResults"
         android:label="@string/search_results"
         tools:layout="@layout/search_results">
 
@@ -104,7 +104,7 @@
 
     <fragment
         android:id="@+id/GetSearchedCarDetails"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.GetSearchedCarDetails"
         android:label="@string/car_details"
         tools:layout="@layout/get_searched_car_details">
 
@@ -124,7 +124,7 @@
 
     <fragment
         android:id="@+id/CreateReservation"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.CreateReservation"
         android:label="@string/add_reservation"
         tools:layout="@layout/create_reservation">
 
@@ -142,7 +142,7 @@
     <!--    Customer fragments-->
     <fragment
         android:id="@+id/GetCustomerDetails"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.GetCustomerDetails"
         android:label="@string/my_details"
         tools:layout="@layout/get_customer_details">
 
@@ -165,7 +165,7 @@
 
     <fragment
         android:id="@+id/CreateCustomer"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.CreateCustomer"
         android:label="@string/new_customer"
         tools:layout="@layout/create_customer">
 
@@ -179,7 +179,7 @@
 
     <fragment
         android:id="@+id/CreateDriversLicense"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.CreateDriversLicense"
         android:label="@string/add_drivers_license"
         tools:layout="@layout/create_drivers_license">
 
@@ -193,7 +193,7 @@
 
     <fragment
         android:id="@+id/CreateBankaccount"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.CreateBankaccount"
         android:label="@string/add_bankaccount"
         tools:layout="@layout/create_bankaccount">
 
@@ -207,7 +207,7 @@
 
     <fragment
         android:id="@+id/UpdateCustomer"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.UpdateCustomer"
         android:label="@string/personal_details"
         tools:layout="@layout/update_customer">
 
@@ -222,7 +222,7 @@
 <!--    Bankaccount-->
     <fragment
         android:id="@+id/GetBankaccountDetails"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.GetBankaccountDetails"
         android:label="@string/bankaccount"
         tools:layout="@layout/get_bankaccount_details">
 
@@ -239,7 +239,7 @@
 
     <fragment
         android:id="@+id/UpdateBankaccount"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.UpdateBankaccount"
         android:label="@string/update_bankaccount"
         tools:layout="@layout/update_bankaccount">
 
@@ -254,7 +254,7 @@
 <!--    Drivers License-->
     <fragment
         android:id="@+id/GetDriversLicenseDetails"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.GetDriversLicenseDetails"
         android:label="@string/drivers_license"
         tools:layout="@layout/get_drivers_license_details">
 
@@ -271,7 +271,7 @@
 
     <fragment
         android:id="@+id/UpdateDriversLicense"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.UpdateDriversLicense"
         android:label="@string/update_drivers_license"
         tools:layout="@layout/update_drivers_license">
 
@@ -286,7 +286,7 @@
 <!--    Car Fragments-->
     <fragment
         android:id="@+id/GetAllCars"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.GetAllCars"
         android:label="@string/my_cars"
         tools:layout="@layout/get_all_cars">
         <action
@@ -305,7 +305,7 @@
 
     <fragment
         android:id="@+id/GetCarDetails"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.GetCarDetails"
         android:label="@string/car_details"
         tools:layout="@layout/get_car_details">
         <action
@@ -321,7 +321,7 @@
 
     <fragment
         android:id="@+id/UpdateCar"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.UpdateCar"
         android:label="@string/update_car"
         tools:layout="@layout/update_car">
         <action
@@ -334,7 +334,7 @@
 
     <fragment
         android:id="@+id/CreateCar"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.CreateCar"
         android:label="@string/add_car"
         tools:layout="@layout/create_car">
 
@@ -352,7 +352,7 @@
 <!--Reservation fragments-->
     <fragment
         android:id="@+id/GetAllReservations"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.GetAllReservations"
         android:label="@string/my_reservations"
         tools:layout="@layout/get_all_reservations">
         <action
@@ -368,7 +368,7 @@
 
     <fragment
         android:id="@+id/GetReservationDetails"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.GetReservationDetails"
         android:label="@string/reservation_details"
         tools:layout="@layout/get_reservation_details">
         <action
@@ -384,7 +384,7 @@
 
     <fragment
         android:id="@+id/UpdateReservation"
-        android:name="com.example.sharity_apk.Login"
+        android:name="com.example.sharity_apk.UpdateReservation"
         android:label="@string/update_reservation"
         tools:layout="@layout/update_reservation">
         <action
@@ -393,6 +393,14 @@
         <action
             android:id="@+id/action_UpdateReservation_to_GetReservationDetails"
             app:destination="@id/GetReservationDetails" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ContactForm"
+        android:name="com.example.sharity_apk.ContactForm"
+        android:label="@string/contact"
+        tools:layout="@layout/contact_form">
+
     </fragment>
 
 </navigation>

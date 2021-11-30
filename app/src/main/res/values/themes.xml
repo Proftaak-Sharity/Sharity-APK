@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="textInputStyle">@style/text_input_layout</item>
     </style>
 
     <style name="Theme.SharityAPK.NoActionBar">
@@ -22,4 +23,7 @@
     <style name="Theme.SharityAPK.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.SharityAPK.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
 </resources>
