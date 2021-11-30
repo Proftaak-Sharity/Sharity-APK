@@ -7,8 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login"
-    android:orientation="vertical
-">
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/login_logo"
@@ -37,7 +36,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_text"
-        android:hint="@string/email">
+        android:hint="@string/email"
+        app:boxBackgroundColor="@color/secondaryTextColor">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/login_email_text"
@@ -56,7 +56,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_email"
         android:layout_marginTop="5dp"
-        android:hint="@string/password">
+        android:hint="@string/password"
+        app:boxBackgroundColor="@color/secondaryTextColor">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/login_password_text"
@@ -91,7 +92,7 @@
         android:id="@+id/sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/sharity_red"
+        android:textColor="@color/secondaryColor"
         android:layout_marginTop="10dp"
         android:text="@string/sign_in"
         app:layout_constraintEnd_toEndOf="parent"

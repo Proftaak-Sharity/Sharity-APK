@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:boxBackgroundColor="@color/white">
+        app:boxBackgroundColor="@color/secondaryTextColor">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextMail"
@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contact_email"
-        app:boxBackgroundColor="@color/white">
+        app:boxBackgroundColor="@color/secondaryTextColor">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/contact_subject_field"
@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/contact_subject"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:boxBackgroundColor="@color/white">
+        app:boxBackgroundColor="@color/secondaryTextColor">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/contact_message_field"
