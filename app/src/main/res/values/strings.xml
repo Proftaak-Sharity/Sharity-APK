@@ -40,4 +40,9 @@
     <string name="contact">Contact</string>
     <string name="subject">Subject</string>
     <string name="message">Message</string>
+    <string name="date">reservation date</string>
+    <string name="confirm">Confirm</string>
+    <string name="select_car">select car</string>
+    <string name="select_kmPackage">select km-package</string>
+    <string name="pick_date">select date</string>
 </resources>
