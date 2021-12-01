@@ -30,6 +30,15 @@ class MainActivity : AppCompatActivity() {
         binding.fab.setOnClickListener {
             navController.navigate(R.id.ContactForm)
         }
+
+        navController.addOnDestinationChangedListener { _, destination,_ ->
+            when (destination.id) {
+                R.id.ContactForm,
+                R.id.CreateCustomer -> binding.fab.hide()
+            else -> binding.fab.show()
+            }
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

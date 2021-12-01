@@ -40,4 +40,20 @@
     <string name="contact">Contact</string>
     <string name="subject">Subject</string>
     <string name="message">Message</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="address">Address</string>
+    <string name="house_number">House number</string>
+    <string name="postal_code">Postal code</string>
+    <string name="city">City</string>
+    <string name="country">Country</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="phone_number">Phone number</string>
+    <string name="house_number_short">Nr.</string>
+    <string name="create_your_sharity_account">Create your Sharity Account</string>
+    <string name="confirm">Confirm</string>
+    <string name="next">next</string>
+    <string name="show_password">Show password</string>
+    <string name="login_instead">Login instead</string>
+    <string name="zip_code">PC</string>
 </resources>

@@ -11,12 +11,11 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/contact_email"
         style="@style/text_input_layout"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:hint="@string/email"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:boxBackgroundColor="@color/white">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextMail"
@@ -31,8 +30,7 @@
         android:hint="@string/subject"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contact_email"
-        app:boxBackgroundColor="@color/white">
+        app:layout_constraintTop_toBottomOf="@+id/contact_email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/contact_subject_field"
@@ -47,8 +45,7 @@
         android:hint="@string/message"
         app:layout_constraintTop_toBottomOf="@+id/contact_subject"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:boxBackgroundColor="@color/white">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/contact_message_field"
