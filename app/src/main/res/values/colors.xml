@@ -13,4 +13,14 @@
     <color name="secondaryDarkerColor">#850000</color>
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#FFFFFFFF</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="sharity_dark">#132426</color>
+    <color name="sharity_green">#7ABFBF</color>
+    <color name="sharity_lightgreen">#D5F2F2</color>
+    <color name="sharity_red">#F23005</color>
+    <color name="sharity_lightred">#F28F79</color>
+    <color name="sharity_lightgray">#F2F2F2</color>
 </resources>

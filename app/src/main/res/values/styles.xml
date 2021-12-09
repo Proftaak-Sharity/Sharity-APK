@@ -6,13 +6,13 @@
         <item name="android:backgroundTint">?attr/colorPrimary</item>
         <item name="android:textColor">@color/primaryTextColor</item>
         <item name ="android:fontFamily">sans-serif-medium"</item>
-        <item name="drawableTint">@color/white</item>
+        <item name="drawableTint">@color/secondaryTextColor</item>
     </style>
 
     <style name="text_input_layout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="boxBackgroundColor">@color/white</item>
+        <item name="boxBackgroundColor">@color/secondaryTextColor</item>
     </style>
 
 </resources>
