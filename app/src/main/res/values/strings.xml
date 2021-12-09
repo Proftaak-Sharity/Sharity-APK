@@ -23,7 +23,7 @@
     <string name="search_results">Search Results</string>
     <string name="car_details">Car Details</string>
     <string name="add_reservation">Add Reservation</string>
-    <string name="personal_details">My Personal Details</string>
+    <string name="personal_details">My personal details</string>
     <string name="my_details">My Details</string>
     <string name="bankaccount">Bankaccount</string>
     <string name="update_bankaccount">Update Bankaccount</string>
@@ -70,4 +70,20 @@
     <string name="select_kmPackage">select kmPackage</string>
     <string name="confirm">Confirm Pay now</string>
     <string name="confirm_pay_later">confirm pay later</string>
+    <string name="contact_details">My contact details</string>
+    <string name="postal_code_city">Postal code / city</string>
+    <string name="edit">Edit</string>
+    <string name="license">License</string>
+    <string name="profile_image_demo">profile_image_demo</string>
+    <string name="bankaccount_details">My bankaccount details</string>
+    <string name="details_not_correct">Details not correct?</string>
+    <string name="edit_details">Edit details</string>
+
+
+
+<!--    Specific Sharity data:-->
+    <string name="sharity_email">info@sharity.nl</string>
+    <string name="sharity_email_subject">Contact via Sharity-application</string>
+    <string name="personal">Personal</string>
+
 </resources>

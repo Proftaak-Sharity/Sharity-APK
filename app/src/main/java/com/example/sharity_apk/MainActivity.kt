@@ -1,5 +1,6 @@
 package com.example.sharity_apk
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,19 +11,22 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toolbar
+import androidx.appcompat.app.ActionBar
 import com.example.sharity_apk.databinding.ActivityMainBinding
 import androidx.navigation.NavController
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var _binding: ActivityMainBinding
+    private val binding get() = _binding
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
@@ -32,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         binding.fab.setOnClickListener {
-            sendEmail(arrayOf("info@sharity.nl"), "Contact via Sharity-application")
+            sendEmail()
 
         }
 
@@ -41,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.CreateCustomer,
                 R.id.CreateDriversLicense,
-                R.id.CreateBankaccount -> binding.fab.hide()
+                R.id.CreateBankaccount,
                 R.id.CreateReservation -> binding.fab.hide()
             else -> binding.fab.show()
             }
@@ -52,6 +56,17 @@ class MainActivity : AppCompatActivity() {
 
 //      Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
+
+        navController.addOnDestinationChangedListener { _, destination,_ ->
+            when(destination.id) {
+                R.id.LoginFragment,
+                R.id.CreateCustomer,
+                R.id.CreateDriversLicense,
+                R.id.CreateBankaccount -> menu.findItem(R.id.button_home).isVisible = false
+            else -> menu.findItem(R.id.button_home).isVisible = true
+            }
+
+            }
         return true
     }
 
@@ -59,6 +74,10 @@ class MainActivity : AppCompatActivity() {
 
 //      Sets the destination of the buttons in de options menu:
         return when (item.itemId) {
+            R.id.button_home -> {
+                navController.navigate(R.id.AccountOverview)
+                return true
+            }
             R.id.action_settings -> true
             R.id.action_contact -> true
             R.id.action_logout -> {
@@ -73,13 +92,14 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 
-    private fun sendEmail(addresses: Array<String>, subject: String) {
+    @SuppressLint("QueryPermissionsNeeded")
+    private fun sendEmail() {
 
-//      Opens an popup to select email appliction and send email to Sharity:
+//      Opens an popup to select email application and send email to Sharity:
         val intent = Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.parse("mailto:")
-            putExtra(Intent.EXTRA_EMAIL, addresses)
-            putExtra(Intent.EXTRA_SUBJECT, subject)
+            putExtra(Intent.EXTRA_EMAIL, resources.getString(R.string.sharity_email))
+            putExtra(Intent.EXTRA_SUBJECT, resources.getString(R.string.sharity_email_subject))
         }
         if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
