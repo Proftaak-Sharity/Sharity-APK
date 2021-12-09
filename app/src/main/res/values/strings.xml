@@ -58,4 +58,9 @@
     <string name="zip_code">PC</string>
     <string name="create_account_password_textview"><![CDATA[Use 8 or more characters with a mix of letters, numbers & symbols]]></string>
     <string name="create_account">Create an account</string>
+    <string name="license_number">License number</string>
+    <string name="valid_until">Valid until</string>
+    <string name="image_license">image_license</string>
+    <string name="camera">Camera</string>
+    <string name="picture_drivers_license">Add a photo of the front of your drivers license to your account. Without your drivers license it\'s impossible to create an account.</string>
 </resources>

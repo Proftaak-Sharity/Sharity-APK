@@ -51,14 +51,14 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         binding.fab.setOnClickListener {
-            sendEmail()
+            sendEmail(arrayOf("info@sharity.nl"), "Contact via Sharity-application")
 
         }
 
 //        This hides the floating action button (fab) in specific fragments.
         navController.addOnDestinationChangedListener { _, destination,_ ->
             when (destination.id) {
-                R.id.ContactForm,
+                R.id.CreateDriversLicense,
                 R.id.CreateCustomer -> binding.fab.hide()
             else -> binding.fab.show()
             }
@@ -74,9 +74,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_settings -> true
-            R.id.action_contact -> {
-                navController.navigate(R.id.ContactForm)
-                return true }
+            R.id.action_contact -> true
             R.id.action_logout -> {
                 navController.navigate(R.id.LoginFragment)
                 return true }
@@ -89,22 +87,16 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 
-    private fun sendEmail() {
-        val i = Intent(Intent.ACTION_SEND)
-        i.type = "message/rfc822"
-        i.putExtra(Intent.EXTRA_EMAIL, arrayOf("sharity@gmail.com"))
-        i.putExtra(Intent.EXTRA_SUBJECT, "Email from Sharity app")
-        i.putExtra(Intent.EXTRA_TEXT, "My question:\n\n")
-        try {
-            startActivity(Intent.createChooser(i, "Choose email client:"))
-        } catch (ex: ActivityNotFoundException) {
-            Toast.makeText(
-                this@MainActivity,
-                "There are no email clients installed.",
-                Toast.LENGTH_SHORT
-            ).show()
+    private fun sendEmail(addresses: Array<String>, subject: String) {
+            val intent = Intent(Intent.ACTION_SENDTO).apply {
+                data = Uri.parse("mailto:") // only email apps should handle this
+                putExtra(Intent.EXTRA_EMAIL, addresses)
+                putExtra(Intent.EXTRA_SUBJECT, subject)
+            }
+            if (intent.resolveActivity(packageManager) != null) {
+                startActivity(intent)
+            }
         }
-    }
 
 
 }
