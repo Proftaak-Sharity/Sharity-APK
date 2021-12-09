@@ -10,31 +10,28 @@ import com.example.sharity_apk.databinding.CreateCustomerBinding
 
 class CreateCustomer : Fragment() {
 
-    private var binding: CreateCustomerBinding? = null
+    private var _binding: CreateCustomerBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = CreateCustomerBinding.inflate(inflater, container, false)
-        return binding!!.root
+        _binding = CreateCustomerBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding?.buttonNext?.setOnClickListener {
-            findNavController().navigate(R.id.action_CreateCustomer_to_CreateDriversLicense)
-        }
-
-        binding?.textviewLogin?.setOnClickListener {
-            findNavController().navigate(R.id.action_CreateCustomer_to_LoginFragment)
-        }
-
+//      Button bindings:
+        binding.buttonNext.setOnClickListener { findNavController().navigate(R.id.action_CreateCustomer_to_CreateDriversLicense) }
+        binding.textviewLogin.setOnClickListener { findNavController().navigate(R.id.action_CreateCustomer_to_LoginFragment) }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null
+        _binding = null
     }
 }

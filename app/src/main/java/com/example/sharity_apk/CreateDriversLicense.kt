@@ -10,32 +10,30 @@ import com.example.sharity_apk.databinding.CreateDriversLicenseBinding
 
 class CreateDriversLicense : Fragment() {
 
-    private var binding: CreateDriversLicenseBinding? = null
+    private var _binding: CreateDriversLicenseBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = CreateDriversLicenseBinding.inflate(inflater, container, false)
-        return binding!!.root
+        _binding = CreateDriversLicenseBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding!!.buttonBack.setOnClickListener {
-            findNavController().navigate(R.id.action_CreateDriversLicense_to_CreateCustomer)
-        }
-        
-        binding?.buttonNext?.setOnClickListener {
-            findNavController().navigate(R.id.action_CreateDriversLicense_to_CreateBankaccount)
-        }
-
-
+//      Button bindings:
+        binding.buttonBack.setOnClickListener { findNavController().navigate(R.id.action_CreateDriversLicense_to_CreateCustomer) }
+        binding.buttonNext.setOnClickListener { findNavController().navigate(R.id.action_CreateDriversLicense_to_CreateBankaccount) }
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 
 }
