@@ -169,7 +169,7 @@
     <fragment
         android:id="@+id/CreateCustomer"
         android:name="com.example.sharity_apk.CreateCustomer"
-        android:label="@string/new_customer"
+        android:label="@string/sign_in"
         tools:layout="@layout/create_customer">
 
         <action
