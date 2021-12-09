@@ -137,6 +137,9 @@
         <action
             android:id="@+id/action_CreateReservation_to_LoginFragment"
             app:destination="@id/LoginFragment" />
+        <action
+            android:id="@+id/action_CreateReservation_to_GetReservationDetails"
+            app:destination="@id/GetReservationDetails" />
     </fragment>
 
     <!--    Customer fragments-->

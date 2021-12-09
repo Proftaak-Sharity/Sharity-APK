@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.databinding.CreateReservationBinding
 
 class CreateReservation : Fragment() {
@@ -27,5 +28,13 @@ class CreateReservation : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonConfirmReservation.setOnClickListener {
+            findNavController().navigate(R.id.action_CreateReservation_to_GetReservationDetails)
+        }
+
+        binding.buttonConfirmReservationPayLater.setOnClickListener {
+            findNavController().navigate(R.id.action_CreateReservation_to_GetReservationDetails)
+        }
     }
 }

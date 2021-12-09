@@ -6,11 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="20dp">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/reservationDate"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/date"
         app:boxBackgroundColor="@color/secondaryTextColor"
@@ -24,13 +25,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="date"
-            android:inputType="date"
-            android:onClick="ShowDateRangePicker"/>
+            android:inputType="date">
+
+        </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/carSelection"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +51,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/kmPackageSelection"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +65,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="kmPackage"
-            android:hintTextColor="#757575"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,11 +72,9 @@
         android:id="@+id/button_constraint_confirm_reservation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_constraint_confirm_pay_later"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
         >
 
         <Button
@@ -86,6 +85,27 @@
             android:text="@string/confirm"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button_constraint_confirm_pay_later"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <Button
+            android:id="@+id/button_confirm_reservation_pay_later"
+            style="@style/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm_pay_later"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
