@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.CreateCustomer,
                 R.id.CreateDriversLicense,
                 R.id.CreateBankaccount -> binding.fab.hide()
+                R.id.CreateReservation -> binding.fab.hide()
             else -> binding.fab.show()
             }
         }

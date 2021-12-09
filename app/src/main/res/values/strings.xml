@@ -65,4 +65,9 @@
     <string name="picture_drivers_license">Add a photo of the front of your drivers license to your account. Without your drivers license it\'s impossible to create an account.</string>
     <string name="iban">IBAN</string>
     <string name="account_name">Name account holder</string>
+    <string name="date">reservation startdate</string>
+    <string name="select_car">select car</string>
+    <string name="select_kmPackage">select kmPackage</string>
+    <string name="confirm">Confirm Pay now</string>
+    <string name="confirm_pay_later">confirm pay later</string>
 </resources>
