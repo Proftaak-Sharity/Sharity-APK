@@ -70,4 +70,11 @@
     <string name="select_kmPackage">select kmPackage</string>
     <string name="confirm">Confirm Pay now</string>
     <string name="confirm_pay_later">confirm pay later</string>
+    <string name="electric">Electric</string>
+    <string name="hydrogen">Hydrogen</string>
+    <string name="petrol">Petrol</string>
+    <string name="any">Any</string>
+
+
+
 </resources>
