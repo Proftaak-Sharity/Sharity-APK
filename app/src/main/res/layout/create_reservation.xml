@@ -10,18 +10,37 @@
     android:layout_margin="20dp">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/reservationDate"
+        android:id="@+id/reservationStartDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/date"
         app:boxBackgroundColor="@color/secondaryTextColor"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_constraint_confirm_reservation" Of="@id/button_constraint_confirm_reservation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_reservationDate"
+            android:id="@+id/input_reservationStartDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="date"
+            android:inputType="date">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/reservationEndDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/EndDate"
+        app:boxBackgroundColor="@color/secondaryTextColor"
+        app:layout_constraintTop_toBottomOf="@id/reservationStartDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_reservationEndDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="date"
@@ -36,7 +55,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/reservationDate"
+        app:layout_constraintTop_toBottomOf="@id/reservationEndDate"
         android:layout_marginTop="5dp"
         android:hint="@string/select_car"
         app:boxBackgroundColor="@color/secondaryTextColor">
