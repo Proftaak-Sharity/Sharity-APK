@@ -27,12 +27,20 @@
         tools:layout_editor_absoluteX="30dp">
 
         <Button
+            android:id="@+id/button_search_cars"
+            style="@style/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/search_cars"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
             android:id="@+id/button_make_reservation"
             style="@style/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/make_reservation"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/button_search_cars" />
 
         <Button
             android:id="@+id/button_my_details"

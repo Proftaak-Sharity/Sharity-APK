@@ -65,22 +65,16 @@
     <string name="picture_drivers_license">Add a photo of the front of your drivers license to your account. Without your drivers license it\'s impossible to create an account.</string>
     <string name="iban">IBAN</string>
     <string name="account_name">Name account holder</string>
-
-    <!--     Strings used for test for create reservation -->
     <string name="date">reservation startdate</string>
     <string name="select_car">select car</string>
     <string name="select_kmPackage">select kmPackage</string>
     <string name="confirm">Confirm Pay now</string>
     <string name="confirm_pay_later">confirm pay later</string>
-    <string name="EndDate">reservation enddate</string>
+    <string name="electric">Electric</string>
+    <string name="hydrogen">Hydrogen</string>
+    <string name="petrol">Petrol</string>
+    <string name="any">Any</string>
 
-    <!--     Strings used for test for reservation -->
-    <string name="reservation1">reservation 1</string>
-    <string name="reservation2">reservation 2</string>
-    <string name="reservation3">reservation 3</string>
-    <string name="reservation4">reservation 4</string>
-    <string name="reservation5">reservation 5</string>
-    <string name="reservation6">reservation 6</string>
-    <string name="reservation7">reservation 7</string>
 
-    </resources>
+
+</resources>
