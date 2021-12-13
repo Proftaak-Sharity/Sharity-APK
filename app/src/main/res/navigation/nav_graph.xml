@@ -238,6 +238,9 @@
         <action
             android:id="@+id/action_GetBankaccountDetails_to_LoginFragment"
             app:destination="@id/LoginFragment" />
+        <action
+            android:id="@+id/action_GetBankaccountDetails_to_GetDriversLicenseDetails"
+            app:destination="@id/GetDriversLicenseDetails" />
     </fragment>
 
     <fragment
@@ -270,6 +273,9 @@
         <action
             android:id="@+id/action_GetDriversLicenseDetails_to_LoginFragment"
             app:destination="@id/LoginFragment" />
+        <action
+            android:id="@+id/action_GetDriversLicenseDetails_to_GetBankaccountDetails"
+            app:destination="@id/GetBankaccountDetails" />
     </fragment>
 
     <fragment
