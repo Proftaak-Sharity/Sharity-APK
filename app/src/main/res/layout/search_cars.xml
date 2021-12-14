@@ -84,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/search_cars"
-            app:layout_constraintTop_toTopOf="@+id/car_options" />
+            app:layout_constraintTop_toBottomOf="@+id/car_options" />
 
         <Button
             android:id="@+id/back_button"

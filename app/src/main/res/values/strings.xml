@@ -87,4 +87,13 @@
     <string name="reservation6">reservation 6</string>
     <string name="reservation7">reservation 7</string>
 
+    <!--     Strings used for test for searchCars -->
+    <string name="SearchCar1">Car 1</string>
+    <string name="SearchCar2">Car 2</string>
+    <string name="SearchCar3">Car 3</string>
+    <string name="SearchCar4">Car 4</string>
+    <string name="SearchCar5">Car 5</string>
+    <string name="SearchCar6">Car 6</string>
+    <string name="SearchCar7">Car 7</string>
+
 </resources>
