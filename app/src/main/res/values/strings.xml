@@ -23,7 +23,7 @@
     <string name="search_results">Search Results</string>
     <string name="car_details">Car Details</string>
     <string name="add_reservation">Add Reservation</string>
-    <string name="personal_details">My Personal Details</string>
+    <string name="personal_details">My personal details</string>
     <string name="my_details">My Details</string>
     <string name="bankaccount">Bankaccount</string>
     <string name="update_bankaccount">Update Bankaccount</string>
@@ -65,35 +65,31 @@
     <string name="picture_drivers_license">Add a photo of the front of your drivers license to your account. Without your drivers license it\'s impossible to create an account.</string>
     <string name="iban">IBAN</string>
     <string name="account_name">Name account holder</string>
-    <string name="electric">Electric</string>
-    <string name="hydrogen">Hydrogen</string>
-    <string name="petrol">Petrol</string>
-    <string name="any">Any</string>
-
-    <!--     Strings used for test for create reservation -->
     <string name="date">reservation startdate</string>
     <string name="select_car">select car</string>
     <string name="select_kmPackage">select kmPackage</string>
     <string name="confirm">Confirm Pay now</string>
     <string name="confirm_pay_later">confirm pay later</string>
-    <string name="EndDate">reservation enddate</string>
+    <string name="contact_details">My contact details</string>
+    <string name="postal_code_city">Postal code / city</string>
+    <string name="edit">Edit</string>
+    <string name="license">License</string>
+    <string name="profile_image_demo">profile_image_demo</string>
+    <string name="bankaccount_details">My bankaccount details</string>
+    <string name="details_not_correct">Details not correct?</string>
+    <string name="edit_details">Edit details</string>
+    <string name="bank">bank</string>
+    <string name="personal">Personal</string>
+    <string name="drivers_license_details">My drivers license details</string>
+    <string name="copy_bankcard">Copy bankcard:</string>
+    <string name="copy_license">Copy drivers license:</string>
+    <string name="drivers_license_jpeg">drivers_license.jpeg</string>
 
-    <!--     Strings used for test for reservation -->
-    <string name="reservation1">reservation 1</string>
-    <string name="reservation2">reservation 2</string>
-    <string name="reservation3">reservation 3</string>
-    <string name="reservation4">reservation 4</string>
-    <string name="reservation5">reservation 5</string>
-    <string name="reservation6">reservation 6</string>
-    <string name="reservation7">reservation 7</string>
 
-    <!--     Strings used for test for searchCars -->
-    <string name="SearchCar1">Car 1</string>
-    <string name="SearchCar2">Car 2</string>
-    <string name="SearchCar3">Car 3</string>
-    <string name="SearchCar4">Car 4</string>
-    <string name="SearchCar5">Car 5</string>
-    <string name="SearchCar6">Car 6</string>
-    <string name="SearchCar7">Car 7</string>
+<!--    Specific Sharity data:-->
+    <string name="sharity_email">info@sharity.nl</string>
+    <string name="sharity_email_subject">Contact via Sharity-application</string>
+    <string name="car_image">car_image</string>
+
 
 </resources>

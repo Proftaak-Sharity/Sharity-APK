@@ -26,11 +26,10 @@ class AccountOverview : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 //      Button bindings:
-        binding.buttonSearchCars.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_SearchCars) }
-        binding.buttonMakeReservation.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_CreateReservation) }
-        binding.buttonMyDetails.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_LoginFragment) }
+        binding.buttonMakeReservation.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_SearchCars) }
+        binding.buttonMyDetails.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_GetCustomerDetails) }
         binding.buttonMyCars.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_LoginFragment) }
-        binding.buttonMyReservations.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_GetAllReservations) }
+        binding.buttonMyReservations.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_LoginFragment) }
     }
 
     override fun onDestroyView() {
