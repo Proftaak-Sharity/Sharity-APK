@@ -80,6 +80,9 @@
         <action
             android:id="@+id/action_SearchCars_to_SearchResults"
             app:destination="@id/SearchResults" />
+        <action
+            android:id="@+id/action_SearchCars_to_SearchResults2"
+            app:destination="@id/SearchResults" />
     </fragment>
 
     <fragment
