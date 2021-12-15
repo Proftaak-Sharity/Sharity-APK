@@ -1,53 +1,33 @@
 package com.example.sharity_apk
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
-import com.example.sharity_apk.databinding.SearchCarsBinding
+import com.example.sharity_apk.adapter.CarAdapter
 import com.example.sharity_apk.databinding.SearchResultsBinding
 
-class SearchResults : Fragment() {
+class SearchResults: Fragment() {
 
-    private var _binding: SearchResultsBinding? = null
-    private val binding get() = _binding!!
-
-
-
+    private lateinit var binding: SearchResultsBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = SearchResultsBinding.inflate(inflater, container, false)
-        return binding.root
+    ): View? {
+        binding = SearchResultsBinding.inflate(layoutInflater)
 
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//      Button bindings:
-//        binding.searchButton.setOnClickListener { findNavController().navigate(R.id.action_SearchCars_to_SearchResults) }
-//        binding.backButton.setOnClickListener { findNavController().navigate(R.id.action_SearchCars_to_AccountOverview) }
-//        binding.buttonMyDetails.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_LoginFragment) }
-//        binding.buttonMyCars.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_LoginFragment) }
-//        binding.buttonMyReservations.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_LoginFragment) }
+        binding.recyclerView.adapter = CarAdapter()
+        binding.recyclerView.setHasFixedSize(true)
+
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-
-
-
-
-
 
 }

@@ -1,99 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SearchCars">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="400dp"
-        android:layout_height="250dp"
-        android:contentDescription="@string/logo_sharity"
-        android:src="@drawable/ic_sharity"
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:text="TEST SEARCH RESULTS RECYCLERVIEW"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        app:layout_constraintBottom_toTopOf="@+id/button_test_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_test_search"
+        style="@style/button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/ic_baseline_search_24"
+        android:text="Test Search"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:padding="30dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/button_constraint_search_cars"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/imageView"
-        tools:layout_editor_absoluteX="30dp">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/city"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
-            tools:ignore="NotSibling">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/city_search"
-                android:layout_width="160dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="124dp"
-                android:hint="@string/city"
-                android:inputType="text" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <RadioGroup
-            android:id="@+id/car_options"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checkedButton="@id/option_electric"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@id/city"
-            app:layout_constraintTop_toBottomOf="@id/city">
-
-            <RadioButton
-                android:id="@+id/option_electric"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/electric" />
-
-            <RadioButton
-                android:id="@+id/option_hydrogen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hydrogen" />
-
-            <RadioButton
-                android:id="@+id/option_petrol"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/petrol" />
-
-            <RadioButton
-                android:id="@+id/option_any"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/any" />
-        </RadioGroup>
-
-        <Button
-            android:id="@+id/search_button"
-            style="@style/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/search_cars"
-            app:layout_constraintTop_toTopOf="@+id/car_options" />
-
-        <Button
-            android:id="@+id/back_button"
-            style="@style/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/back"
-            app:layout_constraintTop_toBottomOf="@+id/search_button" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
