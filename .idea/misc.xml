@@ -4,11 +4,6 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.5635416666666667" />
-        <entry key="..\:/Studie/Sharity-APK/app/src/main/res/drawable/textview_border.xml" value="0.2657407407407407" />
-        <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/car_card.xml" value="0.25" />
-        <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/get_searched_car_details.xml" value="0.190625" />
-        <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/search_cars.xml" value="0.33" />
-        <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/search_results.xml" value="0.33" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3411458333333333" />
         <entry key="app/src/main/res/drawable-v26/ic_launcher_background.xml" value="0.5369791666666667" />
         <entry key="app/src/main/res/drawable-v26/ic_launcher_foreground.xml" value="0.5645833333333333" />
@@ -23,6 +18,10 @@
         <entry key="app/src/main/res/layout-v28/get_customer_details.xml" value="0.32971014492753625" />
         <entry key="app/src/main/res/layout/account_overview.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.325" />
+        <entry key="app/src/main/res/layout/activity_vertical_list.xml" value="0.33559782608695654" />
+        <entry key="app/src/main/res/layout/car_card.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/car_item.xml" value="0.3428442028985507" />
+        <entry key="app/src/main/res/layout/car_item_cardview.xml" value="0.33559782608695654" />
         <entry key="app/src/main/res/layout/contact_form.xml" value="0.3265625" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.325" />
         <entry key="app/src/main/res/layout/create_bankaccount.xml" value="0.41032608695652173" />
@@ -45,12 +44,15 @@
         <entry key="app/src/main/res/layout/get_reservation_details.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/get_searched_car_details.xml" value="0.1" />
         <entry key="app/src/main/res/layout/image_border.xml" value="0.3491847826086957" />
+        <entry key="app/src/main/res/layout/listreservation_item.xml" value="0.28854166666666664" />
         <entry key="app/src/main/res/layout/login.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/search_cars.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/recycler_view.xml" value="0.3428442028985507" />
+        <entry key="app/src/main/res/layout/rowlayout.xml" value="0.33559782608695654" />
+        <entry key="app/src/main/res/layout/search_cars.xml" value="0.33" />
         <entry key="app/src/main/res/layout/search_results.xml" value="0.1" />
         <entry key="app/src/main/res/layout/update_bankaccount.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/update_car.xml" value="0.41032608695652173" />
-        <entry key="app/src/main/res/layout/update_customer.xml" value="0.41032608695652173" />
+        <entry key="app/src/main/res/layout/update_customer.xml" value="0.25" />
         <entry key="app/src/main/res/layout/update_drivers_license.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/update_reservation.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.3255208333333333" />

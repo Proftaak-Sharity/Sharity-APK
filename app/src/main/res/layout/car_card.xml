@@ -3,71 +3,101 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="100dp"
     android:layout_margin="8dp"
     app:cardElevation="4dp"
     app:cardCornerRadius="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/textview_border"
-        >
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/car_image"
-            tools:src="@drawable/opel_astra"
-            android:layout_width="match_parent"
-            android:layout_height="194dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:contentDescription="@string/car_image" />
 
-        <TextView
-            android:id="@+id/car_make"
-            tools:text="Astra"
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            android:padding="8dp"
-            android:background="@drawable/textview_border"
-            app:layout_constraintTop_toBottomOf="@id/car_image"/>
+            app:layout_constraintStart_toEndOf="@id/car_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/make_model"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/car_make"
+                tools:text="Opel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/car_model"
+                tools:text="Astra"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:paddingStart="5dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/car_make"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/car_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/car_make"
-            app:layout_constraintTop_toBottomOf="@id/car_make"
-            tools:text="Price: 100,00 " />
+            android:textAppearance="?attr/textAppearanceBody1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/make_model"
+            tools:text="Price: €100,00" />
 
         <TextView
             android:id="@+id/car_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:textSize="15sp"
-            android:textStyle="bold"
-
+            android:textAppearance="?attr/textAppearanceBody1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/car_make"
-            tools:text="Location: Breda " />
+            app:layout_constraintTop_toBottomOf="@id/car_price"
+            tools:text="Location: Breda"/>
 
         <TextView
             android:id="@+id/car_fueltype"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:textAlignment="viewEnd"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/car_make"
-            tools:text="Fuel: petrol" />
+            android:textAppearance="?attr/textAppearanceBody1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/car_location"
+            tools:text="Fuel: Petrol"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+
+
+
+
+
+
+<!--        -->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
