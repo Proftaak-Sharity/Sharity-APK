@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.5635416666666667" />
+<<<<<<< Updated upstream
         <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/account_overview.xml" value="0.1" />
         <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/car_card.xml" value="0.190625" />
         <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/listreservation_item.xml" value="0.19739583333333333" />
@@ -11,6 +12,12 @@
         <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/search_cars.xml" value="0.25" />
         <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/search_results.xml" value="0.33" />
         <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/searched_car_item.xml" value="0.19739583333333333" />
+=======
+        <entry key="..\:/Studie/Sharity-APK/app/src/main/res/drawable/textview_border.xml" value="0.2657407407407407" />
+        <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/car_card.xml" value="0.25" />
+        <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/search_cars.xml" value="0.33" />
+        <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/search_results.xml" value="0.33" />
+>>>>>>> Stashed changes
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3411458333333333" />
         <entry key="app/src/main/res/drawable-v26/ic_launcher_background.xml" value="0.5369791666666667" />
         <entry key="app/src/main/res/drawable-v26/ic_launcher_foreground.xml" value="0.5645833333333333" />

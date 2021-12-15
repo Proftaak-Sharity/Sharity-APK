@@ -84,6 +84,10 @@
     <string name="copy_bankcard">Copy bankcard:</string>
     <string name="copy_license">Copy drivers license:</string>
     <string name="drivers_license_jpeg">drivers_license.jpeg</string>
+    <string name="electric">electric</string>
+    <string name="hydrogen">hydrogen</string>
+    <string name="petrol">petrol</string>
+    <string name="any">any</string>
 
 
 <!--    Specific Sharity data:-->
