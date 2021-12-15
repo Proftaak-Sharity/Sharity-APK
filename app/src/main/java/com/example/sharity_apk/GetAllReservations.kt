@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sharity_apk.adapter.ReservationItemAdapter
-import com.example.sharity_apk.data.Datasource
+import com.example.sharity_apk.data.DataSource
 import com.example.sharity_apk.databinding.GetAllReservationsBinding
 
 class GetAllReservations  : Fragment() {
