@@ -12,9 +12,11 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toolbar
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBar
 import com.example.sharity_apk.databinding.ActivityMainBinding
 import androidx.navigation.NavController
+import com.example.sharity_apk.viewmodel.CustomerViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,7 +39,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.fab.setOnClickListener {
             sendEmail()
-
         }
 
 //      This hides the floating action button (fab) in specific fragments:
