@@ -2,6 +2,7 @@ package com.example.sharity_apk.data
 
 import com.example.sharity_apk.R
 import com.example.sharity_apk.model.CarModel
+import com.example.sharity_apk.model.ReservationModel
 
 object DataSource {
         val cars: List<CarModel> = listOf(
@@ -30,5 +31,15 @@ object DataSource {
                 "Suzuki",
             )
         )
-
+        val reservations: List<ReservationModel> = listOf(
+            ReservationModel(
+                "reservering 1"
+            ),
+            ReservationModel(
+                "reservering 2"
+            ),
+            ReservationModel(
+                "reservering 3"
+            )
+        )
 }
