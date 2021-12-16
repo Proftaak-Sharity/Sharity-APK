@@ -25,6 +25,7 @@
         <entry key="app/src/main/res/layout/get_customer_details.xml" value="0.2796875" />
         <entry key="app/src/main/res/layout/listreservation_item.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/layout/login.xml" value="0.2203125" />
+        <entry key="app/src/main/res/layout/reservation_card.xml" value="0.240625" />
         <entry key="app/src/main/res/layout/search_cars.xml" value="0.2203125" />
         <entry key="app/src/main/res/layout/search_results.xml" value="0.240625" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.3255208333333333" />
