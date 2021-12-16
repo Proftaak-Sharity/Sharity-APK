@@ -95,6 +95,9 @@
     <string name="sharity_email_subject">Contact via Sharity-application</string>
     <string name="car_image">car_image</string>
     <string name="EndDate">end date</string>
+    <string name="get">get</string>
+    <string name="delete">delete</string>
+    <string name="post">add</string>
 
 
 </resources>
