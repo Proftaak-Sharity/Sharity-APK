@@ -19,9 +19,10 @@
         <entry key="app/src/main/res/layout/account_overview.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.325" />
         <entry key="app/src/main/res/layout/activity_vertical_list.xml" value="0.33559782608695654" />
-        <entry key="app/src/main/res/layout/car_card.xml" value="0.33559782608695654" />
+        <entry key="app/src/main/res/layout/car_card.xml" value="0.335" />
         <entry key="app/src/main/res/layout/car_item.xml" value="0.3428442028985507" />
         <entry key="app/src/main/res/layout/car_item_cardview.xml" value="0.33559782608695654" />
+        <entry key="app/src/main/res/layout/card_customer.xml" value="0.45652173913043476" />
         <entry key="app/src/main/res/layout/contact_form.xml" value="0.3265625" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.325" />
         <entry key="app/src/main/res/layout/create_bankaccount.xml" value="0.41032608695652173" />
@@ -29,6 +30,7 @@
         <entry key="app/src/main/res/layout/create_customer.xml" value="0.3143176733780761" />
         <entry key="app/src/main/res/layout/create_drivers_license.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/create_reservation.xml" value="0.41032608695652173" />
+        <entry key="app/src/main/res/layout/customer_card.xml" value="0.33" />
         <entry key="app/src/main/res/layout/delete_bankaccount.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/delete_car.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/delete_reservation.xml" value="0.41032608695652173" />
@@ -52,7 +54,7 @@
         <entry key="app/src/main/res/layout/search_results.xml" value="0.1" />
         <entry key="app/src/main/res/layout/update_bankaccount.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/update_car.xml" value="0.41032608695652173" />
-        <entry key="app/src/main/res/layout/update_customer.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/update_customer.xml" value="0.165" />
         <entry key="app/src/main/res/layout/update_drivers_license.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/update_reservation.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.3255208333333333" />
