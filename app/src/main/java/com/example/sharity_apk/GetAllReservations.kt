@@ -8,24 +8,26 @@ import androidx.fragment.app.Fragment
 import com.example.sharity_apk.adapter.ReservationAdapter
 import com.example.sharity_apk.databinding.GetAllReservationsBinding
 
-class GetAllReservations  : Fragment() {
+class GetAllReservations: Fragment() {
 
-}    private lateinit var binding: GetAllReservationsBinding
+    private lateinit var binding: GetAllReservationsBinding
 
-override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-): View? {
-    binding = GetAllReservationsBinding.inflate(layoutInflater)
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            binding = GetAllReservationsBinding.inflate(layoutInflater)
 
-    return binding.root
-}
+            return binding.root
+        }
 
-override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
+            override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+                super.onViewCreated(view, savedInstanceState)
 
-    binding.recyclerView.adapter = ReservationAdapter()
-    binding.recyclerView.setHasFixedSize(true)
+                binding.recyclerView.adapter = ReservationAdapter()
+                binding.recyclerView.setHasFixedSize(true)
+
+            }
 
 }

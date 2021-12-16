@@ -25,14 +25,14 @@ class ReservationAdapter (): RecyclerView.Adapter<ReservationAdapter.Reservation
 
         val adapterLayout = LayoutInflater.from(parent.context).inflate(R.layout.reservation_card,parent,false)
 
-        return ReservationAdapter.ReservationCardViewHolder(adapterLayout)
+        return ReservationCardViewHolder(adapterLayout)
     }
 
     override fun getItemCount(): Int  {
         return dataset.size
     }
 
-    override fun onBindViewHolder(holder: ReservationAdapter.ReservationCardViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ReservationCardViewHolder, position: Int) {
 
         val item = dataset[position]
 //        holder.imageView?.setImageResource(item.imageResourceId)
