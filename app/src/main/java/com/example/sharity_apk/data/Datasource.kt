@@ -34,15 +34,15 @@ object DataSource {
     val reservations: List<ReservationModel> = listOf(
         ReservationModel(
             "Reservering 000001",
-        "KNTK01",
-     3,
-    607,
-    1000,
-    210,
-    "2021-11-04",
-    "2021-12-01",
-    "2021-12-05",
-    "OPEN"
+            "KNTK01",
+            3,
+            607,
+            1000,
+            210,
+            "2021-11-04",
+            "2021-12-01",
+            "2021-12-05",
+            "OPEN"
         )
     )
 }
