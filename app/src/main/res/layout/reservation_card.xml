@@ -17,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            android:padding="8dp"/>
+            android:padding="8dp"
+            tools:text="Reservationnumber"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
