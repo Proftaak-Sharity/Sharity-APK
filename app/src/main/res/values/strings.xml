@@ -65,7 +65,12 @@
     <string name="picture_drivers_license">Add a photo of the front of your drivers license to your account. Without your drivers license it\'s impossible to create an account.</string>
     <string name="iban">IBAN</string>
     <string name="account_name">Name account holder</string>
-     <string name="contact_details">My contact details</string>
+    <string name="date">reservation startdate</string>
+    <string name="select_car">select car</string>
+    <string name="select_kmPackage">select kmPackage</string>
+    <string name="confirm">Confirm Pay now</string>
+    <string name="confirm_pay_later">confirm pay later</string>
+    <string name="contact_details">My contact details</string>
     <string name="postal_code_city">Postal code / city</string>
     <string name="edit">Edit</string>
     <string name="license">License</string>
@@ -79,33 +84,20 @@
     <string name="copy_bankcard">Copy bankcard:</string>
     <string name="copy_license">Copy drivers license:</string>
     <string name="drivers_license_jpeg">drivers_license.jpeg</string>
+    <string name="electric">electric</string>
+    <string name="hydrogen">hydrogen</string>
+    <string name="petrol">petrol</string>
+    <string name="any">any</string>
 
 
 <!--    Specific Sharity data:-->
     <string name="sharity_email">info@sharity.nl</string>
     <string name="sharity_email_subject">Contact via Sharity-application</string>
     <string name="car_image">car_image</string>
+    <string name="EndDate">end date</string>
     <string name="get">get</string>
     <string name="delete">delete</string>
     <string name="post">add</string>
-
-
-    <!--     Strings used for test for create reservation -->
-    <string name="date">reservation startdate</string>
-    <string name="select_car">select car</string>
-    <string name="select_kmPackage">select kmPackage</string>
-    <string name="confirm">Confirm Pay now</string>
-    <string name="confirm_pay_later">confirm pay later</string>
-    <string name="EndDate">reservation enddate</string>
-
-    <!--     Strings used for test for reservation -->
-    <string name="reservation1">reservation 1</string>
-    <string name="reservation2">reservation 2</string>
-    <string name="reservation3">reservation 3</string>
-    <string name="reservation4">reservation 4</string>
-    <string name="reservation5">reservation 5</string>
-    <string name="reservation6">reservation 6</string>
-    <string name="reservation7">reservation 7</string>
 
 
 </resources>

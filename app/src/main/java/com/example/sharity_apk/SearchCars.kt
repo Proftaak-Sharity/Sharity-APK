@@ -26,7 +26,8 @@ class SearchCars : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 //      Button bindings:
-        binding.buttonTestSearch.setOnClickListener { findNavController().navigate(R.id.action_SearchCars_to_SearchResults) }
+        binding.searchButton.setOnClickListener { findNavController().navigate(R.id.action_SearchCars_to_SearchResults) }
+
     }
 
     override fun onDestroyView() {

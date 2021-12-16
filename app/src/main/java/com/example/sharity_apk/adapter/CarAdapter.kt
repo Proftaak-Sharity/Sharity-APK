@@ -19,6 +19,9 @@ class CarAdapter(): RecyclerView.Adapter<CarAdapter.CarCardViewHolder>() {
     class CarCardViewHolder(view: View?): RecyclerView.ViewHolder(view!!) {
         val imageView = view?.findViewById<ImageView>(R.id.car_image)
         val carMake = view?.findViewById<TextView>(R.id.car_make)
+        val carPrice =  view?.findViewById<TextView>(R.id.car_price)
+        val carLocation =  view?.findViewById<TextView>(R.id.car_location)
+        val carFuelType =  view?.findViewById<TextView>(R.id.car_fueltype)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarCardViewHolder {
@@ -37,6 +40,10 @@ class CarAdapter(): RecyclerView.Adapter<CarAdapter.CarCardViewHolder>() {
         val item = dataset[position]
         holder.imageView?.setImageResource(item.imageResourceId)
         holder.carMake?.text = item.make
+        holder.carPrice?.text = "Price: 100 "
+        holder.carLocation?.text = "location: Breda "
+        holder.carFuelType?.text =  "fuel: Electric "
+
 
     }
 }

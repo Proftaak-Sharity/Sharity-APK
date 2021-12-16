@@ -29,7 +29,7 @@ class AccountOverview : Fragment() {
         binding.buttonMakeReservation.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_SearchCars) }
         binding.buttonMyDetails.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_GetCustomerDetails) }
         binding.buttonMyCars.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_LoginFragment) }
-        binding.buttonMyReservations.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_GetAllReservations) }
+        binding.buttonMyReservations.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_LoginFragment) }
     }
 
     override fun onDestroyView() {
