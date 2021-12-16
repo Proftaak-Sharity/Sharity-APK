@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sharity_apk.databinding.UpdateCustomerBinding
-import com.example.sharity_apk.service.ApiService
+import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.CustomerAdapter
-import com.example.sharity_apk.service.CustomerModel
+import com.example.sharity_apk.model.Customer
 import com.example.sharity_apk.service.ServiceGenerator
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,11 +29,11 @@ class UpdateCustomer: Fragment() {
     ): View {
         _binding = UpdateCustomerBinding.inflate(inflater, container, false)
 
-        val serviceGenerator = ServiceGenerator.buildService(ApiService::class.java)
+        val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
         val call = serviceGenerator.getCustomers()
 
-        call.enqueue(object : Callback<MutableList<CustomerModel>> {
-            override fun onResponse(call: Call<MutableList<CustomerModel>>, response: Response<MutableList<CustomerModel>>) {
+        call.enqueue(object : Callback<MutableList<Customer>> {
+            override fun onResponse(call: Call<MutableList<Customer>>, response: Response<MutableList<Customer>>) {
                 if (response.isSuccessful) {
                     binding.myRecyclerView.apply {
                         layoutManager = LinearLayoutManager(this@UpdateCustomer.requireContext())
@@ -43,7 +42,7 @@ class UpdateCustomer: Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<MutableList<CustomerModel>>, t: Throwable) {
+            override fun onFailure(call: Call<MutableList<Customer>>, t: Throwable) {
                 t.printStackTrace()
                 Log.e("error", t.message.toString())
             }
