@@ -16,7 +16,7 @@ class SearchResults: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = SearchResultsBinding.inflate(layoutInflater)
 
         return binding.root
@@ -29,5 +29,4 @@ class SearchResults: Fragment() {
         binding.recyclerView.setHasFixedSize(true)
 
     }
-
 }
