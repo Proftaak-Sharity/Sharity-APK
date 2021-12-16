@@ -52,6 +52,8 @@ dependencies {
     implementation 'com.google.android.material:material:<version>'
     implementation 'com.sun.mail:android-mail:1.6.0'
     implementation 'com.sun.mail:android-activation:1.6.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
 
     // to create a Livecycle aware components
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'

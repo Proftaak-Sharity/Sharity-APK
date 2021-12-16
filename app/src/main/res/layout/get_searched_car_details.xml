@@ -3,4 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="400dp"
+        android:layout_height="250dp"
+        android:contentDescription="@string/logo_sharity"
+        android:src="@drawable/ic_sharity"
+
+        android:padding="0dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
