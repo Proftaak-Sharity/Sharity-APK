@@ -30,8 +30,8 @@ class CustomerViewHolder(itemView: View): RecyclerView.ViewHolder (itemView) {
     private val tvEmail: TextView = itemView.findViewById(R.id.tvEmail)
 
     fun bindView(customer: Customer) {
-        tvName.text = customer.dateOfBirth
-        tvEmail.text = customer.email
+        tvName.text = customer.lastName
+        tvEmail.text = customer.phoneNumber
 
 
 
