@@ -1,7 +1,6 @@
 package com.example.sharity_apk
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +10,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sharity_apk.databinding.UpdateCustomerBinding
 import com.example.sharity_apk.service.CustomerApiService
-import com.example.sharity_apk.service.CustomerAdapter
-import com.example.sharity_apk.model.Customer
+import com.example.sharity_apk.adapter.CustomerAdapter
 import com.example.sharity_apk.service.ServiceGenerator
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.lang.Exception
 
 

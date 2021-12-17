@@ -5,15 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.databinding.AccountOverviewBinding
-import com.example.sharity_apk.model.Customer
-import com.example.sharity_apk.service.CustomerApiService
-import com.example.sharity_apk.service.ServiceGenerator
-import com.example.sharity_apk.service.SharityPreferences
-import kotlinx.coroutines.launch
 
 class AccountOverview : Fragment() {
 

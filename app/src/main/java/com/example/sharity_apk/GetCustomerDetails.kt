@@ -5,17 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.databinding.GetCustomerDetailsBinding
-import com.example.sharity_apk.model.Customer
 import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
-import com.example.sharity_apk.service.SharityPreferences
+import com.example.sharity_apk.config.SharityPreferences
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class GetCustomerDetails: Fragment() {
 
