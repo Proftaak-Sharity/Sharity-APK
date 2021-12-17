@@ -1,4 +1,4 @@
-package com.example.sharity_apk.service
+package com.example.sharity_apk.adapter
 
 import android.view.LayoutInflater
 import android.view.View
