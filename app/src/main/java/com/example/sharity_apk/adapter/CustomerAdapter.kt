@@ -31,7 +31,7 @@ class CustomerViewHolder(itemView: View): RecyclerView.ViewHolder (itemView) {
 
     fun bindView(customer: Customer) {
         tvName.text = customer.lastName
-        tvEmail.text = customer.phoneNumber
+        tvEmail.text = customer.email
 
 
 

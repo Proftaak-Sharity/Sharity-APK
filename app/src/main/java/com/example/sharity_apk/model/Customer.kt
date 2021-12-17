@@ -38,6 +38,8 @@ data class Customer(
     val email: String?,
 
     @field:Json(name = "password")
-    val password: String?
+    val password: String?,
 
-)
+    @field:Json(name = "drivers_license")
+    val driversLicense: DriversLicense
+    )
