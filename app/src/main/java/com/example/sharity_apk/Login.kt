@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.databinding.LoginBinding
+import com.example.sharity_apk.service.SharityPreferences
 import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import kotlinx.coroutines.launch
@@ -30,6 +31,8 @@ class Login : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val preference = SharityPreferences(requireContext())
+
         binding.signIn.setOnClickListener { findNavController().navigate(R.id.action_LoginFragment_to_CreateCustomer) }
         binding.buttonLogin.setOnClickListener {
 
@@ -38,17 +41,18 @@ class Login : Fragment() {
             val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
 
             if (emailInput.isNullOrEmpty() || passwordInput.isNullOrEmpty()) {
-                Toast.makeText(requireContext(), "Email and/or password missing", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Email and/or password missing", Toast.LENGTH_SHORT).show()
             } else {
                 viewLifecycleOwner.lifecycleScope.launch {
                     try {
                         val customerNumber =
                         serviceGenerator.getUser(emailInput.toString(), passwordInput.toString())
 
-                        Toast.makeText(requireContext(), "Customer number: $customerNumber", Toast.LENGTH_LONG)
-                            .show()
+                        preference.setCustomerNumber(customerNumber)
+
+                        findNavController().navigate(R.id.action_LoginFragment_to_AccountOverview)
                     } catch (e: Exception) {
-                        Toast.makeText(requireContext(), "Customer unknown", Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), "Customer unknown", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
