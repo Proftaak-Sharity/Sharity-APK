@@ -13,12 +13,4 @@ interface CustomerApiService {
     @POST ("customers/login")
     suspend fun getUser(@Query("email") email: String, @Query("password") password: String) : Long
 
-//    @POST("/login?user={user}&pass={password}")
-//    fun henk(username: String, password: String): Int
-
-//    @GET ("customers")
-//    fun getLoginData(email: String, password: String): Call<MutableList<Customer>> {
-//        return getLoginData().
-//    }
-
 }
