@@ -4,32 +4,32 @@ import com.squareup.moshi.Json
 
 data class ReservationModel(
     @field:Json(name = "customer_number")
-    val customerNumber: Long,
+    val customerNumber: Long?,
 
     @field:Json(name = "end_data")
-    val endDate: String,
+    val endDate: String?,
 
     @field:Json(name = "km_package")
-    val kmPackage: Int,
+    val kmPackage: Int?,
 
     @field:Json(name = "license_plate")
-    val licensePlate: String,
+    val licensePlate: String?,
 
     @field:Json(name = "package_price")
-    val packagePrice: Double,
+    val packagePrice: Double?,
 
     @field:Json(name = "payment_enum")
-    val paymentEnum: String,
+    val paymentEnum: String?,
 
     @field:Json(name = "prent")
-    val rent: Double,
+    val rent: Double?,
 
     @field:Json(name = "reservation_date")
-    val reservationDate: String,
+    val reservationDate: String?,
 
     @field:Json(name = "reservation_number")
-    val reservationNumber: Int,
+    val reservationNumber: Int?,
 
     @field:Json(name = "start_date")
-    val startDate: String
+    val startDate: String?
 )

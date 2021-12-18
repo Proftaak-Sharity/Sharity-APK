@@ -32,11 +32,5 @@ class CustomerViewHolder(itemView: View): RecyclerView.ViewHolder (itemView) {
     fun bindView(customerModel: CustomerModel) {
         tvName.text = customerModel.lastName
         tvEmail.text = customerModel.email
-
-
-
-
     }
-
-
 }

@@ -1,13 +1,12 @@
 package com.example.sharity_apk.service
 
-import com.example.sharity_apk.model.Customer
+
 import com.example.sharity_apk.model.ReservationModel
-import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface ReservationApiService {
 
-    @GET ("reservations")
-    fun getReservations(): Call<MutableList<ReservationModel>>
-
+    @GET("reservations/customer/{customer_number}")
+    suspend fun getReservations(@Path("customer_number") customerNumber: Long) : ReservationModel
 }
