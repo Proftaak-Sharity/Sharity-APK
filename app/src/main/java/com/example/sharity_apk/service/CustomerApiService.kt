@@ -1,5 +1,6 @@
 package com.example.sharity_apk.service
 
+import com.example.sharity_apk.model.BankaccountModel
 import com.example.sharity_apk.model.CustomerModel
 import com.example.sharity_apk.model.DriversLicenseModel
 import com.example.sharity_apk.model.LoginModel
@@ -15,10 +16,13 @@ interface CustomerApiService {
     suspend fun getCustomer(@Path("customer_number") customerNumber: Long) : CustomerModel
 
 //    using Query so that email en query are used in query url, like: customers/login?email={email}&password={password}
-    @POST ("customers/login")
+    @GET ("customers/login")
     suspend fun getUser(@Query("email") email: String, @Query("password") password: String) : LoginModel
 
-    @POST("customers/license/{customer_number}")
+    @GET("customers/license/{customer_number}")
     suspend fun getDriversLicense(@Path ("customer_number") customerNumber: Long) : DriversLicenseModel
+
+    @GET ("customers/bankaccounts/{customer_number}")
+    suspend fun getBankaccounts(@Path("customer_number") customerNumber: Long) : MutableList<BankaccountModel>
 
 }

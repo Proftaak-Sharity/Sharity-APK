@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.adapters.ToolbarBindingAdapter
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +23,8 @@ class AccountOverview : Fragment() {
 
     private var _binding: AccountOverviewBinding? = null
     private val binding get() = _binding!!
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,18 +47,7 @@ class AccountOverview : Fragment() {
 //      Button bindings:
         binding.buttonMakeReservation.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_SearchCars) }
         binding.buttonMyDetails.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_GetCustomerDetails) }
-        binding.buttonMyCars.setOnClickListener {
-
-            viewLifecycleOwner.lifecycleScope.launch {
-
-                val customerNumber = preferences.getCustomerNumber()
-                val driversLicense = serviceGenerator.getDriversLicense(customerNumber)
-
-                Toast.makeText(requireContext(), driversLicense.licenseNumber, Toast.LENGTH_SHORT).show()
-
-            }
-
-        }
+        binding.buttonMyCars.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_GetAllCars) }
         binding.buttonMyReservations.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_GetAllReservations) }
     }
 
