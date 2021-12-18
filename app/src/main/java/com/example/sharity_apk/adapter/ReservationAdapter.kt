@@ -37,6 +37,5 @@ class ReservationAdapter (): RecyclerView.Adapter<ReservationAdapter.Reservation
         val item = dataset[position]
 //        holder.imageView?.setImageResource(item.imageResourceId)
         holder.reservationNumber?.text = item.reservationNumber
-
     }
 }
