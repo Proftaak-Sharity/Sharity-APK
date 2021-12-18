@@ -8,5 +8,5 @@ import retrofit2.http.Path
 interface ReservationApiService {
 
     @GET("reservations/customer/{customer_number}")
-    suspend fun getReservations(@Path("customer_number") customerNumber: Long) : ReservationModel
+    suspend fun getReservations(@Path("customer_number") customerNumber: Long) : MutableList<ReservationModel>
 }
