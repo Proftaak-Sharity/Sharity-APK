@@ -45,10 +45,12 @@ class Login : Fragment() {
             } else {
                 viewLifecycleOwner.lifecycleScope.launch {
                     try {
-                        val customerNumber =
+                        val customer =
                         serviceGenerator.getUser(emailInput.toString(), passwordInput.toString())
 
-                        preference.setCustomerNumber(customerNumber)
+                        preference.setCustomerNumber(customer.customerNumber!!)
+                        preference.setLastName(customer.lastName!!)
+                        preference.setFirstName(customer.firstName!!)
 
                         findNavController().navigate(R.id.action_LoginFragment_to_AccountOverview)
                     } catch (e: Exception) {
