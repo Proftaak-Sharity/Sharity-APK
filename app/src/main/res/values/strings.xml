@@ -98,5 +98,6 @@
     <string name="get">get</string>
     <string name="delete">delete</string>
     <string name="post">add</string>
+    <string name="welcome">Welcome %1$s</string>
 
 </resources>
