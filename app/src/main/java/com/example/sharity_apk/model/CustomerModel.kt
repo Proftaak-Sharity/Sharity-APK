@@ -2,7 +2,7 @@ package com.example.sharity_apk.model
 
 import com.squareup.moshi.Json
 
-data class Customer(
+data class CustomerModel(
 
     @field:Json(name = "customer_number")
     val customerNumber: Long?,
@@ -38,6 +38,6 @@ data class Customer(
     val email: String?,
 
     @field:Json(name = "password")
-    val password: String?
+    val password: String?,
 
-)
+    )

@@ -6,16 +6,6 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/LoginFragment">
 
-    <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.sharity_apk.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
-    </fragment>
 
 <!--    Login fragment-->
     <fragment
@@ -24,9 +14,6 @@
         android:label="@string/login"
         tools:layout="@layout/login">
 
-        <action
-            android:id="@+id/action_LoginFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
         <action
             android:id="@+id/action_LoginFragment_to_CreateCustomer"
             app:destination="@id/CreateCustomer" />
@@ -407,12 +394,5 @@
             app:destination="@id/GetReservationDetails" />
     </fragment>
 
-    <fragment
-        android:id="@+id/ContactForm"
-        android:name="com.example.sharity_apk.ContactForm"
-        android:label="@string/contact"
-        tools:layout="@layout/contact_form">
-
-    </fragment>
 
 </navigation>

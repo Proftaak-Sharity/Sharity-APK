@@ -1,6 +1,7 @@
 package com.example.sharity_apk
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -13,6 +14,10 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.sharity_apk.databinding.ActivityMainBinding
 import androidx.navigation.NavController
+import android.content.SharedPreferences
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -95,7 +100,7 @@ class MainActivity : AppCompatActivity() {
 
 //      Opens an popup to select email application and send email to Sharity:
         val intent = Intent(Intent.ACTION_SENDTO).apply {
-            data = Uri.parse("mailto:")
+            data = Uri.parse("mailto:info@sharity.nl")
             putExtra(Intent.EXTRA_EMAIL, resources.getString(R.string.sharity_email))
             putExtra(Intent.EXTRA_SUBJECT, resources.getString(R.string.sharity_email_subject))
         }
@@ -103,6 +108,4 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
-
 }
