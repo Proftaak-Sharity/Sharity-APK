@@ -20,6 +20,7 @@ class UpdateCustomer: Fragment() {
 
     private var _binding: UpdateCustomerBinding? = null
     private val binding get() = _binding!!
+    private val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,32 +28,27 @@ class UpdateCustomer: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = UpdateCustomerBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
             try {
                 val customers = serviceGenerator.getCustomers()
                 if (customers.isEmpty()){
-                    Toast.makeText(requireContext(), "No customers found", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "No customers found", Toast.LENGTH_SHORT).show()
                 } else {
-                binding.myRecyclerView.apply {
-                    layoutManager = LinearLayoutManager(this@UpdateCustomer.requireContext())
-                    adapter = CustomerAdapter(customers)
+                    binding.myRecyclerView.apply {
+                        layoutManager = LinearLayoutManager(requireContext())
+                        adapter = CustomerAdapter(customers)
+                    }
                 }
-            }
-        } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Error retrieving data", Toast.LENGTH_LONG).show()
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Error retrieving data", Toast.LENGTH_SHORT).show()
             }
         }
-        return binding.root
-    }
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
 
     }
 

@@ -19,7 +19,7 @@
             app:destination="@id/CreateCustomer" />
         <action
             android:id="@+id/action_LoginFragment_to_AccountOverview"
-            app:destination="@id/AccountOverview" />
+            app:destination="@id/AccountOverview"/>
     </fragment>
 
 
