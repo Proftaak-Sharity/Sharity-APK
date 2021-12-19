@@ -99,5 +99,7 @@
     <string name="delete">delete</string>
     <string name="post">add</string>
     <string name="welcome">Welcome %1$s</string>
+    <string name="bankaccount_title">Bankaccount:</string>
+    <string name="account_holder">Account holder</string>
 
 </resources>

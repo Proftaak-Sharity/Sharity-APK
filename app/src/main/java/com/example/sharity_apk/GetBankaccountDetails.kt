@@ -12,19 +12,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sharity_apk.adapter.BankaccountAdapter
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.GetBankaccountDetailsBinding
-import com.example.sharity_apk.model.BankaccountModel
+import com.example.sharity_apk.databinding.GetCustomerDetailsBinding
 import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import kotlinx.coroutines.launch
-import retrofit2.http.POST
-import java.text.FieldPosition
+import java.lang.Exception
 
 
-class GetBankaccountDetails: Fragment() {
+class GetBankaccountDetails: Fragment(), BankaccountAdapter.OnBankaccountClickListener {
 
     private var _binding: GetBankaccountDetailsBinding? = null
     private val binding get() = _binding!!
-    private val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,37 +36,42 @@ class GetBankaccountDetails: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            try {
-                val preferences = SharityPreferences(requireContext())
-                val customerNumber = preferences.getCustomerNumber()
-                val bankaccounts = serviceGenerator.getBankaccounts(customerNumber)
+        val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
+        val preferences = SharityPreferences(requireContext())
+        val customerNumber = preferences.getCustomerNumber()
 
-                if(bankaccounts.isEmpty()) {
-                    Toast.makeText(requireContext(), "No bankaccounts found", Toast.LENGTH_SHORT).show()
-                } else {
-                    binding.myRecyclerView.apply {
-                        layoutManager = LinearLayoutManager(requireContext())
-                        adapter = BankaccountAdapter(bankaccounts)
-                    }
-                }
+        viewLifecycleOwner.lifecycleScope.launch {
+
+            val bankaccountsList = serviceGenerator.getBankaccounts(customerNumber)
+            val adapter = BankaccountAdapter(bankaccountsList,this@GetBankaccountDetails)
+            try {
+                binding.myRecyclerView.adapter = adapter
+                binding.myRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+                binding.myRecyclerView.setHasFixedSize(true)
             } catch (e: Exception) {
-                Toast.makeText(requireContext(), "Error retrieving data", Toast.LENGTH_LONG).show()
+
             }
         }
     }
 
-    private fun bankaccountClicked(bankaccountModel : BankaccountModel) {
-        Toast.makeText(requireContext(), "Clicked: ${bankaccountModel.iban}", Toast.LENGTH_LONG).show()
+    override fun onItemClick(position: Int) {
+        val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
+        val preferences = SharityPreferences(requireContext())
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            val customerNumber = preferences.getCustomerNumber()
+            val bankaccountsList = serviceGenerator.getBankaccounts(customerNumber)
+            val clickedBankaccount = bankaccountsList[position]
+            val iban = clickedBankaccount.iban.toString()
+            preferences.setIban(iban)
+
+            findNavController().navigate(R.id.action_GetBankaccountDetails_to_UpdateBankaccount)
+        }
+
     }
 
-    private fun onItemClicked(position: Int) {
-        findNavController().navigate(R.id.action_GetBankaccountDetails_to_LoginFragment)
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }

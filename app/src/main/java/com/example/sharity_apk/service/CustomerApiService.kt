@@ -25,4 +25,7 @@ interface CustomerApiService {
     @GET ("customers/bankaccounts/{customer_number}")
     suspend fun getBankaccounts(@Path("customer_number") customerNumber: Long) : MutableList<BankaccountModel>
 
+    @GET ("customers/iban")
+    suspend fun getBankaccount(@Query("iban") iban: String) : BankaccountModel
+
 }
