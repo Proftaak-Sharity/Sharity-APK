@@ -26,7 +26,6 @@
     <string name="personal_details">My personal details</string>
     <string name="my_details">My Details</string>
     <string name="bankaccount">Bankaccount</string>
-    <string name="update_bankaccount">Update Bankaccount</string>
     <string name="drivers_license">Drivers License</string>
     <string name="update_drivers_license">Update Drivers License</string>
     <string name="my_cars">My Cars</string>
@@ -99,7 +98,9 @@
     <string name="delete">delete</string>
     <string name="post">add</string>
     <string name="welcome">Welcome %1$s</string>
-    <string name="bankaccount_title">Bankaccount:</string>
+    <string name="edit_bankaccount">Change bankaccount</string>
     <string name="account_holder">Account holder</string>
+    <string name="image_bankaccount">image_bankaccount</string>
+    <string name="save">save</string>
 
 </resources>

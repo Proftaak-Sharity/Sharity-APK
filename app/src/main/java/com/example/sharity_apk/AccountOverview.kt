@@ -5,19 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
 import android.widget.TextView
-import android.widget.Toast
-import androidx.databinding.adapters.ToolbarBindingAdapter
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.AccountOverviewBinding
-import com.example.sharity_apk.model.CustomerModel
-import com.example.sharity_apk.service.CustomerApiService
-import com.example.sharity_apk.service.ServiceGenerator
-import kotlinx.coroutines.launch
 
 class AccountOverview : Fragment() {
 
@@ -39,7 +30,6 @@ class AccountOverview : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val preferences = SharityPreferences(requireContext())
-        val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
 
         val tvTitle: TextView = binding.title
         tvTitle.text = getString(R.string.welcome, "${preferences.getFirstName()}")

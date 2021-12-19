@@ -68,66 +68,16 @@
             android:maxLength="255"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/add_image_license"
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/iban">
-
-        <ImageView
-            android:id="@+id/image_license"
-            android:layout_width="130dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="10dp"
-            android:contentDescription="@string/image_license"
-            android:src="@drawable/ic_no_image"
-            app:layout_constraintEnd_toStartOf="@+id/button_image"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/button_image"
-            style="@style/button"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:backgroundTint="?attr/colorSecondary"
-            android:drawableLeft="@drawable/ic_baseline_add_a_photo_24"
-            android:drawableTint="@color/white"
-            android:text="@string/camera"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/image_license"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <Button
         android:id="@+id/button_start_sharing"
         style="@style/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/start_sharing"
         android:drawableLeft="@drawable/ic_baseline_car_rental_24"
-        app:layout_constraintTop_toBottomOf="@id/add_image_license"
+        android:text="@string/start_sharing"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/button_back"
-            style="@style/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_baseline_chevron_left_24"
-            android:text="@string/back"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-
-
-
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -236,7 +236,7 @@
     <fragment
         android:id="@+id/UpdateBankaccount"
         android:name="com.example.sharity_apk.UpdateBankaccount"
-        android:label="@string/update_bankaccount"
+        android:label="@string/edit_bankaccount"
         tools:layout="@layout/update_bankaccount">
 
         <action

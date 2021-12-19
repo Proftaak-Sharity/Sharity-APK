@@ -34,15 +34,12 @@ class UpdateBankaccount: Fragment() {
 
         val preferences = SharityPreferences(requireContext())
         val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
-        val tvIban: TextView = binding.ibanDb
-        val tvAccountHolder: TextView = binding.bankAccountHolderDb
+
 
         viewLifecycleOwner.lifecycleScope.launch {
             val iban = preferences.getIban().toString()
             val bankaccount = serviceGenerator.getBankaccount(iban)
 
-            tvIban.text = bankaccount.iban
-            tvAccountHolder.text = bankaccount.accountHolder
         }
 
 
