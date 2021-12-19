@@ -4,6 +4,7 @@ import com.example.sharity_apk.model.BankaccountModel
 import com.example.sharity_apk.model.CustomerModel
 import com.example.sharity_apk.model.DriversLicenseModel
 import com.example.sharity_apk.model.LoginModel
+import retrofit2.Response
 import retrofit2.http.*
 
 interface CustomerApiService {
@@ -28,4 +29,6 @@ interface CustomerApiService {
     @GET ("customers/iban")
     suspend fun getBankaccount(@Query("iban") iban: String) : BankaccountModel
 
+    @DELETE("customers/bankaccounts")
+    suspend fun deleteBankaccount(@Query("iban") iban: String)
 }
