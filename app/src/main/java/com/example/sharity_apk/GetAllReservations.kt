@@ -32,7 +32,6 @@ class GetAllReservations: Fragment() {
         val preferences = SharityPreferences(requireContext())
         val customerNumber = preferences.getCustomerNumber()
 
-
         viewLifecycleOwner.lifecycleScope.launch {
             try {
                 val reservations = serviceGenerator.getReservations(customerNumber)
