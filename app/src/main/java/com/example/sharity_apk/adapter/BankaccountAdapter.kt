@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sharity_apk.R
 import com.example.sharity_apk.model.BankaccountModel
-import com.google.android.material.card.MaterialCardView
 
 class BankaccountAdapter(
     private val bankaccountList: MutableList<BankaccountModel>,
@@ -37,7 +36,6 @@ class BankaccountAdapter(
     inner class BankaccountViewHolder(itemView: View): RecyclerView.ViewHolder (itemView),
         View.OnClickListener {
 
-        val card: MaterialCardView = itemView.findViewById(R.id.card)
         val tvIban: TextView = itemView.findViewById(R.id.tvIban)
         val tvAccountHolder: TextView = itemView.findViewById(R.id.tvAccountHolder)
 

@@ -13,6 +13,6 @@ interface ReservationApiService {
     suspend fun getReservations(@Path("customer_number") customerNumber: Long) : MutableList<ReservationModel>
 
     @GET ("reservations/{reservation_number}")
-    suspend fun getReservation(@Query("reservation_number") reservationNumber: Int) : ReservationModel
+    suspend fun getReservation(@Path("reservation_number") reservationNumber: Int) : ReservationModel
 
 }

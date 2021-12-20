@@ -33,7 +33,7 @@
     <string name="update_car">Update Car</string>
     <string name="add_car">Add Car</string>
     <string name="my_reservations">My Reservations</string>
-    <string name="reservation_details">Reservation Details</string>
+    <string name="reservation_details">My reservation details</string>
     <string name="update_reservation">Update Reservation</string>
     <string name="action_logout">Logout</string>
     <string name="make_reservation">make reservation</string>
@@ -101,5 +101,16 @@
     <string name="welcome">Welcome %1$s</string>
     <string name="bankaccount_title">Bankaccount:</string>
     <string name="account_holder">Account holder</string>
+    <string name="reservation_start">Reservation start</string>
+    <string name="reservation_end">Reservation end</string>
+    <string name="reservation_date">Reservation date</string>
+    <string name="make">Make</string>
+    <string name="model">Model</string>
+    <string name="license_plate">License plate</string>
+    <string name="km_package">Km package</string>
+    <string name="km_package_price">Km package price</string>
+    <string name="total_price">Total price</string>
+    <string name="payment_status">Payment status</string>
+    <string name="change">change</string>
 
 </resources>

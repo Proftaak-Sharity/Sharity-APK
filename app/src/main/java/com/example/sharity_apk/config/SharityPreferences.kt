@@ -11,6 +11,7 @@ class SharityPreferences(context: Context) {
     val CUSTOMER_LAST_NAME  = "FirstName"
     val CUSTOMER_FIRST_NAME  = "LastName"
     val CUSTOMER_IBAN = "Iban"
+    val RESERVATION_NUMBER = "ReservationNumber"
 
     private val preference: SharedPreferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
 
@@ -45,6 +46,16 @@ class SharityPreferences(context: Context) {
     fun setIban (iban: String) {
         preference.edit().putString(CUSTOMER_IBAN, iban).apply()
     }
+
+    fun getReservationNumber() : Int {
+        return preference.getInt(RESERVATION_NUMBER, 0)
+    }
+
+    fun setReservationNumber (reservationNumber: Int) {
+        preference.edit().putInt(RESERVATION_NUMBER, reservationNumber).apply()
+    }
+
+
 
     fun clearPreferences() {
         preference.edit().clear().apply()

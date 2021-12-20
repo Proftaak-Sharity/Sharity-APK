@@ -5,51 +5,56 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sharity_apk.GetAllReservations
 import com.example.sharity_apk.R
-import com.example.sharity_apk.model.CustomerModel
-
 import com.example.sharity_apk.model.ReservationModel
 
 class ReservationAdapter(
-    private val reservationModel: MutableList<ReservationModel>,
-//    private val listener: (ReservationModel) -> Unit
-     ): RecyclerView.Adapter<ReservationAdapter.ReservationCardViewHolder>() {
+    private val reservationList: MutableList<ReservationModel>,
+    private val listener: OnReservationClickListener
+):
+    RecyclerView.Adapter<ReservationAdapter.ReservationViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservationCardViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservationViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.reservation_card, parent, false)
 
-        return ReservationCardViewHolder(view)
-//        {
-//            listener(reservationModel[it])
-//        }
+        return ReservationViewHolder(view)
     }
-//
-    override fun onBindViewHolder(holder: ReservationCardViewHolder, position: Int) {
-     return holder.bindView(reservationModel[position])
+
+    override fun onBindViewHolder(holder: ReservationViewHolder, position: Int) {
+
+        val currentReservation = reservationList[position]
+        holder.tvReservationNumber.text = currentReservation.reservationNumber.toString()
+        holder.tvRent.text = currentReservation.rent.toString()
+
     }
 
     override fun getItemCount(): Int {
-        return reservationModel.size
+        return reservationList.size
     }
 
+    inner class ReservationViewHolder(itemView: View): RecyclerView.ViewHolder (itemView),
+        View.OnClickListener {
 
-class ReservationCardViewHolder(itemView: View
-//                                listener: (Int) -> Unit
-): RecyclerView.ViewHolder (itemView) {
-    private val tvReservationNumber: TextView = itemView.findViewById(R.id.tv_reservation_number)
-    private val tvRent: TextView = itemView.findViewById(R.id.tv_rent)
+        val tvReservationNumber: TextView = itemView.findViewById(R.id.tv_reservation_number)
+        val tvRent: TextView = itemView.findViewById(R.id.tv_rent)
 
-//    init {
-//        itemView.setOnClickListener {
-//            listener (adapterPosition)
+        init {
+            itemView.setOnClickListener(this)
+        }
 
-
-
-    fun bindView(reservationModel: ReservationModel) {
-        tvReservationNumber.text = reservationModel.reservationNumber.toString()
-        tvRent.text = reservationModel.rent.toString()
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position)
+            }
+        }
     }
-}}
+
+    interface OnReservationClickListener {
+        fun onItemClick(position: Int)
+    }
+}
 
 
 
