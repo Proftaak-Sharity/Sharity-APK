@@ -1,10 +1,13 @@
 package com.example.sharity_apk.model
 
+import com.google.gson.annotations.JsonAdapter
 import com.squareup.moshi.Json
 
 
-enum class carType{
-    ELECTRIC, FUEL, HYDROGEN
+enum class CarType(val type: String){
+    ELECTRIC("Electric"),
+    FUEL("Fuel"),
+    HYDROGEN("Hydrogen")
 }
 
 data class CarModel(
@@ -13,7 +16,8 @@ data class CarModel(
     val licencePlate: String?,
 
     @field:Json(name = "car_type")
-    val carType: Enum<carType>?,
+    val carType: String?,
+//    var carType: String = carTypeEnum.toString(),
 
     @field:Json(name = "customer_Number")
     val customerNumber: Long?,

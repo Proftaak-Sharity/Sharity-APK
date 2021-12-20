@@ -57,7 +57,7 @@ class CarAdapter(
         holder.tvModel.text = currentCar.model
         holder.tvPrice.text = currentCar.pricePerDay
         holder.tvLocation.text = "Breda"
-        holder.tvCarType.text = currentCar.carType.toString()
+//        holder.tvCarType.text = currentCar.carType
 
 
     }
