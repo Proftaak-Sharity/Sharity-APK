@@ -68,8 +68,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.CreateBankaccount -> menu.findItem(R.id.button_home).isVisible = false
             else -> menu.findItem(R.id.button_home).isVisible = true
             }
-
-            }
+        }
         return true
     }
 

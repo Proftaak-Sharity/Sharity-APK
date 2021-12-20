@@ -38,12 +38,12 @@ class SharityPreferences(context: Context) {
         preference.edit().putString(CUSTOMER_FIRST_NAME, firstName).apply()
     }
 
-    fun getIban() : String? {
-        return preference.getString(CUSTOMER_IBAN, "")
+    fun getBankaccount() : Long {
+        return preference.getLong(CUSTOMER_IBAN, 0)
     }
 
-    fun setIban (iban: String) {
-        preference.edit().putString(CUSTOMER_IBAN, iban).apply()
+    fun setBankaccount (id: Long) {
+        preference.edit().putLong(CUSTOMER_IBAN, id).apply()
     }
 
     fun clearPreferences() {

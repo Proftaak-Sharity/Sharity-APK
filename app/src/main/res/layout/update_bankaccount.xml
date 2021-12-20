@@ -74,7 +74,7 @@
             android:inputType="textPersonName"
             android:singleLine="true"
             android:maxLength="255"
-            android:text="@string/account_name"/>
+            android:text="@string/account_holder"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -104,7 +104,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_save"
             app:layout_constraintBottom_toBottomOf="parent"/>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

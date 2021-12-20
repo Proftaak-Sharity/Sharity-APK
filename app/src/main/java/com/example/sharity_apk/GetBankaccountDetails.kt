@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sharity_apk.adapter.BankaccountAdapter
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.GetBankaccountDetailsBinding
-import com.example.sharity_apk.databinding.GetCustomerDetailsBinding
 import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import kotlinx.coroutines.launch
@@ -43,13 +42,13 @@ class GetBankaccountDetails: Fragment(), BankaccountAdapter.OnBankaccountClickLi
         viewLifecycleOwner.lifecycleScope.launch {
 
             val bankaccountsList = serviceGenerator.getBankaccounts(customerNumber)
-            val adapter = BankaccountAdapter(bankaccountsList,this@GetBankaccountDetails)
+            val adapter = BankaccountAdapter(bankaccountsList, this@GetBankaccountDetails)
             try {
                 binding.myRecyclerView.adapter = adapter
                 binding.myRecyclerView.layoutManager = LinearLayoutManager(requireContext())
                 binding.myRecyclerView.setHasFixedSize(true)
             } catch (e: Exception) {
-
+                Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -62,12 +61,11 @@ class GetBankaccountDetails: Fragment(), BankaccountAdapter.OnBankaccountClickLi
             val customerNumber = preferences.getCustomerNumber()
             val bankaccountsList = serviceGenerator.getBankaccounts(customerNumber)
             val clickedBankaccount = bankaccountsList[position]
-            val iban = clickedBankaccount.iban.toString()
-            preferences.setIban(iban)
+            val bankaccountId = clickedBankaccount.id
+            preferences.setBankaccount(bankaccountId)
 
             findNavController().navigate(R.id.action_GetBankaccountDetails_to_UpdateBankaccount)
         }
-
     }
 
     override fun onDestroyView() {
