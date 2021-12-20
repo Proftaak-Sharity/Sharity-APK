@@ -4,13 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sharity_apk.adapter.ReservationAdapter
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.GetAllReservationsBinding
+import com.example.sharity_apk.model.ReservationModel
+import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ReservationApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import kotlinx.coroutines.launch
@@ -39,8 +44,8 @@ class GetAllReservations: Fragment() {
                     Toast.makeText(requireContext(), "No reservations found", Toast.LENGTH_LONG).show()
                 } else {
                     binding.recyclerViewReservation.apply {
-                        layoutManager = LinearLayoutManager(this@GetAllReservations.requireContext())
-                        adapter = ReservationAdapter(reservations)
+                       layoutManager = LinearLayoutManager(this@GetAllReservations.requireContext())
+                       adapter = ReservationAdapter(reservations)
                     }
                 }
             } catch (e: Exception) {
@@ -50,9 +55,20 @@ class GetAllReservations: Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
+
+//    override fun onItemClick(position: Int) {
+//        val serviceGenerator = ServiceGenerator.buildService(ReservationApiService::class.java)
+//        val preferences = SharityPreferences(requireContext())
+//
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            val customerNumber = preferences.getCustomerNumber()
+//            val reservationList = serviceGenerator.getReservations(customerNumber)
+//            val clickedReservation = reservationList[position]
+//            val reservationNumber = clickedReservation.reservationNumber
+//
+//            findNavController().navigate(R.id.action_GetAllReservations_to_GetReservationDetails)
+//        }
+//    }
 
     override fun onDestroy() {
         super.onDestroy()
