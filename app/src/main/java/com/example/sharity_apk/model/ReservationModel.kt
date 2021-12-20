@@ -10,7 +10,6 @@ data class ReservationModel(
     @field:Json(name = "customer_number")
     val customerNumber: Long?,
 
-
     @field:Json(name = "start_date")
     val startDate: String?,
 

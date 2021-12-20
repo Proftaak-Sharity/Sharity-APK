@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sharity_apk.GetAllReservations
 import com.example.sharity_apk.R
 import com.example.sharity_apk.model.ReservationModel
 
@@ -16,7 +15,7 @@ class ReservationAdapter(
     RecyclerView.Adapter<ReservationAdapter.ReservationViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservationViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.reservation_card, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.card_reservation, parent, false)
 
         return ReservationViewHolder(view)
     }
@@ -25,6 +24,8 @@ class ReservationAdapter(
 
         val currentReservation = reservationList[position]
         holder.tvReservationNumber.text = currentReservation.reservationNumber.toString()
+        holder.tvStartDate.text = currentReservation.startDate.toString()
+        holder.tvEndDate.text = currentReservation.endDate.toString()
         holder.tvRent.text = currentReservation.rent.toString()
 
     }
@@ -37,6 +38,8 @@ class ReservationAdapter(
         View.OnClickListener {
 
         val tvReservationNumber: TextView = itemView.findViewById(R.id.tv_reservation_number)
+        val tvStartDate: TextView = itemView.findViewById(R.id.tv_startDate)
+        val tvEndDate: TextView = itemView.findViewById(R.id.tv_endDate)
         val tvRent: TextView = itemView.findViewById(R.id.tv_rent)
 
         init {
