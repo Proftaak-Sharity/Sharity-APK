@@ -102,5 +102,15 @@
     <string name="account_holder">Account holder</string>
     <string name="image_bankaccount">image_bankaccount</string>
     <string name="save">save</string>
+    <string name="reservation_start">Reservation start</string>
+    <string name="reservation_end">Reservation end</string>
+    <string name="reservation_date">Reservation date</string>
+    <string name="make">Make</string>
+    <string name="model">Model</string>
+    <string name="license_plate">License plate</string>
+    <string name="km_package">Km package</string>
+    <string name="km_package_price">Package price</string>
+    <string name="total_price">Total price</string>
+    <string name="payment_status">Payment status</string>
 
 </resources>

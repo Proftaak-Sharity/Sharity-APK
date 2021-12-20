@@ -65,14 +65,10 @@ class GetReservationDetails: Fragment() {
 
             licensePlate.text = reservation.licensePlate
             kmPackage.text = reservation.kmPackage.toString()
-            packagePrice.text = reservation.packagePrice.toString()
-            totalPrice.text = reservation.rent.toString()
+            packagePrice.text = "€${reservation.packagePrice.toString()}"
+            totalPrice.text = "€${reservation.rent.toString()}"
             paymentStatus.text = reservation.paymentEnum
-
-
         }
-
-
     }
 
     override fun onDestroyView() {
