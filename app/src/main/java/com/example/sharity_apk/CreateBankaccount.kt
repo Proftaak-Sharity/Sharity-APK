@@ -26,7 +26,6 @@ class CreateBankaccount: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 //      Button bindings:
-        binding.buttonBack.setOnClickListener { findNavController().navigate(R.id.action_CreateBankaccount_to_CreateDriversLicense) }
         binding.buttonStartSharing.setOnClickListener { findNavController().navigate(R.id.action_CreateBankaccount_to_LoginFragment) }
     }
 
