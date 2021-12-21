@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_AccountOverview_to_CreateReservation"
             app:destination="@id/CreateReservation" />
+        <action
+            android:id="@+id/action_AccountOverview_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
 <!--    Search fragments-->
@@ -393,6 +396,10 @@
             android:id="@+id/action_UpdateReservation_to_GetReservationDetails"
             app:destination="@id/GetReservationDetails" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.sharity_apk.Settings"
+        android:label="@string/action_settings" />
 
 
 </navigation>

@@ -49,7 +49,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.CreateCustomer,
                 R.id.CreateDriversLicense,
                 R.id.CreateBankaccount,
-                R.id.CreateReservation -> binding.fab.hide()
+                R.id.CreateReservation,
+                R.id.GetAllReservations -> binding.fab.hide()
             else -> binding.fab.show()
             }
         }
@@ -81,7 +82,10 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.AccountOverview)
                 return true
             }
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                navController.navigate(R.id.settingsFragment)
+                return true
+            }
             R.id.action_contact -> true
             R.id.action_logout -> {
                 navController.navigate(R.id.LoginFragment)
