@@ -1,6 +1,7 @@
 package com.example.sharity_apk.model
 
-import com.google.gson.annotations.JsonAdapter
+import com.example.sharity_apk.service.CustomerApiService
+import com.example.sharity_apk.service.ServiceGenerator
 import com.squareup.moshi.Json
 
 
@@ -54,6 +55,5 @@ data class CarModel(
 
     @field:Json(name = "km_per_kilo")
     val kmPerKilo: String?,
-
-
     )
+

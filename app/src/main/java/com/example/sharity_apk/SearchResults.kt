@@ -42,11 +42,14 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         val serviceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
+        val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
 //        val preferences = SharityPreferences(requireContext())
 
         viewLifecycleOwner.lifecycleScope.launch {
 
             val carList = serviceGenerator.getCars()
+            val customerList = customerServiceGenerator.getCustomers()
+
             val adapter = CarAdapter(carList, this@SearchResults)
             try {
 
