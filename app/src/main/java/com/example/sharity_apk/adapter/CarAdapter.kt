@@ -38,9 +38,13 @@ class CarAdapter(
         holder.tvModel.text = currentCar.model
         holder.tvPrice.text = currentCar.pricePerDay
 
-        CoroutineScope(Dispatchers.IO).launch {
-            var carCity =  getCustomerCity(currentCar.customerNumber!!)
-            holder.tvLocation.text = carCity
+        CoroutineScope(Dispatchers.Main).launch {
+            if (currentCar.customerNumber != null) {
+                var carCity =  getCustomerCity(currentCar.customerNumber!!)
+                holder.tvLocation.text = carCity
+            } else {
+                holder.tvLocation.text = "Location Unknown"
+            }
         }
 
         if ( currentCar.batteryCapacity != null) {

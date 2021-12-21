@@ -55,5 +55,7 @@ data class CarModel(
 
     @field:Json(name = "km_per_kilo")
     val kmPerKilo: String?,
-    )
+    ) {
+
+}
 

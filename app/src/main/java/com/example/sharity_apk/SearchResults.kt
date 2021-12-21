@@ -4,18 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.sharity_apk.adapter.BankaccountAdapter
 import com.example.sharity_apk.adapter.CarAdapter
 import com.example.sharity_apk.config.SharityPreferences
-import com.example.sharity_apk.databinding.SearchCarsBinding
 import com.example.sharity_apk.databinding.SearchResultsBinding
 import com.example.sharity_apk.service.ServiceGenerator
 import com.example.sharity_apk.service.CarApiService
@@ -55,7 +50,7 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
 
                 binding.recyclerView.adapter = adapter
                 binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-                binding.recyclerView.setHasFixedSize(false)
+                binding.recyclerView.setHasFixedSize(true)
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT).show()
             }
