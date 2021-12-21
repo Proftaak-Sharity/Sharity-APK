@@ -29,34 +29,14 @@
         android:layout_marginTop="20dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/account_holder"
+        android:id="@+id/iban"
         style="@style/text_input_layout"
-        android:hint="@string/account_name"
+        android:hint="@string/iban"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:boxBackgroundColor="@color/white"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="5dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/account_holder_edittext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:singleLine="true"
-            android:maxLength="255"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/iban"
-        style="@style/text_input_layout"
-        android:hint="@string/iban"
-        app:layout_constraintTop_toBottomOf="@+id/account_holder"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:boxBackgroundColor="@color/white"
-        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -68,8 +48,29 @@
             android:maxLength="255"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/account_holder"
+        style="@style/text_input_layout"
+        android:hint="@string/account_name"
+        app:layout_constraintTop_toBottomOf="@+id/iban"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:boxBackgroundColor="@color/white"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/account_holder_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:singleLine="true"
+            android:maxLength="255"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
     <Button
-        android:id="@+id/button_start_sharing"
+        android:id="@+id/btn_add_bankaccount"
         style="@style/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

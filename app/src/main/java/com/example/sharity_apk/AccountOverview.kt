@@ -22,12 +22,14 @@ class AccountOverview : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = AccountOverviewBinding.inflate(inflater, container, false)
+
         return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         val preferences = SharityPreferences(requireContext())
 

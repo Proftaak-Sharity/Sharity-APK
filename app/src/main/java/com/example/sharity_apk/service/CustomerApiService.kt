@@ -5,6 +5,7 @@ import com.example.sharity_apk.model.CustomerModel
 import com.example.sharity_apk.model.DriversLicenseModel
 import com.example.sharity_apk.model.LoginModel
 import retrofit2.http.*
+import java.lang.Exception
 
 interface CustomerApiService {
 
@@ -27,7 +28,7 @@ interface CustomerApiService {
     suspend fun getBankaccounts(@Path("customer_number") customerNumber: Long) : MutableList<BankaccountModel>
 
     @GET ("customers/bankaccounts/account/{id}")
-    suspend fun getBankaccount(@Path("id") id: Long) : BankaccountModel
+    suspend fun getBankaccount(@Path("id") id: Long?) : BankaccountModel
 
     @DELETE("customers/bankaccounts/delete/{id}")
     suspend fun deleteBankaccount(@Path("id") id: Long)
@@ -35,5 +36,13 @@ interface CustomerApiService {
     @PUT("customers/bankaccounts/edit/{id}")
     suspend fun editBankaccount(@Path("id") id: Long,
                                 @Query ("iban") iban: String,
-                                @Query ("accountHolder") accountHolder: String)
+                                @Query ("account_holder") accountHolder: String)
+
+    @POST("customers/bankaccounts/add")
+    suspend fun addBankaccount(@Query("customerNumber") customerNumber: Long,
+                               @Query("iban") iban: String,
+                               @Query("accountHolder") accountHolder: String)
+
+    @GET("customers/emailcheck")
+    suspend fun checkEmail(@Query("email") email: String) :Boolean
 }

@@ -2,6 +2,7 @@ package com.example.sharity_apk.config
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.fragment.app.FragmentManager
 
 
 class SharityPreferences(context: Context) {
@@ -12,6 +13,8 @@ class SharityPreferences(context: Context) {
     val CUSTOMER_FIRST_NAME  = "LastName"
     val CUSTOMER_IBAN = "Iban"
     val RESERVATION_NUMBER = "ReservationNumber"
+    val CUSTOMER_PASSWORD = "Password"
+    val CUSTOMER_EMAIL = "Email"
 
     private val preference: SharedPreferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
 
@@ -55,9 +58,23 @@ class SharityPreferences(context: Context) {
         preference.edit().putInt(RESERVATION_NUMBER, reservationNumber).apply()
     }
 
+    fun getPassword() : String? {
+        return preference.getString(CUSTOMER_PASSWORD, "")
+    }
 
+    fun setPassword (password: String) {
+        preference.edit().putString(CUSTOMER_PASSWORD, password).apply()
+    }
 
     fun clearPreferences() {
         preference.edit().clear().apply()
+    }
+
+    fun setEmail(tvEmail: String) {
+        return preference.edit().putString(CUSTOMER_EMAIL, tvEmail).apply()
+    }
+
+    fun getEmail() : String? {
+        return preference.getString(CUSTOMER_EMAIL, "")
     }
 }

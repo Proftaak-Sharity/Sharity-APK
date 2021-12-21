@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.CreateCustomerBinding
 
 class CreateCustomer : Fragment() {
@@ -25,8 +26,13 @@ class CreateCustomer : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val preferences = SharityPreferences(requireContext())
+        val tvPassword = binding.passwordEdittext.toString()
+
 //      Button bindings:
-        binding.buttonNext.setOnClickListener { findNavController().navigate(R.id.action_CreateCustomer_to_CreateDriversLicense) }
+        binding.buttonNext.setOnClickListener {
+            preferences.setPassword(tvPassword)
+            findNavController().navigate(R.id.action_CreateCustomer_to_CreateDriversLicense) }
         binding.textviewLogin.setOnClickListener { findNavController().navigate(R.id.action_CreateCustomer_to_LoginFragment) }
     }
 

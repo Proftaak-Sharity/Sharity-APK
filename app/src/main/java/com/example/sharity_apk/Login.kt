@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.databinding.LoginBinding
@@ -32,16 +32,19 @@ class Login : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val preference = SharityPreferences(requireContext())
+        preference.clearPreferences()
 
-        binding.signIn.setOnClickListener { findNavController().navigate(R.id.action_LoginFragment_to_CreateCustomer) }
+        binding.signIn.setOnClickListener { findNavController().navigate(R.id.action_LoginFragment_to_createAccount) }
         binding.buttonLogin.setOnClickListener {
 
+            binding.error.isVisible = false
             val emailInput = binding.loginEmailText.text
             val passwordInput = binding.loginPasswordText.text
             val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
 
             if (emailInput.isNullOrEmpty() || passwordInput.isNullOrEmpty()) {
-                Toast.makeText(requireContext(), "Email and/or password missing", Toast.LENGTH_SHORT).show()
+                binding.error.text = getString(R.string.password_email_empty)
+                binding.error.isVisible = true
             } else {
                 viewLifecycleOwner.lifecycleScope.launch {
                     try {
@@ -54,12 +57,14 @@ class Login : Fragment() {
 
                         findNavController().navigate(R.id.action_LoginFragment_to_AccountOverview)
                     } catch (e: Exception) {
-                        Toast.makeText(requireContext(), "Customer unknown", Toast.LENGTH_SHORT).show()
+                        binding.error.text = getString(R.string.password_email_incorrect)
+                        binding.error.isVisible = true
                     }
                 }
             }
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

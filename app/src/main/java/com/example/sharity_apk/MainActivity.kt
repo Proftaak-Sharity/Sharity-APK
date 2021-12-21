@@ -15,9 +15,7 @@ import android.view.MenuItem
 import com.example.sharity_apk.databinding.ActivityMainBinding
 import androidx.navigation.NavController
 import android.content.SharedPreferences
-
-
-
+import com.example.sharity_apk.config.SharityPreferences
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var _binding: ActivityMainBinding
     private val binding get() = _binding
     private lateinit var navController: NavController
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+
         binding.fab.setOnClickListener {
             sendEmail()
         }
@@ -46,11 +46,13 @@ class MainActivity : AppCompatActivity() {
 //      This hides the floating action button (fab) in specific fragments:
         navController.addOnDestinationChangedListener { _, destination,_ ->
             when (destination.id) {
+                R.id.Login,
+                R.id.CreateAccount,
                 R.id.CreateCustomer,
                 R.id.CreateDriversLicense,
                 R.id.CreateBankaccount,
                 R.id.CreateReservation -> binding.fab.hide()
-            else -> binding.fab.show()
+                else -> binding.fab.show()
             }
         }
     }
@@ -62,7 +64,7 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination,_ ->
             when(destination.id) {
-                R.id.LoginFragment,
+                R.id.Login,
                 R.id.CreateCustomer,
                 R.id.CreateDriversLicense,
                 R.id.CreateBankaccount -> menu.findItem(R.id.button_home).isVisible = false
@@ -73,6 +75,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val preferences = SharityPreferences(this)
 
 //      Sets the destination of the buttons in de options menu:
         return when (item.itemId) {
@@ -83,7 +86,8 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             R.id.action_contact -> true
             R.id.action_logout -> {
-                navController.navigate(R.id.LoginFragment)
+                preferences.clearPreferences()
+                navController.navigate(R.id.Login)
                 return true }
             else -> super.onOptionsItemSelected(item)
         }
