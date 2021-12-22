@@ -119,5 +119,7 @@
     <string name="password_char_error">Password must have at least 8 characters</string>
     <string name="password_email_empty">Password and/or email empty</string>
     <string name="password_email_incorrect">Password and/or email incorrect</string>
+    <string name="email_regex_error">Email does not meet the requirements</string>
+    <string name="all_fields_required">All fields have to be filled</string>
 
 </resources>

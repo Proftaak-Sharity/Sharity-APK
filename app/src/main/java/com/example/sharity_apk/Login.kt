@@ -31,6 +31,28 @@ class Login : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.apply {
+            textViewTest.setOnClickListener {
+                // create new instance of DatePickerFragment
+                val datePickerFragment = DatePickerFragment()
+                val supportFragmentManager = requireActivity().supportFragmentManager
+
+                // we have to implement setFragmentResultListener
+                supportFragmentManager.setFragmentResultListener(
+                    "REQUEST_KEY",
+                    viewLifecycleOwner
+                ) { resultKey, bundle ->
+                    if (resultKey == "REQUEST_KEY") {
+                        val date = bundle.getString("SELECTED_DATE")
+                        textViewTest.setText(date.toString())
+                    }
+                }
+
+                // show
+                datePickerFragment.show(supportFragmentManager, "DatePickerFragment")
+            }
+        }
+
         val preference = SharityPreferences(requireContext())
         preference.clearPreferences()
 

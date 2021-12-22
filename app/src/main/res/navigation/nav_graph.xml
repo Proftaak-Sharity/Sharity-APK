@@ -413,7 +413,7 @@
             android:id="@+id/action_createAccount_to_Login"
             app:destination="@id/Login" />
         <action
-            android:id="@+id/action_createAccount_to_CreateCustomer"
+            android:id="@+id/action_CreateAccount_to_CreateCustomer"
             app:destination="@id/CreateCustomer" />
     </fragment>
 
