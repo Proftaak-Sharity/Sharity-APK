@@ -13,8 +13,8 @@ enum class CarType(val type: String){
 
 data class CarModel(
 
-    @field:Json(name = "licence_plate")
-    val licencePlate: String?,
+    @field:Json(name = "license_plate")
+    val licensePlate: String?,
 
     @field:Json(name = "car_type")
     val carType: String?,

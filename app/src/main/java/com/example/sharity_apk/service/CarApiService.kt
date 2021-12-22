@@ -10,8 +10,8 @@ interface CarApiService {
     suspend fun getCars(): MutableList<CarModel>
 
     //    using @path so that customer_number becomes the number in the path of the GET
-    @GET("car/{license_plate}")
-    suspend fun getCar(@Path("license_plate") licensePlate: Long) : CarModel
+    @GET("cars/{license_plate}")
+    suspend fun getCar(@Path("license_plate") licensePlate: String?) : CarModel
 //
 //    @GET("customers/license/{customer_number}")
 //    suspend fun getDriversLicense(@Path("customer_number") customerNumber: Long) : DriversLicenseModel

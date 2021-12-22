@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +16,7 @@ import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.GetBankaccountDetailsBinding
 import com.example.sharity_apk.databinding.GetSearchedCarDetailsBinding
 import com.example.sharity_apk.model.CarModel
+import com.example.sharity_apk.model.CustomerModel
 import com.example.sharity_apk.service.CarApiService
 import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
@@ -37,22 +40,36 @@ class GetSearchedCarDetails: Fragment(), CarAdapter.OnCarClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val serviceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
+        val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
+        val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
         val preferences = SharityPreferences(requireContext())
-        val customerNumber = preferences.getCustomerNumber()
+        val licensePlate = preferences.getLicensePlate()
+
 
         viewLifecycleOwner.lifecycleScope.launch {
 
-            val car = mutableListOf(serviceGenerator.getCar(customerNumber))
-
-            val adapter = CarAdapter(car, this@GetSearchedCarDetails)
-
             try {
-                binding.RecyclerView.adapter = adapter
-                binding.RecyclerView.layoutManager = LinearLayoutManager(requireContext())
-//                binding.RecyclerView.setHasFixedSize(true)
+
+                val car: CarModel = carServiceGenerator.getCar(licensePlate)
+                val owner: CustomerModel = customerServiceGenerator.getCustomer(car.customerNumber!!)
+
+                binding.ivCar.setImageResource(R.drawable.ferrari_testarossa)
+                binding.tvMake.text = car.make
+                binding.tvModel.text = car.model
+                binding.tvLicensePlate.text = car.licensePlate
+                binding.tvAdress.text = owner.address
+                binding.tvCity.text = owner.city
+                binding.tvPostalCode.text = owner.postalCode
+                binding.tvPrice.text = "Price: " + car.pricePerDay
+                binding.tvPricePerKm.text = car.pricePerKm
+                binding.tvPhone.text = owner.phoneNumber
+                binding.tvEmail.text = owner.email
+
+
+
+
             } catch (e: Exception) {
-                Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "An error has occurred $e", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -65,5 +82,10 @@ class GetSearchedCarDetails: Fragment(), CarAdapter.OnCarClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private suspend fun getCustomerCity(customerNumber: Long): String? {
+        val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
+        return  (serviceGenerator.getCustomer(customerNumber)).city
     }
 }

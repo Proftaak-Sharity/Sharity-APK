@@ -64,9 +64,13 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
         viewLifecycleOwner.lifecycleScope.launch {
             val carList = serviceGenerator.getCars()
             val clickedCar = carList[position]
-            val carId = clickedCar.licencePlate
+            val carId = clickedCar.licensePlate.toString()
+
+            preferences.setLicensePlate(carId!!)
 
             findNavController().navigate(R.id.action_SearchResults_to_GetSearchedCarDetails)
+
+
         }
     }
 

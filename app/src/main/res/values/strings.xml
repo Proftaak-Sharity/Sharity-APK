@@ -102,5 +102,13 @@
     <string name="account_holder">Account holder</string>
     <string name="image_bankaccount">image_bankaccount</string>
     <string name="save">save</string>
+    <string name="car_make">Make</string>
+    <string name="car_model">Model</string>
+    <string name="car_location">Location</string>
+    <string name="car_price">Price</string>
+    <string name="price_per_km">Price per km</string>
+    <string name="owner_details">Owner details</string>
+    <string name="rent">Rent</string>
+    <string name="locate">Locate</string>
 
 </resources>
