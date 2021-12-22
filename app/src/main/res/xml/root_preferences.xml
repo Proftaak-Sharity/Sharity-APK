@@ -8,7 +8,7 @@
             app:defaultValue="language"
             app:entries="@array/language_entries"
             app:entryValues="@array/language_values"
-            app:key="language"
+            app:key="language_preferences"
             app:title="@string/Default_language"
             app:useSimpleSummaryProvider="true" />
 

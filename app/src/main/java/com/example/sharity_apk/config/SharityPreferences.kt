@@ -56,7 +56,7 @@ class SharityPreferences(context: Context) {
     fun setReservationNumber (reservationNumber: Int) {
         preference.edit().putInt(RESERVATION_NUMBER, reservationNumber).apply()
     }
-    
+
     fun clearPreferences() {
         preference.edit().clear().apply()
     }

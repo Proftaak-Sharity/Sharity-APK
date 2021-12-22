@@ -15,9 +15,11 @@ import android.view.MenuItem
 import com.example.sharity_apk.databinding.ActivityMainBinding
 import androidx.navigation.NavController
 import android.content.SharedPreferences
-
-
-
+import java.util.*
+import java.util.Locale;
+import android.content.res.Configuration;
+import android.content.res.Resources
+import android.util.DisplayMetrics
 
 
 class MainActivity : AppCompatActivity() {
