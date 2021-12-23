@@ -74,20 +74,20 @@ class SharityPreferences(context: Context) {
         return preference.getString(CITY, "")
     }
 
-    fun setStartDate(startDate: Long) {
-        preference.edit().putLong(START_DATE, startDate).apply()
+    fun setStartDate(startDate: String) {
+        preference.edit().putString(START_DATE, startDate).apply()
     }
 
-    fun getStartDate(): Long? {
-        return preference.getLong(START_DATE, 0)
+    fun getStartDate(): String? {
+        return preference.getString(START_DATE, "notSet")
     }
 
-    fun setEndDate(endDate: Long) {
-        preference.edit().putLong(END_DATE, endDate).apply()
+    fun setEndDate(endDate: String) {
+        preference.edit().putString(END_DATE, endDate).apply()
     }
 
-    fun getEndDate(): Long? {
-        return preference.getLong(END_DATE, 0)
+    fun getEndDate(): String? {
+        return preference.getString(END_DATE, "notSet")
     }
 
     fun setFuelType(fuel: String) {
@@ -95,6 +95,6 @@ class SharityPreferences(context: Context) {
     }
 
     fun getFuelType(): String? {
-        return preference.getString(FUEL_TYPE, "")
+        return preference.getString(FUEL_TYPE, "notSet")
     }
 }

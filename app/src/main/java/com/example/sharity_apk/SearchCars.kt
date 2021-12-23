@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.config.SharityPreferences
-import com.example.sharity_apk.databinding.LoginBinding
 import com.example.sharity_apk.databinding.SearchCarsBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
@@ -16,10 +15,6 @@ import java.util.*
 import android.widget.RadioButton
 
 import android.widget.RadioGroup
-import android.widget.Toast
-
-import android.R
-import androidx.databinding.DataBindingUtil.setContentView
 
 
 class SearchCars : Fragment() {
@@ -96,8 +91,8 @@ class SearchCars : Fragment() {
                     "StartDate: ${convertLongToTime(startDate)}\n" +
                             "EndDate: ${convertLongToTime(endDate)}"
             }
-            preferences.setStartDate(startDate)
-            preferences.setEndDate(startDate)
+            preferences.setStartDate(convertLongToTime(startDate))
+            preferences.setEndDate(convertLongToTime(endDate))
 
         }
 

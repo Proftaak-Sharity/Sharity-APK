@@ -41,13 +41,17 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
 //        val serviceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
 //        val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
         val preferences = SharityPreferences(requireContext())
-        val city = preferences.getCity()
-        println(city)
+        val start = preferences.getStartDate()
+        val end = preferences.getEndDate()
+        val fuel = preferences.getFuelType()
+        println(start)
+        println(end)
+        println(fuel)
 
 
         viewLifecycleOwner.lifecycleScope.launch {
 
-            val carList = getCarByCity(city)
+            val carList = getCars(start, end, fuel)
 
             val adapter = CarAdapter(carList, this@SearchResults)
             try {
@@ -87,30 +91,18 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
     }
 }
 
-suspend fun getCarByCity(city: String?): MutableList<CarModel>{
+suspend fun getCars(start: String?, end: String?, fuel: String?): MutableList<CarModel> {
     val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
     val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
     var carsToBeRemoved: MutableList<CarModel>? = null
 
-
-    val carList = carServiceGenerator.getCars()
-
-    for (car in carList) {
-        val customer = customerServiceGenerator.getCustomer(car.customerNumber!!)
-        if (customer.city != city) {
-            println(car)
-            carsToBeRemoved?.add(car)
-        }
-    }
-    try {
-        carList.removeAll(carsToBeRemoved!!)
-    } catch (e: Exception) {
-        println("$e $carsToBeRemoved")
+    // make this use start/end/fuel if set
+    if ((start == end) or (fuel == "notSet")) {
+        // some vars are not set, better return all
+        return carServiceGenerator.getCars()
+    } else {
+        // search for car in range set
+        return carServiceGenerator.getCars()
     }
 
-    println(carsToBeRemoved)
-
-
-
-    return carList
 }
