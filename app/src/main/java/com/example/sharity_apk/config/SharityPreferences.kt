@@ -13,6 +13,11 @@ class SharityPreferences(context: Context) {
     val CUSTOMER_IBAN = "Iban"
     val LICENSE_PLATE = "LicencePlate"
     val CITY = "City"
+    val RESERVATION_NUMBER = "ReservationNumber"
+    val START_DATE = "StartDate"
+    val END_DATE = "EndDate"
+    val FUEL_TYPE = "FuelType"
+
 
     private val preference: SharedPreferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
 
@@ -67,5 +72,29 @@ class SharityPreferences(context: Context) {
 
     fun getCity(): String? {
         return preference.getString(CITY, "")
+    }
+
+    fun setStartDate(startDate: Long) {
+        preference.edit().putLong(START_DATE, startDate).apply()
+    }
+
+    fun getStartDate(): Long? {
+        return preference.getLong(START_DATE, 0)
+    }
+
+    fun setEndDate(endDate: Long) {
+        preference.edit().putLong(END_DATE, endDate).apply()
+    }
+
+    fun getEndDate(): Long? {
+        return preference.getLong(END_DATE, 0)
+    }
+
+    fun setFuelType(fuel: String) {
+        preference.edit().putString(FUEL_TYPE, fuel).apply()
+    }
+
+    fun getFuelType(): String? {
+        return preference.getString(FUEL_TYPE, "")
     }
 }
