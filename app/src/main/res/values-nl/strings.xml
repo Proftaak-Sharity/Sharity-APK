@@ -114,5 +114,9 @@
     <string name="rent_price">Huurprijs:</string>
     <string name="last_name">Achternaam</string>
     <string name="city">Woonplaats</string>
+    <string name="language">Taal</string>
+    <string name="Language_settings">Taal settings</string>
+    <string name="Default_language">Voorkeurstaal</string>
+    <string name="languagepreference">taal voorkeuren</string>
 
 </resources>
