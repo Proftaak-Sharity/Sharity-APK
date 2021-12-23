@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 data class LoginModel (
 
     @field:Json(name = "customer_number")
-    val customerNumber: Long?,
+    val customerNumber: Long,
 
     @field:Json(name = "last_name")
     val lastName: String?,

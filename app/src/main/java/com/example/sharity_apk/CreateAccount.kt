@@ -42,48 +42,46 @@ class CreateAccount : Fragment() {
         val tvEmail = binding.emailEdittext.text
         val tvPasswordConfirm = binding.passwordConfirmEdittext.text
 
-        viewLifecycleOwner.lifecycleScope.launch {
+        binding.buttonNext.setOnClickListener {
 
-            binding.buttonNext.setOnClickListener {
+            binding.emailError.isVisible = false
+            binding.passwordError.isVisible = false
+            binding.passwordCharError.isVisible = false
 
-                val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
-                binding.emailError.isVisible = false
-                binding.passwordError.isVisible = false
-                binding.passwordCharError.isVisible = false
+            viewLifecycleOwner.lifecycleScope.launch {
+                try {
+                    val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
+                    val checkedEmail = serviceGenerator.checkEmail(tvEmail.toString())
 
-                viewLifecycleOwner.lifecycleScope.launch {
-                    try {
-                        val checkedEmail = serviceGenerator.checkEmail(tvEmail.toString())
-
-                        if (tvEmail.toString().isEmpty()) {
-                            binding.emailError.text = getString(R.string.email_empty)
-                            binding.emailError.isVisible = true
-                        } else if (checkedEmail) {
-                            binding.emailError.text = getString(R.string.email_already_in_db)
-                            binding.emailError.isVisible = true
-                        } else if (tvPassword.toString().isEmpty() || tvPasswordConfirm.toString()
-                                .isEmpty()
-                        ) {
-                            binding.passwordError.text = getString(R.string.password_empty)
-                            binding.passwordError.isVisible = true
-                        } else if (tvPassword.toString() != tvPasswordConfirm.toString()) {
-                            binding.passwordError.text = getString(R.string.passwords_not_matching)
-                            binding.passwordError.isVisible = true
-                        } else if (tvPassword.toString().length < 8) {
-                            binding.passwordCharError.text = getString(R.string.password_char_error)
-                            binding.passwordCharError.isVisible = true
-                        } else {
-                            preferences.setEmail(tvEmail.toString())
-                            preferences.setPassword(tvPassword.toString())
-                            findNavController().navigate(R.id.action_CreateAccount_to_CreateCustomer)
-                        }
-                    } catch (e: Exception) {
-                        binding.emailError.text = getString(R.string.email_regex_error)
+                    if (tvEmail.toString().isEmpty()) {
+                        binding.emailError.text = getString(R.string.email_empty)
+                        binding.emailError.isVisible = true
+                    } else if (checkedEmail) {
+                        binding.emailError.text = getString(R.string.email_already_in_db)
                         binding.emailError.isVisible = true
                     }
+                } catch (e: Exception) {
+                    binding.emailError.text = getString(R.string.email_regex_error)
+                    binding.emailError.isVisible = true
+                }
+
+                if (tvPassword.toString().isEmpty() || tvPasswordConfirm.toString().isEmpty()) {
+                    binding.passwordError.text = getString(R.string.password_empty)
+                    binding.passwordError.isVisible = true
+                } else if (tvPassword.toString() != tvPasswordConfirm.toString()) {
+                    binding.passwordError.text = getString(R.string.passwords_not_matching)
+                    binding.passwordError.isVisible = true
+                } else if (tvPassword.toString().length < 8) {
+                    binding.passwordCharError.text = getString(R.string.password_char_error)
+                    binding.passwordCharError.isVisible = true
+                } else {
+                    preferences.setEmail(tvEmail.toString())
+                    preferences.setPassword(tvPassword.toString())
+                    findNavController().navigate(R.id.action_CreateAccount_to_CreateCustomer)
                 }
             }
         }
+
     }
 
     override fun onDestroyView() {

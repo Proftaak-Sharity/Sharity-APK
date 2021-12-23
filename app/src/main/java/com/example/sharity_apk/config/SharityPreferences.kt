@@ -20,6 +20,12 @@ class SharityPreferences(context: Context) {
     val CUSTOMER_CITY = "City"
     val CUSTOMER_DATE_OF_BIRTH = "DateOfBirth"
     val CUSTOMER_PHONE = "Phone"
+    val CUSTOMER_COUNTRY = "Country"
+    val LICENSE_COUNTRY = "LicenseCountry"
+    val LICENSE_NUMBER = "LicenseNumber"
+    val LICENSE_VALID_UNTIL = "ValidUntil"
+    val BANKACCOUNT_ID = "BankaccountId"
+    val BANKACCOUNT_HOLDER = "BankaccountHolder"
 
     private val preference: SharedPreferences =
         context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
@@ -48,12 +54,28 @@ class SharityPreferences(context: Context) {
         preference.edit().putString(CUSTOMER_FIRST_NAME, firstName).apply()
     }
 
+    fun getIban(): String? {
+        return preference.getString(CUSTOMER_IBAN, "")
+    }
+
+    fun setIban(iban: String) {
+        preference.edit().putString(CUSTOMER_IBAN, iban).apply()
+    }
+
+    fun getAccountHolder(): String? {
+        return preference.getString(BANKACCOUNT_HOLDER, "")
+    }
+
+    fun setAccountHolder(accountHolder: String) {
+        preference.edit().putString(BANKACCOUNT_HOLDER, accountHolder).apply()
+    }
+
     fun getBankaccount(): Long {
-        return preference.getLong(CUSTOMER_IBAN, 0)
+        return preference.getLong(BANKACCOUNT_ID, 0)
     }
 
     fun setBankaccount(id: Long) {
-        preference.edit().putLong(CUSTOMER_IBAN, id).apply()
+        preference.edit().putLong(BANKACCOUNT_ID, id).apply()
     }
 
     fun getReservationNumber(): Int {
@@ -92,7 +114,7 @@ class SharityPreferences(context: Context) {
         preference.edit().putString(CUSTOMER_HOUSE_NUMBER, houseNumber).apply()
     }
 
-    fun getHouseNumber() : String? {
+    fun getHouseNumber(): String? {
         return preference.getString(CUSTOMER_HOUSE_NUMBER, "")
     }
 
@@ -130,5 +152,37 @@ class SharityPreferences(context: Context) {
 
     fun clearPreferences() {
         preference.edit().clear().apply()
+    }
+
+    fun setCountry(country: String) {
+        preference.edit().putString(CUSTOMER_COUNTRY, country).apply()
+    }
+
+    fun getCountry(): String? {
+        return preference.getString(CUSTOMER_COUNTRY, "")
+    }
+
+    fun setLicenseNumber(licenseNumber: String) {
+        preference.edit().putString(LICENSE_NUMBER, licenseNumber).apply()
+    }
+
+    fun getLicenseNumber(): String? {
+        return preference.getString(LICENSE_NUMBER, "")
+    }
+
+    fun setValidUntil(validUntil: String) {
+        preference.edit().putString(LICENSE_VALID_UNTIL, validUntil).apply()
+    }
+
+    fun getValidUntil(): String? {
+        return preference.getString(LICENSE_VALID_UNTIL, "")
+    }
+
+    fun setCountryLicense(countryLicense: String) {
+        return preference.edit().putString(LICENSE_COUNTRY, countryLicense).apply()
+    }
+
+    fun getCountryLicense(): String? {
+        return preference.getString(LICENSE_COUNTRY, "")
     }
 }

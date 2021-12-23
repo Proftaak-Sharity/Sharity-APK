@@ -176,27 +176,50 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/country"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:startIconDrawable="@drawable/ic_baseline_language_24"
+        app:layout_constraintTop_toBottomOf="@id/postal_code_city"
+        android:layout_marginTop="5dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/ev_country"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/country"
+            android:text=""
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            android:inputType="none"
+            android:layout_weight="1"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/dob"
         style="@style/text_input_layout"
         android:hint="@string/date_of_birth"
         app:boxBackgroundColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/postal_code_city"
+        app:layout_constraintTop_toBottomOf="@id/country"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="383dp"
-        android:layout_marginTop="5dp"
-        android:onClick="showDatePickerDialog">
-        <!--            TODO: Change input format in Date of Birth via calendar or wheel-->
+        android:focusable="false"
+        android:clickable="false"
+        android:focusableInTouchMode="false"
+        android:layout_marginTop="5dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ev_dob"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:maxLength="255"
-            android:singleLine="true"
-            android:focusable="false"/>
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

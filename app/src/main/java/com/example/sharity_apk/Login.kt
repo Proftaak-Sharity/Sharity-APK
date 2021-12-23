@@ -1,10 +1,13 @@
 package com.example.sharity_apk
 
 import android.os.Bundle
+import android.text.style.ImageSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.CalendarView
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -12,8 +15,11 @@ import com.example.sharity_apk.databinding.LoginBinding
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import java.util.*
 
 class Login : Fragment() {
 
@@ -30,28 +36,6 @@ class Login : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.apply {
-            textViewTest.setOnClickListener {
-                // create new instance of DatePickerFragment
-                val datePickerFragment = DatePickerFragment()
-                val supportFragmentManager = requireActivity().supportFragmentManager
-
-                // we have to implement setFragmentResultListener
-                supportFragmentManager.setFragmentResultListener(
-                    "REQUEST_KEY",
-                    viewLifecycleOwner
-                ) { resultKey, bundle ->
-                    if (resultKey == "REQUEST_KEY") {
-                        val date = bundle.getString("SELECTED_DATE")
-                        textViewTest.setText(date.toString())
-                    }
-                }
-
-                // show
-                datePickerFragment.show(supportFragmentManager, "DatePickerFragment")
-            }
-        }
 
         val preference = SharityPreferences(requireContext())
         preference.clearPreferences()
@@ -86,7 +70,6 @@ class Login : Fragment() {
             }
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

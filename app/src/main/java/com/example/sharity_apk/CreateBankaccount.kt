@@ -40,13 +40,14 @@ class CreateBankaccount: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = CreateBankaccountBinding.inflate(inflater, container, false)
+        binding.error.isVisible = false
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val preferences = SharityPreferences(requireContext())
-        val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
         val customerNumber = preferences.getCustomerNumber()
 
         if (customerNumber > 0) {
@@ -65,37 +66,66 @@ class CreateBankaccount: Fragment() {
                 0,
                 0
             )
-
         }
 
+        val etIban = binding.ibanEdittext.text
+        val etAccountHolder = binding.accountHolderEdittext.text
 
         binding.btnAddBankaccount.setOnClickListener {
+            binding.error.isVisible = false
+
             viewLifecycleOwner.lifecycleScope.launch {
+                val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
 
-                if (customerNumber <= 0) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Customer unknown",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    val iban = binding.ibanEdittext.text.toString()
-                    val accountHolder = binding.accountHolderEdittext.text.toString()
+                try {
 
-                    try {
+
+                    if (etIban.toString().isEmpty() || etAccountHolder.toString().isEmpty()) {
+                        binding.error.text = getString(R.string.all_fields_required)
+                        binding.error.isVisible = true
+                    } else if (customerNumber <= 0) {
+
+                        serviceGenerator.addCustomer(
+                            preferences.getFirstName()!!,
+                            preferences.getLastName()!!,
+                            preferences.getEmail()!!,
+                            preferences.getPassword()!!,
+                            preferences.getAddress()!!,
+                            preferences.getHouseNumber()!!,
+                            preferences.getPostalCode()!!,
+                            preferences.getCity()!!,
+                            preferences.getPhone()!!,
+                            preferences.getDateOfBirth()!!,
+                            preferences.getCountry()!!
+                        )
+
+                        val customer = serviceGenerator.getUser(preferences.getEmail().toString(), preferences.getPassword().toString())
+
+                        serviceGenerator.addDriversLicense(
+                            customer.customerNumber,
+                            preferences.getLicenseNumber()!!,
+                            preferences.getCountryLicense()!!,
+                            preferences.getValidUntil()!!
+                        )
+
                         serviceGenerator.addBankaccount(
-                            customerNumber,
-                            iban,
-                            accountHolder
+                            customer.customerNumber,
+                            etIban.toString(),
+                            etAccountHolder.toString()
+                        )
+                        preferences.clearPreferences()
+                        findNavController().navigate(R.id.action_CreateBankaccount_to_LoginFragment)
+                    } else {
+                        serviceGenerator.addBankaccount(
+                            preferences.getCustomerNumber(),
+                            etIban.toString(),
+                            etAccountHolder.toString()
                         )
                         findNavController().navigate(R.id.action_CreateBankaccount_to_GetBankaccountDetails)
-                    } catch (e: Exception) {
-                        Toast.makeText(
-                            requireContext(),
-                            "Bankaccount already in database",
-                            Toast.LENGTH_SHORT
-                        ).show()
                     }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }

@@ -109,28 +109,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_to_sharity" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/dob"
-        style="@style/text_input_layout"
-        android:hint="@string/date_of_birth"
-        app:boxBackgroundColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sign_in"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="383dp"
-        android:layout_marginTop="5dp"
-        android:onClick="showDatePickerDialog">
-        <!--            TODO: Change input format in Date of Birth via calendar or wheel-->
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textView_test"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="255"
-            android:singleLine="true"
-            android:focusableInTouchMode="false"
-            android:inputType="text" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

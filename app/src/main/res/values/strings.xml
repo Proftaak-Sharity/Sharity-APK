@@ -121,5 +121,17 @@
     <string name="password_email_incorrect">Password and/or email incorrect</string>
     <string name="email_regex_error">Email does not meet the requirements</string>
     <string name="all_fields_required">All fields have to be filled</string>
+    <string name="select_date_of_birth">Select date of birth</string>
+    <string name="netherlands">Netherlands</string>
+    <string name="belgium">Belgium</string>
+    <string name="luxembourg">Luxembourg</string>
+    <string name="license_already_database">License connected to another account</string>
+
+    <string-array name="country_list">
+        <item>NETHERLANDS</item>
+        <item>BELGIUM</item>
+        <item>LUXEMBOURG</item>
+    </string-array>
+
 
 </resources>
