@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_AccountOverview_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_AccountOverview_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
 
 <!--    Search fragments-->
@@ -400,6 +403,11 @@
         android:id="@+id/settingsFragment"
         android:name="com.example.sharity_apk.Settings"
         android:label="@string/action_settings" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.sharity_apk.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 
 
 </navigation>

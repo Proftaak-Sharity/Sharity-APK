@@ -38,6 +38,7 @@
         <entry key="app/src/main/res/layout/delete_reservation.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.325" />
+        <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.24094202898550723" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.25" />
         <entry key="app/src/main/res/layout/get_all_cars.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/get_all_reservations.xml" value="0.41032608695652173" />
