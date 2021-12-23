@@ -61,11 +61,6 @@ class SearchCars : Fragment() {
 //      Button bindings:
         binding.searchButton.setOnClickListener {
             //get whats in city and put in pref
-            var city = binding.citySearch.text
-            var cityString = city.toString()
-
-            val preferences = SharityPreferences(requireContext())
-            preferences.setCity(cityString)
             findNavController().navigate(com.example.sharity_apk.R.id.action_SearchCars_to_SearchResults)
         }
 
