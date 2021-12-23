@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.sharity_apk.databinding.LoginBinding
+import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.SearchCarsBinding
 
 class SearchCars : Fragment() {
@@ -26,7 +26,17 @@ class SearchCars : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 //      Button bindings:
-        binding.searchButton.setOnClickListener { findNavController().navigate(R.id.action_SearchCars_to_SearchResults) }
+        binding.searchButton.setOnClickListener {
+            //get whats in city and put in pref
+            var city = binding.citySearch.text
+            var cityString = city.toString()
+
+
+
+
+            val preferences = SharityPreferences(requireContext())
+            preferences.setCity(cityString)
+            findNavController().navigate(R.id.action_SearchCars_to_SearchResults) }
 
     }
 

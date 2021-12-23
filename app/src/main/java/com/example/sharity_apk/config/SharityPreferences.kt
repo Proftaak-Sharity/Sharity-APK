@@ -12,6 +12,7 @@ class SharityPreferences(context: Context) {
     val CUSTOMER_FIRST_NAME  = "LastName"
     val CUSTOMER_IBAN = "Iban"
     val LICENSE_PLATE = "LicencePlate"
+    val CITY = "City"
 
     private val preference: SharedPreferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
 
@@ -58,5 +59,13 @@ class SharityPreferences(context: Context) {
     fun setLicensePlate(carId: String?) {
         preference.edit().putString(LICENSE_PLATE, carId).apply()
 
+    }
+
+    fun setCity(city: String) {
+        return preference.edit().putString(CITY, null).apply()
+    }
+
+    fun getCity(): String? {
+        return preference.getString(CITY, "")
     }
 }

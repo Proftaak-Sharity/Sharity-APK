@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sharity_apk.adapter.CarAdapter
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.SearchResultsBinding
+import com.example.sharity_apk.model.CarModel
 import com.example.sharity_apk.service.ServiceGenerator
 import com.example.sharity_apk.service.CarApiService
 import com.example.sharity_apk.service.CustomerApiService
@@ -36,14 +38,16 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val serviceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
-        val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
-//        val preferences = SharityPreferences(requireContext())
+//        val serviceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
+//        val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
+        val preferences = SharityPreferences(requireContext())
+        val city = preferences.getCity()
+        println(city)
+
 
         viewLifecycleOwner.lifecycleScope.launch {
 
-            val carList = serviceGenerator.getCars()
-            val customerList = customerServiceGenerator.getCustomers()
+            val carList = getCarByCity(city)
 
             val adapter = CarAdapter(carList, this@SearchResults)
             try {
@@ -55,6 +59,9 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
                 Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT).show()
             }
         }
+
+
+
     }
 
     override fun onItemClick(position: Int) {
@@ -78,4 +85,32 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
         super.onDestroyView()
         _binding = null
     }
+}
+
+suspend fun getCarByCity(city: String?): MutableList<CarModel>{
+    val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
+    val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
+    var carsToBeRemoved: MutableList<CarModel>? = null
+
+
+    val carList = carServiceGenerator.getCars()
+
+    for (car in carList) {
+        val customer = customerServiceGenerator.getCustomer(car.customerNumber!!)
+        if (customer.city != city) {
+            println(car)
+            carsToBeRemoved?.add(car)
+        }
+    }
+    try {
+        carList.removeAll(carsToBeRemoved!!)
+    } catch (e: Exception) {
+        println("$e $carsToBeRemoved")
+    }
+
+    println(carsToBeRemoved)
+
+
+
+    return carList
 }

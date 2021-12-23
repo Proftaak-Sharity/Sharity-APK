@@ -5,9 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sharity_apk.R
+import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.model.CarModel
+import com.example.sharity_apk.model.CustomerModel
+import com.example.sharity_apk.service.CarApiService
 import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import kotlinx.coroutines.CoroutineScope
@@ -63,6 +67,21 @@ class CarAdapter(
         return  (serviceGenerator.getCustomer(customerNumber)).city
     }
 
+    private suspend fun getCarByCity(city: String?): MutableList<CarModel>{
+        val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
+        val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
+
+        val carList = carServiceGenerator.getCars()
+        for (car in carList){
+            val customer = customerServiceGenerator.getCustomer(car.customerNumber!!)
+            if (customer.city != city){
+                carList.remove(car)
+            }
+        }
+
+        return carList
+    }
+
 
     override fun getItemCount(): Int {
         return carList.size
@@ -98,6 +117,19 @@ class CarAdapter(
 
 }
 
+private suspend fun getCarByCity(city: String?): MutableList<CarModel>{
+    val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
+    val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
 
+    val carList = carServiceGenerator.getCars()
+    for (car in carList){
+        val customer = customerServiceGenerator.getCustomer(car.customerNumber!!)
+        if (customer.city != city){
+            carList.remove(car)
+        }
+    }
+
+    return carList
+}
 
 
