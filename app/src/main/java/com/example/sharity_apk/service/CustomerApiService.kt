@@ -63,4 +63,16 @@ interface CustomerApiService {
                                   @Query("licenseNumber") licenseNumber: String,
                                   @Query("country") country: String,
                                   @Query("validUntil") validUntil: String)
+
+    @PUT("customers/update")
+    suspend fun updateCustomer(@Query("customerNumber") customerNumber: Long,
+                               @Query("firstName") firstName : String,
+                               @Query("lastName") lastName: String,
+                               @Query("address") address: String?,
+                               @Query("houseNumber") houseNumber: String?,
+                               @Query("postalCode") postalCode: String,
+                               @Query("city") city: String,
+                               @Query("country") country: String?,
+                               @Query("dateOfBirth") dateOfBirth: String,
+                               @Query("phoneNumber") phoneNumber: String)
 }

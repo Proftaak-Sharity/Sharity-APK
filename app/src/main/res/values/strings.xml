@@ -126,6 +126,8 @@
     <string name="belgium">Belgium</string>
     <string name="luxembourg">Luxembourg</string>
     <string name="license_already_database">License connected to another account</string>
+    <string name="update_account">Update personal details</string>
+    <string name="change_account">Change your account details?</string>
 
     <string-array name="country_list">
         <item>NETHERLANDS</item>
