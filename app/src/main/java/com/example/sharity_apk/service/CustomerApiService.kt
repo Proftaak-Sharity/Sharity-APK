@@ -30,10 +30,10 @@ interface CustomerApiService {
     suspend fun getUser(@Query("email") email: String,
                         @Query("password") password: String) : LoginModel
 
-    @GET("customers/license/{customer_number}")
+    @GET("customers/license/{customerNumber}")
     suspend fun getDriversLicense(@Path ("customerNumber") customerNumber: Long) : DriversLicenseModel
 
-    @GET ("customers/bankaccounts/{customer_number}")
+    @GET ("customers/bankaccounts/{customerNumber}")
     suspend fun getBankaccounts(@Path("customerNumber") customerNumber: Long) : MutableList<BankaccountModel>
 
     @GET ("customers/bankaccounts/account/{id}")

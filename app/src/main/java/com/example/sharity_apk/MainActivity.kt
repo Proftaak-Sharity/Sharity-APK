@@ -65,9 +65,11 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination,_ ->
             when(destination.id) {
                 R.id.Login,
+                R.id.CreateAccount,
                 R.id.CreateCustomer,
                 R.id.CreateDriversLicense,
-                R.id.CreateBankaccount -> menu.findItem(R.id.button_home).isVisible = false
+                R.id.CreateBankaccount,
+                R.id.AccountOverview -> menu.findItem(R.id.button_home).isVisible = false
             else -> menu.findItem(R.id.button_home).isVisible = true
             }
         }
