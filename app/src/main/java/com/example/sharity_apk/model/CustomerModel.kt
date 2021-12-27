@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 data class CustomerModel(
 
     @field:Json(name = "customer_number")
-    val customerNumber: Long?,
+    val customerNumber: Long,
 
     @field:Json(name = "last_name")
     val lastName: String?,
@@ -14,7 +14,7 @@ data class CustomerModel(
     val firstName: String?,
 
     @field:Json(name = "date_of_birth")
-    val dateOfBirth: String?,
+    val dateOfBirth: String,
 
     @field:Json(name = "address")
     val address: String?,
@@ -40,4 +40,6 @@ data class CustomerModel(
     @field:Json(name = "password")
     val password: String?,
 
+    @field:Json(name = "drivers_license")
+    val driversLicense: String?
     )

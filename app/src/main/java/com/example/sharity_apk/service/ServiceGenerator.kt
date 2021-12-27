@@ -13,7 +13,6 @@ object ServiceGenerator {
         .add(KotlinJsonAdapterFactory())
         .build()
 
-
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
@@ -22,7 +21,6 @@ object ServiceGenerator {
 
     fun <T> buildService(service: Class<T>): T {
         return retrofit.create(service)
-
     }
 
 

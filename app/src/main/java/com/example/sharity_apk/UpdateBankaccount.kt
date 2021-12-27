@@ -35,7 +35,6 @@ class UpdateBankaccount: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val evIban: TextView = binding.ibanEdittext
         val evAccountHolder: TextView = binding.accountHolderEdittext
 
@@ -47,6 +46,8 @@ class UpdateBankaccount: Fragment() {
 
             evIban.text = bankaccount.iban
             evAccountHolder.text = bankaccount.accountHolder
+
+
 
             binding.btnDelete.setOnClickListener {
 
@@ -67,7 +68,8 @@ class UpdateBankaccount: Fragment() {
                     alert.show()
                 } catch (e: Exception) {
                     findNavController().navigate(R.id.GetBankaccountDetails)
-                    Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
 
@@ -78,7 +80,11 @@ class UpdateBankaccount: Fragment() {
                         .setCancelable(false)
                         .setPositiveButton("Yes") { _, _ ->
                             viewLifecycleOwner.lifecycleScope.launch {
-                                serviceGenerator.editBankaccount(bankaccountId, evIban.text.toString(), evAccountHolder.text.toString())
+                                serviceGenerator.editBankaccount(
+                                    bankaccountId,
+                                    evIban.text.toString(),
+                                    evAccountHolder.text.toString()
+                                )
                                 findNavController().navigate(R.id.action_UpdateBankaccount_to_GetBankaccountDetails)
                             }
                         }
@@ -89,18 +95,15 @@ class UpdateBankaccount: Fragment() {
                     alert.show()
                 } catch (e: Exception) {
                     findNavController().navigate(R.id.GetBankaccountDetails)
-                    Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
-
         }
-
-
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

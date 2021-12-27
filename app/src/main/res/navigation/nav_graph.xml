@@ -4,12 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/LoginFragment">
+    app:startDestination="@id/Login">
 
-
-<!--    Login fragment-->
     <fragment
-        android:id="@+id/LoginFragment"
+        android:id="@+id/Login"
         android:name="com.example.sharity_apk.Login"
         android:label="@string/login"
         tools:layout="@layout/login">
@@ -20,6 +18,9 @@
         <action
             android:id="@+id/action_LoginFragment_to_AccountOverview"
             app:destination="@id/AccountOverview"/>
+        <action
+            android:id="@+id/action_LoginFragment_to_createAccount"
+            app:destination="@id/CreateAccount" />
     </fragment>
 
 
@@ -33,10 +34,10 @@
 
         <action
             android:id="@+id/action_AccountOverview_to_SearchCars"
-            app:destination="@id/SearchCars" />
+            app:destination="@id/SearchCars"/>
         <action
             android:id="@+id/action_AccountOverview_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
         <action
             android:id="@+id/action_AccountOverview_to_GetCustomerDetails"
             app:destination="@id/GetCustomerDetails" />
@@ -63,7 +64,7 @@
             app:destination="@id/AccountOverview" />
         <action
             android:id="@+id/action_SearchCars_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
         <action
             android:id="@+id/action_SearchCars_to_SearchResults"
             app:destination="@id/SearchResults" />
@@ -83,7 +84,7 @@
             app:destination="@id/SearchCars" />
         <action
             android:id="@+id/action_SearchResults_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
         <action
             android:id="@+id/action_SearchResults_to_GetSearchedCarDetails"
             app:destination="@id/GetSearchedCarDetails" />
@@ -103,7 +104,7 @@
             app:destination="@id/SearchResults" />
         <action
             android:id="@+id/action_GetSearchedCarDetails_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
         <action
             android:id="@+id/action_GetSearchedCarDetails_to_AccountOverview"
             app:destination="@id/AccountOverview" />
@@ -126,7 +127,7 @@
             app:destination="@id/AccountOverview" />
         <action
             android:id="@+id/action_CreateReservation_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
         <action
             android:id="@+id/action_CreateReservation_to_GetReservationDetails"
             app:destination="@id/GetReservationDetails" />
@@ -144,7 +145,7 @@
             app:destination="@id/AccountOverview" />
         <action
             android:id="@+id/action_GetCustomerDetails_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
         <action
             android:id="@+id/action_GetCustomerDetails_to_UpdateCustomer"
             app:destination="@id/UpdateCustomer" />
@@ -164,7 +165,7 @@
 
         <action
             android:id="@+id/action_CreateCustomer_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
         <action
             android:id="@+id/action_CreateCustomer_to_CreateDriversLicense"
             app:destination="@id/CreateDriversLicense" />
@@ -195,7 +196,10 @@
             app:destination="@id/CreateDriversLicense" />
         <action
             android:id="@+id/action_CreateBankaccount_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
+        <action
+            android:id="@+id/action_CreateBankaccount_to_GetBankaccountDetails"
+            app:destination="@id/GetBankaccountDetails" />
     </fragment>
 
     <fragment
@@ -209,7 +213,7 @@
             app:destination="@id/GetCustomerDetails" />
         <action
             android:id="@+id/action_UpdateCustomer_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
     </fragment>
 
 <!--    Bankaccount-->
@@ -227,10 +231,13 @@
             app:destination="@id/GetCustomerDetails" />
         <action
             android:id="@+id/action_GetBankaccountDetails_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
         <action
             android:id="@+id/action_GetBankaccountDetails_to_GetDriversLicenseDetails"
             app:destination="@id/GetDriversLicenseDetails" />
+        <action
+            android:id="@+id/action_GetBankaccountDetails_to_CreateBankaccount"
+            app:destination="@id/CreateBankaccount" />
     </fragment>
 
     <fragment
@@ -241,10 +248,14 @@
 
         <action
             android:id="@+id/action_UpdateBankaccount_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
+
+<!--        To prevent crashes after deleting bankaccount and using backstack button-->
         <action
             android:id="@+id/action_UpdateBankaccount_to_GetBankaccountDetails"
-            app:destination="@id/GetBankaccountDetails" />
+            app:destination="@id/GetBankaccountDetails"
+            app:popUpTo="@id/UpdateBankaccount"
+            app:popUpToInclusive="true"/>
     </fragment>
 
 <!--    Drivers License-->
@@ -262,7 +273,7 @@
             app:destination="@id/GetCustomerDetails" />
         <action
             android:id="@+id/action_GetDriversLicenseDetails_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
         <action
             android:id="@+id/action_GetDriversLicenseDetails_to_GetBankaccountDetails"
             app:destination="@id/GetBankaccountDetails" />
@@ -279,7 +290,7 @@
             app:destination="@id/GetDriversLicenseDetails" />
         <action
             android:id="@+id/action_UpdateDriversLicense_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
     </fragment>
 
 <!--    Car Fragments-->
@@ -299,7 +310,7 @@
             app:destination="@id/CreateCar" />
         <action
             android:id="@+id/action_GetAllCars_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
     </fragment>
 
     <fragment
@@ -315,7 +326,7 @@
             app:destination="@id/GetAllCars" />
         <action
             android:id="@+id/action_GetCarDetails_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
     </fragment>
 
     <fragment
@@ -328,7 +339,7 @@
             app:destination="@id/GetCarDetails" />
         <action
             android:id="@+id/action_UpdateCar_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
     </fragment>
 
     <fragment
@@ -345,7 +356,7 @@
             app:destination="@id/GetCarDetails" />
         <action
             android:id="@+id/action_CreateCar_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
     </fragment>
 
 <!--Reservation fragments-->
@@ -356,7 +367,7 @@
         tools:layout="@layout/get_all_reservations">
         <action
             android:id="@+id/action_GetAllReservations_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
         <action
             android:id="@+id/action_GetAllReservations_to_AccountOverview"
             app:destination="@id/AccountOverview" />
@@ -372,7 +383,7 @@
         tools:layout="@layout/get_reservation_details">
         <action
             android:id="@+id/action_GetReservationDetails_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
         <action
             android:id="@+id/action_GetReservationDetails_to_UpdateReservation"
             app:destination="@id/UpdateReservation" />
@@ -388,10 +399,22 @@
         tools:layout="@layout/update_reservation">
         <action
             android:id="@+id/action_UpdateReservation_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:destination="@id/Login" />
         <action
             android:id="@+id/action_UpdateReservation_to_GetReservationDetails"
             app:destination="@id/GetReservationDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/CreateAccount"
+        android:name="com.example.sharity_apk.CreateAccount"
+        android:label="@string/create_account"
+        tools:layout="@layout/create_account" >
+        <action
+            android:id="@+id/action_createAccount_to_Login"
+            app:destination="@id/Login" />
+        <action
+            android:id="@+id/action_CreateAccount_to_CreateCustomer"
+            app:destination="@id/CreateCustomer" />
     </fragment>
 
 

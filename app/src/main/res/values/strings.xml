@@ -55,8 +55,7 @@
     <string name="show_password">Show password</string>
     <string name="login_instead">Login instead</string>
     <string name="zip_code">PC</string>
-    <string name="create_account_password_textview"><![CDATA[Use 8 or more characters with a mix of letters, numbers & symbols]]></string>
-    <string name="create_account">Create an account</string>
+    <string name="create_account">Create account</string>
     <string name="license_number">License number</string>
     <string name="valid_until">Valid until</string>
     <string name="image_license">image_license</string>
@@ -121,5 +120,29 @@
     <string name="total_price">Total price</string>
     <string name="payment_status">Payment status</string>
     <string name="pick_date">Pick Date status</string>
+    <string name="add">add</string>
+    <string name="passwords_not_matching">Passwords not matching</string>
+    <string name="email_already_in_db">Email address already exists</string>
+    <string name="password_empty">Password not filled</string>
+    <string name="email_empty">Email not filled</string>
+    <string name="password_char_error">Password must have at least 8 characters</string>
+    <string name="password_email_empty">Password and/or email empty</string>
+    <string name="password_email_incorrect">Password and/or email incorrect</string>
+    <string name="email_regex_error">Email does not meet the requirements</string>
+    <string name="all_fields_required">All fields have to be filled</string>
+    <string name="select_date_of_birth">Select date of birth</string>
+    <string name="netherlands">Netherlands</string>
+    <string name="belgium">Belgium</string>
+    <string name="luxembourg">Luxembourg</string>
+    <string name="license_already_database">License connected to another account</string>
+    <string name="update_account">Update personal details</string>
+    <string name="change_account">Change your account details?</string>
+
+    <string-array name="country_list">
+        <item>NETHERLANDS</item>
+        <item>BELGIUM</item>
+        <item>LUXEMBOURG</item>
+    </string-array>
+
 
 </resources>

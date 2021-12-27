@@ -1,11 +1,13 @@
 package com.example.sharity_apk
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,6 +41,10 @@ class GetBankaccountDetails: Fragment(), BankaccountAdapter.OnBankaccountClickLi
         val preferences = SharityPreferences(requireContext())
         val customerNumber = preferences.getCustomerNumber()
 
+        binding.btnAdd.setOnClickListener {
+            Toast.makeText(requireContext(), "$customerNumber", Toast.LENGTH_SHORT).show()
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
 
             val bankaccountsList = serviceGenerator.getBankaccounts(customerNumber)
@@ -50,6 +56,10 @@ class GetBankaccountDetails: Fragment(), BankaccountAdapter.OnBankaccountClickLi
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        binding.btnAdd.setOnClickListener {
+            findNavController().navigate(R.id.action_GetBankaccountDetails_to_CreateBankaccount)
         }
     }
 

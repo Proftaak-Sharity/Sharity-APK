@@ -52,6 +52,7 @@ dependencies {
     implementation 'com.google.android.material:material:<version>'
     implementation 'com.sun.mail:android-mail:1.6.0'
     implementation 'com.sun.mail:android-activation:1.6.0'
+    implementation 'androidx.fragment:fragment-ktx:1.4.0'
 
     // to create a Livecycle aware components
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
