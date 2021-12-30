@@ -43,7 +43,5 @@ class CarAdapter(): RecyclerView.Adapter<CarAdapter.CarCardViewHolder>() {
         holder.carPrice?.text = "Price: 100 "
         holder.carLocation?.text = "location: Breda "
         holder.carFuelType?.text =  "fuel: Electric "
-
-
-    }
+            }
 }

@@ -31,29 +31,17 @@ class MapsFragment : Fragment() {
          */
        GPSUtils.initPermissions(requireActivity())
 
-try {        GPSUtils.findDeviceLocation(requireActivity())
+//try {
+    GPSUtils.findDeviceLocation(requireActivity())
     val lng = longitude
     val lat = latitude
 
      val yourLocation = LatLng(lat!!, lng!!)
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 12f))
             googleMap.addMarker(MarkerOptions().position(yourLocation).title("You are here!"))
-} catch (e:Exception){
-    Toast.makeText(requireContext(), "$longitude, $latitude", Toast.LENGTH_SHORT).show()
-}
-
-//        GPSUtils.findDeviceLocation(requireActivity())
-//        val lng = longitude
-//        val lat = latitude
-
-//        val yourLocation = LatLng(lat!!, lng!!)
-
-//        val yourLocation = LatLng(51.6747854, 4.7769329)
-
-
-//            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 12f))
-//            googleMap.addMarker(MarkerOptions().position(yourLocation).title("You are here!"))
-
+//} catch (e:Exception){
+//    Toast.makeText(requireContext(), "Failed to catch location", Toast.LENGTH_SHORT).show()
+//}
             googleMap.uiSettings.apply {
                 isZoomControlsEnabled = true
                 isMyLocationButtonEnabled = true

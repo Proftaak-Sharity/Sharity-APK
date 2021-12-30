@@ -75,12 +75,7 @@ class GetReservationDetails: Fragment() {
 
             //Button bindings:
             binding.btnfindCaronMap.setOnClickListener {
-                try {
                     findNavController().navigate(R.id.action_GetReservationDetails_to_mapsFragment3)
-                }
-                catch (e: Exception){
-                    Toast.makeText(requireContext(), "test", Toast.LENGTH_SHORT).show()
-                }
               }
         }
     }
