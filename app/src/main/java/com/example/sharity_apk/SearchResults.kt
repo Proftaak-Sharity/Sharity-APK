@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -16,9 +15,11 @@ import com.example.sharity_apk.databinding.SearchResultsBinding
 import com.example.sharity_apk.model.CarModel
 import com.example.sharity_apk.service.ServiceGenerator
 import com.example.sharity_apk.service.CarApiService
-import com.example.sharity_apk.service.CustomerApiService
+import com.example.sharity_apk.service.ReservationApiService
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
 
@@ -48,10 +49,9 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
 
         viewLifecycleOwner.lifecycleScope.launch {
 
-            val carList = getCars(start, end, fuel)
+            var alCarList = getCars(fuel)
+            var carList = checkAvaiability(start, end, alCarList)
 
-
-            println("Calling adapter now")
             val adapter = CarAdapter(carList, this@SearchResults)
             try {
 
@@ -90,7 +90,7 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
     }
 }
 
-suspend fun getCars(start: String?, end: String?, fuel: String?): MutableList<CarModel> {
+suspend fun getCars(fuel: String?): MutableList<CarModel> {
     val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
 //    val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
 //    var carsToBeRemoved: MutableList<CarModel>? = null
@@ -107,5 +107,37 @@ suspend fun getCars(start: String?, end: String?, fuel: String?): MutableList<Ca
         println("now we use getCars")
         carServiceGenerator.getCars()
     }
+
+}
+
+suspend fun checkAvaiability(start: String?, end: String?, carList: MutableList<CarModel>): MutableList<CarModel> {
+    val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
+    val reservationServiceGenerator = ServiceGenerator.buildService(ReservationApiService::class.java)
+    // check which cars are rented out
+    val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+    var licensePlates = listOf<String?>()
+    var carsToBeRemoved = listOf<CarModel?>()
+
+    if ((start != "NotSet") and (end != "notSet")){
+        val startDate = LocalDate.parse(start, formatter);
+        val endDate = LocalDate.parse(end, formatter);
+        val reserved = reservationServiceGenerator.getRentedCars(startDate = startDate, endDate = endDate)
+        for (car in reserved) {
+            licensePlates += car.licensePlate
+        }
+        for (car in carList){
+            if (car.licensePlate in licensePlates) {
+                carsToBeRemoved += car
+            }
+        }
+        carList.removeAll(carsToBeRemoved)
+        return carList
+    } else {
+        return carList
+    }
+
+
+    // compare licenceplates of rented out vs cars
 
 }
