@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.GetReservationDetailsBinding
 import com.example.sharity_apk.service.ReservationApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class GetReservationDetails: Fragment() {
 
@@ -68,6 +72,16 @@ class GetReservationDetails: Fragment() {
             packagePrice.text = "€${reservation.packagePrice.toString()}"
             totalPrice.text = "€${reservation.rent.toString()}"
             paymentStatus.text = reservation.paymentEnum
+
+            //Button bindings:
+            binding.btnfindCaronMap.setOnClickListener {
+                try {
+                    findNavController().navigate(R.id.action_GetReservationDetails_to_mapsFragment3)
+                }
+                catch (e: Exception){
+                    Toast.makeText(requireContext(), "test", Toast.LENGTH_SHORT).show()
+                }
+              }
         }
     }
 

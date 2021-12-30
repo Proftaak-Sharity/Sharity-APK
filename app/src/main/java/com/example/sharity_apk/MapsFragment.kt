@@ -6,9 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.example.sharity_apk.utils.GPSUtils
+import com.example.sharity_apk.utils.GPSUtils.latitude
+import com.example.sharity_apk.utils.GPSUtils.longitude
 
 import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
@@ -26,12 +29,35 @@ class MapsFragment : Fragment() {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
-        val made = LatLng(51.6747854,4.7769329)
-        googleMap.addMarker(MarkerOptions().position(made).title("Daan Creative Projects"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(made, 15f))
-        googleMap.uiSettings.apply {
-            isZoomControlsEnabled = true
-            isMyLocationButtonEnabled = true}
+       GPSUtils.initPermissions(requireActivity())
+
+try {        GPSUtils.findDeviceLocation(requireActivity())
+    val lng = longitude
+    val lat = latitude
+
+     val yourLocation = LatLng(lat!!, lng!!)
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 12f))
+            googleMap.addMarker(MarkerOptions().position(yourLocation).title("You are here!"))
+} catch (e:Exception){
+    Toast.makeText(requireContext(), "$longitude, $latitude", Toast.LENGTH_SHORT).show()
+}
+
+//        GPSUtils.findDeviceLocation(requireActivity())
+//        val lng = longitude
+//        val lat = latitude
+
+//        val yourLocation = LatLng(lat!!, lng!!)
+
+//        val yourLocation = LatLng(51.6747854, 4.7769329)
+
+
+//            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 12f))
+//            googleMap.addMarker(MarkerOptions().position(yourLocation).title("You are here!"))
+
+            googleMap.uiSettings.apply {
+                isZoomControlsEnabled = true
+                isMyLocationButtonEnabled = true
+            }
     }
 
     override fun onCreateView(
@@ -47,6 +73,7 @@ class MapsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
-
          }
-}
+    }
+
+

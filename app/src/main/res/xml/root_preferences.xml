@@ -2,14 +2,14 @@
 
     <PreferenceCategory
         app:icon="@drawable/ic_baseline_language_24"
-        app:title= "@string/Language_settings">
+        app:title= "@string/LanguageSettings">
 
         <ListPreference
             app:defaultValue="language"
             app:entries="@array/language_entries"
             app:entryValues="@array/language_values"
-            app:key="@string/languagepreference"
-            app:title="@string/Default_language"
+            app:key = "@string/Language_preference"
+            app:title = "@string/Defaultlanguage"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
