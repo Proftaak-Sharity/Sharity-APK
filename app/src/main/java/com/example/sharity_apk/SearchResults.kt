@@ -70,9 +70,13 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
     override fun onItemClick(position: Int) {
         val serviceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
         val preferences = SharityPreferences(requireContext())
+        val start = preferences.getStartDate()
+        val end = preferences.getEndDate()
+        val fuel = preferences.getFuelType()
 
         viewLifecycleOwner.lifecycleScope.launch {
-            val carList = serviceGenerator.getCars()
+            var alCarList = getCars(fuel)
+            var carList = checkAvaiability(start, end, alCarList)
             val clickedCar = carList[position]
             val carId = clickedCar.licensePlate.toString()
 
