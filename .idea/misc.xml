@@ -4,6 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.5635416666666667" />
+        <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/car_card.xml" value="0.1" />
+        <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/get_customer_details.xml" value="0.3546875" />
+        <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/get_searched_car_details.xml" value="0.33" />
+        <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/search_cars.xml" value="0.20052083333333334" />
+        <entry key="..\:/Studie/Sharity-APK/app/src/main/res/layout/search_results.xml" value="0.3546875" />
+        <entry key="../../Library/Android/sdk/platforms/android-31/data/res/layout/simple_spinner_item.xml" value="0.4311594202898551" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3411458333333333" />
         <entry key="app/src/main/res/drawable-v26/ic_launcher_background.xml" value="0.5369791666666667" />
         <entry key="app/src/main/res/drawable-v26/ic_launcher_foreground.xml" value="0.5645833333333333" />
@@ -22,23 +28,23 @@
         <entry key="app/src/main/res/layout/car_card.xml" value="0.335" />
         <entry key="app/src/main/res/layout/car_item.xml" value="0.3428442028985507" />
         <entry key="app/src/main/res/layout/car_item_cardview.xml" value="0.33559782608695654" />
-        <entry key="app/src/main/res/layout/card_bankaccount.xml" value="0.3072916666666667" />
+        <entry key="app/src/main/res/layout/card_bankaccount.xml" value="0.33" />
         <entry key="app/src/main/res/layout/card_customer.xml" value="0.45652173913043476" />
-        <entry key="app/src/main/res/layout/card_reservation.xml" value="0.25" />
         <entry key="app/src/main/res/layout/contact_form.xml" value="0.3265625" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.325" />
+        <entry key="app/src/main/res/layout/create_account.xml" value="0.5119791666666667" />
         <entry key="app/src/main/res/layout/create_bankaccount.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/create_car.xml" value="0.41032608695652173" />
-        <entry key="app/src/main/res/layout/create_customer.xml" value="0.3143176733780761" />
+        <entry key="app/src/main/res/layout/create_customer.xml" value="0.5" />
         <entry key="app/src/main/res/layout/create_drivers_license.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/create_reservation.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/customer_card.xml" value="0.33" />
         <entry key="app/src/main/res/layout/delete_bankaccount.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/delete_car.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/delete_reservation.xml" value="0.41032608695652173" />
+        <entry key="app/src/main/res/layout/dropdown_item.xml" value="0.4311594202898551" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.325" />
-        <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.24094202898550723" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.25" />
         <entry key="app/src/main/res/layout/get_all_cars.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/get_all_reservations.xml" value="0.41032608695652173" />
@@ -51,9 +57,7 @@
         <entry key="app/src/main/res/layout/image_border.xml" value="0.3491847826086957" />
         <entry key="app/src/main/res/layout/listreservation_item.xml" value="0.28854166666666664" />
         <entry key="app/src/main/res/layout/login.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/preference_screen.xml" value="0.26875" />
         <entry key="app/src/main/res/layout/recycler_view.xml" value="0.3428442028985507" />
-        <entry key="app/src/main/res/layout/reservation_card.xml" value="0.25" />
         <entry key="app/src/main/res/layout/rowlayout.xml" value="0.33559782608695654" />
         <entry key="app/src/main/res/layout/search_cars.xml" value="0.33" />
         <entry key="app/src/main/res/layout/search_results.xml" value="0.1" />
@@ -65,7 +69,6 @@
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.3255208333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.4546875" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.4546875" />
-        <entry key="app/src/main/res/xml/root_preferences.xml" value="0.26875" />
       </map>
     </option>
   </component>
@@ -74,12 +77,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.1" />
-      </ProjectState>
-    </option>
   </component>
 </project>

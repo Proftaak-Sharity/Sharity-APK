@@ -11,7 +11,12 @@ class SharityPreferences(context: Context) {
     val CUSTOMER_LAST_NAME = "FirstName"
     val CUSTOMER_FIRST_NAME = "LastName"
     val CUSTOMER_IBAN = "Iban"
+    val LICENSE_PLATE = "LicencePlate"
+    val CITY = "City"
     val RESERVATION_NUMBER = "ReservationNumber"
+    val START_DATE = "StartDate"
+    val END_DATE = "EndDate"
+    val FUEL_TYPE = "FuelType"
     val CUSTOMER_PASSWORD = "Password"
     val CUSTOMER_EMAIL = "Email"
     val CUSTOMER_ADDRESS = "Address"
@@ -127,14 +132,6 @@ class SharityPreferences(context: Context) {
         return preference.getString(CUSTOMER_POSTAL_CODE, "")
     }
 
-    fun setCity(city: String) {
-        preference.edit().putString(CUSTOMER_CITY, city).apply()
-    }
-
-    fun getCity(): String? {
-        return preference.getString(CUSTOMER_CITY, "")
-    }
-
     fun setDateOfBirth(dateOfBirth: String) {
         preference.edit().putString(CUSTOMER_DATE_OF_BIRTH, dateOfBirth).apply()
     }
@@ -153,6 +150,48 @@ class SharityPreferences(context: Context) {
 
     fun clearPreferences() {
         preference.edit().clear().apply()
+    }
+
+    fun getLicensePlate() : String? {
+        return preference.getString(LICENSE_PLATE, "RGBB54")
+    }
+
+    fun setLicensePlate(carId: String?) {
+        preference.edit().putString(LICENSE_PLATE, carId).apply()
+
+    }
+
+    fun setCity(city: String) {
+        return preference.edit().putString(CITY, null).apply()
+    }
+
+    fun getCity(): String? {
+        return preference.getString(CITY, "")
+    }
+
+    fun setStartDate(startDate: String) {
+        preference.edit().putString(START_DATE, startDate).apply()
+    }
+
+    fun getStartDate(): String? {
+        return preference.getString(START_DATE, "notSet")
+    }
+
+    fun setEndDate(endDate: String) {
+        preference.edit().putString(END_DATE, endDate).apply()
+    }
+
+    fun getEndDate(): String? {
+        return preference.getString(END_DATE, "notSet")
+    }
+
+    fun setFuelType(fuel: String) {
+        preference.edit().putString(FUEL_TYPE, fuel).apply()
+    }
+
+    fun getFuelType(): String? {
+        return preference.getString(FUEL_TYPE, "notSet")
+
     }
 
     fun setCountry(country: String) {

@@ -38,8 +38,5 @@ data class CustomerModel(
     val email: String?,
 
     @field:Json(name = "password")
-    val password: String?,
-
-    @field:Json(name = "drivers_license")
-    val driversLicense: String?
+    val password: String?
     )
