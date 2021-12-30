@@ -13,6 +13,17 @@ interface CarApiService {
     @GET("cars/{license_plate}")
     suspend fun getCar(@Path("license_plate") licensePlate: String?) : CarModel
 
+    @GET("cars/fuelcars")
+    suspend fun getFuelCars(): MutableList<CarModel>
+
+    @GET("cars/electriccars")
+    suspend fun getElectricCars(): MutableList<CarModel>
+
+    @GET("cars/hydrogencars")
+    suspend fun getHydrogenCars(): MutableList<CarModel>
+
+
+//    @GET("cars/availabiltity/{license_plate}")
 //    @GET("cars/city/{city}")
 //    suspend fun getCarsFromLocation(@Path("city") city: String?): MutableList<CarModel>
 //

@@ -44,15 +44,14 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
         val start = preferences.getStartDate()
         val end = preferences.getEndDate()
         val fuel = preferences.getFuelType()
-        println(start)
-        println(end)
         println(fuel)
-
 
         viewLifecycleOwner.lifecycleScope.launch {
 
             val carList = getCars(start, end, fuel)
 
+
+            println("Calling adapter now")
             val adapter = CarAdapter(carList, this@SearchResults)
             try {
 
@@ -93,16 +92,20 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
 
 suspend fun getCars(start: String?, end: String?, fuel: String?): MutableList<CarModel> {
     val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
-    val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
-    var carsToBeRemoved: MutableList<CarModel>? = null
+//    val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
+//    var carsToBeRemoved: MutableList<CarModel>? = null
 
     // make this use start/end/fuel if set
-    if ((start == end) or (fuel == "notSet")) {
-        // some vars are not set, better return all
-        return carServiceGenerator.getCars()
+    return if (fuel == "petrol") {
+        carServiceGenerator.getFuelCars()
+    }else if (fuel == "electric") {
+        carServiceGenerator.getElectricCars()
+    }else  if (fuel == "hydrogen") {
+        carServiceGenerator.getHydrogenCars()
     } else {
         // search for car in range set
-        return carServiceGenerator.getCars()
+        println("now we use getCars")
+        carServiceGenerator.getCars()
     }
 
 }

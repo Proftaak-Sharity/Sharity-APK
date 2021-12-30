@@ -17,8 +17,6 @@ class SharityPreferences(context: Context) {
     val START_DATE = "StartDate"
     val END_DATE = "EndDate"
     val FUEL_TYPE = "FuelType"
-
-    val RESERVATION_NUMBER = "ReservationNumber"
     val CUSTOMER_PASSWORD = "Password"
     val CUSTOMER_EMAIL = "Email"
     val CUSTOMER_ADDRESS = "Address"
@@ -133,14 +131,6 @@ class SharityPreferences(context: Context) {
         return preference.getString(CUSTOMER_POSTAL_CODE, "")
     }
 
-    fun setCity(city: String) {
-        preference.edit().putString(CUSTOMER_CITY, city).apply()
-    }
-
-    fun getCity(): String? {
-        return preference.getString(CUSTOMER_CITY, "")
-    }
-
     fun setDateOfBirth(dateOfBirth: String) {
         preference.edit().putString(CUSTOMER_DATE_OF_BIRTH, dateOfBirth).apply()
     }
@@ -200,6 +190,9 @@ class SharityPreferences(context: Context) {
 
     fun getFuelType(): String? {
         return preference.getString(FUEL_TYPE, "notSet")
+
+    }
+
     fun setCountry(country: String) {
         preference.edit().putString(CUSTOMER_COUNTRY, country).apply()
     }
