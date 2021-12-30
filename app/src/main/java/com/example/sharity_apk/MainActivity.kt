@@ -1,6 +1,7 @@
 package com.example.sharity_apk
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -13,6 +14,9 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.sharity_apk.databinding.ActivityMainBinding
 import androidx.navigation.NavController
+import android.content.SharedPreferences
+import com.example.sharity_apk.config.SharityPreferences
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,8 +25,9 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = _binding
     private lateinit var navController: NavController
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState)
 
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -33,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+
         binding.fab.setOnClickListener {
             sendEmail()
         }
@@ -40,13 +46,13 @@ class MainActivity : AppCompatActivity() {
 //      This hides the floating action button (fab) in specific fragments:
         navController.addOnDestinationChangedListener { _, destination,_ ->
             when (destination.id) {
+                R.id.Login,
+                R.id.CreateAccount,
                 R.id.CreateCustomer,
                 R.id.CreateDriversLicense,
                 R.id.CreateBankaccount,
-                R.id.CreateReservation,
-                R.id.mapsFragment,
-                R.id.GetAllReservations -> binding.fab.hide()
-            else -> binding.fab.show()
+                R.id.CreateReservation -> binding.fab.hide()
+                else -> binding.fab.show()
             }
         }
     }
@@ -58,18 +64,20 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination,_ ->
             when(destination.id) {
-                R.id.LoginFragment,
+                R.id.Login,
+                R.id.CreateAccount,
                 R.id.CreateCustomer,
                 R.id.CreateDriversLicense,
-                R.id.CreateBankaccount -> menu.findItem(R.id.button_home).isVisible = false
+                R.id.CreateBankaccount,
+                R.id.AccountOverview -> menu.findItem(R.id.button_home).isVisible = false
             else -> menu.findItem(R.id.button_home).isVisible = true
             }
-
-            }
+        }
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val preferences = SharityPreferences(this)
 
 //      Sets the destination of the buttons in de options menu:
         return when (item.itemId) {
@@ -77,13 +85,11 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.AccountOverview)
                 return true
             }
-            R.id.action_settings -> {
-                navController.navigate(R.id.settingsFragment)
-                return true
-            }
+            R.id.action_settings -> true
             R.id.action_contact -> true
             R.id.action_logout -> {
-                navController.navigate(R.id.LoginFragment)
+                preferences.clearPreferences()
+                navController.navigate(R.id.Login)
                 return true }
             else -> super.onOptionsItemSelected(item)
         }

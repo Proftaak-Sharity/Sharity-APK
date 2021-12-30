@@ -13,6 +13,10 @@ import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import com.example.sharity_apk.config.SharityPreferences
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class GetCustomerDetails: Fragment() {
 
@@ -82,3 +86,4 @@ class GetCustomerDetails: Fragment() {
 
 
 }
+

@@ -2,7 +2,7 @@
     <string name="app_name">Sharity</string>
     <string name="action_settings">Settings</string>
 
-    <!--     Strings used for fragments for navigation -->
+<!--     Strings used for fragments for navigation -->
     <string name="first_fragment_label">Sharity</string>
     <string name="start_sharing">Start Sharing</string>
     <string name="back">Back</string>
@@ -26,14 +26,13 @@
     <string name="personal_details">My personal details</string>
     <string name="my_details">My Details</string>
     <string name="bankaccount">Bankaccount</string>
-    <string name="update_bankaccount">Update Bankaccount</string>
     <string name="drivers_license">Drivers License</string>
     <string name="update_drivers_license">Update Drivers License</string>
     <string name="my_cars">My Cars</string>
     <string name="update_car">Update Car</string>
     <string name="add_car">Add Car</string>
     <string name="my_reservations">My Reservations</string>
-    <string name="reservation_details">My reservation details</string>
+    <string name="reservation_details">Reservation Details</string>
     <string name="update_reservation">Update Reservation</string>
     <string name="action_logout">Logout</string>
     <string name="make_reservation">make reservation</string>
@@ -56,8 +55,7 @@
     <string name="show_password">Show password</string>
     <string name="login_instead">Login instead</string>
     <string name="zip_code">PC</string>
-    <string name="create_account_password_textview"><![CDATA[Use 8 or more characters with a mix of letters, numbers & symbols]]></string>
-    <string name="create_account">Create an account</string>
+    <string name="create_account">Create account</string>
     <string name="license_number">License number</string>
     <string name="valid_until">Valid until</string>
     <string name="image_license">image_license</string>
@@ -90,7 +88,7 @@
     <string name="any">any</string>
 
 
-    <!--    Specific Sharity data:-->
+<!--    Specific Sharity data:-->
     <string name="sharity_email">info@sharity.nl</string>
     <string name="sharity_email_subject">Contact via Sharity-application</string>
     <string name="car_image">car_image</string>
@@ -99,27 +97,43 @@
     <string name="delete">delete</string>
     <string name="post">add</string>
     <string name="welcome">Welcome %1$s</string>
-    <string name="bankaccount_title">Bankaccount:</string>
+    <string name="edit_bankaccount">Change bankaccount</string>
     <string name="account_holder">Account holder</string>
-    <string name="reservation_start">Reservation startdate:</string>
-    <string name="reservation_end">Reservation enddate:</string>
+    <string name="image_bankaccount">image_bankaccount</string>
+    <string name="save">save</string>
+    <string name="reservation_start">Reservation start</string>
+    <string name="reservation_end">Reservation end</string>
     <string name="reservation_date">Reservation date</string>
     <string name="make">Make</string>
     <string name="model">Model</string>
     <string name="license_plate">License plate</string>
     <string name="km_package">Km package</string>
-    <string name="km_package_price">Km package price</string>
+    <string name="km_package_price">Package price</string>
     <string name="total_price">Total price</string>
     <string name="payment_status">Payment status</string>
-    <string name="change">change</string>
-    <string name="reservationnumber">Reservationnumber:</string>
-    <string name="rent_price">Rent price:</string>
-    <string name="language">Language</string>
-    <!-- Preference Titles -->
+    <string name="add">add</string>
+    <string name="passwords_not_matching">Passwords not matching</string>
+    <string name="email_already_in_db">Email address already exists</string>
+    <string name="password_empty">Password not filled</string>
+    <string name="email_empty">Email not filled</string>
+    <string name="password_char_error">Password must have at least 8 characters</string>
+    <string name="password_email_empty">Password and/or email empty</string>
+    <string name="password_email_incorrect">Password and/or email incorrect</string>
+    <string name="email_regex_error">Email does not meet the requirements</string>
+    <string name="all_fields_required">All fields have to be filled</string>
+    <string name="select_date_of_birth">Select date of birth</string>
+    <string name="netherlands">Netherlands</string>
+    <string name="belgium">Belgium</string>
+    <string name="luxembourg">Luxembourg</string>
+    <string name="license_already_database">License connected to another account</string>
+    <string name="update_account">Update personal details</string>
+    <string name="change_account">Change your account details?</string>
 
-    <!-- Sync Preferences -->
-    <string name="Language_settings">Language settings</string>
-    <string name="Default_language">Default language</string>
-    <string name="languagepreference">language_preference</string>
+    <string-array name="country_list">
+        <item>NETHERLANDS</item>
+        <item>BELGIUM</item>
+        <item>LUXEMBOURG</item>
+    </string-array>
+
 
 </resources>

@@ -4,6 +4,7 @@ import com.example.sharity_apk.config.Config.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object ServiceGenerator {
@@ -12,15 +13,14 @@ object ServiceGenerator {
         .add(KotlinJsonAdapterFactory())
         .build()
 
-
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
 
     fun <T> buildService(service: Class<T>): T {
         return retrofit.create(service)
-
     }
 
 

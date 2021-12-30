@@ -8,24 +8,71 @@ import retrofit2.http.*
 
 interface CustomerApiService {
 
-    @GET ("customers")
-    suspend fun getCustomers(): MutableList<CustomerModel>
-
 //    using @path so that customer_number becomes the number in the path of the GET
     @GET("customers/{customer_number}")
     suspend fun getCustomer(@Path("customer_number") customerNumber: Long) : CustomerModel
 
+    @POST("customers")
+    suspend fun addCustomer(@Query("firstName") firstName : String,
+                            @Query("lastName") lastName: String,
+                            @Query("email") email: String?,
+                            @Query("password") password: String?,
+                            @Query("address") address: String?,
+                            @Query("houseNumber") houseNumber: String?,
+                            @Query("postalCode") postalCode: String,
+                            @Query("city") city: String,
+                            @Query("phoneNumber") phoneNumber: String,
+                            @Query("dateOfBirth") dateOfBirth: String,
+                            @Query("country") country: String) : Long
+
 //    using Query so that email en query are used in query url, like: customers/login?email={email}&password={password}
     @GET ("customers/login")
-    suspend fun getUser(@Query("email") email: String, @Query("password") password: String) : LoginModel
+    suspend fun getUser(@Query("email") email: String,
+                        @Query("password") password: String) : LoginModel
 
-    @GET("customers/license/{customer_number}")
-    suspend fun getDriversLicense(@Path ("customer_number") customerNumber: Long) : DriversLicenseModel
+    @GET("customers/license/{customerNumber}")
+    suspend fun getDriversLicense(@Path ("customerNumber") customerNumber: Long) : DriversLicenseModel
 
-    @GET ("customers/bankaccounts/{customer_number}")
-    suspend fun getBankaccounts(@Path("customer_number") customerNumber: Long) : MutableList<BankaccountModel>
+    @GET ("customers/bankaccounts/{customerNumber}")
+    suspend fun getBankaccounts(@Path("customerNumber") customerNumber: Long) : MutableList<BankaccountModel>
 
-    @GET ("customers/iban")
-    suspend fun getBankaccount(@Query("iban") iban: String) : BankaccountModel
+    @GET ("customers/bankaccounts/account/{id}")
+    suspend fun getBankaccount(@Path("id") id: Long?) : BankaccountModel
 
+    @DELETE("customers/bankaccounts/delete/{id}")
+    suspend fun deleteBankaccount(@Path("id") id: Long)
+
+    @PUT("customers/bankaccounts/edit/{id}")
+    suspend fun editBankaccount(@Path("id") id: Long,
+                                @Query ("iban") iban: String,
+                                @Query ("accountHolder") accountHolder: String)
+
+    @POST("customers/bankaccounts/add")
+    suspend fun addBankaccount(@Query("customerNumber") customerNumber: Long,
+                               @Query("iban") iban: String,
+                               @Query("accountHolder") accountHolder: String)
+
+    @GET("customers/emailcheck")
+    suspend fun checkEmail(@Query("email") email: String) :Boolean
+
+    @GET("customers/driverslicense/check")
+    suspend fun checkLicense(@Query("licenseNumber") licenseNumber: String) :Boolean
+
+    @POST ("customers/driverslicense")
+    suspend fun addDriversLicense(@Query("customerNumber") customerNumber: Long,
+                                  @Query("licenseNumber") licenseNumber: String,
+                                  @Query("country") country: String,
+                                  @Query("validUntil") validUntil: String)
+
+    @PUT("customers/update")
+    suspend fun updateCustomer(@Query("customerNumber") customerNumber: Long,
+                               @Query("firstName") firstName : String,
+                               @Query("lastName") lastName: String,
+                               @Query("address") address: String?,
+                               @Query("houseNumber") houseNumber: String?,
+                               @Query("postalCode") postalCode: String,
+                               @Query("city") city: String,
+                               @Query("country") country: String?,
+                               @Query("dateOfBirth") dateOfBirth: String,
+                               @Query("phoneNumber") phoneNumber: String)
 }
