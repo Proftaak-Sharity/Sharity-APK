@@ -7,6 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.sharity_apk.config.SharityPreferences
+import com.example.sharity_apk.service.CustomerApiService
+import com.example.sharity_apk.service.ReservationApiService
+import com.example.sharity_apk.service.ServiceGenerator
 import com.example.sharity_apk.utils.GPSUtils
 import com.example.sharity_apk.utils.GPSUtils.latitude
 import com.example.sharity_apk.utils.GPSUtils.longitude
@@ -31,6 +35,7 @@ class MapsFragment : Fragment() {
          */
        GPSUtils.initPermissions(requireActivity())
 
+        ///userlocation
 //try {
     GPSUtils.findDeviceLocation(requireActivity())
     val lng = longitude
@@ -46,6 +51,19 @@ class MapsFragment : Fragment() {
                 isZoomControlsEnabled = true
                 isMyLocationButtonEnabled = true
             }
+     //looking for the car and customer adress
+
+        val preferences = SharityPreferences(requireContext())
+        val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
+
+//      connecting reservation number from shared preference to variable
+        val reservationNumber = preferences.getReservationNumber()
+        val licensePlate = preferences.getReservationLicensePlate()
+
+//   using shared preference to retrieve reservation data from api
+//        val customer = serviceGenerator.getCustomerByLicensePlate(licensePlate)
+
+
     }
 
     override fun onCreateView(

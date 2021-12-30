@@ -26,6 +26,7 @@ class SharityPreferences(context: Context) {
     val LICENSE_VALID_UNTIL = "ValidUntil"
     val BANKACCOUNT_ID = "BankaccountId"
     val BANKACCOUNT_HOLDER = "BankaccountHolder"
+    val LICENSEPLATE = "LicensePlate"
 
     private val preference: SharedPreferences =
         context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
@@ -184,5 +185,12 @@ class SharityPreferences(context: Context) {
 
     fun getCountryLicense(): String? {
         return preference.getString(LICENSE_COUNTRY, "")
+    }
+
+    fun setReservationLicensePlate(licensePlate: String){
+        return preference.edit().putString(LICENSEPLATE, licensePlate).apply()
+    }
+    fun getReservationLicensePlate(): String? {
+        return preference.getString(LICENSEPLATE, "")
     }
 }
