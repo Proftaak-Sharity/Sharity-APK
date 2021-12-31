@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.util.Log
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.gms.maps.model.LatLng
 import java.io.IOException
 import java.util.*
@@ -20,21 +22,31 @@ class GeoCodingLocation {
         val thread = object : Thread() {
             override fun run() {
                 val geoCoder = Geocoder(
-                    context,
-                    Locale.getDefault()
+                    context
+//                    Locale.getDefault()
                 )
-                var result: LatLng? = null
+                var result: String? = null
                 try {
                     val addressList = geoCoder.getFromLocationName(locationAddress, 1)
                     if (addressList != null && addressList.size > 0) {
                         val address = addressList.get(0) as Address
-
-                        val customerLocation = LatLng(address.latitude, address.longitude)
+                        val sb = StringBuilder()
+                        sb.append(address.latitude).append("\n")
+                        sb.append(address.longitude).append("\n")
+                        result = sb.toString()
                     }
                 } catch (e: IOException) {
                     Log.e(TAG, "Unable to connect to GeoCoder", e)
                 } finally {
-
+//                    val message = Message.obtain()
+//                    message.target = handler
+//                    message.what = 1
+//                    val bundle = Bundle()
+//                    result = ("Address: $locationAddress" +
+//                            "\n\nLatitude and Longitude: \n" + result)
+//                    bundle.putString("address", result)
+//                    message.data = bundle
+//                    message.sendToTarget()
                 }
             }
         }

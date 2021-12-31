@@ -1,5 +1,6 @@
 package com.example.sharity_apk
 
+import android.location.Address
 import android.location.Geocoder
 import androidx.fragment.app.Fragment
 
@@ -23,6 +24,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_LONG
 import com.google.android.material.snackbar.Snackbar
@@ -52,6 +54,7 @@ class MapsFragment : Fragment() {
 
         val yourLocation = LatLng(lat!!, lng!!)
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 12f))
+
         googleMap.addMarker(MarkerOptions().position(yourLocation).title("You are here!"))
 //} catch (e:Exception){
 //    Toast.makeText(requireContext(), "Failed to catch location", Toast.LENGTH_SHORT).show()
@@ -80,14 +83,30 @@ class MapsFragment : Fragment() {
 
             Toast.makeText(requireContext(), "$customerAddress", Toast.LENGTH_LONG).show()
 
-            val locationAddress = GeoCodingLocation()
-            locationAddress.getAddressFromLocation(customerAddress,requireContext())
+//            val locationAddress = GeoCodingLocation()
+//            locationAddress.getAddressFromLocation(customerAddress,requireContext())
+            val geoCoder = Geocoder(
+                context
+//                    Locale.getDefault()
+            )
+            val addressList = geoCoder.getFromLocationName(customerAddress, 1)
+            if (addressList != null && addressList.size > 0) {
+                val address = addressList.get(0) as Address
+                val customerLat = address.latitude
+                val customerLng = address.longitude
 
+                val customerLatLng = LatLng (customerLat,customerLng)
 
-//            googleMap.addMarker(MarkerOptions().position().title("You rentalcar is here!"))
+            googleMap.addMarker(MarkerOptions().position(customerLatLng).title("You rentalcar is here!"))
+                val bounds = LatLngBounds.builder()
+                    .include(yourLocation)
+                    .include(customerLatLng)
+                    .build()
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20))
 
              }
         }
+    }
 
         override fun onCreateView(
         inflater: LayoutInflater,
@@ -105,8 +124,8 @@ class MapsFragment : Fragment() {
         mapFragment?.getMapAsync(callback)
 
          }
+     }
 
- }
 
 
 
