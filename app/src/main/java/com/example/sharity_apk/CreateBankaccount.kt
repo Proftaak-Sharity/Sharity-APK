@@ -6,14 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.fragment.app.Fragment
-import com.example.sharity_apk.data.bankaccount.*
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.CreateBankaccountBinding
 import com.example.sharity_apk.room.model.BankaccountModel
+import com.example.sharity_apk.viewmodel.BankaccountViewModel
+import com.example.sharity_apk.viewmodel.BankaccountViewModelFactory
+import com.example.sharity_apk.viewmodel.CustomerViewModel
+import com.example.sharity_apk.service.CustomerApiService
+import com.example.sharity_apk.service.ServiceGenerator
 import com.example.sharity_apk.service.SharityApplication
+import com.example.sharity_apk.viewmodel.DriversLicenseViewModel
+import kotlinx.coroutines.launch
 
 
 class CreateBankaccount: Fragment() {
@@ -22,13 +32,21 @@ class CreateBankaccount: Fragment() {
 
     // Use the 'by activityViewModels()' Kotlin property delegate from the fragment-ktx artifact
     // to share the ViewModel across fragments.
-    private val viewModel: BankaccountViewModel by activityViewModels {
+    private val bankaccountViewModel: BankaccountViewModel by activityViewModels {
         BankaccountViewModelFactory(
             (activity?.application as SharityApplication).database.bankaccountDao()
         )
     }
 
-    // Binding object instance corresponding to the fragment_add_item.xml layout
+    private val customerViewModel: CustomerViewModel by lazy {
+        ViewModelProvider(this)[CustomerViewModel::class.java]
+    }
+
+    private val driversLicenseViewModel: DriversLicenseViewModel by lazy {
+        ViewModelProvider(this)[DriversLicenseViewModel::class.java]
+    }
+
+    // Binding object instance corresponding to the layout
     // This property is non-null between the onCreateView() and onDestroyView() lifecycle callbacks,
     // when the view hierarchy is attached to the fragment
     private var _binding: CreateBankaccountBinding? = null
@@ -43,40 +61,122 @@ class CreateBankaccount: Fragment() {
         return binding.root
     }
 
-    /**
-     * Returns true if the EditTexts are not empty
-     */
-    private fun isEntryValid(): Boolean {
-        return viewModel.isEntryValid(
-            binding.ibanEdittext.text.toString(),
-            binding.accountHolderEdittext.text.toString()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val preferences = SharityPreferences(requireContext())
+        val customerNumber = preferences.getCustomerNumber()
+        val etIban = binding.ibanEdittext.text
+        val etAccountHolder = binding.accountHolderEdittext.text
+
+        if (customerNumber > 0) {
+            binding.btnAddBankaccount.text = getString(R.string.add)
+            binding.btnAddBankaccount.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                R.drawable.ic_baseline_add_card_24,
+                0,
+                0,
+                0
+            )
+        } else {
+            binding.btnAddBankaccount.text = getString(R.string.start_sharing)
+            binding.btnAddBankaccount.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                R.drawable.ic_baseline_car_rental_24,
+                0,
+                0,
+                0
+            )
+        }
+
+            binding.btnAddBankaccount.setOnClickListener {
+                binding.error.isVisible = false
+
+                viewLifecycleOwner.lifecycleScope.launch {
+                    try {
+                        if (etIban.toString().isEmpty() || etAccountHolder.toString().isEmpty()) {
+                            binding.error.text = getString(R.string.all_fields_required)
+                            binding.error.isVisible = true
+
+                        } else if (customerNumber <= 0) {
+                            addNewCustomer()
+                            addNewDriversLicense()
+                            addNewBankaccount()
+
+                            preferences.clearPreferences()
+                            findNavController().navigate(R.id.action_CreateBankaccount_to_LoginFragment)
+                        } else {
+                            addNewBankaccount()
+                            findNavController().navigate(R.id.action_CreateBankaccount_to_GetBankaccounts)
+                        }
+                    } catch (e: Exception) {
+                        Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            }
+        }
+
+    private suspend fun addNewCustomer() {
+        val preferences = SharityPreferences(requireContext())
+        customerViewModel.addCustomer(
+            preferences.getFirstName()!!,
+            preferences.getLastName()!!,
+            preferences.getEmail()!!,
+            preferences.getPassword()!!,
+            preferences.getAddress()!!,
+            preferences.getHouseNumber()!!,
+            preferences.getPostalCode()!!,
+            preferences.getCity()!!,
+            preferences.getPhone()!!,
+            preferences.getDateOfBirth()!!,
+            preferences.getCountry()!!
         )
     }
 
-    /**
-     * Inserts the new Item into database and navigates up to list fragment.
-     */
-    private fun addNewItem() {
-        if (isEntryValid()) {
-            viewModel.addNewItem(
-                binding.ibanEdittext.text.toString(),
-                binding.accountHolderEdittext.text.toString()
+    private suspend fun addNewDriversLicense() {
+        val preferences = SharityPreferences(requireContext())
+        viewLifecycleOwner.lifecycleScope.launch {
+            val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
+            val customer = serviceGenerator.getUser(
+                preferences.getEmail().toString(),
+                preferences.getPassword().toString()
             )
-            val action = CreateBankaccountDirections.actionCreateBankaccountToGetBankaccountDetails()
-            findNavController().navigate(action)
+            driversLicenseViewModel.addDriversLicense(
+                customer.customerNumber,
+                preferences.getLicenseNumber()!!,
+                preferences.getCountryLicense()!!,
+                preferences.getValidUntil()!!
+            )
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.btnAddBankaccount.setOnClickListener {
-            addNewItem()
+    private suspend fun addNewBankaccount() {
+        val preferences = SharityPreferences(requireContext())
+
+        if (preferences.getCustomerNumber() <= 0) {
+            viewLifecycleOwner.lifecycleScope.launch {
+                val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
+                val customer = serviceGenerator.getUser(
+                    preferences.getEmail().toString(),
+                    preferences.getPassword().toString())
+                bankaccountViewModel.addNewItem(
+                    customer.customerNumber,
+                    binding.ibanEdittext.text.toString(),
+                    binding.accountHolderEdittext.text.toString()
+                )
+            }
+        } else {
+            viewLifecycleOwner.lifecycleScope.launch {
+                bankaccountViewModel.addNewItem(
+                    preferences.getCustomerNumber(),
+                    binding.ibanEdittext.text.toString(),
+                    binding.accountHolderEdittext.text.toString()
+                )
+            }
         }
     }
 
-    /**
-     * Called before fragment is destroyed.
-     */
+
+        // Called before fragment is destroyed.
     override fun onDestroyView() {
         super.onDestroyView()
         // Hide keyboard.
@@ -86,53 +186,3 @@ class CreateBankaccount: Fragment() {
         _binding = null
     }
 }
-
-//
-//    private var _binding: CreateBankaccountBinding? = null
-//
-//    private lateinit var bankaccount: BankaccountModel
-//
-//    private val binding get() = _binding!!
-//
-//    private val viewModel: BankaccountViewModel by lazy {
-//        val bankaccountDao = (requireActivity().application as SharityApplication).database.bankaccountDao()
-//        BankaccountViewModelFactory(bankaccountDao).create()
-//    }
-////
-//
-//    override fun onCreateView(
-//        inflater: LayoutInflater,
-//        container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View {
-//        _binding = CreateBankaccountBinding.inflate(inflater, container, false)
-//
-//        return binding.root
-//    }
-//
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        binding.btnAddBankaccount.setOnClickListener {
-//            addBankaccount()
-//            Toast.makeText(requireContext(), "success", Toast.LENGTH_SHORT).show()
-//        }
-//
-//
-//    }
-////
-////
-////    private fun addBankaccount() {
-////            viewModel.addBankaccount(
-////                binding.ibanEdittext.text.toString(),
-////                binding.accountHolderEdittext.text.toString()
-////            )
-////        Toast.makeText(requireContext(), binding.ibanEdittext.text.toString(), Toast.LENGTH_LONG).show()
-////    }
-//
-//
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        _binding = null
-//    }
-//}

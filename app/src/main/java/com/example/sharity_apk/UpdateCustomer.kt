@@ -116,7 +116,7 @@ class UpdateCustomer: Fragment() {
                             viewLifecycleOwner.lifecycleScope.launch {
                                 
                                 serviceGenerator.updateCustomer(
-                                    customer.customerNumber,
+                                    customer.customerNumber!!,
                                     evFirstName.text.toString(),
                                     evLastName.text.toString(),
                                     evAddress.text.toString(),

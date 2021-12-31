@@ -150,8 +150,8 @@
             android:id="@+id/action_GetCustomerDetails_to_UpdateCustomer"
             app:destination="@id/UpdateCustomer" />
         <action
-            android:id="@+id/action_GetCustomerDetails_to_GetBankaccountDetails"
-            app:destination="@id/GetBankaccountDetails" />
+            android:id="@+id/action_GetCustomerDetails_to_GetBankaccounts"
+            app:destination="@id/GetBankaccounts" />
         <action
             android:id="@+id/action_GetCustomerDetails_to_GetDriversLicenseDetails"
             app:destination="@id/GetDriversLicenseDetails" />
@@ -198,8 +198,8 @@
             android:id="@+id/action_CreateBankaccount_to_LoginFragment"
             app:destination="@id/Login" />
         <action
-            android:id="@+id/action_CreateBankaccount_to_GetBankaccountDetails"
-            app:destination="@id/GetBankaccountDetails" />
+            android:id="@+id/action_CreateBankaccount_to_GetBankaccounts"
+            app:destination="@id/GetBankaccounts" />
     </fragment>
 
     <fragment
@@ -218,25 +218,25 @@
 
 <!--    Bankaccount-->
     <fragment
-        android:id="@+id/GetBankaccountDetails"
-        android:name="com.example.sharity_apk.GetBankaccountDetails"
+        android:id="@+id/GetBankaccounts"
+        android:name="com.example.sharity_apk.GetBankaccounts"
         android:label="@string/bankaccount"
-        tools:layout="@layout/get_bankaccount_details">
+        tools:layout="@layout/get_bankaccounts">
 
         <action
-            android:id="@+id/action_GetBankaccountDetails_to_UpdateBankaccount"
+            android:id="@+id/action_GetBankaccounts_to_UpdateBankaccount"
             app:destination="@id/UpdateBankaccount" />
         <action
-            android:id="@+id/action_GetBankaccountDetails_to_GetCustomerDetails"
+            android:id="@+id/action_GetBankaccounts_to_GetCustomerDetails"
             app:destination="@id/GetCustomerDetails" />
         <action
-            android:id="@+id/action_GetBankaccountDetails_to_LoginFragment"
+            android:id="@+id/action_GetBankaccounts_to_LoginFragment"
             app:destination="@id/Login" />
         <action
-            android:id="@+id/action_GetBankaccountDetails_to_GetDriversLicenseDetails"
+            android:id="@+id/action_GetBankaccounts_to_GetDriversLicenseDetails"
             app:destination="@id/GetDriversLicenseDetails" />
         <action
-            android:id="@+id/action_GetBankaccountDetails_to_CreateBankaccount"
+            android:id="@+id/action_GetBankaccounts_to_CreateBankaccount"
             app:destination="@id/CreateBankaccount" />
     </fragment>
 
@@ -252,8 +252,8 @@
 
 <!--        To prevent crashes after deleting bankaccount and using backstack button-->
         <action
-            android:id="@+id/action_UpdateBankaccount_to_GetBankaccountDetails"
-            app:destination="@id/GetBankaccountDetails"
+            android:id="@+id/action_UpdateBankaccount_to_GetBankaccounts"
+            app:destination="@id/GetBankaccounts"
             app:popUpTo="@id/UpdateBankaccount"
             app:popUpToInclusive="true"/>
     </fragment>
@@ -276,7 +276,7 @@
             app:destination="@id/Login" />
         <action
             android:id="@+id/action_GetDriversLicenseDetails_to_GetBankaccountDetails"
-            app:destination="@id/GetBankaccountDetails" />
+            app:destination="@id/GetBankaccounts" />
     </fragment>
 
     <fragment

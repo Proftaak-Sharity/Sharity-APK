@@ -16,7 +16,9 @@ interface BankaccountDao {
     suspend fun insert(item: BankaccountModel)
 
 
-    @Query("SELECT * FROM bankaccount ORDER BY id ASC")
-    fun getAllBankaccounts(): Flow<List<BankaccountModel>>
+    @Query("SELECT * FROM bankaccount WHERE customer_number = :customerNumber ORDER BY id ASC")
+    fun getAllBankaccounts(customerNumber: Long): Flow<List<BankaccountModel>>
 
+    @Query("SELECT * FROM bankaccount WHERE customer_number = :customerNumber ORDER BY id ASC")
+    fun bankaccountsList(customerNumber: Long): MutableList<BankaccountModel>
 }

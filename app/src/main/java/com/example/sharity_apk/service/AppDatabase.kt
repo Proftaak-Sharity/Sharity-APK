@@ -1,4 +1,4 @@
-package com.example.sharity_apk.room
+package com.example.sharity_apk.service
 
 import android.content.Context
 import androidx.room.Database
@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.sharity_apk.room.dao.BankaccountDao
 import com.example.sharity_apk.room.model.BankaccountModel
 
-@Database(entities = [BankaccountModel::class], version = 2, exportSchema = false)
+@Database(entities = [BankaccountModel::class], version = 3, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun bankaccountDao(): BankaccountDao

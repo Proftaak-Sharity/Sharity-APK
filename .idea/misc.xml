@@ -44,6 +44,7 @@
         <entry key="app/src/main/res/layout/get_all_cars.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/get_all_reservations.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/get_bankaccount_details.xml" value="0.41032608695652173" />
+        <entry key="app/src/main/res/layout/get_bankaccounts.xml" value="0.365625" />
         <entry key="app/src/main/res/layout/get_car_details.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/get_customer_details.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/get_drivers_license_details.xml" value="0.41032608695652173" />

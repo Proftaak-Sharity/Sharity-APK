@@ -70,12 +70,12 @@ class SharityPreferences(context: Context) {
         preference.edit().putString(BANKACCOUNT_HOLDER, accountHolder).apply()
     }
 
-    fun getBankaccount(): Long {
-        return preference.getLong(BANKACCOUNT_ID, 0)
+    fun getBankaccount(): Int {
+        return preference.getInt(BANKACCOUNT_ID, 0)
     }
 
-    fun setBankaccount(id: Long) {
-        preference.edit().putLong(BANKACCOUNT_ID, id).apply()
+    fun setBankaccount(id: Int) {
+        preference.edit().putInt(BANKACCOUNT_ID, id).apply()
     }
 
     fun getReservationNumber(): Int {

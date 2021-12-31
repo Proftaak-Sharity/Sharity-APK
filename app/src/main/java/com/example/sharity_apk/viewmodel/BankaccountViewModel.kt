@@ -1,15 +1,19 @@
-package com.example.sharity_apk.data.bankaccount
+package com.example.sharity_apk.viewmodel
 
 import androidx.lifecycle.*
 import com.example.sharity_apk.room.dao.BankaccountDao
-import com.example.sharity_apk.room.model.BankaccountModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import com.example.sharity_apk.room.model.BankaccountModel
+import retrofit2.http.GET
+import retrofit2.http.Path
 import java.lang.IllegalStateException
 
 class BankaccountViewModel(private val bankaccountDao: BankaccountDao): ViewModel() {
 
-    fun getAllBankaccounts(): Flow<List<BankaccountModel>> = bankaccountDao.getAllBankaccounts()
+    fun getAllBankaccounts(customerNumber: Long): Flow<List<BankaccountModel>> = bankaccountDao.getAllBankaccounts(customerNumber)
+
+    fun bankaccountsList(customerNumber: Long): MutableList<BankaccountModel> = bankaccountDao.bankaccountsList(customerNumber)
 
     fun isEntryValid(iban: String, accountHolder: String): Boolean {
         if (iban.isBlank() || accountHolder.isBlank()) {
@@ -18,13 +22,14 @@ class BankaccountViewModel(private val bankaccountDao: BankaccountDao): ViewMode
         return true
     }
 
-    fun addNewItem(iban: String, accountHolder: String) {
-        val newBankaccount = getNewItemEntry(iban, accountHolder)
+    fun addNewItem(customerNumber: Long, iban: String, accountHolder: String) {
+        val newBankaccount = getNewItemEntry(customerNumber, iban, accountHolder)
         insertItem(newBankaccount)
     }
 
-    private fun getNewItemEntry(iban: String, accountHolder: String): BankaccountModel {
+    private fun getNewItemEntry(customerNumber: Long, iban: String, accountHolder: String): BankaccountModel {
         return BankaccountModel(
+            customerNumber = customerNumber,
             iban = iban,
             accountHolder = accountHolder
         )

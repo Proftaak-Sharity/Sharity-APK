@@ -13,9 +13,6 @@ import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import com.example.sharity_apk.config.SharityPreferences
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class GetCustomerDetails: Fragment() {
@@ -75,7 +72,7 @@ class GetCustomerDetails: Fragment() {
 
 //      Button bindings:
         binding.buttonEdit.setOnClickListener {findNavController().navigate(R.id.action_GetCustomerDetails_to_UpdateCustomer) }
-        binding.buttonBankaccount.setOnClickListener { findNavController().navigate(R.id.action_GetCustomerDetails_to_GetBankaccountDetails) }
+        binding.buttonBankaccount.setOnClickListener { findNavController().navigate(R.id.action_GetCustomerDetails_to_GetBankaccounts) }
         binding.buttonDriversLicense.setOnClickListener {findNavController().navigate(R.id.action_GetCustomerDetails_to_GetDriversLicenseDetails) }
     }
 

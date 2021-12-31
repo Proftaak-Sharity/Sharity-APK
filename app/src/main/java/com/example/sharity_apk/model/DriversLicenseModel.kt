@@ -7,12 +7,12 @@ data class DriversLicenseModel(
     @field:Json(name = "country")
     val country: String?,
 
-    @field:Json(name = "customer_number")
+    @field:Json(name = "customerNumber")
     val customerNumber: Long?,
 
-    @field:Json(name = "license_number")
+    @field:Json(name = "licenseNumber")
     val licenseNumber: String?,
 
-    @field:Json(name = "valid_until")
+    @field:Json(name = "validUntil")
     val validUntil: String?
 )

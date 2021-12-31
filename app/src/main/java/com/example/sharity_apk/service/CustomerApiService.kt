@@ -23,7 +23,7 @@ interface CustomerApiService {
                             @Query("city") city: String,
                             @Query("phoneNumber") phoneNumber: String,
                             @Query("dateOfBirth") dateOfBirth: String,
-                            @Query("country") country: String) : Long
+                            @Query("country") country: String)
 
 //    using Query so that email en query are used in query url, like: customers/login?email={email}&password={password}
     @GET ("customers/login")

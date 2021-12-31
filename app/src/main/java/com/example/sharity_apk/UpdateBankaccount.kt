@@ -40,65 +40,62 @@ class UpdateBankaccount: Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             val preferences = SharityPreferences(requireContext())
-            val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
-            val bankaccountId = preferences.getBankaccount()
-            val bankaccount = serviceGenerator.getBankaccount(bankaccountId)
 
-            evIban.text = bankaccount.iban
-            evAccountHolder.text = bankaccount.accountHolder
+            evIban.text = preferences.getIban()
+            evAccountHolder.text = preferences.getAccountHolder()
+            preferences.clearPreferences()
 
-
-
-            binding.btnDelete.setOnClickListener {
-
-                try {
-                    val builder = AlertDialog.Builder(requireContext())
-                    builder.setMessage("Remove bankaccount from your account?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes") { _, _ ->
-                            viewLifecycleOwner.lifecycleScope.launch {
-                                serviceGenerator.deleteBankaccount(bankaccountId)
-                                findNavController().navigate(R.id.action_UpdateBankaccount_to_GetBankaccountDetails)
-                            }
-                        }
-                        .setNegativeButton("No") { dialog, _ ->
-                            dialog.dismiss()
-                        }
-                    val alert = builder.create()
-                    alert.show()
-                } catch (e: Exception) {
-                    findNavController().navigate(R.id.GetBankaccountDetails)
-                    Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-
-            binding.btnSave.setOnClickListener {
-                try {
-                    val builder = AlertDialog.Builder(requireContext())
-                    builder.setMessage("Change your bankaccount details?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes") { _, _ ->
-                            viewLifecycleOwner.lifecycleScope.launch {
-                                serviceGenerator.editBankaccount(
-                                    bankaccountId,
-                                    evIban.text.toString(),
-                                    evAccountHolder.text.toString()
-                                )
-                                findNavController().navigate(R.id.action_UpdateBankaccount_to_GetBankaccountDetails)
-                            }
-                        }
-                        .setNegativeButton("No") { dialog, _ ->
-                            dialog.dismiss()
-                        }
-                    val alert = builder.create()
-                    alert.show()
-                } catch (e: Exception) {
-                    findNavController().navigate(R.id.GetBankaccountDetails)
-                    Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
+            // TODO VERDER GAAN MET UPDATE EN DELETE BANKACCOUNT!!
+//            binding.btnDelete.setOnClickListener {
+//
+//                try {
+//                    val builder = AlertDialog.Builder(requireContext())
+//                    builder.setMessage("Remove bankaccount from your account?")
+//                        .setCancelable(false)
+//                        .setPositiveButton("Yes") { _, _ ->
+//                            viewLifecycleOwner.lifecycleScope.launch {
+//                                serviceGenerator.deleteBankaccount(bankaccountId)
+//                                findNavController().navigate(R.id.action_UpdateBankaccount_to_GetBankaccounts)
+//                            }
+//                        }
+//                        .setNegativeButton("No") { dialog, _ ->
+//                            dialog.dismiss()
+//                        }
+//                    val alert = builder.create()
+//                    alert.show()
+//                } catch (e: Exception) {
+//                    findNavController().navigate(R.id.GetBankaccounts)
+//                    Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT)
+//                        .show()
+//                }
+//            }
+//
+//            binding.btnSave.setOnClickListener {
+//                try {
+//                    val builder = AlertDialog.Builder(requireContext())
+//                    builder.setMessage("Change your bankaccount details?")
+//                        .setCancelable(false)
+//                        .setPositiveButton("Yes") { _, _ ->
+//                            viewLifecycleOwner.lifecycleScope.launch {
+//                                serviceGenerator.editBankaccount(
+//                                    bankaccountId,
+//                                    evIban.text.toString(),
+//                                    evAccountHolder.text.toString()
+//                                )
+//                                findNavController().navigate(R.id.action_UpdateBankaccount_to_GetBankaccounts)
+//                            }
+//                        }
+//                        .setNegativeButton("No") { dialog, _ ->
+//                            dialog.dismiss()
+//                        }
+//                    val alert = builder.create()
+//                    alert.show()
+//                } catch (e: Exception) {
+//                    findNavController().navigate(R.id.GetBankaccounts)
+//                    Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT)
+//                        .show()
+//                }
+//            }
         }
     }
 

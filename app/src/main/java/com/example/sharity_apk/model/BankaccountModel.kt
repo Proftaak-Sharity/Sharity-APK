@@ -11,6 +11,9 @@ data class BankaccountModel(
     @PrimaryKey (autoGenerate = true)
     val id: Int = 0,
 
+    @NonNull @ColumnInfo(name = "customer_number")
+    val customerNumber: Long,
+
     @NonNull @ColumnInfo(name = "iban")
     val iban: String,
 
