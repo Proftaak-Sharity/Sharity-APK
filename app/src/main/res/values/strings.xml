@@ -101,6 +101,14 @@
     <string name="account_holder">Account holder</string>
     <string name="image_bankaccount">image_bankaccount</string>
     <string name="save">save</string>
+    <string name="car_make">Make</string>
+    <string name="car_model">Model</string>
+    <string name="car_location">Location</string>
+    <string name="car_price">Price</string>
+    <string name="price_per_km">Price per km</string>
+    <string name="owner_details">Owner details</string>
+    <string name="rent">Rent</string>
+    <string name="locate">Locate</string>
     <string name="reservation_start">Reservation start</string>
     <string name="reservation_end">Reservation end</string>
     <string name="reservation_date">Reservation date</string>
@@ -111,6 +119,7 @@
     <string name="km_package_price">Package price</string>
     <string name="total_price">Total price</string>
     <string name="payment_status">Payment status</string>
+    <string name="pick_date">Pick Date status</string>
     <string name="add">add</string>
     <string name="passwords_not_matching">Passwords not matching</string>
     <string name="email_already_in_db">Email address already exists</string>
