@@ -33,25 +33,6 @@ interface CustomerApiService {
     @GET("customers/license/{customerNumber}")
     suspend fun getDriversLicense(@Path ("customerNumber") customerNumber: Long) : DriversLicenseModel
 
-    @GET ("customers/bankaccounts/{customerNumber}")
-    suspend fun getBankaccounts(@Path("customerNumber") customerNumber: Long) : MutableList<BankaccountModel>
-
-    @GET ("customers/bankaccounts/account/{id}")
-    suspend fun getBankaccount(@Path("id") id: Long?) : BankaccountModel
-
-    @DELETE("customers/bankaccounts/delete/{id}")
-    suspend fun deleteBankaccount(@Path("id") id: Long)
-
-    @PUT("customers/bankaccounts/edit/{id}")
-    suspend fun editBankaccount(@Path("id") id: Long,
-                                @Query ("iban") iban: String,
-                                @Query ("accountHolder") accountHolder: String)
-
-    @POST("customers/bankaccounts/add")
-    suspend fun addBankaccount(@Query("customerNumber") customerNumber: Long,
-                               @Query("iban") iban: String,
-                               @Query("accountHolder") accountHolder: String)
-
     @GET("customers/emailcheck")
     suspend fun checkEmail(@Query("email") email: String) :Boolean
 
