@@ -9,11 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sharity_apk.adapter.BankaccountAdapter
 import com.example.sharity_apk.adapter.CarAdapter
 import com.example.sharity_apk.config.SharityPreferences
-import com.example.sharity_apk.databinding.GetBankaccountDetailsBinding
 import com.example.sharity_apk.databinding.GetSearchedCarDetailsBinding
 import com.example.sharity_apk.model.CarModel
 import com.example.sharity_apk.model.CustomerModel
