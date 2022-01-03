@@ -7,8 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GetCustomerDetails"
-    android:layout_margin="20dp"
-    android:paddingBottom="20dp">
+    android:layout_margin="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/image_logo_profile"
@@ -110,7 +109,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
-            android:text="Rob"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/first_name"
             app:layout_constraintTop_toTopOf="parent"
@@ -141,7 +139,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
-            android:text="Brabantseweg"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/address"
             app:layout_constraintTop_toTopOf="parent"
@@ -152,7 +149,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
-            android:text="128"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/address_db"
             app:layout_constraintTop_toTopOf="parent"
@@ -184,7 +180,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
-            android:text="4791SC"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/postal_code"
             app:layout_constraintTop_toTopOf="parent"
@@ -195,7 +190,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
-            android:text="Klundert"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/postal_code_db"
             app:layout_constraintTop_toTopOf="parent"
@@ -226,7 +220,6 @@
             android:id="@+id/country_db"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Netherlands"
             android:textStyle="italic"
             android:textAppearance="?attr/textAppearanceBody2"
             app:layout_constraintTop_toTopOf="parent"
@@ -257,7 +250,6 @@
             android:id="@+id/dob_db"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="29-08-1983"
             android:textStyle="italic"
             android:textAppearance="?attr/textAppearanceBody2"
             app:layout_constraintTop_toTopOf="parent"
@@ -299,7 +291,6 @@
             android:id="@+id/phone_number_db"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+31644793244"
             android:textStyle="italic"
             android:textAppearance="?attr/textAppearanceBody2"
             app:layout_constraintTop_toTopOf="parent"
@@ -330,7 +321,6 @@
             android:id="@+id/email_db"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="rpl.vanderhorst@student.avans.nl"
             android:textStyle="italic"
             android:textAppearance="?attr/textAppearanceBody2"
             app:layout_constraintTop_toTopOf="parent"
@@ -362,7 +352,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:text="welkom01"
             android:textStyle="italic"
             android:textAppearance="?attr/textAppearanceBody2"
             app:layout_constraintTop_toTopOf="parent"
@@ -375,8 +364,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="15dp"
-        android:paddingBottom="20dp">
+        android:layout_marginTop="15dp">
 
         <Button
             android:id="@+id/button_edit"

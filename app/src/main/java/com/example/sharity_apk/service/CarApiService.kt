@@ -1,6 +1,7 @@
 package com.example.sharity_apk.service
 
 
+import androidx.room.Delete
 import com.example.sharity_apk.model.CarModel
 import retrofit2.http.*
 
@@ -10,8 +11,8 @@ interface CarApiService {
     suspend fun getCars(): MutableList<CarModel>
 
     //    using @path so that customer_number becomes the number in the path of the GET
-    @GET("cars/{license_plate}")
-    suspend fun getCar(@Path("license_plate") licensePlate: String?) : CarModel
+    @GET("cars/{licensePlate}")
+    suspend fun getCar(@Path("licensePlate") licensePlate: String?) : CarModel
 
     @GET("cars/fuelcars")
     suspend fun getFuelCars(): MutableList<CarModel>
@@ -25,26 +26,10 @@ interface CarApiService {
     @GET("cars/customer/{customer_number}")
     suspend fun getCars(@Path ("customer_number")customerNumber: Long): MutableList<CarModel>
 
+    @PUT("cars/{licensePlate}")
+    suspend fun updateCar(@Path ("licensePlate") licensePlate: String?,
+                          @Query ( "pricePerDay") pricePerDay: Double)
 
-//    @GET("cars/availabiltity/{license_plate}")
-//    @GET("cars/city/{city}")
-//    suspend fun getCarsFromLocation(@Path("city") city: String?): MutableList<CarModel>
-//
-//    @GET("customers/license/{customer_number}")
-//    suspend fun getDriversLicense(@Path("customer_number") customerNumber: Long) : DriversLicenseModel
-//
-//    @GET("customers/bankaccounts/{customer_number}")
-//    suspend fun getBankaccounts(@Path("customer_number") customerNumber: Long) : MutableList<BankaccountModel>
-//
-//    @GET("customers/bankaccounts/account/{id}")
-//    suspend fun getBankaccount(@Path("id") id: Long) : BankaccountModel
-//
-//    @DELETE("customers/bankaccounts/delete/{id}")
-//    suspend fun deleteBankaccount(@Path("id") id: Long)
-//
-//    @PUT("customers/bankaccounts/edit/{id}")
-//    suspend fun editBankaccount(@Path("id") id: Long,
-//                                @Query("iban") iban: String,
-//                                @Query("accountHolder") accountHolder: String)
-
+    @DELETE("cars/{licensePlate}")
+    suspend fun deleteCar(@Path ("licensePlate") licensePlate: String?)
 }

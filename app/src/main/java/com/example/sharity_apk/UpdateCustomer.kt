@@ -109,7 +109,8 @@ class UpdateCustomer: Fragment() {
 
                 try {
                     val builder = AlertDialog.Builder(requireContext())
-                    val negativeButton = builder.setMessage(getString(R.string.change_account))
+                    builder
+                        .setMessage(getString(R.string.change_account))
                         .setCancelable(false)
                         .setPositiveButton("Yes") { _, _ ->
                             viewLifecycleOwner.lifecycleScope.launch {
@@ -131,8 +132,7 @@ class UpdateCustomer: Fragment() {
                         .setNegativeButton("No") { dialog, _ ->
                             dialog.dismiss()
                         }
-                    val alert = builder.create()
-                    alert.show()
+                    builder.create().show()
                 } catch (e: Exception) {
                     findNavController().navigate(R.id.GetCustomerDetails)
                     Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT)

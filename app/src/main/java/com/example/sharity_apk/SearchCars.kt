@@ -38,7 +38,7 @@ class SearchCars : Fragment() {
         val preferences = SharityPreferences(requireContext())
 
             binding.carOptions.setOnCheckedChangeListener { radioGroup, i ->
-                var radioButton: RadioButton? = binding.carOptions.findViewById<RadioButton>(i)
+                val radioButton: RadioButton? = binding.carOptions.findViewById<RadioButton>(i)
                 if (radioButton != null) {
                     binding.tvOption.text = radioButton.text.toString()
                 }
@@ -56,7 +56,7 @@ class SearchCars : Fragment() {
 //      Button bindings:
         binding.searchButton.setOnClickListener {
             //get whats in city and put in pref
-            findNavController().navigate(com.example.sharity_apk.R.id.action_SearchCars_to_SearchResults)
+            findNavController().navigate(R.id.action_SearchCars_to_SearchResults)
         }
 
 
