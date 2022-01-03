@@ -1,15 +1,20 @@
 package com.example.sharity_apk
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.VectorDrawable
 import android.location.Address
 import android.location.Geocoder
+import android.os.Build
 import androidx.fragment.app.Fragment
-
 import android.os.Bundle
-import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.lifecycleScope
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.service.CarApiService
@@ -18,18 +23,12 @@ import com.example.sharity_apk.service.ServiceGenerator
 import com.example.sharity_apk.utils.GPSUtils
 import com.example.sharity_apk.utils.GPSUtils.latitude
 import com.example.sharity_apk.utils.GPSUtils.longitude
-import com.example.sharity_apk.utils.GeoCodingLocation
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_LONG
-import com.google.android.material.snackbar.Snackbar
+import com.google.android.gms.maps.model.*
 import kotlinx.coroutines.launch
-import java.util.logging.Handler
+
 
 
 class MapsFragment : Fragment() {
@@ -47,30 +46,25 @@ class MapsFragment : Fragment() {
         GPSUtils.initPermissions(requireActivity())
 
         ///userlocation
-//try {
         GPSUtils.findDeviceLocation(requireActivity())
         val lng = longitude
         val lat = latitude
 
         val yourLocation = LatLng(lat!!, lng!!)
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 12f))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 15f))
 
         googleMap.addMarker(MarkerOptions().position(yourLocation).title("You are here!"))
-//} catch (e:Exception){
-//    Toast.makeText(requireContext(), "Failed to catch location", Toast.LENGTH_SHORT).show()
-//}
+
         googleMap.uiSettings.apply {
             isZoomControlsEnabled = true
             isMyLocationButtonEnabled = true
         }
         //looking for the car and customer adress
-
         val preferences = SharityPreferences(requireContext())
         val serviceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
         val serviceGenerator2 = ServiceGenerator.buildService(CustomerApiService::class.java)
 
-//      connecting reservation number from shared preference to variable
-        val reservationNumber = preferences.getReservationNumber()
+//      connecting licenseplate from shared preference to variable
         val licensePlate = preferences.getReservationLicensePlate()
 
 //   using shared preference to retrieve reservation data from api
@@ -81,13 +75,11 @@ class MapsFragment : Fragment() {
 
             val customerAddress = customer.address + customer.houseNumber + ", " + customer.city
 
-            Toast.makeText(requireContext(), "$customerAddress", Toast.LENGTH_LONG).show()
+   //         toast to see the address of the car - can be deleted when marker works
+//            Toast.makeText(requireContext(), "$customerAddress", Toast.LENGTH_LONG).show()
 
-//            val locationAddress = GeoCodingLocation()
-//            locationAddress.getAddressFromLocation(customerAddress,requireContext())
             val geoCoder = Geocoder(
                 context
-//                    Locale.getDefault()
             )
             val addressList = geoCoder.getFromLocationName(customerAddress, 1)
             if (addressList != null && addressList.size > 0) {
@@ -97,16 +89,26 @@ class MapsFragment : Fragment() {
 
                 val customerLatLng = LatLng (customerLat,customerLng)
 
-            googleMap.addMarker(MarkerOptions().position(customerLatLng).title("You rentalcar is here!"))
                 val bounds = LatLngBounds.builder()
                     .include(yourLocation)
                     .include(customerLatLng)
                     .build()
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20))
-
-             }
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 150))
+                googleMap.addMarker(MarkerOptions()
+                    .position(customerLatLng)
+//                    .icon(bitmapDescriptorFromVector(requireContext(),R.drawable.ic_baseline_car_rental_24))
+                    .title("You rentalcar is here!"))
+          }
         }
     }
+//    private fun  bitmapDescriptorFromVector(context: Context, vectorResId:Int): BitmapDescriptor {
+//        val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)
+//        vectorDrawable!!.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight())
+//        val bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888)
+//        val canvas =  Canvas(bitmap)
+//        vectorDrawable.draw(canvas)
+//        return BitmapDescriptorFactory.fromBitmap(bitmap)
+//    }
 
         override fun onCreateView(
         inflater: LayoutInflater,
@@ -125,7 +127,3 @@ class MapsFragment : Fragment() {
 
          }
      }
-
-
-
-
