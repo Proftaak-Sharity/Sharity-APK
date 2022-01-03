@@ -169,7 +169,7 @@ class SharityPreferences(context: Context) {
     }
 
     fun getStartDate(): String? {
-        return preference.getString(START_DATE, "notSet")
+        return preference.getString(START_DATE, "")
     }
 
     fun setEndDate(endDate: String) {
@@ -177,7 +177,7 @@ class SharityPreferences(context: Context) {
     }
 
     fun getEndDate(): String? {
-        return preference.getString(END_DATE, "notSet")
+        return preference.getString(END_DATE, "")
     }
 
     fun setFuelType(fuel: String) {

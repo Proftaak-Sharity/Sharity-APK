@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -52,9 +54,14 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
             var alCarList = getCars(fuel)
             var carList = checkAvaiability(start, end, alCarList)
 
-            val adapter = CarAdapter(carList, this@SearchResults)
-            try {
+            if (carList.isNullOrEmpty()){
+                Toast.makeText(requireContext(), "No cars matched your criteria", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_SearchResults_to_SearchCars)
+            }
 
+            val adapter = CarAdapter(carList, this@SearchResults)
+
+            try {
                 binding.recyclerView.adapter = adapter
                 binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
                 binding.recyclerView.setHasFixedSize(true)
@@ -123,10 +130,14 @@ suspend fun checkAvaiability(start: String?, end: String?, carList: MutableList<
     var licensePlates = listOf<String?>()
     var carsToBeRemoved = listOf<CarModel?>()
 
-    if ((start != "NotSet") and (end != "notSet")){
-        val startDate = LocalDate.parse(start, formatter);
-        val endDate = LocalDate.parse(end, formatter);
-        val reserved = reservationServiceGenerator.getRentedCars(startDate = startDate, endDate = endDate)
+    if ( (start.isNullOrEmpty()) and (end.isNullOrEmpty())) {
+        return carList
+    }
+    val startDate = LocalDate.parse(start, formatter);
+    val endDate = LocalDate.parse(end, formatter);
+    try {
+        val reserved =
+            reservationServiceGenerator.getRentedCars(startDate = startDate, endDate = endDate)
         for (car in reserved) {
             licensePlates += car.licensePlate
         }
@@ -136,12 +147,9 @@ suspend fun checkAvaiability(start: String?, end: String?, carList: MutableList<
             }
         }
         carList.removeAll(carsToBeRemoved)
-        return carList
-    } else {
+    }  catch (e: Exception) {
         return carList
     }
-
-
-    // compare licenceplates of rented out vs cars
-
+    return carList
 }
+
