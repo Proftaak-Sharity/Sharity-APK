@@ -60,28 +60,12 @@ class SharityPreferences(context: Context) {
         preference.edit().putString(CUSTOMER_FIRST_NAME, firstName).apply()
     }
 
-    fun getIban(): String? {
-        return preference.getString(CUSTOMER_IBAN, "")
+    fun getBankaccountId(): Int {
+        return preference.getInt(BANKACCOUNT_ID, 0)
     }
 
-    fun setIban(iban: String) {
-        preference.edit().putString(CUSTOMER_IBAN, iban).apply()
-    }
-
-    fun getAccountHolder(): String? {
-        return preference.getString(BANKACCOUNT_HOLDER, "")
-    }
-
-    fun setAccountHolder(accountHolder: String) {
-        preference.edit().putString(BANKACCOUNT_HOLDER, accountHolder).apply()
-    }
-
-    fun getBankaccount(): Long {
-        return preference.getLong(BANKACCOUNT_ID, 0)
-    }
-
-    fun setBankaccount(id: Long) {
-        preference.edit().putLong(BANKACCOUNT_ID, id).apply()
+    fun setBankaccountId(id: Int) {
+        preference.edit().putInt(BANKACCOUNT_ID, id).apply()
     }
 
     fun getReservationNumber(): Int {

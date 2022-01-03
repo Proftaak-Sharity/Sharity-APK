@@ -158,6 +158,14 @@
     <string name="eur">€ %1$s</string>
     <string name="edit_price">change price?</string>
     <string name="delete_car">Delete car?</string>
+    <string name="rent_price">Rentprice</string>
+    <string name="reservation_enddate">reservation enddate</string>
+    <string name="reservation_startdate">reservation startdate</string>
+    <string name="reservationnumber">Reservationnumber</string>
+    <string name="Language_preference">Languagepreference</string>
+    <string name="Defaultlanguage">Default language</string>
+    <string name="LanguageSettings">Language settings</string>
+    <string name="ShowCarOnMap">Show map</string>
 
     <string-array name="country_list">
         <item>NETHERLANDS</item>
