@@ -22,6 +22,9 @@ interface CarApiService {
     @GET("cars/hydrogencars")
     suspend fun getHydrogenCars(): MutableList<CarModel>
 
+    @GET("cars/customer/{customer_number}")
+    suspend fun getCars(@Path ("customer_number")customerNumber: Long): MutableList<CarModel>
+
 
 //    @GET("cars/availabiltity/{license_plate}")
 //    @GET("cars/city/{city}")

@@ -76,12 +76,12 @@ class CarAdapter(
     inner class CarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
 
-        val ivCar: ImageView = itemView?.findViewById(R.id.ivCar)
-        val tvMake: TextView = itemView?.findViewById(R.id.tvMake)
-        val tvModel: TextView = itemView?.findViewById(R.id.tvModel)
-        val tvPrice: TextView = itemView?.findViewById(R.id.tvPrice)
-        val tvLocation: TextView = itemView?.findViewById(R.id.tvLocation)
-        val tvCarType: TextView = itemView?.findViewById(R.id.tvCarType)
+        val ivCar: ImageView = itemView.findViewById(R.id.ivCar)
+        val tvMake: TextView = itemView.findViewById(R.id.tvMake)
+        val tvModel: TextView = itemView.findViewById(R.id.tvModel)
+        val tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
+        val tvLocation: TextView = itemView.findViewById(R.id.tvLocation)
+        val tvCarType: TextView = itemView.findViewById(R.id.tvCarType)
 
         init {
             itemView.setOnClickListener(this)
