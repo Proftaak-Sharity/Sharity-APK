@@ -424,7 +424,7 @@
     <fragment
         android:id="@+id/mapsFragment3"
         android:name="com.example.sharity_apk.MapsFragment"
-        android:label="fragment_maps"
+        android:label="Map"
         tools:layout="@layout/fragment_maps" />
 
 
