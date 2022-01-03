@@ -54,7 +54,7 @@ class UpdateBankaccount: Fragment() {
 
             evIban.text = bankaccount.iban
             evAccountHolder.text = bankaccount.accountHolder
-            // TODO VERDER GAAN MET UPDATE EN DELETE BANKACCOUNT!!
+
             binding.btnDelete.setOnClickListener {
 
                 try {

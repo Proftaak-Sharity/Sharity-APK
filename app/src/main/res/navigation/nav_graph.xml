@@ -304,7 +304,7 @@
             app:destination="@id/AccountOverview" />
         <action
             android:id="@+id/action_GetAllCars_to_GetCarDetails"
-            app:destination="@id/GetCarDetails" />
+            app:destination="@id/GetCarDetails"/>
         <action
             android:id="@+id/action_GetAllCars_to_CreateCar"
             app:destination="@id/CreateCar" />
@@ -323,7 +323,9 @@
             app:destination="@id/UpdateCar" />
         <action
             android:id="@+id/action_GetCarDetails_to_GetAllCars"
-            app:destination="@id/GetAllCars" />
+            app:destination="@id/GetAllCars"
+            app:popUpTo="@id/GetCarDetails"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_GetCarDetails_to_LoginFragment"
             app:destination="@id/Login" />
