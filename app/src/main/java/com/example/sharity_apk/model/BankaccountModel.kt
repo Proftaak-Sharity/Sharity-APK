@@ -1,4 +1,4 @@
-package com.example.sharity_apk.room.model
+package com.example.sharity_apk.model
 
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo

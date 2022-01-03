@@ -106,7 +106,6 @@ class UpdateCustomer: Fragment() {
             viewLifecycleOwner.lifecycleScope.launch {
 
                 val customer = serviceGenerator.getCustomer(preferences.getCustomerNumber())
-                Toast.makeText(requireContext(), evCountry.text.toString(), Toast.LENGTH_SHORT).show()
 
                 try {
                     val builder = AlertDialog.Builder(requireContext())
@@ -116,7 +115,7 @@ class UpdateCustomer: Fragment() {
                             viewLifecycleOwner.lifecycleScope.launch {
                                 
                                 serviceGenerator.updateCustomer(
-                                    customer.customerNumber!!,
+                                    customer.customerNumber,
                                     evFirstName.text.toString(),
                                     evLastName.text.toString(),
                                     evAddress.text.toString(),

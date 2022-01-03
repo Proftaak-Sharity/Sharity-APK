@@ -6,9 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sharity_apk.R
-import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.CardBankaccountBinding
-import com.example.sharity_apk.room.model.BankaccountModel
+import com.example.sharity_apk.model.BankaccountModel
 
 class BankaccountAdapter(private val onItemClicked: (BankaccountModel) -> Unit
 ): ListAdapter<BankaccountModel, BankaccountAdapter.BankaccountViewHolder>(DiffCallback) {
@@ -71,7 +70,10 @@ class BankaccountAdapter(private val onItemClicked: (BankaccountModel) -> Unit
             } else {
                 binding.imageBankcard.setImageResource(R.drawable.unknown_bank)
             }
-            binding.tvIban.text = bankaccountModel.iban
+            val number = bankaccountModel.iban
+            val mask = number.replace("\\w(?=\\w{4})".toRegex(), "*")
+
+            binding.tvIban.text = mask
             binding.tvAccountHolder.text = bankaccountModel.accountHolder
         }
     }

@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.CreateBankaccountBinding
-import com.example.sharity_apk.room.model.BankaccountModel
+import com.example.sharity_apk.model.BankaccountModel
 import com.example.sharity_apk.viewmodel.BankaccountViewModel
 import com.example.sharity_apk.viewmodel.BankaccountViewModelFactory
 import com.example.sharity_apk.viewmodel.CustomerViewModel
@@ -148,6 +148,7 @@ class CreateBankaccount: Fragment() {
             )
         }
     }
+
 
     private suspend fun addNewBankaccount() {
         val preferences = SharityPreferences(requireContext())

@@ -3,7 +3,6 @@ package com.example.sharity_apk.service
 import com.example.sharity_apk.model.CustomerModel
 import com.example.sharity_apk.model.DriversLicenseModel
 import com.example.sharity_apk.model.LoginModel
-import com.example.sharity_apk.room.model.BankaccountModel
 import retrofit2.http.*
 
 interface CustomerApiService {

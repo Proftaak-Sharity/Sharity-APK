@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.coroutineScope
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,8 +16,6 @@ import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.viewmodel.BankaccountViewModel
 import com.example.sharity_apk.viewmodel.BankaccountViewModelFactory
 import com.example.sharity_apk.databinding.GetBankaccountsBinding
-import com.example.sharity_apk.service.CustomerApiService
-import com.example.sharity_apk.service.ServiceGenerator
 import com.example.sharity_apk.service.SharityApplication
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -59,8 +56,7 @@ class GetBankaccounts: Fragment() {
         recyclerView.setHasFixedSize(true)
         val bankaccountAdapter = BankaccountAdapter {
             val preferences = SharityPreferences(requireContext())
-            preferences.setIban(it.iban)
-            preferences.setAccountHolder(it.accountHolder)
+            preferences.setBankaccountId(it.id)
             findNavController().navigate(R.id.action_GetBankaccounts_to_UpdateBankaccount)
         }
         recyclerView.adapter = bankaccountAdapter
