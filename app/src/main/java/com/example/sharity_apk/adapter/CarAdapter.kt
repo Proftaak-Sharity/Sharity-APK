@@ -1,17 +1,16 @@
 package com.example.sharity_apk.adapter
 
+import android.content.res.Resources
+import android.content.res.Resources.getAttributeSetSourceResId
+import android.content.res.Resources.getSystem
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sharity_apk.R
-import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.model.CarModel
-import com.example.sharity_apk.model.CustomerModel
-import com.example.sharity_apk.service.CarApiService
 import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import kotlinx.coroutines.CoroutineScope
@@ -40,11 +39,12 @@ class CarAdapter(
         holder.ivCar.setImageResource(R.drawable.ferrari_testarossa)
         holder.tvMake.text = currentCar.make
         holder.tvModel.text = currentCar.model
-        holder.tvPrice.text = currentCar.pricePerDay
+        "€ ${"%.2f".format(currentCar.pricePerDay?.toDouble())} per day".also { holder.tvPrice.text = it }
+
 
         CoroutineScope(Dispatchers.Main).launch {
             if (currentCar.customerNumber != null) {
-                var carCity =  getCustomerCity(currentCar.customerNumber!!)
+                val carCity =  getCustomerCity(currentCar.customerNumber)
                 holder.tvLocation.text = carCity
             } else {
                 holder.tvLocation.text = "Location Unknown"
@@ -76,12 +76,12 @@ class CarAdapter(
     inner class CarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
 
-        val ivCar: ImageView = itemView?.findViewById(R.id.ivCar)
-        val tvMake: TextView = itemView?.findViewById(R.id.tvMake)
-        val tvModel: TextView = itemView?.findViewById(R.id.tvModel)
-        val tvPrice: TextView = itemView?.findViewById(R.id.tvPrice)
-        val tvLocation: TextView = itemView?.findViewById(R.id.tvLocation)
-        val tvCarType: TextView = itemView?.findViewById(R.id.tvCarType)
+        val ivCar: ImageView = itemView.findViewById(R.id.ivCar)
+        val tvMake: TextView = itemView.findViewById(R.id.tvMake)
+        val tvModel: TextView = itemView.findViewById(R.id.tvModel)
+        val tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
+        val tvLocation: TextView = itemView.findViewById(R.id.tvLocation)
+        val tvCarType: TextView = itemView.findViewById(R.id.tvCarType)
 
         init {
             itemView.setOnClickListener(this)

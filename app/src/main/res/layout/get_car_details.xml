@@ -1,6 +1,375 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".GetCustomerDetails"
+    android:layout_margin="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/image_logo_profile"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:id="@+id/logo_sharity"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_sharity"
+            android:contentDescription="@string/logo_sharity" />
+
+        <ImageView
+            android:id="@+id/change_profile_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_add_a_photo_24"
+            app:layout_constraintEnd_toStartOf="@+id/image_car"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/profile_image_demo"
+            android:layout_marginEnd="10dp"/>
+
+        <ImageView
+            android:id="@+id/image_car"
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ferrari_testarossa"
+            android:contentDescription="@string/logo_sharity"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/image_logo_profile"
+        android:text="@string/car_details"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/license_plate_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        android:layout_marginTop="15dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/license_plate"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/license_plate"
+            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/license_plate_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@+id/license_plate"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/make_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/license_plate_details"
+        android:layout_marginTop="5dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/make"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/make"
+            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/make_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@+id/make"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/model_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/make_details"
+        android:layout_marginTop="5dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/model"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/model"
+            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/model_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@+id/model"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fueltype_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/model_details"
+        android:layout_marginTop="5dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fueltype"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/fueltype"
+            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fueltype_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@+id/fueltype"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/capacity_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/fueltype_details"
+        android:layout_marginTop="5dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/capacity"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/capacityandfueltank"
+            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/capacity_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@+id/capacity"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/usage_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/capacity_details"
+        android:layout_marginTop="5dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/usage"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/batteryfuelusage"
+            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/usage_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/usage"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/range_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/usage_details"
+        android:layout_marginTop="5dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/range"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/total_range"
+            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/range_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/range"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/range_details"
+        android:text="@string/pricing"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:layout_marginTop="15dp"/>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/price_per_day_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/title2"
+        android:layout_marginTop="15dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/price_per_day"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/price_per_day"
+            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/price_per_day_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/price_per_day"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/price_per_km_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/price_per_day_details"
+        android:layout_marginTop="5dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/price_ker_km"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/price_per_km"
+            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/price_ker_km_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/price_ker_km"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btn_block"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/button_edit"
+            style="@style/button"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:text="@string/edit"
+            android:drawableLeft="@drawable/ic_baseline_edit_24"
+            app:layout_constraintEnd_toStartOf="@id/btn_delete"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_delete"
+            style="@style/button"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:text="@string/delete"
+            android:backgroundTint="@color/sharity_red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_edit"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,5 @@
 package com.example.sharity_apk.service
 
-import com.example.sharity_apk.model.BankaccountModel
 import com.example.sharity_apk.model.CustomerModel
 import com.example.sharity_apk.model.DriversLicenseModel
 import com.example.sharity_apk.model.LoginModel
@@ -23,7 +22,7 @@ interface CustomerApiService {
                             @Query("city") city: String,
                             @Query("phoneNumber") phoneNumber: String,
                             @Query("dateOfBirth") dateOfBirth: String,
-                            @Query("country") country: String) : Long
+                            @Query("country") country: String)
 
 //    using Query so that email en query are used in query url, like: customers/login?email={email}&password={password}
     @GET ("customers/login")
@@ -32,25 +31,6 @@ interface CustomerApiService {
 
     @GET("customers/license/{customerNumber}")
     suspend fun getDriversLicense(@Path ("customerNumber") customerNumber: Long) : DriversLicenseModel
-
-    @GET ("customers/bankaccounts/{customerNumber}")
-    suspend fun getBankaccounts(@Path("customerNumber") customerNumber: Long) : MutableList<BankaccountModel>
-
-    @GET ("customers/bankaccounts/account/{id}")
-    suspend fun getBankaccount(@Path("id") id: Long?) : BankaccountModel
-
-    @DELETE("customers/bankaccounts/delete/{id}")
-    suspend fun deleteBankaccount(@Path("id") id: Long)
-
-    @PUT("customers/bankaccounts/edit/{id}")
-    suspend fun editBankaccount(@Path("id") id: Long,
-                                @Query ("iban") iban: String,
-                                @Query ("accountHolder") accountHolder: String)
-
-    @POST("customers/bankaccounts/add")
-    suspend fun addBankaccount(@Query("customerNumber") customerNumber: Long,
-                               @Query("iban") iban: String,
-                               @Query("accountHolder") accountHolder: String)
 
     @GET("customers/emailcheck")
     suspend fun checkEmail(@Query("email") email: String) :Boolean

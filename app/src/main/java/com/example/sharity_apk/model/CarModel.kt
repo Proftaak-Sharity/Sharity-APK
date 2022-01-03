@@ -1,26 +1,19 @@
 package com.example.sharity_apk.model
 
-import com.example.sharity_apk.service.CustomerApiService
-import com.example.sharity_apk.service.ServiceGenerator
 import com.squareup.moshi.Json
 
 
-enum class CarType(val type: String){
-    ELECTRIC("Electric"),
-    FUEL("Fuel"),
-    HYDROGEN("Hydrogen")
-}
 
 data class CarModel(
 
-    @field:Json(name = "license_plate")
+    @field:Json(name = "licensePlate")
     val licensePlate: String?,
 
     @field:Json(name = "car_type")
     val carType: String?,
 //    var carType: String = carTypeEnum.toString(),
 
-    @field:Json(name = "customer_Number")
+    @field:Json(name = "customer_number")
     val customerNumber: Long?,
 
     @field:Json(name = "make")
@@ -29,7 +22,7 @@ data class CarModel(
     @field:Json(name = "model")
     val model: String?,
 
-    @field:Json(name = "price_per_day")
+    @field:Json(name = "pricePerDay")
     val pricePerDay: String?,
 
     @field:Json(name = "price_per_km")
@@ -59,3 +52,8 @@ data class CarModel(
 
 }
 
+enum class CarType(val type: String){
+    ELECTRIC("Electric"),
+    FUEL("Fuel"),
+    HYDROGEN("Hydrogen")
+}

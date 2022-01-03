@@ -1,6 +1,5 @@
 package com.example.sharity_apk.service
 
-
 import com.example.sharity_apk.model.ReservationModel
 import com.google.type.DateTime
 import retrofit2.http.GET
@@ -20,7 +19,4 @@ interface ReservationApiService {
     suspend fun getRentedCars(@Query("startDate") startDate: LocalDate?,
                               @Query("endDate") endDate: LocalDate?
     ) : MutableList<ReservationModel>
-
-
-
 }

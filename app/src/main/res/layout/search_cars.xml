@@ -34,7 +34,7 @@
             android:id="@+id/option_electric"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/electric" />
+            android:text="@string/electric"/>
 
         <RadioButton
             android:id="@+id/option_hydrogen"
@@ -77,8 +77,8 @@
         android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvOption"
-        tools:layout_editor_absoluteX="30dp">
-        tools:ignore="NotSibling"
+        tools:layout_editor_absoluteX="30dp"
+        tools:ignore="NotSibling">
 
 
         <Button

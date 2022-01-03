@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GetCustomerDetails"
+    tools:context=".UpdateBankaccount"
     android:layout_margin="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,7 +51,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:text="@string/iban"
             android:singleLine="true"
             android:maxLength="255"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -73,8 +72,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:singleLine="true"
-            android:maxLength="255"
-            android:text="@string/account_holder"/>
+            android:maxLength="255"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -86,9 +84,10 @@
         <Button
             android:id="@+id/btn_save"
             style="@style/button"
-            android:layout_width="100dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="@string/save"
+            android:drawableLeft="@drawable/ic_baseline_save_24"
             app:layout_constraintEnd_toStartOf="@id/btn_delete"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="0dp"
@@ -97,7 +96,7 @@
         <Button
             android:id="@+id/btn_delete"
             style="@style/button"
-            android:layout_width="100dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="@string/delete"
             android:backgroundTint="@color/sharity_red"

@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".service.SharityApplication"
         android:allowBackup="true"
         android:configChanges="locale"
         android:icon="@mipmap/ic_launcher"

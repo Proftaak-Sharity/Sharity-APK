@@ -5,15 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sharity_apk.adapter.BankaccountAdapter
 import com.example.sharity_apk.adapter.CarAdapter
 import com.example.sharity_apk.config.SharityPreferences
-import com.example.sharity_apk.databinding.GetBankaccountDetailsBinding
 import com.example.sharity_apk.databinding.GetSearchedCarDetailsBinding
 import com.example.sharity_apk.model.CarModel
 import com.example.sharity_apk.model.CustomerModel
@@ -65,13 +63,19 @@ class GetSearchedCarDetails: Fragment(), CarAdapter.OnCarClickListener {
                 binding.tvPhone.text = owner.phoneNumber
                 binding.tvEmail.text = owner.email
 
-
-
-
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "An error has occurred $e", Toast.LENGTH_SHORT).show()
             }
         }
+
+//        binding.getSe.setOnCheckedChangeListener { radioGroup, i ->
+//            var radioButton: RadioButton? = binding.carOptions.findViewById<RadioButton>(i)
+//            if (radioButton != null) {
+//                binding.tvOption.text = radioButton.text.toString()
+//            }
+//            preferences.setFuelType(radioButton?.text.toString())
+//        }
+
     }
 
     override fun onItemClick(position: Int) {

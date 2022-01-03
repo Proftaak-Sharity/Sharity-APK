@@ -49,12 +49,17 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
 
         viewLifecycleOwner.lifecycleScope.launch {
 
-            var alCarList = getCars(fuel)
-            var carList = checkAvaiability(start, end, alCarList)
+            val alCarList = getCars(fuel)
+            val carList = checkAvailability(start, end, alCarList)
+
+            if (carList.isNullOrEmpty()){
+                Toast.makeText(requireContext(), "No cars matched your criteria", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_SearchResults_to_SearchCars)
+            }
 
             val adapter = CarAdapter(carList, this@SearchResults)
-            try {
 
+            try {
                 binding.recyclerView.adapter = adapter
                 binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
                 binding.recyclerView.setHasFixedSize(true)
@@ -67,20 +72,21 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
 
     }
 
+
+
     override fun onItemClick(position: Int) {
-        val serviceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
         val preferences = SharityPreferences(requireContext())
         val start = preferences.getStartDate()
         val end = preferences.getEndDate()
         val fuel = preferences.getFuelType()
 
         viewLifecycleOwner.lifecycleScope.launch {
-            var alCarList = getCars(fuel)
-            var carList = checkAvaiability(start, end, alCarList)
+            val alCarList = getCars(fuel)
+            val carList = checkAvailability(start, end, alCarList)
             val clickedCar = carList[position]
             val carId = clickedCar.licensePlate.toString()
 
-            preferences.setLicensePlate(carId!!)
+            preferences.setLicensePlate(carId)
 
             findNavController().navigate(R.id.action_SearchResults_to_GetSearchedCarDetails)
 
@@ -100,48 +106,55 @@ suspend fun getCars(fuel: String?): MutableList<CarModel> {
 //    var carsToBeRemoved: MutableList<CarModel>? = null
 
     // make this use start/end/fuel if set
-    return if (fuel == "petrol") {
-        carServiceGenerator.getFuelCars()
-    }else if (fuel == "electric") {
-        carServiceGenerator.getElectricCars()
-    }else  if (fuel == "hydrogen") {
-        carServiceGenerator.getHydrogenCars()
-    } else {
-        // search for car in range set
-        println("now we use getCars")
-        carServiceGenerator.getCars()
+    return when (fuel) {
+        "petrol" -> {
+            carServiceGenerator.getFuelCars()
+        }
+        "electric" -> {
+            carServiceGenerator.getElectricCars()
+        }
+        "hydrogen" -> {
+            carServiceGenerator.getHydrogenCars()
+        }
+        else -> {
+            // search for car in range set
+            println("now we use getCars")
+            carServiceGenerator.getCars()
+        }
     }
 
 }
 
-suspend fun checkAvaiability(start: String?, end: String?, carList: MutableList<CarModel>): MutableList<CarModel> {
-    val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
+suspend fun checkAvailability(start: String?, end: String?, carList: MutableList<CarModel>): MutableList<CarModel> {
     val reservationServiceGenerator = ServiceGenerator.buildService(ReservationApiService::class.java)
     // check which cars are rented out
-    val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
 
-    var licensePlates = listOf<String?>()
-    var carsToBeRemoved = listOf<CarModel?>()
+    val licensePlates = mutableListOf<String?>()
+    val carsToBeRemoved = mutableListOf<CarModel?>()
 
-    if ((start != "NotSet") and (end != "notSet")){
-        val startDate = LocalDate.parse(start, formatter);
-        val endDate = LocalDate.parse(end, formatter);
-        val reserved = reservationServiceGenerator.getRentedCars(startDate = startDate, endDate = endDate)
-        for (car in reserved) {
-            licensePlates += car.licensePlate
-        }
-        for (car in carList){
-            if (car.licensePlate in licensePlates) {
-                carsToBeRemoved += car
-            }
-        }
-        carList.removeAll(carsToBeRemoved)
+    if ((start.isNullOrEmpty()) and (end.isNullOrEmpty())){
         return carList
     } else {
-        return carList
+        val startDate = LocalDate.parse(start, formatter)
+        val endDate = LocalDate.parse(end, formatter)
+        try {
+            val reserved =
+                reservationServiceGenerator.getRentedCars(startDate = startDate, endDate = endDate)
+            for (car in reserved) {
+                licensePlates += car.licensePlate
+            }
+            for (car in carList){
+                if (car.licensePlate in licensePlates) {
+                    carsToBeRemoved += car
+                }
+            }
+            carList.removeAll(carsToBeRemoved.toSet())
+        }  catch (e: Exception) {
+            return carList
+        }
+        carList.removeAll(carsToBeRemoved.toSet())
     }
-
-
-    // compare licenceplates of rented out vs cars
-
+    return carList
 }
+

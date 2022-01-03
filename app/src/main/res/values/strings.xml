@@ -23,7 +23,7 @@
     <string name="search_results">Search Results</string>
     <string name="car_details">Car Details</string>
     <string name="add_reservation">Add Reservation</string>
-    <string name="personal_details">My personal details</string>
+    <string name="personal_details">Personal details</string>
     <string name="my_details">My Details</string>
     <string name="bankaccount">Bankaccount</string>
     <string name="drivers_license">Drivers License</string>
@@ -68,7 +68,7 @@
     <string name="select_kmPackage">select kmPackage</string>
     <string name="confirm">Confirm Pay now</string>
     <string name="confirm_pay_later">confirm pay later</string>
-    <string name="contact_details">My contact details</string>
+    <string name="contact_details">Contact details</string>
     <string name="postal_code_city">Postal code / city</string>
     <string name="edit">Edit</string>
     <string name="license">License</string>
@@ -137,14 +137,27 @@
     <string name="license_already_database">License connected to another account</string>
     <string name="update_account">Update personal details</string>
     <string name="change_account">Change your account details?</string>
-    <string name="rent_price">Rentprice</string>
-    <string name="reservation_enddate">reservation enddate</string>
-    <string name="reservation_startdate">reservation startdate</string>
-    <string name="reservationnumber">Reservationnumber</string>
-    <string name="Language_preference">Languagepreference</string>
-    <string name="Defaultlanguage">Default language</string>
-    <string name="LanguageSettings">Language settings</string>
-    <string name="ShowCarOnMap">Show map</string>
+    <string name="pricing">Pricing</string>
+    <string name="batteryfuelusage">Battery / fuel usage</string>
+    <string name="capacityandfueltank">Capacity / fueltank</string>
+    <string name="total_range">Total range</string>
+    <string name="price_per_day">Price per day</string>
+    <string name="fueltype">Fuel type</string>
+    <string name="battery_capacity">Battery capacity</string>
+    <string name="size_fueltank">Size fueltank</string>
+    <string name="range_per_kw">Range per kW</string>
+    <string name="range_per_kilo">Range per kilo</string>
+    <string name="range_per_liter">Range per liter</string>
+    <string name="km_per_kilo_hydrogen">%1$s km per kilo hydrogen</string>
+    <string name="km_per_liter_fuel">%1$s km per liter %2$s</string>
+    <string name="km_per_kw_range">%1$s km per kW</string>
+    <string name="km">%1$s km</string>
+    <string name="kw">%1$s kW</string>
+    <string name="kilo">%1$s kilo hydrogen</string>
+    <string name="liter">%1$s liter</string>
+    <string name="eur">€ %1$s</string>
+    <string name="edit_price">change price?</string>
+    <string name="delete_car">Delete car?</string>
 
     <string-array name="country_list">
         <item>NETHERLANDS</item>
