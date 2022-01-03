@@ -10,8 +10,9 @@ class SharityPreferences(context: Context) {
     val CUSTOMER_NUMBER = "CustomerNumber"
     val CUSTOMER_LAST_NAME = "FirstName"
     val CUSTOMER_FIRST_NAME = "LastName"
+    val CUSTOMER_IBAN = "Iban"
     val LICENSE_PLATE = "LicencePlate"
-    val CUSTOMER_CITY = "City"
+    val CITY = "City"
     val RESERVATION_NUMBER = "ReservationNumber"
     val START_DATE = "StartDate"
     val END_DATE = "EndDate"
@@ -21,6 +22,7 @@ class SharityPreferences(context: Context) {
     val CUSTOMER_ADDRESS = "Address"
     val CUSTOMER_HOUSE_NUMBER = "HouseNumber"
     val CUSTOMER_POSTAL_CODE = "PostalCode"
+    val CUSTOMER_CITY = "City"
     val CUSTOMER_DATE_OF_BIRTH = "DateOfBirth"
     val CUSTOMER_PHONE = "Phone"
     val CUSTOMER_COUNTRY = "Country"
@@ -28,6 +30,8 @@ class SharityPreferences(context: Context) {
     val LICENSE_NUMBER = "LicenseNumber"
     val LICENSE_VALID_UNTIL = "ValidUntil"
     val BANKACCOUNT_ID = "BankaccountId"
+    val BANKACCOUNT_HOLDER = "BankaccountHolder"
+    val LICENSEPLATE = "LicensePlate"
 
     private val preference: SharedPreferences =
         context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
@@ -133,7 +137,7 @@ class SharityPreferences(context: Context) {
     }
 
     fun getLicensePlate() : String? {
-        return preference.getString(LICENSE_PLATE, "")
+        return preference.getString(LICENSE_PLATE, "RGBB54")
     }
 
     fun setLicensePlate(carId: String?) {
@@ -142,11 +146,11 @@ class SharityPreferences(context: Context) {
     }
 
     fun setCity(city: String) {
-        return preference.edit().putString(CUSTOMER_CITY, city).apply()
+        return preference.edit().putString(CITY, null).apply()
     }
 
     fun getCity(): String? {
-        return preference.getString(CUSTOMER_CITY, "")
+        return preference.getString(CITY, "")
     }
 
     fun setStartDate(startDate: String) {
@@ -154,7 +158,7 @@ class SharityPreferences(context: Context) {
     }
 
     fun getStartDate(): String? {
-        return preference.getString(START_DATE, "")
+        return preference.getString(START_DATE, "notSet")
     }
 
     fun setEndDate(endDate: String) {
@@ -162,7 +166,7 @@ class SharityPreferences(context: Context) {
     }
 
     fun getEndDate(): String? {
-        return preference.getString(END_DATE, "")
+        return preference.getString(END_DATE, "notSet")
     }
 
     fun setFuelType(fuel: String) {
@@ -170,7 +174,7 @@ class SharityPreferences(context: Context) {
     }
 
     fun getFuelType(): String? {
-        return preference.getString(FUEL_TYPE, "")
+        return preference.getString(FUEL_TYPE, "notSet")
 
     }
 
@@ -204,5 +208,12 @@ class SharityPreferences(context: Context) {
 
     fun getCountryLicense(): String? {
         return preference.getString(LICENSE_COUNTRY, "")
+    }
+
+    fun setReservationLicensePlate(licensePlate: String){
+        return preference.edit().putString(LICENSEPLATE, licensePlate).apply()
+    }
+    fun getReservationLicensePlate(): String? {
+        return preference.getString(LICENSEPLATE, "")
     }
 }

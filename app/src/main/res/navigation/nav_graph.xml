@@ -392,6 +392,9 @@
         <action
             android:id="@+id/action_GetReservationDetails_to_GetAllReservations"
             app:destination="@id/GetAllReservations" />
+        <action
+            android:id="@+id/action_GetReservationDetails_to_mapsFragment3"
+            app:destination="@id/mapsFragment3" />
     </fragment>
 
     <fragment
@@ -418,6 +421,11 @@
             android:id="@+id/action_CreateAccount_to_CreateCustomer"
             app:destination="@id/CreateCustomer" />
     </fragment>
+    <fragment
+        android:id="@+id/mapsFragment3"
+        android:name="com.example.sharity_apk.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 
 
 </navigation>
