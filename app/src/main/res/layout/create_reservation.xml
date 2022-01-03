@@ -9,27 +9,27 @@
     android:orientation="vertical"
     android:layout_margin="20dp">
 
-    <com.google.android.material.textfield.TextInputLayout
+    <TextView
         android:id="@+id/reservationStartDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/date"
         app:boxBackgroundColor="@color/secondaryTextColor"
-        app:layout_constraintBottom_toTopOf="@id/button_constraint_confirm_reservation" Of="@id/button_constraint_confirm_reservation"
+        app:layout_constraintBottom_toTopOf="@id/button_constraint_confirm_reservation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <TextView
             android:id="@+id/input_reservationStartDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="date"
             android:inputType="date">
 
-        </com.google.android.material.textfield.TextInputEditText>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
+        </TextView>
+    </TextView>>
+    <TextView
         android:id="@+id/reservationEndDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,17 +39,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <TextView
             android:id="@+id/input_reservationEndDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="date"
             android:inputType="date">
 
-        </com.google.android.material.textfield.TextInputEditText>
-    </com.google.android.material.textfield.TextInputLayout>
+        </TextView>
+    </TextView>
 
-    <com.google.android.material.textfield.TextInputLayout
+    <TextView
         android:id="@+id/carSelection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,15 +60,15 @@
         android:hint="@string/select_car"
         app:boxBackgroundColor="@color/secondaryTextColor">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <TextView
             android:id="@+id/login_password_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:autofillHints="car"/>
-    </com.google.android.material.textfield.TextInputLayout>
+    </TextView>
 
-    <com.google.android.material.textfield.TextInputLayout
+    <TextView
         android:id="@+id/kmPackageSelection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -79,13 +79,13 @@
         android:hint="@string/select_kmPackage"
         app:boxBackgroundColor="@color/secondaryTextColor">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <TextView
             android:id="@+id/select_kmPackage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="kmPackage"
             android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+    </TextView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/button_constraint_confirm_reservation"
