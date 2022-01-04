@@ -5,20 +5,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.CreateReservationBinding
 import com.example.sharity_apk.model.CarModel
+import com.example.sharity_apk.model.CustomerModel
 import com.example.sharity_apk.model.ReservationModel
 import com.example.sharity_apk.service.CarApiService
+import com.example.sharity_apk.service.CustomerApiService
+import com.example.sharity_apk.service.ReservationApiService
 import com.example.sharity_apk.service.ServiceGenerator
+import com.example.sharity_apk.viewmodel.CustomerViewModel
+import com.example.sharity_apk.viewmodel.ReservationViewModel
 import kotlinx.coroutines.launch
+import retrofit2.http.Query
+import java.lang.Exception
 
 class CreateReservation : Fragment() {
 
     private var _binding: CreateReservationBinding? = null
+
+    private val reservationViewModel: ReservationViewModel by lazy {
+        ViewModelProvider(this)[ReservationViewModel::class.java]
+    }
+
+    private val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
+    private val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -37,35 +53,77 @@ class CreateReservation : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val preferences = SharityPreferences(requireContext())
-        val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
+        println("In Create reservation")
+        if (preferences.getStartDate().isNullOrEmpty() or preferences.getEndDate()
+                .isNullOrEmpty()
+        ) {
+            Toast.makeText(
+                requireContext(),
+                "To rent a car we need a start and end date",
+                Toast.LENGTH_SHORT
+            ).show()
+            findNavController().navigate(R.id.action_CreateReservation_to_SearchCars)
+        }
+
+        val reservationServiceGenerator = ServiceGenerator.buildService(ReservationApiService::class.java)
 
         viewLifecycleOwner.lifecycleScope.launch {
-            val licensePlate = preferences.getLicensePlate()
-            val car: CarModel = carServiceGenerator.getCar(licensePlate)
+            val preferences = SharityPreferences(requireContext())
 
-            val reservation: ReservationModel = ReservationModel(100, preferences.getCustomerNumber(),preferences.getStartDate(),preferences.getEndDate(), "2022-01-01", preferences.getLicensePlate(), 1, 1.0, 1.0, "PAID")
-                println(reservation)
+            try {
+                val car: CarModel = carServiceGenerator.getCar(preferences.getLicensePlate())
+                val owner: CustomerModel = customerServiceGenerator.getCustomer(car.customerNumber!!)
 
-            if (preferences.getStartDate().isNullOrEmpty() or preferences.getEndDate()
-                    .isNullOrEmpty()
-            ) {
-                Toast.makeText(
-                    requireContext(),
-                    "To rent a car we need a start and end date",
-                    Toast.LENGTH_SHORT
-                ).show()
-                findNavController().navigate(R.id.action_CreateReservation_to_GetSearchedCarDetails)
+                binding.ivCar.setImageResource(R.drawable.ferrari_testarossa)
+                binding.tvMake.text = car.make
+                binding.tvModel.text = car.model
+                binding.tvLicensePlate.text = car.licensePlate
+                binding.tvAdress.text = owner.address
+                binding.tvCity.text = owner.city
+                binding.tvPostalCode.text = owner.postalCode
+                binding.tvPrice.text = "Price: " + car.pricePerDay
+
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "An error has occurred $e", Toast.LENGTH_SHORT).show()
+            }
+            println("Make reservation Create reservation")
+
+            binding.buttonPayNow. setOnClickListener {
+                viewLifecycleOwner.lifecycleScope.launch {
+                    val reservationNumber = addNewReservation("PAID")
+                    println(reservationNumber)
+                    preferences.setReservationNumber(reservationNumber)
+                    findNavController().navigate(R.id.action_CreateReservation_to_GetReservationDetails)
+                }
+
+            }
+
+            binding.buttonPayLater.setOnClickListener {
+                viewLifecycleOwner.lifecycleScope.launch {
+                    val reservationNumber = addNewReservation("OPEN")
+                    preferences.setReservationNumber(reservationNumber)
+                    findNavController().navigate(R.id.action_CreateReservation_to_GetReservationDetails)
+                }
+
             }
 
 
-        }
 
-        binding.buttonPayNow. setOnClickListener {
-            findNavController().navigate(R.id.action_CreateReservation_to_GetReservationDetails)
         }
+    }
 
-        binding.buttonPayLater.setOnClickListener {
-            findNavController().navigate(R.id.action_CreateReservation_to_GetReservationDetails)
-        }
+    private suspend fun addNewReservation(paymentEnum: String): Int {
+        val preferences = SharityPreferences(requireContext())
+        println("In addNewReservation")
+        return reservationViewModel.addReservation(
+            preferences.getCustomerNumber(),
+            preferences.getLicensePlate(),
+            preferences.getKmPackage(),
+            preferences.getStartDate(),
+            preferences.getEndDate(),
+            preferences.getRent(),
+            preferences.getPackagePrice(),
+            paymentEnum
+        )
     }
 }
