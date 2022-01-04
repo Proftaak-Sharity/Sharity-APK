@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.GetReservationDetailsBinding
+import com.example.sharity_apk.service.CarApiService
 import com.example.sharity_apk.service.ReservationApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import kotlinx.coroutines.launch
@@ -37,13 +38,16 @@ class GetReservationDetails: Fragment() {
 
         val preferences = SharityPreferences(requireContext())
         val serviceGenerator = ServiceGenerator.buildService(ReservationApiService::class.java)
+        val serviceGenerator2 = ServiceGenerator.buildService(CarApiService::class.java)
+
 
 //        Connect textfields to variables:
         val reservationStart: TextView = binding.reservationStartDb
         val reservationEnd: TextView = binding.reservationEndDb
         val reservationDate: TextView = binding.reservationDateDb
 
-        // TODO import make and model from cars
+        val make: TextView = binding.makeDb
+        val model: TextView = binding.carModelDb
 
         val licensePlate: TextView = binding.licensePlateDb
         val kmPackage: TextView = binding.kmPackageDb
@@ -58,6 +62,9 @@ class GetReservationDetails: Fragment() {
 
 //            using shared preference to retrieve reservation data from api
             val reservation = serviceGenerator.getReservation(reservationNumber)
+            //      connecting licenseplate from shared preference to variable
+            val licensePlateCar = preferences.getReservationLicensePlate()
+            val car = serviceGenerator2.getCar(licensePlateCar)
 
 //            connecting reservation api-data to textfield
 
@@ -65,7 +72,8 @@ class GetReservationDetails: Fragment() {
             reservationEnd.text = reservation.endDate
             reservationDate.text = reservation.reservationDate
 
-            // TODO import make and model from cars
+            make.text = car.make
+            model.text = car.model
 
             licensePlate.text = reservation.licensePlate
             kmPackage.text = reservation.kmPackage.toString()
