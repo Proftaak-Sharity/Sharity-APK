@@ -57,7 +57,7 @@ class Login : Fragment() {
                         val customer =
                         serviceGenerator.getUser(emailInput.toString(), passwordInput.toString())
 
-                        preference.setCustomerNumber(customer.customerNumber!!)
+                        preference.setCustomerNumber(customer.customerNumber)
                         preference.setLastName(customer.lastName!!)
                         preference.setFirstName(customer.firstName!!)
 

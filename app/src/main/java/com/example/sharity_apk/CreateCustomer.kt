@@ -87,7 +87,6 @@ class CreateCustomer : Fragment() {
 
 //            Start coroutine
             viewLifecycleOwner.lifecycleScope.launch {
-                val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
                 binding.error.isVisible = false
                 try {
                     if (evFirstName.toString().isEmpty() ||
