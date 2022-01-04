@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.CreateReservationBinding
 import com.example.sharity_apk.model.CarModel
+import com.example.sharity_apk.model.ReservationModel
 import com.example.sharity_apk.service.CarApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import kotlinx.coroutines.launch
@@ -41,10 +42,9 @@ class CreateReservation : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             val licensePlate = preferences.getLicensePlate()
             val car: CarModel = carServiceGenerator.getCar(licensePlate)
-            val selectedCar = car.make + " " +car.model
 
-
-
+            val reservation: ReservationModel = ReservationModel(100, preferences.getCustomerNumber(),preferences.getStartDate(),preferences.getEndDate(), "2022-01-01", preferences.getLicensePlate(), 1, 1.0, 1.0, "PAID")
+                println(reservation)
 
             if (preferences.getStartDate().isNullOrEmpty() or preferences.getEndDate()
                     .isNullOrEmpty()
@@ -57,17 +57,14 @@ class CreateReservation : Fragment() {
                 findNavController().navigate(R.id.action_CreateReservation_to_GetSearchedCarDetails)
             }
 
-            binding.inputReservationStartDate.text = preferences.getStartDate()
-            binding.inputReservationEndDate.text = preferences.getEndDate()
-            binding.carSelection.text = selectedCar
 
         }
 
-        binding.buttonConfirmReservation.setOnClickListener {
+        binding.buttonPayNow. setOnClickListener {
             findNavController().navigate(R.id.action_CreateReservation_to_GetReservationDetails)
         }
 
-        binding.buttonConfirmReservationPayLater.setOnClickListener {
+        binding.buttonPayLater.setOnClickListener {
             findNavController().navigate(R.id.action_CreateReservation_to_GetReservationDetails)
         }
     }
