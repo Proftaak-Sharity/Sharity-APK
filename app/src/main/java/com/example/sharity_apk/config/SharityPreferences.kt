@@ -11,7 +11,6 @@ class SharityPreferences(context: Context) {
     val CUSTOMER_LAST_NAME = "FirstName"
     val CUSTOMER_FIRST_NAME = "LastName"
     val LICENSE_PLATE = "LicencePlate"
-    val CUSTOMER_CITY = "City"
     val RESERVATION_NUMBER = "ReservationNumber"
     val START_DATE = "StartDate"
     val END_DATE = "EndDate"
@@ -21,6 +20,7 @@ class SharityPreferences(context: Context) {
     val CUSTOMER_ADDRESS = "Address"
     val CUSTOMER_HOUSE_NUMBER = "HouseNumber"
     val CUSTOMER_POSTAL_CODE = "PostalCode"
+    val CUSTOMER_CITY = "City"
     val CUSTOMER_DATE_OF_BIRTH = "DateOfBirth"
     val CUSTOMER_PHONE = "Phone"
     val CUSTOMER_COUNTRY = "Country"
@@ -29,6 +29,7 @@ class SharityPreferences(context: Context) {
     val LICENSE_VALID_UNTIL = "ValidUntil"
     val BANKACCOUNT_ID = "BankaccountId"
     val CARTYPE = "CarType"
+    val LICENSEPLATE = "LicensePlate"
 
     private val preference: SharedPreferences =
         context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
@@ -134,7 +135,7 @@ class SharityPreferences(context: Context) {
     }
 
     fun getLicensePlate() : String? {
-        return preference.getString(LICENSE_PLATE, "")
+        return preference.getString(LICENSE_PLATE, "RGBB54")
     }
 
     fun setLicensePlate(carId: String?) {
@@ -171,7 +172,7 @@ class SharityPreferences(context: Context) {
     }
 
     fun getFuelType(): String? {
-        return preference.getString(FUEL_TYPE, "")
+        return preference.getString(FUEL_TYPE, "electric")
 
     }
 
@@ -213,5 +214,29 @@ class SharityPreferences(context: Context) {
 
     fun getAddedCarType(): String? {
         return preference.getString(CARTYPE, "")
+    }
+
+    fun setReservationLicensePlate(licensePlate: String){
+        return preference.edit().putString(LICENSEPLATE, licensePlate).apply()
+    }
+    fun getReservationLicensePlate(): String? {
+        return preference.getString(LICENSEPLATE, "")
+    }
+
+    fun getKmPackage(): Int {
+        return 2
+    }
+
+    fun getRent(): Double {
+        return 2.0
+    }
+
+    fun getPackagePrice(): Double {
+        return 5.2
+    }
+
+    fun getPaymentEnum(): String {
+        return "OPEN"
+
     }
 }
