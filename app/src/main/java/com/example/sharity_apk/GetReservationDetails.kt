@@ -34,6 +34,7 @@ class GetReservationDetails: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        println("In getreservation details")
         super.onViewCreated(view, savedInstanceState)
 
         val preferences = SharityPreferences(requireContext())
@@ -61,6 +62,7 @@ class GetReservationDetails: Fragment() {
             val reservationNumber = preferences.getReservationNumber()
 
 //            using shared preference to retrieve reservation data from api
+            println("Getting reservation and it is made ?$reservationNumber")
             val reservation = serviceGenerator.getReservation(reservationNumber)
             //      connecting licenseplate from shared preference to variable
             val licensePlateCar = preferences.getReservationLicensePlate()
