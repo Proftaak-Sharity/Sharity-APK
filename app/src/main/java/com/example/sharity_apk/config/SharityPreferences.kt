@@ -28,6 +28,7 @@ class SharityPreferences(context: Context) {
     val LICENSE_NUMBER = "LicenseNumber"
     val LICENSE_VALID_UNTIL = "ValidUntil"
     val BANKACCOUNT_ID = "BankaccountId"
+    val CARTYPE = "CarType"
 
     private val preference: SharedPreferences =
         context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
@@ -204,5 +205,13 @@ class SharityPreferences(context: Context) {
 
     fun getCountryLicense(): String? {
         return preference.getString(LICENSE_COUNTRY, "")
+    }
+
+    fun setAddedCarType(carType: String) {
+        return preference.edit().putString(CARTYPE, carType).apply()
+    }
+
+    fun getAddedCarType(): String? {
+        return preference.getString(CARTYPE, "")
     }
 }

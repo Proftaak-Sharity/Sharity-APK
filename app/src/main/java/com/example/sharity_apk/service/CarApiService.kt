@@ -32,4 +32,32 @@ interface CarApiService {
 
     @DELETE("cars/{licensePlate}")
     suspend fun deleteCar(@Path ("licensePlate") licensePlate: String?)
+
+    @POST("cars")
+    suspend fun addElectricCar(@Query ("licensePlate") licensePlate: String,
+                               @Query ("customerNumber") customerNumber: Long,
+                               @Query ("make") make: String,
+                               @Query ("model") model: String,
+                               @Query ("pricePerDay") pricePerDay: Double,
+                               @Query ("batteryCapacity") batteryCapacity: Int,
+                               @Query ("kmPerKw") kmPerKw: Int)
+
+    @POST("cars")
+    suspend fun addHydrogenCar(@Query ("licensePlate") licensePlate: String,
+                               @Query ("customerNumber") customerNumber: Long,
+                               @Query ("make") make: String,
+                               @Query ("model") model: String,
+                               @Query ("pricePerDay") pricePerDay: Double,
+                               @Query ("sizeFueltank") sizeFueltank: Int,
+                               @Query ("kmPerKilo") kmPerKilo: Int)
+
+    @POST("cars")
+    suspend fun addFuelCar(@Query ("licensePlate") licensePlate: String,
+                           @Query ("customerNumber") customerNumber: Long,
+                           @Query ("make") make: String,
+                           @Query ("model") model: String,
+                           @Query ("pricePerDay") pricePerDay: Double,
+                           @Query ("sizeFueltank") sizeFueltank: Int,
+                           @Query ("kmPerLiter") kmPerLiter: Int,
+                           @Query ("fuelType") fuelType: String)
 }

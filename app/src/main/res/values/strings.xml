@@ -82,10 +82,10 @@
     <string name="copy_bankcard">Copy bankcard:</string>
     <string name="copy_license">Copy drivers license:</string>
     <string name="drivers_license_jpeg">drivers_license.jpeg</string>
-    <string name="electric">electric</string>
-    <string name="hydrogen">hydrogen</string>
-    <string name="petrol">petrol</string>
-    <string name="any">any</string>
+    <string name="electric">Electric</string>
+    <string name="hydrogen">Hydrogen</string>
+    <string name="petrol">Petrol</string>
+    <string name="any">Any</string>
 
 
 <!--    Specific Sharity data:-->
@@ -158,11 +158,29 @@
     <string name="eur">€ %1$s</string>
     <string name="edit_price">change price?</string>
     <string name="delete_car">Delete car?</string>
+    <string name="car_type">Car type:</string>
+    <string name="fuel">Fuel</string>
+    <string name="cancel">Cancel</string>
+    <string name="usage">usage</string>
+    <string name="capacity">capacity</string>
+    <string name="battery_capacity_inkW">Battery capacity in kW</string>
+    <string name="km_per_kw">Km per kW</string>
+    <string name="km_per_kilo">Km per kilo</string>
+    <string name="km_per_liter">Km per liter</string>
+    <string name="add_cartype_car">Add %1$s car</string>
+    <string name="check">check</string>
+    <string name="field_error">All fields have to be filled!</string>
 
     <string-array name="country_list">
         <item>NETHERLANDS</item>
         <item>BELGIUM</item>
         <item>LUXEMBOURG</item>
+    </string-array>
+
+    <string-array name="fueltypes">
+        <item>PETROL</item>
+        <item>LPG</item>
+        <item>DIESEL</item>
     </string-array>
 
 
