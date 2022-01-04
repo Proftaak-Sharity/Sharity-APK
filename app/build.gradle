@@ -52,6 +52,7 @@ dependencies {
 
     // Material support
     implementation 'com.google.android.material:material:1.4.0'
+    implementation "com.afollestad.material-dialogs:core:3.1.0"
 
     // Testing
     testImplementation 'junit:junit:4.13.2'

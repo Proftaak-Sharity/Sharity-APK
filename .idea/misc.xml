@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/drawable-v26/ic_launcher_background.xml" value="0.5369791666666667" />
         <entry key="app/src/main/res/drawable-v26/ic_launcher_foreground.xml" value="0.5645833333333333" />
         <entry key="app/src/main/res/drawable/achtergrond_sharity.xml" value="0.32760416666666664" />
+        <entry key="app/src/main/res/drawable/dialog_bg.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/drawable/ic_achtergrond.xml" value="0.32760416666666664" />
         <entry key="app/src/main/res/drawable/ic_background.xml" value="0.32760416666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_a_photo_24.xml" value="0.5369791666666667" />
@@ -38,7 +39,8 @@
         <entry key="app/src/main/res/layout/create_account.xml" value="0.5119791666666667" />
         <entry key="app/src/main/res/layout/create_bankaccount.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/create_car.xml" value="0.41032608695652173" />
-        <entry key="app/src/main/res/layout/create_customer.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/create_car_dialog.xml" value="0.24686087393269715" />
+        <entry key="app/src/main/res/layout/create_customer.xml" value="0.4106776180698152" />
         <entry key="app/src/main/res/layout/create_drivers_license.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/create_reservation.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/customer_card.xml" value="0.33" />
@@ -46,6 +48,7 @@
         <entry key="app/src/main/res/layout/delete_car.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/delete_reservation.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/dropdown_item.xml" value="0.4311594202898551" />
+        <entry key="app/src/main/res/layout/empty_field_dialog.xml" value="0.24686087393269715" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.325" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.25" />

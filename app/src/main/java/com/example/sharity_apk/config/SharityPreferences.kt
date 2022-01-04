@@ -10,9 +10,7 @@ class SharityPreferences(context: Context) {
     val CUSTOMER_NUMBER = "CustomerNumber"
     val CUSTOMER_LAST_NAME = "FirstName"
     val CUSTOMER_FIRST_NAME = "LastName"
-    val CUSTOMER_IBAN = "Iban"
     val LICENSE_PLATE = "LicencePlate"
-    val CITY = "City"
     val RESERVATION_NUMBER = "ReservationNumber"
     val START_DATE = "StartDate"
     val END_DATE = "EndDate"
@@ -30,7 +28,7 @@ class SharityPreferences(context: Context) {
     val LICENSE_NUMBER = "LicenseNumber"
     val LICENSE_VALID_UNTIL = "ValidUntil"
     val BANKACCOUNT_ID = "BankaccountId"
-    val BANKACCOUNT_HOLDER = "BankaccountHolder"
+    val CARTYPE = "CarType"
     val LICENSEPLATE = "LicensePlate"
 
     private val preference: SharedPreferences =
@@ -146,11 +144,11 @@ class SharityPreferences(context: Context) {
     }
 
     fun setCity(city: String) {
-        return preference.edit().putString(CITY, null).apply()
+        return preference.edit().putString(CUSTOMER_CITY, city).apply()
     }
 
     fun getCity(): String? {
-        return preference.getString(CITY, "")
+        return preference.getString(CUSTOMER_CITY, "")
     }
 
     fun setStartDate(startDate: String) {
@@ -210,6 +208,14 @@ class SharityPreferences(context: Context) {
         return preference.getString(LICENSE_COUNTRY, "")
     }
 
+    fun setAddedCarType(carType: String) {
+        return preference.edit().putString(CARTYPE, carType).apply()
+    }
+
+    fun getAddedCarType(): String? {
+        return preference.getString(CARTYPE, "")
+    }
+
     fun setReservationLicensePlate(licensePlate: String){
         return preference.edit().putString(LICENSEPLATE, licensePlate).apply()
     }
@@ -217,7 +223,7 @@ class SharityPreferences(context: Context) {
         return preference.getString(LICENSEPLATE, "")
     }
 
-    fun getKmPackage(): Int? {
+    fun getKmPackage(): Int {
         return 2
     }
 

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/dialog_bg"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:paddingBottom="30dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/car_type"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp"/>
+
+    <RadioGroup
+        android:id="@+id/carTypeRadioGroup"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="25dp"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RadioButton
+            android:id="@+id/electric"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/primaryColor"
+            android:text="@string/electric"/>
+
+        <RadioButton
+            android:id="@+id/hydrogen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/primaryColor"            android:text="@string/hydrogen"/>
+
+        <RadioButton
+            android:id="@+id/fuel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/primaryColor"
+            android:text="@string/fuel"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        style="@style/button"
+        app:layout_constraintTop_toBottomOf="@+id/carTypeRadioGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        android:drawableLeft="@drawable/ic_baseline_cancel_24"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="25dp"/>
+
+<Button
+    android:id="@+id/btn_add"
+    style="@style/button"
+    android:layout_width="125dp"
+    android:layout_height="wrap_content"
+    android:drawableLeft="@drawable/ic_baseline_add_24"
+    android:text="@string/add"
+    app:layout_constraintTop_toBottomOf="@id/carTypeRadioGroup"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginEnd="25dp"
+    android:layout_marginBottom="25dp"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
