@@ -1,10 +1,7 @@
 package com.example.sharity_apk.service
 
 import com.example.sharity_apk.model.ReservationModel
-import com.google.type.DateTime
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 import java.time.LocalDate
 
 interface ReservationApiService {
@@ -19,4 +16,15 @@ interface ReservationApiService {
     suspend fun getRentedCars(@Query("startDate") startDate: LocalDate?,
                               @Query("endDate") endDate: LocalDate?
     ) : MutableList<ReservationModel>
+
+    @POST("reservations/addReservation")
+    suspend fun addReservation(@Query("customerNumber") customerNumber: Long?,
+                               @Query("licensePlate") licensePlate: String?,
+                               @Query("kmPackage") kmPackage: Int?,
+                               @Query("startDate") startDate: String?,
+                               @Query("endDate") endDate: String?,
+                               @Query("rent") rent: Double?,
+                               @Query("packagePrice") packagePrice: Double?,
+                               @Query("paymentEnum") paymentEnum: String?
+    ) : Int
 }

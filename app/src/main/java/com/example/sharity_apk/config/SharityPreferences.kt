@@ -158,7 +158,7 @@ class SharityPreferences(context: Context) {
     }
 
     fun getStartDate(): String? {
-        return preference.getString(START_DATE, "notSet")
+        return preference.getString(START_DATE, "")
     }
 
     fun setEndDate(endDate: String) {
@@ -166,7 +166,7 @@ class SharityPreferences(context: Context) {
     }
 
     fun getEndDate(): String? {
-        return preference.getString(END_DATE, "notSet")
+        return preference.getString(END_DATE, "")
     }
 
     fun setFuelType(fuel: String) {
@@ -174,7 +174,7 @@ class SharityPreferences(context: Context) {
     }
 
     fun getFuelType(): String? {
-        return preference.getString(FUEL_TYPE, "notSet")
+        return preference.getString(FUEL_TYPE, "electric")
 
     }
 
@@ -215,5 +215,22 @@ class SharityPreferences(context: Context) {
     }
     fun getReservationLicensePlate(): String? {
         return preference.getString(LICENSEPLATE, "")
+    }
+
+    fun getKmPackage(): Int? {
+        return 2
+    }
+
+    fun getRent(): Double {
+        return 2.0
+    }
+
+    fun getPackagePrice(): Double {
+        return 5.2
+    }
+
+    fun getPaymentEnum(): String {
+        return "OPEN"
+
     }
 }

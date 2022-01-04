@@ -10,6 +10,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.adapter.CarAdapter
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.GetSearchedCarDetailsBinding
@@ -68,6 +70,10 @@ class GetSearchedCarDetails: Fragment(), CarAdapter.OnCarClickListener {
             }
         }
 
+        binding.buttonMakeReservation.setOnClickListener {
+            findNavController().navigate(R.id.action_GetSearchedCarDetails_to_CreateReservation)
+
+        }
 //        binding.getSe.setOnCheckedChangeListener { radioGroup, i ->
 //            var radioButton: RadioButton? = binding.carOptions.findViewById<RadioButton>(i)
 //            if (radioButton != null) {
