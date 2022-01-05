@@ -36,7 +36,9 @@ class SearchCars : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val preferences = SharityPreferences(requireContext())
+        preferences.setFuelType("electric")
 
+        // binding the fueltype
             binding.carOptions.setOnCheckedChangeListener { radioGroup, i ->
                 val radioButton: RadioButton? = binding.carOptions.findViewById<RadioButton>(i)
                 if (radioButton != null) {
