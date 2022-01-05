@@ -65,10 +65,7 @@ class CreateReservation : Fragment() {
             findNavController().navigate(R.id.action_CreateReservation_to_SearchCars)
         }
 
-        val reservationServiceGenerator = ServiceGenerator.buildService(ReservationApiService::class.java)
-
         viewLifecycleOwner.lifecycleScope.launch {
-            val preferences = SharityPreferences(requireContext())
 
             try {
                 val car: CarModel = carServiceGenerator.getCar(preferences.getLicensePlate())

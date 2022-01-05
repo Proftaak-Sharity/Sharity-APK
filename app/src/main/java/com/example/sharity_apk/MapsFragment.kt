@@ -1,20 +1,12 @@
 package com.example.sharity_apk
 
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.drawable.VectorDrawable
 import android.location.Address
 import android.location.Geocoder
-import android.os.Build
 import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.lifecycleScope
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.service.CarApiService
@@ -28,7 +20,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import kotlinx.coroutines.launch
-
 
 
 class MapsFragment : Fragment() {
@@ -81,7 +72,10 @@ class MapsFragment : Fragment() {
             val geoCoder = Geocoder(
                 context
             )
-            val addressList = geoCoder.getFromLocationName(customerAddress, 1)
+            val addressList = geoCoder.getFromLocationName(
+                customerAddress,
+                1
+            )
             if (addressList != null && addressList.size > 0) {
                 val address = addressList.get(0) as Address
                 val customerLat = address.latitude
@@ -96,19 +90,10 @@ class MapsFragment : Fragment() {
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 150))
                 googleMap.addMarker(MarkerOptions()
                     .position(customerLatLng)
-//                    .icon(bitmapDescriptorFromVector(requireContext(),R.drawable.ic_baseline_car_rental_24))
                     .title("You rentalcar is here!"))
           }
         }
     }
-//    private fun  bitmapDescriptorFromVector(context: Context, vectorResId:Int): BitmapDescriptor {
-//        val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)
-//        vectorDrawable!!.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight())
-//        val bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888)
-//        val canvas =  Canvas(bitmap)
-//        vectorDrawable.draw(canvas)
-//        return BitmapDescriptorFactory.fromBitmap(bitmap)
-//    }
 
         override fun onCreateView(
         inflater: LayoutInflater,

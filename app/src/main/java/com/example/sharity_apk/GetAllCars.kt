@@ -9,12 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sharity_apk.adapter.BankaccountAdapter
 import com.example.sharity_apk.adapter.CarAdapter
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.GetAllCarsBinding
+import com.example.sharity_apk.dialog.CreateCarDialog
 import com.example.sharity_apk.service.CarApiService
-import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import kotlinx.coroutines.launch
 
@@ -53,7 +52,8 @@ class GetAllCars : Fragment(), CarAdapter.OnCarClickListener {
         }
 
         binding.btnAdd.setOnClickListener {
-            findNavController().navigate(R.id.action_GetAllCars_to_CreateCar)
+            val dialog = CreateCarDialog()
+            dialog.show(parentFragmentManager, "customDialog")
         }
     }
 

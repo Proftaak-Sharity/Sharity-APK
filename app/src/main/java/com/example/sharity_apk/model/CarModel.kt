@@ -39,7 +39,7 @@ data class CarModel(
     @field:Json(name = "fuel_type")
     val fuelType: String?,
 
-    @field:Json(name = "km_per_liter_fuel")
+    @field:Json(name = "km_per_liter")
     val kmPerLiterFuel: String?,
 
     @field:Json(name = "size_fueltank")
@@ -47,12 +47,4 @@ data class CarModel(
 
     @field:Json(name = "km_per_kilo")
     val kmPerKilo: String?,
-    ) {
-
-}
-
-enum class CarType(val type: String){
-    ELECTRIC("Electric"),
-    FUEL("Fuel"),
-    HYDROGEN("Hydrogen")
-}
+    )
