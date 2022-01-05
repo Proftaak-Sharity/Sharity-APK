@@ -40,8 +40,7 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val serviceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
-//        val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
+        // get the dates/fueltype we put in prefs inside searCars.kt
         val preferences = SharityPreferences(requireContext())
         val start = preferences.getStartDate()
         val end = preferences.getEndDate()
@@ -49,6 +48,7 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
 
         viewLifecycleOwner.lifecycleScope.launch {
 
+            //get all cars from fueltype and check if they are available
             val alCarList = getCars(fuel)
             val carList = checkAvailability(start, end, alCarList)
 
@@ -127,18 +127,21 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
 
 suspend fun checkAvailability(start: String?, end: String?, carList: MutableList<CarModel>): MutableList<CarModel> {
     val reservationServiceGenerator = ServiceGenerator.buildService(ReservationApiService::class.java)
-    // check which cars are rented out
+
     val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
 
     val licensePlates = mutableListOf<String?>()
     val carsToBeRemoved = mutableListOf<CarModel?>()
 
+    // if we have no start or end date we show all cars
     if ((start.isNullOrEmpty()) and (end.isNullOrEmpty())){
         return carList
     } else {
+        // check which cars are rented out
         val startDate = LocalDate.parse(start, formatter)
         val endDate = LocalDate.parse(end, formatter)
         try {
+            // get all reservations and append licenses to list, check list and remove car if needed
             val reserved =
                 reservationServiceGenerator.getRentedCars(startDate = startDate, endDate = endDate)
             for (car in reserved) {

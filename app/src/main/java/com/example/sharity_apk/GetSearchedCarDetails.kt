@@ -74,13 +74,6 @@ class GetSearchedCarDetails: Fragment(), CarAdapter.OnCarClickListener {
             findNavController().navigate(R.id.action_GetSearchedCarDetails_to_CreateReservation)
 
         }
-//        binding.getSe.setOnCheckedChangeListener { radioGroup, i ->
-//            var radioButton: RadioButton? = binding.carOptions.findViewById<RadioButton>(i)
-//            if (radioButton != null) {
-//                binding.tvOption.text = radioButton.text.toString()
-//            }
-//            preferences.setFuelType(radioButton?.text.toString())
-//        }
 
     }
 
