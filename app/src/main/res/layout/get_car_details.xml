@@ -25,17 +25,6 @@
             android:contentDescription="@string/logo_sharity" />
 
         <ImageView
-            android:id="@+id/change_profile_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_add_a_photo_24"
-            app:layout_constraintEnd_toStartOf="@+id/image_car"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:contentDescription="@string/profile_image_demo"
-            android:layout_marginEnd="10dp"/>
-
-        <ImageView
             android:id="@+id/image_car"
             android:layout_width="135dp"
             android:layout_height="match_parent"

@@ -184,6 +184,7 @@
     <string name="car_license">License</string>
     <string name="payNow">Pay now</string>
     <string name="payLater">Pay later</string>
+    <string name="turned_off_permissions">It looks like you have turned off permissions</string>
 
     <string-array name="country_list">
         <item>NETHERLANDS</item>

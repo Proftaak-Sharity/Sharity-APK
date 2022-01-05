@@ -23,10 +23,11 @@
             android:src="@drawable/ic_sharity"
             android:contentDescription="@string/logo_sharity" />
 
-        <ImageView
-            android:id="@+id/change_profile_image"
+        <ImageButton
+            android:id="@+id/button_add_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@null"
             android:src="@drawable/ic_baseline_add_a_photo_24"
             app:layout_constraintEnd_toStartOf="@+id/image_car"
             app:layout_constraintTop_toTopOf="parent"
