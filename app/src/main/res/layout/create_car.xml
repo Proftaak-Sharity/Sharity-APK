@@ -8,23 +8,52 @@
     tools:context=".CreateCar"
     android:layout_margin="20dp">
 
-    <ImageView
-        android:id="@+id/logo_sharity"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/image_logo_profile"
+        android:layout_width="match_parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/ic_sharity"
-        android:contentDescription="@string/logo_sharity" />
+        android:layout_height="100dp">
+
+        <ImageView
+            android:id="@+id/logo_sharity"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_sharity"
+            android:contentDescription="@string/logo_sharity" />
+
+        <ImageView
+            android:id="@+id/change_profile_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_add_a_photo_24"
+            app:layout_constraintEnd_toStartOf="@+id/image_car"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/profile_image_demo"
+            android:layout_marginEnd="10dp"/>
+
+        <ImageView
+            android:id="@+id/image_car"
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ferrari_testarossa"
+            android:contentDescription="@string/logo_sharity"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/logo_sharity"
+        app:layout_constraintTop_toBottomOf="@+id/image_logo_profile"
         android:text="@string/add_cartype_car"
         android:textAppearance="?attr/textAppearanceHeadline5"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="10dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/make_layout"
