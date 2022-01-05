@@ -74,6 +74,9 @@ class GetSearchedCarDetails: Fragment(), CarAdapter.OnCarClickListener {
             findNavController().navigate(R.id.action_GetSearchedCarDetails_to_CreateReservation)
 
         }
+        binding.buttonLocate.setOnClickListener {
+            findNavController().navigate(R.id.action_GetSearchedCarDetails_to_mapsFragment3)
+        }
 
     }
 

@@ -111,6 +111,9 @@
         <action
             android:id="@+id/action_GetSearchedCarDetails_to_CreateReservation"
             app:destination="@id/CreateReservation" />
+        <action
+            android:id="@+id/action_GetSearchedCarDetails_to_mapsFragment3"
+            app:destination="@id/mapsFragment3" />
     </fragment>
 
     <fragment
