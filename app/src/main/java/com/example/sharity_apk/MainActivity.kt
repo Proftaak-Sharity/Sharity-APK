@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.CreateReservation,
                 R.id.CreateCar,
                 R.id.GetReservationDetails,
+                R.id.GetSearchedCarDetails,
                 R.id.mapsFragment3 -> binding.fab.hide()
                 else -> binding.fab.show()
             }

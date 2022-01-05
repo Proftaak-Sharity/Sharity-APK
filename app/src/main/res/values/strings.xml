@@ -177,7 +177,7 @@
     <string name="Language_preference">Languagepreference</string>
     <string name="Defaultlanguage">Default language</string>
     <string name="LanguageSettings">Language settings</string>
-    <string name="ShowCarOnMap">Show map</string>
+    <string name="ShowCarOnMap">Show car in Google Maps</string>
     <string name="dateAndPrice">Date and Price</string>
     <string name="start_date">Start rental</string>
     <string name="end_date">End rental</string>
