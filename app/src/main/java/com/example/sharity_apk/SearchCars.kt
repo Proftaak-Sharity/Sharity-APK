@@ -37,12 +37,15 @@ class SearchCars : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val preferences = SharityPreferences(requireContext())
 
-            binding.carOptions.setOnCheckedChangeListener { radioGroup, i ->
-                val radioButton: RadioButton? = binding.carOptions.findViewById(i)
-                if (radioButton != null) {
-                    binding.tvOption.text = radioButton.text.toString()
-                }
-                preferences.setFuelType(radioButton?.text.toString())
+        preferences.setFuelType(getString(R.string.electric))
+
+        // binding the radiogroup to get the fueltype the user wants
+        binding.carOptions.setOnCheckedChangeListener { radioGroup, i ->
+            val radioButton: RadioButton? = binding.carOptions.findViewById<RadioButton>(i)
+            if (radioButton != null) {
+                binding.tvOption.text = radioButton.text.toString()
+            }
+            preferences.setFuelType(radioButton?.text.toString())
         }
 
         //make datepicker buton and bind datpicker
@@ -50,16 +53,10 @@ class SearchCars : Fragment() {
             //make settings go in preference and go to next page
             showDataRangePicker() }
 
-
-
-
 //      Button bindings:
         binding.searchButton.setOnClickListener {
-            //get whats in city and put in pref
             findNavController().navigate(R.id.action_SearchCars_to_SearchResults)
         }
-
-
     }
 
     override fun onDestroyView() {
@@ -70,6 +67,7 @@ class SearchCars : Fragment() {
     private fun showDataRangePicker() {
         val preferences = SharityPreferences(requireContext())
 
+        // use the material datepicker
         val dateRangePicker =
             MaterialDatePicker
                 .Builder.dateRangePicker()
@@ -86,22 +84,20 @@ class SearchCars : Fragment() {
             val startDate = dateSelected.first
             val endDate = dateSelected.second
 
+            // show dates on the button
             if (startDate != null && endDate != null) {
                 binding.datePicker.text =
                     "StartDate: ${convertLongToTime(startDate)}\n" +
                             "EndDate: ${convertLongToTime(endDate)}"
             }
+            //set the startdate and enddate so the next screens can use this
             preferences.setStartDate(convertLongToTime(startDate))
             preferences.setEndDate(convertLongToTime(endDate))
-
         }
-
     }
 
 
-
-
-
+    // convert the time we got from datepicker to a string
     private fun convertLongToTime(time: Long): String {
         val date = Date(time)
         val format = SimpleDateFormat(
@@ -109,5 +105,4 @@ class SearchCars : Fragment() {
             Locale.getDefault())
         return format.format(date)
     }
-
 }

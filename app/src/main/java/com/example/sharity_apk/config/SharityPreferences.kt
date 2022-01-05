@@ -30,6 +30,10 @@ class SharityPreferences(context: Context) {
     val BANKACCOUNT_ID = "BankaccountId"
     val CARTYPE = "CarType"
     val LICENSEPLATE = "LicensePlate"
+    val KM_PACKAGE = "KmPackage"
+    val RENT = "Rent"
+    val PACKAGE_PRICE = "PackagePrice"
+    val PAYMENT_ENUM = "PaymentEnum"
 
     private val preference: SharedPreferences =
         context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
@@ -172,7 +176,7 @@ class SharityPreferences(context: Context) {
     }
 
     fun getFuelType(): String? {
-        return preference.getString(FUEL_TYPE, "electric")
+        return preference.getString(FUEL_TYPE, "")
 
     }
 
@@ -223,20 +227,35 @@ class SharityPreferences(context: Context) {
         return preference.getString(LICENSEPLATE, "")
     }
 
+    fun setKmPackage(kmPackage: Int) {
+        return preference.edit().putInt(KM_PACKAGE, kmPackage).apply()
+    }
+
     fun getKmPackage(): Int {
-        return 2
+        return preference.getInt(KM_PACKAGE, 0)
     }
 
-    fun getRent(): Double {
-        return 2.0
+    fun setRent(rent: String) {
+        return preference.edit().putString(RENT, rent).apply()
     }
 
-    fun getPackagePrice(): Double {
-        return 5.2
+    fun getRent(): String? {
+        return preference.getString(RENT, "")
     }
 
-    fun getPaymentEnum(): String {
-        return "OPEN"
+    fun setPackagePrice(packagePrice: String) {
+        return preference.edit().putString(PACKAGE_PRICE, packagePrice).apply()
+    }
 
+    fun getPackagePrice(): String? {
+        return preference.getString(PACKAGE_PRICE, "")
+    }
+
+    fun getPaymentEnum(): String? {
+        return preference.getString(PAYMENT_ENUM, "")
+    }
+
+    fun setPaymentEnum(paymentEnum: String) {
+        return preference.edit().putString(PAYMENT_ENUM, paymentEnum).apply()
     }
 }

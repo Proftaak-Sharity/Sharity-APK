@@ -53,6 +53,7 @@ class CreateReservation : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val preferences = SharityPreferences(requireContext())
+        var retry = false
         println("In Create reservation")
         if (preferences.getStartDate().isNullOrEmpty() or preferences.getEndDate()
                 .isNullOrEmpty()
@@ -69,7 +70,8 @@ class CreateReservation : Fragment() {
 
             try {
                 val car: CarModel = carServiceGenerator.getCar(preferences.getLicensePlate())
-                val owner: CustomerModel = customerServiceGenerator.getCustomer(car.customerNumber!!)
+                val owner: CustomerModel =
+                    customerServiceGenerator.getCustomer(car.customerNumber!!)
 
                 binding.ivCar.setImageResource(R.drawable.ferrari_testarossa)
                 binding.tvMake.text = car.make
@@ -79,33 +81,93 @@ class CreateReservation : Fragment() {
                 binding.tvCity.text = owner.city
                 binding.tvPostalCode.text = owner.postalCode
                 binding.tvPrice.text = "Price: " + car.pricePerDay
+                binding.tvStartDate.text = preferences.getStartDate()
+                binding.tvEndDate.text = preferences.getEndDate()
 
             } catch (e: Exception) {
-                Toast.makeText(requireContext(), "An error has occurred $e", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "An error has occurred $e", Toast.LENGTH_SHORT)
+                    .show()
             }
             println("Make reservation Create reservation")
 
-            binding.buttonPayNow. setOnClickListener {
+            binding.buttonPayNow.setOnClickListener {
                 viewLifecycleOwner.lifecycleScope.launch {
-                    val reservationNumber = addNewReservation("PAID")
-                    println(reservationNumber)
-                    preferences.setReservationNumber(reservationNumber)
-                    findNavController().navigate(R.id.action_CreateReservation_to_GetReservationDetails)
+                    try {
+                        val car: CarModel =
+                            carServiceGenerator.getCar(preferences.getLicensePlate())
+                        // here we bind kmpackage, rent, packagePrice
+
+                        val rent = car.pricePerDay
+                        val packagePrice = car.pricePerKm
+                        val kmPackage = binding.txtInputKmPackage.text
+                        val kmPackageInt = kmPackage.toString().toInt()
+                        println("$rent rent $packagePrice packagePrice $kmPackage kmpackage ")
+
+                        preferences.setKmPackage(kmPackageInt)
+                        preferences.setPackagePrice("$packagePrice")
+                        preferences.setRent("$rent")
+
+                        val reservationNumber = addNewReservation("PAID")
+                        println(reservationNumber)
+                        preferences.setReservationNumber(reservationNumber)
+
+                    } catch (e: Exception) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Something went wrong, the car might already be rented out by now",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        var retry = true
+                    }
+
+                    // if something goes wrong go back to searchcars
+                    if (retry) {
+                        findNavController().navigate(R.id.action_CreateReservation_to_SearchCars)
+                    } else {
+                        findNavController().navigate(R.id.action_CreateReservation_to_GetReservationDetails)
+                    }
+
+
                 }
 
             }
 
             binding.buttonPayLater.setOnClickListener {
                 viewLifecycleOwner.lifecycleScope.launch {
-                    val reservationNumber = addNewReservation("OPEN")
-                    preferences.setReservationNumber(reservationNumber)
-                    findNavController().navigate(R.id.action_CreateReservation_to_GetReservationDetails)
+                    try {
+                        val car: CarModel =
+                            carServiceGenerator.getCar(preferences.getLicensePlate())
+                        // here we bind kmpackage, rent, packagePrice
+                        val rent = car.pricePerDay
+                        val packagePrice = car.pricePerKm!!
+                        val kmPackage = binding.txtInputKmPackage.text
+                        val kmPackageInt = kmPackage.toString().toInt()
+                        println("$rent rent $packagePrice packagePrice $kmPackage kmpackage ")
+
+                        preferences.setKmPackage(kmPackageInt)
+                        preferences.setPackagePrice(packagePrice)
+                        preferences.setRent("$rent")
+
+                        val reservationNumber = addNewReservation("OPEN")
+                        preferences.setReservationNumber(reservationNumber)
+
+                    } catch (e: Exception) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Something went wrong, the car might already be rented out by now",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        var retry = true
+                    }
+
+                    // if something goes wrong go back to searchcars
+                    if (retry) {
+                        findNavController().navigate(R.id.action_CreateReservation_to_SearchCars)
+                    } else {
+                        findNavController().navigate(R.id.action_CreateReservation_to_GetReservationDetails)
+                    }
                 }
-
             }
-
-
-
         }
     }
 
@@ -118,8 +180,8 @@ class CreateReservation : Fragment() {
             preferences.getKmPackage(),
             preferences.getStartDate(),
             preferences.getEndDate(),
-            preferences.getRent(),
-            preferences.getPackagePrice(),
+            preferences.getRent()?.toDouble(),
+            preferences.getPackagePrice()?.toDouble(),
             paymentEnum
         )
     }

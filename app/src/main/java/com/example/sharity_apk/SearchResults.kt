@@ -1,5 +1,6 @@
 package com.example.sharity_apk
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,16 +40,15 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val serviceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
-//        val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
+        // get the dates/fueltype we put in prefs inside searCars.kt
         val preferences = SharityPreferences(requireContext())
         val start = preferences.getStartDate()
         val end = preferences.getEndDate()
         val fuel = preferences.getFuelType()
-        println(fuel)
 
         viewLifecycleOwner.lifecycleScope.launch {
 
+            //get all cars from fueltype and check if they are available
             val alCarList = getCars(fuel)
             val carList = checkAvailability(start, end, alCarList)
 
@@ -98,47 +98,50 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
         super.onDestroyView()
         _binding = null
     }
-}
 
-suspend fun getCars(fuel: String?): MutableList<CarModel> {
-    val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
-//    val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
-//    var carsToBeRemoved: MutableList<CarModel>? = null
 
-    // make this use start/end/fuel if set
-    return when (fuel) {
-        "petrol" -> {
-            carServiceGenerator.getFuelCars()
+    suspend fun getCars(fuel: String?): MutableList<CarModel> {
+        val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
+        println("$fuel is being used in getCars")
+
+        // make this use start/end/fuel if set
+        return when (fuel) {
+            getString(R.string.petrol) -> {
+                carServiceGenerator.getFuelCars()
+            }
+            getString(R.string.electric) -> {
+                carServiceGenerator.getElectricCars()
+            }
+            getString(R.string.hydrogen) -> {
+                carServiceGenerator.getHydrogenCars()
+            }
+            else -> {
+                // search for car in range set
+                println("now we use getCars")
+                carServiceGenerator.getCars()
+            }
         }
-        "electric" -> {
-            carServiceGenerator.getElectricCars()
-        }
-        "hydrogen" -> {
-            carServiceGenerator.getHydrogenCars()
-        }
-        else -> {
-            // search for car in range set
-            println("now we use getCars")
-            carServiceGenerator.getCars()
-        }
+
     }
-
 }
 
 suspend fun checkAvailability(start: String?, end: String?, carList: MutableList<CarModel>): MutableList<CarModel> {
     val reservationServiceGenerator = ServiceGenerator.buildService(ReservationApiService::class.java)
-    // check which cars are rented out
+
     val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
 
     val licensePlates = mutableListOf<String?>()
     val carsToBeRemoved = mutableListOf<CarModel?>()
 
+    // if we have no start or end date we show all cars
     if ((start.isNullOrEmpty()) and (end.isNullOrEmpty())){
         return carList
     } else {
+        // check which cars are rented out
         val startDate = LocalDate.parse(start, formatter)
         val endDate = LocalDate.parse(end, formatter)
         try {
+            // get all reservations and append licenses to list, check list and remove car if needed
             val reserved =
                 reservationServiceGenerator.getRentedCars(startDate = startDate, endDate = endDate)
             for (car in reserved) {
