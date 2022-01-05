@@ -59,7 +59,7 @@ class MapsFragment : Fragment() {
         val serviceGenerator2 = ServiceGenerator.buildService(CustomerApiService::class.java)
 
 //      connecting licenseplate from shared preference to variable
-        val licensePlate = preferences.getReservationLicensePlate()
+        val licensePlate = preferences.getLicensePlate()
 
 //   using shared preference to retrieve reservation data from api
         viewLifecycleOwner.lifecycleScope.launch {
