@@ -11,7 +11,6 @@ data class CarModel(
 
     @field:Json(name = "car_type")
     val carType: String?,
-//    var carType: String = carTypeEnum.toString(),
 
     @field:Json(name = "customer_number")
     val customerNumber: Long?,
