@@ -176,7 +176,7 @@ class SharityPreferences(context: Context) {
     }
 
     fun getFuelType(): String? {
-        return preference.getString(FUEL_TYPE, "electric")
+        return preference.getString(FUEL_TYPE, "")
 
     }
 

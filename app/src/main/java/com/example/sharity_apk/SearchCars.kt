@@ -37,8 +37,10 @@ class SearchCars : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val preferences = SharityPreferences(requireContext())
 
+        preferences.setFuelType(getString(R.string.electric))
+
             binding.carOptions.setOnCheckedChangeListener { radioGroup, i ->
-                val radioButton: RadioButton? = binding.carOptions.findViewById(i)
+                val radioButton: RadioButton? = binding.carOptions.findViewById<RadioButton>(i)
                 if (radioButton != null) {
                     binding.tvOption.text = radioButton.text.toString()
                 }
