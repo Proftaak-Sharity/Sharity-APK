@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.service.CarApiService
@@ -19,7 +20,9 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class MapsFragment : Fragment() {
@@ -56,7 +59,7 @@ class MapsFragment : Fragment() {
         val serviceGenerator2 = ServiceGenerator.buildService(CustomerApiService::class.java)
 
 //      connecting licenseplate from shared preference to variable
-        val licensePlate = preferences.getReservationLicensePlate()
+        val licensePlate = preferences.getLicensePlate()
 
 //   using shared preference to retrieve reservation data from api
         viewLifecycleOwner.lifecycleScope.launch {
@@ -66,32 +69,36 @@ class MapsFragment : Fragment() {
 
             val customerAddress = customer.address + customer.houseNumber + ", " + customer.city
 
-   //         toast to see the address of the car - can be deleted when marker works
-//            Toast.makeText(requireContext(), "$customerAddress", Toast.LENGTH_LONG).show()
+            //         toast to see the address of the car - can be deleted when marker works
+//            Toast.makeText(requireContext(), customerAddress, Toast.LENGTH_LONG).show()
 
-            val geoCoder = Geocoder(
+           val geoCoder = Geocoder(
                 context
             )
-            val addressList = geoCoder.getFromLocationName(
-                customerAddress,
-                1
-            )
-            if (addressList != null && addressList.size > 0) {
-                val address = addressList.get(0) as Address
-                val customerLat = address.latitude
-                val customerLng = address.longitude
+                val addressList = geoCoder.getFromLocationName(
+                    customerAddress,
+                    1
+                )
 
-                val customerLatLng = LatLng (customerLat,customerLng)
+                if (addressList != null && addressList.size > 0) {
+                    val address = addressList.get(0) as Address
+                    val customerLat = address.latitude
+                    val customerLng = address.longitude
 
-                val bounds = LatLngBounds.builder()
-                    .include(yourLocation)
-                    .include(customerLatLng)
-                    .build()
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 150))
-                googleMap.addMarker(MarkerOptions()
-                    .position(customerLatLng)
-                    .title("You rentalcar is here!"))
-          }
+                    val customerLatLng = LatLng(customerLat, customerLng)
+
+                    val bounds = LatLngBounds.builder()
+                        .include(yourLocation)
+                        .include(customerLatLng)
+                        .build()
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 150))
+                    googleMap.addMarker(
+                        MarkerOptions()
+                            .position(customerLatLng)
+                            .title("You rentalcar is here!")
+                    )
+
+            }
         }
     }
 

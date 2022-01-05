@@ -65,7 +65,7 @@ class GetAllReservations: Fragment(), ReservationAdapter.OnReservationClickListe
             preferences.setReservationNumber(reservationNumber)
             val licensePlate = clickedReservation.licensePlate
             if (licensePlate != null) {
-                preferences.setReservationLicensePlate(licensePlate)
+                preferences.setLicensePlate(licensePlate)
             }
 
             findNavController().navigate(R.id.action_GetAllReservations_to_GetReservationDetails)
