@@ -184,6 +184,7 @@
     <string name="car_license">License</string>
     <string name="payNow">Pay now</string>
     <string name="payLater">Pay later</string>
+    <string name="yourcarishere">Your rentalcar is here!</string>
 
     <string-array name="country_list">
         <item>NETHERLANDS</item>
@@ -196,6 +197,15 @@
         <item>LPG</item>
         <item>DIESEL</item>
     </string-array>
+    <string name="update_bankaccount">update bankaccount</string>
+    <string name="create_account_password_textview"><![CDATA[Use 8 or more characters with a mix of letters, numbers & symbols]]></string>
+    <string name="bankaccount_title">Bankaccount:</string>
+    <string name="change">change</string>
+    <string name="language">language</string>
+    <string name="Language_settings">Language settings</string>
+    <string name="Default_language">Default language</string>
+    <string name="languagepreference">language preference</string>
+    <string name="youarehere">You are here!</string>
 
 
 </resources>

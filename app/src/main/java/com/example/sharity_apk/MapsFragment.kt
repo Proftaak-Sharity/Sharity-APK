@@ -47,7 +47,7 @@ class MapsFragment : Fragment() {
         val yourLocation = LatLng(lat!!, lng!!)
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 15f))
 
-        googleMap.addMarker(MarkerOptions().position(yourLocation).title("You are here!"))
+        googleMap.addMarker(MarkerOptions().position(yourLocation).title(getString(R.string.youarehere)))
 
         googleMap.uiSettings.apply {
             isZoomControlsEnabled = true
@@ -95,7 +95,7 @@ class MapsFragment : Fragment() {
                     googleMap.addMarker(
                         MarkerOptions()
                             .position(customerLatLng)
-                            .title("Your rentalcar is here!")
+                            .title(getString(R.string.yourcarishere))
                     )
 
             }
