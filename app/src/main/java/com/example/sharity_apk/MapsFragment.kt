@@ -95,7 +95,7 @@ class MapsFragment : Fragment() {
                     googleMap.addMarker(
                         MarkerOptions()
                             .position(customerLatLng)
-                            .title("You rentalcar is here!")
+                            .title("Your rentalcar is here!")
                     )
 
             }
