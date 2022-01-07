@@ -90,8 +90,4 @@ class GetSearchedCarDetails: Fragment(), CarAdapter.OnCarClickListener {
         _binding = null
     }
 
-    private suspend fun getCustomerCity(customerNumber: Long): String? {
-        val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
-        return  (serviceGenerator.getCustomer(customerNumber)).city
-    }
 }

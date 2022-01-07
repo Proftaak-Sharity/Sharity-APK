@@ -54,7 +54,6 @@ class CreateReservation : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val preferences = SharityPreferences(requireContext())
         var retry = false
-        println("In Create reservation")
         if (preferences.getStartDate().isNullOrEmpty() or preferences.getEndDate()
                 .isNullOrEmpty()
         ) {
@@ -88,7 +87,6 @@ class CreateReservation : Fragment() {
                 Toast.makeText(requireContext(), "An error has occurred $e", Toast.LENGTH_SHORT)
                     .show()
             }
-            println("Make reservation Create reservation")
 
             binding.buttonPayNow.setOnClickListener {
                 viewLifecycleOwner.lifecycleScope.launch {

@@ -62,14 +62,11 @@ class GetReservationDetails: Fragment() {
             val reservationNumber = preferences.getReservationNumber()
 
 //            using shared preference to retrieve reservation data from api
-            println("Getting reservation and it is made ?$reservationNumber")
             val reservation = serviceGenerator.getReservation(reservationNumber)
-            println("got reservation")
+
             //      connecting licenseplate from shared preference to variable
             val licensePlateCar = preferences.getLicensePlate()
-            println("getCar $licensePlateCar")
             val car = serviceGenerator2.getCar(licensePlateCar)
-            println("gotCar")
 //            connecting reservation api-data to textfield
 
             reservationStart.text = reservation.startDate
