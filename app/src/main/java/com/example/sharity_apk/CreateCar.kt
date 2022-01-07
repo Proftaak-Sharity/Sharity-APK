@@ -1,6 +1,11 @@
 package com.example.sharity_apk
 
+import android.app.AlertDialog
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,20 +13,23 @@ import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.CreateCarBinding
-import com.example.sharity_apk.dialog.CreateCarDialog
-import com.example.sharity_apk.dialog.EmptyFieldDialog
 import com.example.sharity_apk.viewmodel.CarViewModel
-import kotlinx.coroutines.launch
+import java.io.ByteArrayOutputStream
 import java.util.*
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.sharity_apk.dialog.EmptyFieldDialog
+import kotlinx.coroutines.launch
+
 
 class CreateCar : Fragment() {
 
     private var _binding: CreateCarBinding? = null
     private val binding get() = _binding!!
+    private val CAMERA_REQUEST_CODE = 1
+    private val GALLERY_REQUEST_CODE = 2
 
     private val carViewModel: CarViewModel by lazy {
         ViewModelProvider(this)[CarViewModel::class.java]
@@ -64,12 +72,12 @@ class CreateCar : Fragment() {
         val etPricePerDay = binding.etPricePerDay.text
 
         when (carType) {
-            "Electric" -> {
+            getString(R.string.electric) -> {
                 binding.title.text = getString(R.string.add_cartype_car, getString(R.string.electric).lowercase(Locale.getDefault()))
                 binding.capacityLayout.hint = getString(R.string.battery_capacity_inkW)
                 binding.usageLayout.hint = getString(R.string.km_per_kw)
             }
-            "Hydrogen" -> {
+            getString(R.string.hydrogen) -> {
                 binding.title.text = getString(R.string.add_cartype_car, getString(R.string.hydrogen).lowercase(Locale.getDefault()))
                 binding.capacityLayout.hint = getString(R.string.size_fueltank)
                 binding.usageLayout.hint = getString(R.string.km_per_kilo)
@@ -86,12 +94,14 @@ class CreateCar : Fragment() {
 //        OnclickListener on next-button
         binding.buttonSave.setOnClickListener {
 
+            val encodedString = preferences.getImage()
+
             viewLifecycleOwner.lifecycleScope.launch {
                 when (carType) {
-                    "Electric" -> {
+                    getString(R.string.electric) -> {
                         if (etLicensePlate.isNullOrEmpty() || etMake.text.isNullOrEmpty() ||
                             etModel.isNullOrEmpty() || etPricePerDay.isNullOrEmpty() ||
-                            etCapacity.isNullOrEmpty() || etUsage.isNullOrEmpty()) {
+                            etCapacity.isNullOrEmpty() || etUsage.isNullOrEmpty() || encodedString.toString().isEmpty()) {
                                 val dialog = EmptyFieldDialog()
                                 dialog.show(parentFragmentManager, "customDialog")
                         } else {
@@ -104,13 +114,14 @@ class CreateCar : Fragment() {
                                 etCapacity.toString().toInt(),
                                 etUsage.toString().toInt()
                             )
+                            carViewModel.addCarImage(etLicensePlate.toString(), encodedString.toString())
                             findNavController().navigate(R.id.action_CreateCar_to_GetAllCars)
                         }
                     }
-                    "Hydrogen" -> {
+                    getString(R.string.hydrogen) -> {
                         if (etLicensePlate.isNullOrEmpty() || etMake.text.isNullOrEmpty() ||
                             etModel.isNullOrEmpty() || etPricePerDay.isNullOrEmpty() ||
-                            etCapacity.isNullOrEmpty() || etUsage.isNullOrEmpty()) {
+                            etCapacity.isNullOrEmpty() || etUsage.isNullOrEmpty() || encodedString.toString().isEmpty()) {
                             val dialog = EmptyFieldDialog()
                             dialog.show(parentFragmentManager, "customDialog")
                         } else {
@@ -123,6 +134,7 @@ class CreateCar : Fragment() {
                                 etCapacity.toString().toInt(),
                                 etUsage.toString().toInt()
                             )
+                            carViewModel.addCarImage(etLicensePlate.toString(), encodedString.toString())
                             findNavController().navigate(R.id.action_CreateCar_to_GetAllCars)
                         }
                     }
@@ -130,7 +142,7 @@ class CreateCar : Fragment() {
                         if (etLicensePlate.isNullOrEmpty() || etMake.text.isNullOrEmpty() ||
                             etModel.isNullOrEmpty() || etPricePerDay.isNullOrEmpty() ||
                             etCapacity.isNullOrEmpty() || etUsage.isNullOrEmpty() ||
-                            etFuelType.text.isNullOrEmpty()) {
+                            etFuelType.text.isNullOrEmpty() || encodedString.toString().isEmpty()) {
                                 val dialog = EmptyFieldDialog()
                                 dialog.show(parentFragmentManager, "customDialog")
                         } else {
@@ -144,6 +156,7 @@ class CreateCar : Fragment() {
                                 etUsage.toString().toInt(),
                                 etFuelType.text.toString()
                             )
+                            carViewModel.addCarImage(etLicensePlate.toString(), encodedString.toString())
                             findNavController().navigate(R.id.action_CreateCar_to_GetAllCars)
                         }
                     }
@@ -151,8 +164,60 @@ class CreateCar : Fragment() {
             }
         }
 
+        binding.buttonAddImage.setOnClickListener {
+            val pictureDialog = AlertDialog.Builder(requireContext())
+            pictureDialog.setTitle("Select Action")
+            val pictureDialogItems = arrayOf("Select photo from Gallery", "Capture photo from Camera")
+            pictureDialog.setItems(pictureDialogItems) {
+                    _, which ->
+                when (which) {
+                    0 -> gallery()
+                    1 -> camera()
+                }
+            }
+            pictureDialog.show()
+        }
+    }
+
+
+    private fun camera()  {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(intent, CAMERA_REQUEST_CODE)
 
     }
+
+    private fun gallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, GALLERY_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        var bitmap: Bitmap? = null
+        val preferences = SharityPreferences(requireContext())
+
+        if (requestCode == CAMERA_REQUEST_CODE) {
+            bitmap = data?.extras?.get("data") as Bitmap
+            binding.imageCar.setImageBitmap(bitmap)
+
+        } else if (requestCode == GALLERY_REQUEST_CODE) {
+
+            val uriDataPath = data?.data
+            bitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uriDataPath)
+            binding.imageCar.setImageBitmap(bitmap)
+        }
+
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap?.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+        val byteArray = byteArrayOutputStream.toByteArray()
+        val encodedString = Base64.getEncoder().encodeToString(byteArray)
+        preferences.setImage(encodedString)
+    }
+
+
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

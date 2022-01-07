@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.SearchCarsBinding
@@ -14,16 +13,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.RadioButton
 
-import android.widget.RadioGroup
-
-
 class SearchCars : Fragment() {
 
     private var _binding: SearchCarsBinding? = null
     private val binding get() = _binding!!
-    private var radioGroup: RadioGroup? = null
-    private var radioButton: RadioButton? = null
-    private var btnDisplay: Button? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -1,10 +1,13 @@
 package com.example.sharity_apk
 
 import android.app.AlertDialog
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -36,17 +39,18 @@ class GetCarDetails : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
 //        Connection textfields to variable
-        val licensePlate: TextView = binding.licensePlateDb
-        val make: TextView = binding.makeDb
-        val model: TextView = binding.modelDb
-        val fuelType: TextView = binding.fueltypeDb
-        val capacity: TextView = binding.capacity
-        val capacityDb: TextView = binding.capacityDb
-        val usage: TextView = binding.usage
-        val usageDb: TextView = binding.usageDb
-        val range: TextView = binding.rangeDb
-        val pricePerDay: TextView = binding.pricePerDayDb
-        val pricePerKm: TextView = binding.priceKerKmDb
+        val ivImageCar: ImageView = binding.imageCar
+        val tvLicensePlate: TextView = binding.licensePlateDb
+        val tvMake: TextView = binding.makeDb
+        val tvModel: TextView = binding.modelDb
+        val tvFuelType: TextView = binding.fueltypeDb
+        val tvCapacity: TextView = binding.capacity
+        val tvCapacityDb: TextView = binding.capacityDb
+        val tvUsage: TextView = binding.usage
+        val tvUsageDb: TextView = binding.usageDb
+        val tvRange: TextView = binding.rangeDb
+        val tvPricePerDay: TextView = binding.pricePerDayDb
+        val tvPricePerKm: TextView = binding.priceKerKmDb
 
         viewLifecycleOwner.lifecycleScope.launch {
             val preferences = SharityPreferences(requireContext())
@@ -55,49 +59,65 @@ class GetCarDetails : Fragment(){
 //          using shared preference to retrieve customerdata from api
             val car = serviceGenerator.getCar(preferences.getLicensePlate())
 
+            when (val encodedString = serviceGenerator.getCarImage(car.licensePlate.toString()).image) {
+                "1" -> ivImageCar.setImageResource(R.drawable.volvo_xc90)
+                "2" -> ivImageCar.setImageResource(R.drawable.landrover_defender)
+                "3" -> ivImageCar.setImageResource(R.drawable.tesla_3)
+                "4" -> ivImageCar.setImageResource(R.drawable.ford_mustang_convertible)
+                "5" -> ivImageCar.setImageResource(R.drawable.cupra_leon)
+                "6" -> ivImageCar.setImageResource(R.drawable.mercedes_r350_amg)
+                "7" -> ivImageCar.setImageResource(R.drawable.ferrari_testarossa)
+                "8" -> ivImageCar.setImageResource(R.drawable.opel_vectra)
+                "9" -> ivImageCar.setImageResource(R.drawable.toyota_mirai)
+                else -> {
+                    val imageCar = decodeImageString(encodedString)
+                    ivImageCar.setImageBitmap(imageCar)
+                }
+            }
+
 //          connecting customer api-data to textfield
-            licensePlate.text = car.licensePlate
-            make.text = car.make
-            model.text = car.model
-            pricePerDay.text = getString(R.string.eur, "%.2f".format(car.pricePerDay?.toDouble()))
-            pricePerKm.text = getString(R.string.eur, "%.2f".format(car.pricePerKm?.toDouble()))
+            tvLicensePlate.text = car.licensePlate
+            tvMake.text = car.make
+            tvModel.text = car.model
+            tvPricePerDay.text = getString(R.string.eur, "%.2f".format(car.pricePerDay?.toDouble()))
+            tvPricePerKm.text = getString(R.string.eur, "%.2f".format(car.pricePerKm?.toDouble()))
 
             when {
                 car.batteryCapacity != null -> {
-                    fuelType.text = getString(R.string.electric)
-                    capacity.text = getString(R.string.battery_capacity)
-                    capacityDb.text = getString(R.string.kw, car.batteryCapacity)
-                    usage.text = getString(R.string.range_per_kw)
-                    usageDb.text = getString(R.string.km_per_kw_range, car.kmPerKw)
-                    range.text = getString(
+                    tvFuelType.text = getString(R.string.electric)
+                    tvCapacity.text = getString(R.string.battery_capacity)
+                    tvCapacityDb.text = getString(R.string.kw, car.batteryCapacity)
+                    tvUsage.text = getString(R.string.range_per_kw)
+                    tvUsageDb.text = getString(R.string.km_per_kw_range, car.kmPerKw)
+                    tvRange.text = getString(
                         R.string.km,
                         (car.kmPerKw!!.toInt() * car.batteryCapacity.toInt()).toString()
                     )
 
                 }
                 car.kmPerKilo != null -> {
-                    fuelType.text = getString(R.string.hydrogen)
-                    capacity.text = getString(R.string.size_fueltank)
-                    capacityDb.text = getString(R.string.kilo, car.sizeFueltank)
-                    usage.text = getString(R.string.range_per_kilo)
-                    usageDb.text = getString(R.string.km_per_kilo_hydrogen, car.kmPerKilo)
-                    range.text = getString(
+                    tvFuelType.text = getString(R.string.hydrogen)
+                    tvCapacity.text = getString(R.string.size_fueltank)
+                    tvCapacityDb.text = getString(R.string.kilo, car.sizeFueltank)
+                    tvUsage.text = getString(R.string.range_per_kilo)
+                    tvUsageDb.text = getString(R.string.km_per_kilo_hydrogen, car.kmPerKilo)
+                    tvRange.text = getString(
                         R.string.km,
                         (car.kmPerKilo.toInt() * car.sizeFueltank!!.toInt()).toString()
                     )
                 }
                 else -> {
-                    fuelType.text = car.fuelType
-                    capacity.text = getString(R.string.size_fueltank)
-                    capacityDb.text = getString(R.string.liter, car.sizeFueltank)
-                    usage.text = getString(R.string.range_per_liter)
-                    usageDb.text = getString(
+                    tvFuelType.text = car.fuelType
+                    tvCapacity.text = getString(R.string.size_fueltank)
+                    tvCapacityDb.text = getString(R.string.liter, car.sizeFueltank)
+                    tvUsage.text = getString(R.string.range_per_liter)
+                    tvUsageDb.text = getString(
                         R.string.km_per_liter_fuel, car.kmPerLiterFuel, when (car.fuelType) {
                             "LPG" -> car.fuelType.uppercase(Locale.getDefault())
                             else -> car.fuelType?.lowercase(Locale.getDefault())
                         }
                     )
-                    range.text = getString(
+                    tvRange.text = getString(
                         R.string.km,
                         (car.kmPerLiterFuel!!.toInt() * car.sizeFueltank!!.toInt()).toString()
                     )
@@ -141,6 +161,12 @@ class GetCarDetails : Fragment(){
                 }
             }
         }
+    }
+
+    private fun decodeImageString(encodedString: String): Bitmap {
+
+        val imageBytes = Base64.getDecoder().decode(encodedString)
+        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
     }
 
     override fun onDestroy() {

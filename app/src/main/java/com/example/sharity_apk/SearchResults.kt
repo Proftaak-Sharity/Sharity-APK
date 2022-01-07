@@ -1,6 +1,5 @@
 package com.example.sharity_apk
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -118,7 +117,7 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
             else -> {
                 // search for car in range set
                 println("now we use getCars")
-                carServiceGenerator.getCars()
+                carServiceGenerator.getCarsFromCustomer()
             }
         }
 

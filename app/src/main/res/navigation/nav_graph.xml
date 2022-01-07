@@ -23,6 +23,12 @@
             app:destination="@id/CreateAccount" />
     </fragment>
 
+    <fragment
+        android:id="@+id/TestCarImage"
+        android:name="com.example.sharity_apk.TestCarImage"
+        android:label="Add Car Image"
+        tools:layout="@layout/test_car_image"/>
+
 
 
 <!--    Account Overview Fragment-->
@@ -272,9 +278,6 @@
         tools:layout="@layout/get_drivers_license_details">
 
         <action
-            android:id="@+id/action_GetDriversLicenseDetails_to_UpdateDriversLicense"
-            app:destination="@id/UpdateDriversLicense" />
-        <action
             android:id="@+id/action_GetDriversLicenseDetails_to_GetCustomerDetails"
             app:destination="@id/GetCustomerDetails" />
         <action
@@ -285,21 +288,7 @@
             app:destination="@id/GetBankaccounts" />
     </fragment>
 
-    <fragment
-        android:id="@+id/UpdateDriversLicense"
-        android:name="com.example.sharity_apk.UpdateDriversLicense"
-        android:label="@string/update_drivers_license"
-        tools:layout="@layout/update_drivers_license">
-
-        <action
-            android:id="@+id/action_UpdateDriversLicense_to_GetDriversLicenseDetails"
-            app:destination="@id/GetDriversLicenseDetails" />
-        <action
-            android:id="@+id/action_UpdateDriversLicense_to_LoginFragment"
-            app:destination="@id/Login" />
-    </fragment>
-
-<!--    Car Fragments-->
+    <!--    Car Fragments-->
     <fragment
         android:id="@+id/GetAllCars"
         android:name="com.example.sharity_apk.GetAllCars"
@@ -393,9 +382,6 @@
             android:id="@+id/action_GetReservationDetails_to_LoginFragment"
             app:destination="@id/Login" />
         <action
-            android:id="@+id/action_GetReservationDetails_to_UpdateReservation"
-            app:destination="@id/UpdateReservation" />
-        <action
             android:id="@+id/action_GetReservationDetails_to_GetAllReservations"
             app:destination="@id/GetAllReservations" />
         <action
@@ -403,18 +389,6 @@
             app:destination="@id/mapsFragment3" />
     </fragment>
 
-    <fragment
-        android:id="@+id/UpdateReservation"
-        android:name="com.example.sharity_apk.UpdateReservation"
-        android:label="@string/update_reservation"
-        tools:layout="@layout/update_reservation">
-        <action
-            android:id="@+id/action_UpdateReservation_to_LoginFragment"
-            app:destination="@id/Login" />
-        <action
-            android:id="@+id/action_UpdateReservation_to_GetReservationDetails"
-            app:destination="@id/GetReservationDetails" />
-    </fragment>
     <fragment
         android:id="@+id/CreateAccount"
         android:name="com.example.sharity_apk.CreateAccount"

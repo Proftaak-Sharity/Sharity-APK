@@ -185,6 +185,11 @@
     <string name="payNow">Pay now</string>
     <string name="payLater">Pay later</string>
     <string name="yourcarishere">Your rentalcar is here!</string>
+    <string name="turned_off_permissions">It looks like you have turned off permissions</string>
+    <string name="todo">TODO</string>
+    <string name="add_from_camera_or_gallery">Add picture from camera or gallery?</string>
+    <string name="gallery">Gallery</string>
+    <string name="dont_forget">(don\'t forget the photo)</string>
 
     <string-array name="country_list">
         <item>NETHERLANDS</item>
@@ -197,6 +202,7 @@
         <item>LPG</item>
         <item>DIESEL</item>
     </string-array>
+
     <string name="update_bankaccount">update bankaccount</string>
     <string name="create_account_password_textview"><![CDATA[Use 8 or more characters with a mix of letters, numbers & symbols]]></string>
     <string name="bankaccount_title">Bankaccount:</string>

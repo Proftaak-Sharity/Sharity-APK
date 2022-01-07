@@ -1,14 +1,14 @@
 package com.example.sharity_apk.service
 
 
-import androidx.room.Delete
+import com.example.sharity_apk.model.CarImageModel
 import com.example.sharity_apk.model.CarModel
 import retrofit2.http.*
 
 interface CarApiService {
 
     @GET("cars")
-    suspend fun getCars(): MutableList<CarModel>
+    suspend fun getCarsFromCustomer(): MutableList<CarModel>
 
     //    using @path so that customer_number becomes the number in the path of the GET
     @GET("cars/{licensePlate}")
@@ -23,8 +23,8 @@ interface CarApiService {
     @GET("cars/hydrogencars")
     suspend fun getHydrogenCars(): MutableList<CarModel>
 
-    @GET("cars/customer/{customer_number}")
-    suspend fun getCars(@Path ("customer_number")customerNumber: Long): MutableList<CarModel>
+    @GET("cars/customer/{customerNumber}")
+    suspend fun getCarsFromCustomer(@Path ("customerNumber")customerNumber: Long): MutableList<CarModel>
 
     @PUT("cars/{licensePlate}")
     suspend fun updateCar(@Path ("licensePlate") licensePlate: String?,
@@ -60,4 +60,11 @@ interface CarApiService {
                            @Query ("sizeFueltank") sizeFueltank: Int,
                            @Query ("kmPerLiter") kmPerLiter: Int,
                            @Query ("fuelType") fuelType: String)
+
+    @POST("cars/image")
+    suspend fun addCarImage(@Query ("licensePlate") licensePlate: String,
+                            @Query ("image") image: String) : CarImageModel
+
+    @GET("cars/image/{licensePlate}")
+    suspend fun getCarImage(@Path ("licensePlate") licensePlate: String) : CarImageModel
 }

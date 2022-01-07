@@ -24,9 +24,7 @@ class EmptyFieldDialog : DialogFragment() {
         rootView.findViewById<Button>(R.id.btn_check).setOnClickListener {
             findNavController().navigate(R.id.CreateCar)
             dismiss()
-
         }
         return rootView
     }
-
 }
