@@ -342,7 +342,6 @@
             android:drawableLeft="@drawable/ic_baseline_edit_24"
             app:layout_constraintEnd_toStartOf="@id/btn_delete"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="0dp"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <Button

@@ -11,7 +11,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.R
 
-class EmptyFieldDialog : DialogFragment() {
+class CameraGalleryDialog : DialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,6 +24,7 @@ class EmptyFieldDialog : DialogFragment() {
         rootView.findViewById<Button>(R.id.btn_check).setOnClickListener {
             findNavController().navigate(R.id.CreateCar)
             dismiss()
+
         }
         return rootView
     }

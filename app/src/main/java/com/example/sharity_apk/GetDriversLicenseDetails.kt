@@ -52,7 +52,6 @@ class GetDriversLicenseDetails: Fragment() {
         }
 
         //      Button bindings:
-        binding.buttonEdit.setOnClickListener { findNavController().navigate(R.id.action_GetDriversLicenseDetails_to_UpdateDriversLicense) }
         binding.buttonPersonal.setOnClickListener { findNavController().navigate(R.id.action_GetDriversLicenseDetails_to_GetCustomerDetails) }
         binding.buttonBankaccount.setOnClickListener { findNavController().navigate(R.id.action_GetDriversLicenseDetails_to_GetBankaccountDetails) }
     }

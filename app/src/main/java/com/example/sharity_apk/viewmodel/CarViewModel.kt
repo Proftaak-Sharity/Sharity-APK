@@ -1,6 +1,7 @@
 package com.example.sharity_apk.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.example.sharity_apk.model.CarImageModel
 import com.example.sharity_apk.service.CarApiService
 import com.example.sharity_apk.service.ServiceGenerator
 
@@ -42,7 +43,12 @@ class CarViewModel(): ViewModel() {
                            fuelType: String) {
 
         serviceGenerator.addFuelCar(licensePlate, customerNumber, make, model, pricePerDay, sizeFueltank, kmPerLiter, fuelType)
+    }
 
+    suspend fun addCarPhoto(licensePlate: String, picture: String) { serviceGenerator.addCarPhoto(licensePlate, picture) }
+
+    suspend fun getCarPhoto(licensePlate: String): CarImageModel {
+        return serviceGenerator.getCarPhoto(licensePlate)
     }
 }
 

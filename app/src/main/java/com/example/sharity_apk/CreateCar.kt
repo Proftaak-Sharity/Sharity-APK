@@ -1,6 +1,7 @@
 package com.example.sharity_apk
 
 import android.Manifest
+import android.R.attr
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException
@@ -8,6 +9,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.provider.Settings
 import android.view.LayoutInflater
@@ -31,7 +33,11 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.coroutines.launch
+import java.io.File
 import java.util.*
+import android.R.attr.bitmap
+import java.io.ByteArrayOutputStream
+
 
 class CreateCar : Fragment() {
 
@@ -170,6 +176,8 @@ class CreateCar : Fragment() {
         binding.buttonAddImage.setOnClickListener {
             cameraCheckPermission()
         }
+
+
     }
 
     private fun cameraCheckPermission() {
@@ -197,7 +205,10 @@ class CreateCar : Fragment() {
     }
 
     private fun camera() {
+
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//        val uriSavedImage = Uri.fromFile(File("/Users/robvdhorst/Downloads"))
+//        intent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage)
         startActivityForResult(intent, CAMERA_REQUEST_CODE)
     }
 
@@ -213,7 +224,11 @@ class CreateCar : Fragment() {
                 CAMERA_REQUEST_CODE -> {
 
                     val bitmap = data?.extras?.get("data") as Bitmap
-//                    We are using coroutine image loader (coil), check dependencies
+
+                    val byteArrayOutputStream = ByteArrayOutputStream()
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+                    val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
+
                     binding.imageCar.load(bitmap) {
                         crossfade(true)
                         crossfade(1000)

@@ -1,7 +1,7 @@
 package com.example.sharity_apk.service
 
 
-import androidx.room.Delete
+import com.example.sharity_apk.model.CarImageModel
 import com.example.sharity_apk.model.CarModel
 import retrofit2.http.*
 
@@ -60,4 +60,12 @@ interface CarApiService {
                            @Query ("sizeFueltank") sizeFueltank: Int,
                            @Query ("kmPerLiter") kmPerLiter: Int,
                            @Query ("fuelType") fuelType: String)
+
+    @POST("cars/image")
+    suspend fun addCarPhoto(@Query ("licensePlate") licensePlate: String,
+                            @Query ("picture") picture: String
+    )
+
+    @GET("cars/image/{licensePlate}")
+    suspend fun getCarPhoto(@Path ("licensePlate") licensePlate: String) : CarImageModel
 }
