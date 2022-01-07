@@ -28,11 +28,12 @@
             android:id="@+id/image_car"
             android:layout_width="135dp"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/logo_sharity"
+            android:src="@drawable/no_photo_available"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/ferrari_testarossa"
-            android:contentDescription="@string/logo_sharity"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

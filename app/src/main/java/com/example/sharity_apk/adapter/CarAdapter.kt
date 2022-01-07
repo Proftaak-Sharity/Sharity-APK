@@ -1,8 +1,5 @@
 package com.example.sharity_apk.adapter
 
-import android.content.res.Resources
-import android.content.res.Resources.getAttributeSetSourceResId
-import android.content.res.Resources.getSystem
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
@@ -12,15 +9,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sharity_apk.R
-import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.model.CarModel
+import com.example.sharity_apk.service.CarApiService
 import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
-import kotlin.coroutines.coroutineContext
 
 class CarAdapter(
     private val carList: MutableList<CarModel>,
@@ -40,13 +36,32 @@ class CarAdapter(
 
         val currentCar = carList[position]
 
-        holder.ivCar.setImageResource(R.drawable.ferrari_testarossa)
-        holder.tvMake.text = currentCar.make
-        holder.tvModel.text = currentCar.model
-        "€ ${"%.2f".format(currentCar.pricePerDay?.toDouble())} per day".also { holder.tvPrice.text = it }
-
-
         CoroutineScope(Dispatchers.Main).launch {
+
+            val serviceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
+
+            when (val encodedString = serviceGenerator.getCarImage(currentCar.licensePlate.toString()).image) {
+                "1" -> holder.ivCar.setImageResource(R.drawable.volvo_xc90)
+                "2" -> holder.ivCar.setImageResource(R.drawable.landrover_defender)
+                "3" -> holder.ivCar.setImageResource(R.drawable.tesla_3)
+                "4" -> holder.ivCar.setImageResource(R.drawable.ford_mustang_convertible)
+                "5" -> holder.ivCar.setImageResource(R.drawable.cupra_leon)
+                "6" -> holder.ivCar.setImageResource(R.drawable.mercedes_r350_amg)
+                "7" -> holder.ivCar.setImageResource(R.drawable.ferrari_testarossa)
+                "8" -> holder.ivCar.setImageResource(R.drawable.opel_vectra)
+                "9" -> holder.ivCar.setImageResource(R.drawable.toyota_mirai)
+                else -> {
+                    val imageCar = decodeImageString(encodedString)
+                    holder.ivCar.setImageBitmap(imageCar)
+                }
+            }
+
+            holder.tvMake.text = currentCar.make
+            holder.tvModel.text = currentCar.model
+            "€ ${"%.2f".format(currentCar.pricePerDay?.toDouble())} per day".also { holder.tvPrice.text = it }
+
+
+
             if (currentCar.customerNumber != null) {
                 val carCity =  getCustomerCity(currentCar.customerNumber)
                 holder.tvLocation.text = carCity
@@ -100,12 +115,10 @@ class CarAdapter(
         }
     }
 
-    private fun decodePicString (encodedString: String): Bitmap {
+    private fun decodeImageString(encodedString: String): Bitmap {
 
         val imageBytes = Base64.getDecoder().decode(encodedString)
-        val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-
-        return decodedImage
+        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
     }
 
     interface OnCarClickListener {

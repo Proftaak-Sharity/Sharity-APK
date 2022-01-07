@@ -42,7 +42,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/ferrari_testarossa"
+            android:src="@drawable/no_photo_available"
             android:contentDescription="@string/logo_sharity"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
