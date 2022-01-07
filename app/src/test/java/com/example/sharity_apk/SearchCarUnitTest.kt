@@ -49,7 +49,7 @@ class SearchCarUnitTest {
 
     @Test
     fun getCarsUnitTest(): Unit = runBlocking {
-        val numberOfCars: Long = 8
+        val numberOfCars: Long = 2
 
 
         launch(Dispatchers.Main){
@@ -88,7 +88,7 @@ class SearchCarUnitTest {
 
         var carList = mutableListOf<CarModel>()
 
-        var i: Long = 0
+        var i: Long = 1
 
         while (i <= number) {
             var car = CarModel(  licensePlate = "AUTO0$i",
@@ -108,6 +108,7 @@ class SearchCarUnitTest {
             )
 
             carList.add(car)
+            i++
         }
         return carList
     }
