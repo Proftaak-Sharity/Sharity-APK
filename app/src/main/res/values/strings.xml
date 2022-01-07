@@ -186,6 +186,9 @@
     <string name="payLater">Pay later</string>
     <string name="turned_off_permissions">It looks like you have turned off permissions</string>
     <string name="todo">TODO</string>
+    <string name="add_from_camera_or_gallery">Add picture from camera or gallery?</string>
+    <string name="gallery">Gallery</string>
+    <string name="dont_forget">(don\'t forget the photo)</string>
 
     <string-array name="country_list">
         <item>NETHERLANDS</item>

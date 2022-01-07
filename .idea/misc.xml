@@ -30,6 +30,7 @@
         <entry key="app/src/main/res/layout/account_overview.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.325" />
         <entry key="app/src/main/res/layout/activity_vertical_list.xml" value="0.33559782608695654" />
+        <entry key="app/src/main/res/layout/camera_gallery_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/car_card.xml" value="0.335" />
         <entry key="app/src/main/res/layout/car_item.xml" value="0.3428442028985507" />
         <entry key="app/src/main/res/layout/car_item_cardview.xml" value="0.33559782608695654" />
@@ -40,7 +41,7 @@
         <entry key="app/src/main/res/layout/create_account.xml" value="0.5119791666666667" />
         <entry key="app/src/main/res/layout/create_bankaccount.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/create_car.xml" value="0.41032608695652173" />
-        <entry key="app/src/main/res/layout/create_car_dialog.xml" value="0.24686087393269715" />
+        <entry key="app/src/main/res/layout/create_car_dialog.xml" value="0.125" />
         <entry key="app/src/main/res/layout/create_customer.xml" value="0.4106776180698152" />
         <entry key="app/src/main/res/layout/create_drivers_license.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/create_reservation.xml" value="0.41032608695652173" />

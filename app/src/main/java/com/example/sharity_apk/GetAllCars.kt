@@ -40,7 +40,7 @@ class GetAllCars : Fragment(), CarAdapter.OnCarClickListener {
             val preferences = SharityPreferences(requireContext())
             val customerNumber = preferences.getCustomerNumber()
 
-            val carList = serviceGenerator.getCars(customerNumber)
+            val carList = serviceGenerator.getCarsFromCustomer(customerNumber)
             val adapter = CarAdapter(carList, this@GetAllCars)
             try {
                 binding.myRecyclerView.adapter = adapter
@@ -63,7 +63,7 @@ class GetAllCars : Fragment(), CarAdapter.OnCarClickListener {
             val preferences = SharityPreferences(requireContext())
             val customerNumber = preferences.getCustomerNumber()
 
-            val carList = serviceGenerator.getCars(customerNumber)
+            val carList = serviceGenerator.getCarsFromCustomer(customerNumber)
             val clickedCar = carList[position]
             val licensePlate = clickedCar.licensePlate
             preferences.setLicensePlate(licensePlate)

@@ -1,4 +1,4 @@
-package com.example.sharity_apk
+package com.example.sharity_apk.dialog
 
 import android.Manifest
 import android.app.Activity
@@ -7,6 +7,8 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -14,12 +16,13 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import android.widget.Button
+import android.widget.ImageButton
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
-import coil.load
-import com.example.sharity_apk.databinding.TestCarImageBinding
-import com.example.sharity_apk.viewmodel.CarViewModel
+import androidx.navigation.fragment.findNavController
+import com.example.sharity_apk.R
+import com.example.sharity_apk.config.SharityPreferences
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -28,63 +31,35 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 
+class CameraGalleryDialogCar : DialogFragment() {
 
-class TestCarImage : Fragment() {
-
-    private var _binding: TestCarImageBinding? = null
-    private val binding get() = _binding!!
     private val CAMERA_REQUEST_CODE = 1
-
-    private lateinit var picture: String
-    private val carViewModel: CarViewModel by lazy {
-        ViewModelProvider(this)[CarViewModel::class.java]
-    }
+    private lateinit var encodedString: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = TestCarImageBinding.inflate(inflater, container, false)
+        val rootView: View = inflater.inflate(R.layout.camera_gallery_dialog, container, false)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val etLicensePlate = binding.etLicensePlate.text
-
-        binding.button.setOnClickListener {
-
-            viewLifecycleOwner.lifecycleScope.launch {
-                carViewModel.addCarImage(etLicensePlate.toString(), picture)
-
-
-                viewLifecycleOwner.lifecycleScope.launch {
-                    val carImage = carViewModel.getCarImage(etLicensePlate.toString()).image
-
-                    binding.ivDatabase.setImageBitmap(decodePicString(carImage))
-                }
-
-            }
-
-
+        rootView.findViewById<ImageButton>(R.id.btn_close).setOnClickListener {
+            dismiss()
         }
 
-        binding.btnTakePicture.setOnClickListener {
+        rootView.findViewById<Button>(R.id.btn_camera).setOnClickListener {
             cameraCheckPermission()
-        }
-
-        binding.btnRequest.setOnClickListener {
             viewLifecycleOwner.lifecycleScope.launch {
-                val carImage = carViewModel.getCarImage(etLicensePlate.toString()).image
-                binding.ivDatabaseRequest.setImageBitmap(decodePicString(carImage))
+            val preferences = SharityPreferences(requireContext())
+            preferences.setImage(encodedString)
+            dismiss()
             }
         }
+        return rootView
     }
 
-    private fun cameraCheckPermission() {
+    private fun cameraCheckPermission()  {
         Dexter.withContext(requireContext())
             .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA).withListener(
 
@@ -109,7 +84,6 @@ class TestCarImage : Fragment() {
     }
 
     private fun camera() {
-
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(intent, CAMERA_REQUEST_CODE)
     }
@@ -121,8 +95,6 @@ class TestCarImage : Fragment() {
 
             when (requestCode) {
 
-
-
                 CAMERA_REQUEST_CODE -> {
 
                     val bitmap = data?.extras?.get("data") as Bitmap
@@ -130,12 +102,8 @@ class TestCarImage : Fragment() {
                     val byteArrayOutputStream = ByteArrayOutputStream()
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
                     val byteArray = byteArrayOutputStream.toByteArray()
-                    picture = java.util.Base64.getEncoder().encodeToString(byteArray)
+                    encodedString = java.util.Base64.getEncoder().encodeToString(byteArray)
 
-                    binding.ivCamera.load(bitmap) {
-                        crossfade(true)
-                        crossfade(1000)
-                    }
                 }
             }
         }
@@ -160,19 +128,4 @@ class TestCarImage : Fragment() {
             }
             .show()
     }
-
-    fun decodePicString (encodedString: String): Bitmap {
-
-        val imageBytes = java.util.Base64.getDecoder().decode(encodedString)
-        val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-
-        return decodedImage
-    }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }

@@ -7,7 +7,7 @@ class CarImageModel (
         @field:Json(name = "licensePlate")
         val licensePlate: String,
 
-        @field:Json(name = "picture")
-        val picture: String,
+        @field:Json(name = "image")
+        val image: String,
 
     )

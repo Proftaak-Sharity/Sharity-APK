@@ -2,6 +2,7 @@ package com.example.sharity_apk.config
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 
 
 class SharityPreferences(context: Context) {
@@ -34,6 +35,7 @@ class SharityPreferences(context: Context) {
     val RENT = "Rent"
     val PACKAGE_PRICE = "PackagePrice"
     val PAYMENT_ENUM = "PaymentEnum"
+    val IMAGE = "Image"
 
     private val preference: SharedPreferences =
         context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
@@ -257,5 +259,13 @@ class SharityPreferences(context: Context) {
 
     fun setPaymentEnum(paymentEnum: String) {
         return preference.edit().putString(PAYMENT_ENUM, paymentEnum).apply()
+    }
+
+    fun getImage(): String? {
+        return preference.getString(IMAGE, "")
+    }
+
+    fun setImage(image: String) {
+        return preference.edit().putString(IMAGE, image).apply()
     }
 }

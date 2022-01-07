@@ -3,6 +3,8 @@ package com.example.sharity_apk.adapter
 import android.content.res.Resources
 import android.content.res.Resources.getAttributeSetSourceResId
 import android.content.res.Resources.getSystem
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,17 +12,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sharity_apk.R
+import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.model.CarModel
 import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.coroutines.coroutineContext
 
 class CarAdapter(
     private val carList: MutableList<CarModel>,
     private val listener: OnCarClickListener
-
 ):
     RecyclerView.Adapter<CarAdapter.CarViewHolder>() {
 
@@ -94,6 +98,14 @@ class CarAdapter(
 
             }
         }
+    }
+
+    private fun decodePicString (encodedString: String): Bitmap {
+
+        val imageBytes = Base64.getDecoder().decode(encodedString)
+        val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+
+        return decodedImage
     }
 
     interface OnCarClickListener {

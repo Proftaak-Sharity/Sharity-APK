@@ -1,17 +1,11 @@
 package com.example.sharity_apk
 
-import android.Manifest
-import android.R.attr
-import android.app.Activity
 import android.app.AlertDialog
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
+import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
-import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,24 +13,15 @@ import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
-import coil.load
-import coil.transform.CircleCropTransformation
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.CreateCarBinding
-import com.example.sharity_apk.dialog.EmptyFieldDialog
 import com.example.sharity_apk.viewmodel.CarViewModel
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.MultiplePermissionsReport
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import kotlinx.coroutines.launch
-import java.io.File
-import java.util.*
-import android.R.attr.bitmap
 import java.io.ByteArrayOutputStream
+import java.util.*
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.sharity_apk.dialog.EmptyFieldDialog
+import kotlinx.coroutines.launch
 
 
 class CreateCar : Fragment() {
@@ -44,6 +29,7 @@ class CreateCar : Fragment() {
     private var _binding: CreateCarBinding? = null
     private val binding get() = _binding!!
     private val CAMERA_REQUEST_CODE = 1
+    private val GALLERY_REQUEST_CODE = 2
 
     private val carViewModel: CarViewModel by lazy {
         ViewModelProvider(this)[CarViewModel::class.java]
@@ -108,12 +94,14 @@ class CreateCar : Fragment() {
 //        OnclickListener on next-button
         binding.buttonSave.setOnClickListener {
 
+            val encodedString = preferences.getImage()
+
             viewLifecycleOwner.lifecycleScope.launch {
                 when (carType) {
                     getString(R.string.electric) -> {
                         if (etLicensePlate.isNullOrEmpty() || etMake.text.isNullOrEmpty() ||
                             etModel.isNullOrEmpty() || etPricePerDay.isNullOrEmpty() ||
-                            etCapacity.isNullOrEmpty() || etUsage.isNullOrEmpty()) {
+                            etCapacity.isNullOrEmpty() || etUsage.isNullOrEmpty() || encodedString.toString().isEmpty()) {
                                 val dialog = EmptyFieldDialog()
                                 dialog.show(parentFragmentManager, "customDialog")
                         } else {
@@ -126,13 +114,14 @@ class CreateCar : Fragment() {
                                 etCapacity.toString().toInt(),
                                 etUsage.toString().toInt()
                             )
+                            carViewModel.addCarImage(etLicensePlate.toString(), encodedString.toString())
                             findNavController().navigate(R.id.action_CreateCar_to_GetAllCars)
                         }
                     }
                     getString(R.string.hydrogen) -> {
                         if (etLicensePlate.isNullOrEmpty() || etMake.text.isNullOrEmpty() ||
                             etModel.isNullOrEmpty() || etPricePerDay.isNullOrEmpty() ||
-                            etCapacity.isNullOrEmpty() || etUsage.isNullOrEmpty()) {
+                            etCapacity.isNullOrEmpty() || etUsage.isNullOrEmpty() || encodedString.toString().isEmpty()) {
                             val dialog = EmptyFieldDialog()
                             dialog.show(parentFragmentManager, "customDialog")
                         } else {
@@ -145,6 +134,7 @@ class CreateCar : Fragment() {
                                 etCapacity.toString().toInt(),
                                 etUsage.toString().toInt()
                             )
+                            carViewModel.addCarImage(etLicensePlate.toString(), encodedString.toString())
                             findNavController().navigate(R.id.action_CreateCar_to_GetAllCars)
                         }
                     }
@@ -152,7 +142,7 @@ class CreateCar : Fragment() {
                         if (etLicensePlate.isNullOrEmpty() || etMake.text.isNullOrEmpty() ||
                             etModel.isNullOrEmpty() || etPricePerDay.isNullOrEmpty() ||
                             etCapacity.isNullOrEmpty() || etUsage.isNullOrEmpty() ||
-                            etFuelType.text.isNullOrEmpty()) {
+                            etFuelType.text.isNullOrEmpty() || encodedString.toString().isEmpty()) {
                                 val dialog = EmptyFieldDialog()
                                 dialog.show(parentFragmentManager, "customDialog")
                         } else {
@@ -166,6 +156,7 @@ class CreateCar : Fragment() {
                                 etUsage.toString().toInt(),
                                 etFuelType.text.toString()
                             )
+                            carViewModel.addCarImage(etLicensePlate.toString(), encodedString.toString())
                             findNavController().navigate(R.id.action_CreateCar_to_GetAllCars)
                         }
                     }
@@ -174,89 +165,58 @@ class CreateCar : Fragment() {
         }
 
         binding.buttonAddImage.setOnClickListener {
-            cameraCheckPermission()
-        }
-
-
-    }
-
-    private fun cameraCheckPermission() {
-        Dexter.withContext(requireContext())
-            .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA).withListener(
-
-                object : MultiplePermissionsListener {
-                    override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
-                        report?.let {
-
-                            if (report.areAllPermissionsGranted()) {
-                                camera()
-                            }
-                        }
-                    }
-
-                    override fun onPermissionRationaleShouldBeShown(
-                        p0: MutableList<PermissionRequest>?,
-                        p1: PermissionToken?
-                    ) {
-                        showRorationalDialogForPermission()
-                    }
+            val pictureDialog = AlertDialog.Builder(requireContext())
+            pictureDialog.setTitle("Select Action")
+            val pictureDialogItems = arrayOf("Select photo from Gallery", "Capture photo from Camera")
+            pictureDialog.setItems(pictureDialogItems) {
+                    _, which ->
+                when (which) {
+                    0 -> gallery()
+                    1 -> camera()
                 }
-            ).onSameThread().check()
+            }
+            pictureDialog.show()
+        }
     }
 
-    private fun camera() {
 
+    private fun camera()  {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//        val uriSavedImage = Uri.fromFile(File("/Users/robvdhorst/Downloads"))
-//        intent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage)
         startActivityForResult(intent, CAMERA_REQUEST_CODE)
+
+    }
+
+    private fun gallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, GALLERY_REQUEST_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        var bitmap: Bitmap? = null
+        val preferences = SharityPreferences(requireContext())
 
-        if (resultCode == Activity.RESULT_OK) {
+        if (requestCode == CAMERA_REQUEST_CODE) {
+            bitmap = data?.extras?.get("data") as Bitmap
+            binding.imageCar.setImageBitmap(bitmap)
 
-            when (requestCode) {
+        } else if (requestCode == GALLERY_REQUEST_CODE) {
 
-
-
-                CAMERA_REQUEST_CODE -> {
-
-                    val bitmap = data?.extras?.get("data") as Bitmap
-
-                    val byteArrayOutputStream = ByteArrayOutputStream()
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-                    val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
-
-                    binding.imageCar.load(bitmap) {
-                        crossfade(true)
-                        crossfade(1000)
-                    }
-                }
-            }
+            val uriDataPath = data?.data
+            bitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uriDataPath)
+            binding.imageCar.setImageBitmap(bitmap)
         }
+
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap?.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+        val byteArray = byteArrayOutputStream.toByteArray()
+        val encodedString = Base64.getEncoder().encodeToString(byteArray)
+        preferences.setImage(encodedString)
     }
 
-    private fun showRorationalDialogForPermission() {
-        AlertDialog.Builder(requireContext())
-            .setMessage(getString(R.string.turned_off_permissions) + "required for this feature. It can be enabled under app settings!!!")
-            .setPositiveButton("Go to SETTINGS") {_,_ ->
-                try {
-                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                    val uri = Uri.fromParts("package", activity?.packageName, null)
-                    intent.data = uri
-                    startActivity(intent)
 
-                } catch (e: ActivityNotFoundException) {
-                    e.printStackTrace()
-                }
-            }
-            .setNegativeButton("CANCEL") { dialog, _ ->
-                dialog.dismiss()
-            }
-            .show()
-    }
+
 
 
     override fun onDestroyView() {

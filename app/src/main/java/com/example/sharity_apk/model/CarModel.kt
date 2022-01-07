@@ -1,5 +1,6 @@
 package com.example.sharity_apk.model
 
+import android.graphics.Picture
 import com.squareup.moshi.Json
 
 
@@ -9,10 +10,7 @@ data class CarModel(
     @field:Json(name = "licensePlate")
     val licensePlate: String?,
 
-    @field:Json(name = "car_type")
-    val carType: String?,
-
-    @field:Json(name = "customer_number")
+    @field:Json(name = "customerNumber")
     val customerNumber: Long?,
 
     @field:Json(name = "make")
@@ -46,5 +44,6 @@ data class CarModel(
     val sizeFueltank: String?,
 
     @field:Json(name = "km_per_kilo")
-    val kmPerKilo: String?,
+    val kmPerKilo: String?
+
     )
