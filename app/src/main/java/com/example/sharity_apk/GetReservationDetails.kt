@@ -87,10 +87,13 @@ class GetReservationDetails: Fragment() {
                     findNavController().navigate(R.id.action_GetReservationDetails_to_mapsFragment3)
               }
         }
+
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }
