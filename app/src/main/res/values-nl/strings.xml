@@ -109,7 +109,7 @@
     <string name="total_price">Totaalprijs</string>
     <string name="payment_status">Betalingsstatus</string>
     <string name="change">verander</string>
-    <string name="reservationnumber">Reserveringsnummer:</string>
+    <string name="reservationnumber">Reserveringsnummer</string>
     <string name="rent_price">Huurprijs:</string>
     <string name="last_name">Achternaam</string>
     <string name="city">Woonplaats</string>
@@ -194,5 +194,13 @@
     <string name="payLater">Betaal later</string>
     <string name="yourcarishere">Uw huurauto staat hier!</string>
     <string name="youarehere">Uw locatie!</string>
-
+    <string name="turned_off_permissions">Heeft u de permissies uitgeschakeld?</string>
+    <string name="todo">TODO</string>
+    <string name="add_from_camera_or_gallery">Voeg een foto toe uit de gallerij</string>
+    <string name="gallery">Gallerij</string>
+    <string name="dont_forget">(vergeet u de foto niet?)</string>
+    <string name="per_km">per km</string>
+    <string name="per_day">per dag</string>
+    <string name="location_unknown">Location onbekend</string>
+    <string name="cartype_not_found">Cartype niet gevonden</string>
 </resources>

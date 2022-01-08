@@ -17,10 +17,10 @@ class ReservationViewModel: ViewModel() {
                                 endDate: String?,
                                 rent: Double?,
                                 packagePrice: Double?,
-                                paymentEnum: String?
+                                paymentEnum: String?) : Int {
 
-                                ) : Int{
-        val reservationNumber: Int =  serviceGenerator.addReservation(customerNumber,
+
+        return serviceGenerator.addReservation(customerNumber,
                                         licensePlate,
                                         kmPackage,
                                         startDate,
@@ -29,6 +29,5 @@ class ReservationViewModel: ViewModel() {
                                         packagePrice,
                                         paymentEnum
         )
-        return reservationNumber
     }
 }

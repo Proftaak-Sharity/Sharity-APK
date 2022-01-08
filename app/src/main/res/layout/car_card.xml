@@ -36,7 +36,6 @@
 
             <TextView
                 android:id="@+id/tvMake"
-                tools:text="Opel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?attr/textAppearanceBody1"
@@ -46,7 +45,6 @@
 
             <TextView
                 android:id="@+id/tvModel"
-                tools:text="Astra"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textAppearance="?attr/textAppearanceBody1"
@@ -62,8 +60,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvMakeModel"
-            tools:text="Price: €100,00" />
+            app:layout_constraintTop_toBottomOf="@id/tvMakeModel"/>
 
         <TextView
             android:id="@+id/tvLocation"
@@ -71,8 +68,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPrice"
-            tools:text="Location: Breda"/>
+            app:layout_constraintTop_toBottomOf="@id/tvPrice"/>
 
         <TextView
             android:id="@+id/tvCarType"
@@ -80,8 +76,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvLocation"
-            tools:text="Fuel: Petrol"/>
+            app:layout_constraintTop_toBottomOf="@id/tvLocation"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -89,15 +84,3 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
 
-
-
-
-
-
-
-
-
-
-
-<!--        -->
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->

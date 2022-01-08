@@ -1,5 +1,6 @@
 package com.example.sharity_apk.adapter
 
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
@@ -66,18 +67,18 @@ class CarAdapter(
                 val carCity =  getCustomerCity(currentCar.customerNumber)
                 holder.tvLocation.text = carCity
             } else {
-                holder.tvLocation.text = "Location Unknown"
+                holder.tvLocation.setText(R.string.location_unknown)
             }
         }
 
         if ( currentCar.batteryCapacity != null) {
-            holder.tvCarType.text = "Electric"
+            holder.tvCarType.setText(R.string.electric)
         } else if (currentCar.fuelType != null) {
             holder.tvCarType.text = currentCar.fuelType
         } else if (currentCar.kmPerKilo != null) {
-            holder.tvCarType.text = "Hydrogen"
+            holder.tvCarType.setText(R.string.hydrogen)
         } else {
-            holder.tvCarType.text = "carType not found"
+            holder.tvCarType.setText(R.string.cartype_not_found)
         }
     }
 

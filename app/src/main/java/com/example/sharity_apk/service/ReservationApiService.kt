@@ -25,6 +25,5 @@ interface ReservationApiService {
                                @Query("endDate") endDate: String?,
                                @Query("rent") rent: Double?,
                                @Query("packagePrice") packagePrice: Double?,
-                               @Query("paymentEnum") paymentEnum: String?
-    ) : Int
+                               @Query("paymentEnum") paymentEnum: String?) : Int
 }

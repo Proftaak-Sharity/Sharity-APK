@@ -63,7 +63,7 @@ interface CarApiService {
 
     @POST("cars/image")
     suspend fun addCarImage(@Query ("licensePlate") licensePlate: String,
-                            @Query ("image") image: String) : CarImageModel
+                            @Query ("image") image: String)
 
     @GET("cars/image/{licensePlate}")
     suspend fun getCarImage(@Path ("licensePlate") licensePlate: String) : CarImageModel

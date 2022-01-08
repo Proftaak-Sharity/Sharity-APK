@@ -119,7 +119,7 @@
     <string name="km_package_price">Package price</string>
     <string name="total_price">Total price</string>
     <string name="payment_status">Payment status</string>
-    <string name="pick_date">Pick Date status</string>
+    <string name="pick_date">Pick date</string>
     <string name="add">add</string>
     <string name="passwords_not_matching">Passwords not matching</string>
     <string name="email_already_in_db">Email address already exists</string>
@@ -212,6 +212,11 @@
     <string name="Default_language">Default language</string>
     <string name="languagepreference">language preference</string>
     <string name="youarehere">You are here!</string>
+    <string name="per_km">per km</string>
+    <string name="per_day">per day</string>
+    <string name="location_unknown">Location unknown</string>
+    <string name="cartype_not_found">Cartype not found</string>
+
 
 
 </resources>

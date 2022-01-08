@@ -215,10 +215,6 @@ class CreateCar : Fragment() {
         preferences.setImage(encodedString)
     }
 
-
-
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

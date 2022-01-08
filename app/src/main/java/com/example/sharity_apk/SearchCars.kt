@@ -59,7 +59,9 @@ class SearchCars : Fragment() {
 
     private fun showDataRangePicker() {
         val preferences = SharityPreferences(requireContext())
-
+        val outputDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).apply {
+            timeZone = TimeZone.getTimeZone("UTC")
+        }
         // use the material datepicker
         val dateRangePicker =
             MaterialDatePicker
@@ -74,18 +76,18 @@ class SearchCars : Fragment() {
 
         dateRangePicker.addOnPositiveButtonClickListener { dateSelected ->
 
-            val startDate = dateSelected.first
-            val endDate = dateSelected.second
+            val startDate = outputDateFormat.format(dateSelected.first)
+            val endDate = outputDateFormat.format(dateSelected.second)
 
             // show dates on the button
             if (startDate != null && endDate != null) {
                 binding.datePicker.text =
-                    "StartDate: ${convertLongToTime(startDate)}\n" +
-                            "EndDate: ${convertLongToTime(endDate)}"
+                    "StartDate: $startDate\n" +
+                            "EndDate: $endDate"
             }
             //set the startdate and enddate so the next screens can use this
-            preferences.setStartDate(convertLongToTime(startDate))
-            preferences.setEndDate(convertLongToTime(endDate))
+            preferences.setStartDate(startDate)
+            preferences.setEndDate(endDate)
         }
     }
 
@@ -94,7 +96,7 @@ class SearchCars : Fragment() {
     private fun convertLongToTime(time: Long): String {
         val date = Date(time)
         val format = SimpleDateFormat(
-            "dd.MM.yyyy",
+            "dd-MM-yyyy",
             Locale.getDefault())
         return format.format(date)
     }

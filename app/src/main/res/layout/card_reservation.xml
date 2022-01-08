@@ -2,106 +2,163 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="100dp"
     android:layout_margin="8dp"
     app:cardElevation="4dp"
     app:cardCornerRadius="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/sharity_green">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/reservationNumber"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="@string/reservationnumber"
-            android:textSize="16sp"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            tools:text="Reservationnumber" />
+        <ImageView
+            android:id="@+id/ivCar"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="@string/car_image" />
 
-        <TextView
-            android:id="@+id/tv_reservation_number"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textSize="16sp"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            app:layout_constraintLeft_toRightOf="@id/reservationNumber"
-            tools:text="Reservationnumber_db"/>
+            app:layout_constraintStart_toEndOf="@+id/ivCar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="10dp">
 
-        <TextView
-            android:id="@+id/start_date"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="@string/reservation_startdate"
-            android:textSize="16sp"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            app:layout_constraintTop_toBottomOf="@id/reservationNumber"
-             />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/reservation_number_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_startDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textSize="16sp"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            app:layout_constraintTop_toBottomOf="@+id/tv_reservation_number"
-            app:layout_constraintLeft_toRightOf="@id/start_date"
-            tools:text="StartDate_db" />
+                <TextView
+                    android:id="@+id/tv_reservation_number"
+                    tools:text="@string/reservationnumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/end_date"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="@string/reservation_enddate"
-            android:textSize="16sp"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            app:layout_constraintTop_toBottomOf="@id/start_date"
-            />
+                <TextView
+                    android:id="@+id/tv_reservation_number_db"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:paddingStart="5dp"
+                    app:layout_constraintStart_toEndOf="@id/tv_reservation_number"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/tv_endDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textSize="16sp"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            app:layout_constraintTop_toBottomOf="@id/tv_startDate"
-            app:layout_constraintLeft_toRightOf="@id/end_date"
-            tools:text="StartDate_db" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/col_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 app:layout_constraintTop_toBottomOf="@+id/reservation_number_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-            android:id="@+id/rentPrice"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="@string/rent_price"
-            android:textSize="16sp"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            app:layout_constraintTop_toBottomOf="@id/end_date"
-            />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/startdate_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_rent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textSize="16sp"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            app:layout_constraintTop_toBottomOf="@id/end_date"
-            app:layout_constraintLeft_toRightOf="@id/rentPrice"
-            tools:text="Rent" />
+                    <TextView
+                        android:id="@+id/tv_startDate"
+                        tools:text="@string/start_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBody1"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
 
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/enddate_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/startdate_layout">
+
+                    <TextView
+                        android:id="@+id/tv_endDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBody1"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/end_date" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/rentPrice_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/enddate_layout">
+
+                    <TextView
+                        android:id="@+id/tv_rentprice"
+                        tools:text="@string/rent_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBody1"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/reservation_number_layout"
+                app:layout_constraintStart_toEndOf="@+id/col_left">
+
+                <TextView
+                    android:id="@+id/tv_startdate_db"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:paddingStart="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tv_endDate_db"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:paddingStart="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_startdate_db"/>
+
+                <TextView
+                    android:id="@+id/tv_rentprice_db"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:paddingStart="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_endDate_db"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 </com.google.android.material.card.MaterialCardView>
+

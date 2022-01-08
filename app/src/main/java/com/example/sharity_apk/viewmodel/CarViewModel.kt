@@ -45,8 +45,8 @@ class CarViewModel(): ViewModel() {
         serviceGenerator.addFuelCar(licensePlate, customerNumber, make, model, pricePerDay, sizeFueltank, kmPerLiter, fuelType)
     }
 
-    suspend fun addCarImage(licensePlate: String, image: String): CarImageModel {
-        return serviceGenerator.addCarImage(licensePlate, image) }
+    suspend fun addCarImage(licensePlate: String, image: String) {
+         serviceGenerator.addCarImage(licensePlate, image) }
 
     suspend fun getCarImage(licensePlate: String): CarImageModel {
         return serviceGenerator.getCarImage(licensePlate)
