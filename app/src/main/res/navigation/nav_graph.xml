@@ -120,6 +120,7 @@
         <action
             android:id="@+id/action_GetSearchedCarDetails_to_mapsFragment3"
             app:destination="@id/mapsFragment3" />
+
     </fragment>
 
     <fragment
@@ -139,7 +140,9 @@
             app:destination="@id/Login" />
         <action
             android:id="@+id/action_CreateReservation_to_GetReservationDetails"
-            app:destination="@id/GetReservationDetails" />
+            app:destination="@id/GetReservationDetails"
+            app:popUpTo="@id/SearchResults"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_CreateReservation_to_SearchCars"
             app:destination="@id/SearchCars" />

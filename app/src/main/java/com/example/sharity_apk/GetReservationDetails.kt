@@ -68,14 +68,11 @@ class GetReservationDetails: Fragment() {
             val reservationNumber = preferences.getReservationNumber()
 
 //            using shared preference to retrieve reservation data from api
-            println("Getting reservation and it is made ?$reservationNumber")
             val reservation = serviceGenerator.getReservation(reservationNumber)
-            println("got reservation")
+
             //      connecting licenseplate from shared preference to variable
             val licensePlateCar = preferences.getLicensePlate()
-            println("getCar $licensePlateCar")
             val car = serviceGenerator2.getCar(licensePlateCar)
-            println("gotCar")
 //            connecting reservation api-data to textfield
 
             when (val encodedString = serviceGenerator2.getCarImage(car.licensePlate.toString()).image) {
@@ -112,6 +109,8 @@ class GetReservationDetails: Fragment() {
                     findNavController().navigate(R.id.action_GetReservationDetails_to_mapsFragment3)
               }
         }
+
+
     }
 
     private fun decodeImageString(encodedString: String): Bitmap {
@@ -124,4 +123,5 @@ class GetReservationDetails: Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }
