@@ -202,8 +202,6 @@
         <item>DIESEL</item>
     </string-array>
 
-<<<<<<< Updated upstream
-=======
     <string name="update_bankaccount">update bankaccount</string>
     <string name="create_account_password_textview"><![CDATA[Use 8 or more characters with a mix of letters, numbers & symbols]]></string>
     <string name="bankaccount_title">Bankaccount:</string>
@@ -217,7 +215,7 @@
     <string name="per_day">per day</string>
     <string name="location_unknown">Location unknown</string>
     <string name="cartype_not_found">Cartype not found</string>
+    <string name="yourcarishere">Your rentalcar location!</string>
 
->>>>>>> Stashed changes
 
 </resources>

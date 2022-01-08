@@ -5,7 +5,6 @@
     <!--     Strings used for fragments for navigation -->
     <string name="first_fragment_label">Sharity</string>
     <string name="start_sharing">Start Sharing</string>
-    <string name="back">Back</string>
     <string name="login">Inloggen</string>
     <string name="hello_first_fragment">Welkom bij Sharity</string>
     <string name="copyright">door Daniël, Rob en Bart</string>
@@ -118,8 +117,6 @@
     <string name="Language_settings">Taal settings</string>
     <string name="Default_language">Voorkeurstaal</string>
     <string name="languagepreference">taal voorkeuren</string>
-<<<<<<< Updated upstream
-=======
     <string name="back">Terug</string>
     <string name="edit_bankaccount">Wijzig rekening</string>
     <string name="save">Bewaar</string>
@@ -202,6 +199,9 @@
     <string name="add_from_camera_or_gallery">Voeg een foto toe uit de gallerij</string>
     <string name="gallery">Gallerij</string>
     <string name="dont_forget">(vergeet u de foto niet?)</string>
->>>>>>> Stashed changes
+    <string name="per_km">per km</string>
+    <string name="per_day">per dag</string>
+    <string name="location_unknown">Location onbekend</string>
+    <string name="cartype_not_found">Cartype niet gevonden</string>
 
 </resources>
