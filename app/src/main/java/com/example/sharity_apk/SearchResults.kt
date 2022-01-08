@@ -127,7 +127,7 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
 suspend fun checkAvailability(start: String?, end: String?, carList: MutableList<CarModel>): MutableList<CarModel> {
     val reservationServiceGenerator = ServiceGenerator.buildService(ReservationApiService::class.java)
 
-    val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+    val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
 
     val licensePlates = mutableListOf<String?>()
     val carsToBeRemoved = mutableListOf<CarModel?>()

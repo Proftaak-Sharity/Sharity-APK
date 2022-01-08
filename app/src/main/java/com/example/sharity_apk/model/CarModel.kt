@@ -23,7 +23,7 @@ data class CarModel(
     val pricePerDay: String?,
 
     @field:Json(name = "price_per_km")
-    val pricePerKm: String?,
+    val pricePerKm: String,
 
     @field:Json(name = "battery_capacity")
     val batteryCapacity: String?,

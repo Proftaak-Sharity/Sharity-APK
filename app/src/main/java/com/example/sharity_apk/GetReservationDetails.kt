@@ -1,5 +1,7 @@
 package com.example.sharity_apk
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +19,7 @@ import com.example.sharity_apk.service.ReservationApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import java.util.*
 
 class GetReservationDetails: Fragment() {
 
@@ -42,6 +45,7 @@ class GetReservationDetails: Fragment() {
         val serviceGenerator2 = ServiceGenerator.buildService(CarApiService::class.java)
 
 
+
 //        Connect textfields to variables:
         val reservationStart: TextView = binding.reservationStartDb
         val reservationEnd: TextView = binding.reservationEndDb
@@ -58,6 +62,8 @@ class GetReservationDetails: Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
 
+
+
 //            connecting reservation number from shared preference to variable
             val reservationNumber = preferences.getReservationNumber()
 
@@ -72,6 +78,22 @@ class GetReservationDetails: Fragment() {
             println("gotCar")
 //            connecting reservation api-data to textfield
 
+            when (val encodedString = serviceGenerator2.getCarImage(car.licensePlate.toString()).image) {
+                "1" -> binding.imageCar.setImageResource(R.drawable.volvo_xc90)
+                "2" -> binding.imageCar.setImageResource(R.drawable.landrover_defender)
+                "3" -> binding.imageCar.setImageResource(R.drawable.tesla_3)
+                "4" -> binding.imageCar.setImageResource(R.drawable.ford_mustang_convertible)
+                "5" -> binding.imageCar.setImageResource(R.drawable.cupra_leon)
+                "6" -> binding.imageCar.setImageResource(R.drawable.mercedes_r350_amg)
+                "7" -> binding.imageCar.setImageResource(R.drawable.ferrari_testarossa)
+                "8" -> binding.imageCar.setImageResource(R.drawable.opel_vectra)
+                "9" -> binding.imageCar.setImageResource(R.drawable.toyota_mirai)
+                else -> {
+                    val imageCar = decodeImageString(encodedString)
+                    binding.imageCar.setImageBitmap(imageCar)
+                }
+            }
+
             reservationStart.text = reservation.startDate
             reservationEnd.text = reservation.endDate
             reservationDate.text = reservation.reservationDate
@@ -80,9 +102,9 @@ class GetReservationDetails: Fragment() {
             model.text = car.model
 
             licensePlate.text = reservation.licensePlate
-            kmPackage.text = reservation.kmPackage.toString()
-            packagePrice.text = "€${reservation.packagePrice.toString()}"
-            totalPrice.text = "€${reservation.rent.toString()}"
+            kmPackage.text = reservation.kmPackage.toString() + " km"
+            packagePrice.text = "€ ${"%.2f".format(reservation.packagePrice)}"
+            totalPrice.text = "€ ${"%.2f".format(reservation.rent)}"
             paymentStatus.text = reservation.paymentEnum
 
             //Button bindings:
@@ -90,6 +112,12 @@ class GetReservationDetails: Fragment() {
                     findNavController().navigate(R.id.action_GetReservationDetails_to_mapsFragment3)
               }
         }
+    }
+
+    private fun decodeImageString(encodedString: String): Bitmap {
+
+        val imageBytes = Base64.getDecoder().decode(encodedString)
+        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
     }
 
     override fun onDestroyView() {

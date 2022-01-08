@@ -119,7 +119,7 @@
     <string name="km_package_price">Package price</string>
     <string name="total_price">Total price</string>
     <string name="payment_status">Payment status</string>
-    <string name="pick_date">Pick Date status</string>
+    <string name="pick_date">Pick date</string>
     <string name="add">add</string>
     <string name="passwords_not_matching">Passwords not matching</string>
     <string name="email_already_in_db">Email address already exists</string>
@@ -202,5 +202,22 @@
         <item>DIESEL</item>
     </string-array>
 
+<<<<<<< Updated upstream
+=======
+    <string name="update_bankaccount">update bankaccount</string>
+    <string name="create_account_password_textview"><![CDATA[Use 8 or more characters with a mix of letters, numbers & symbols]]></string>
+    <string name="bankaccount_title">Bankaccount:</string>
+    <string name="change">change</string>
+    <string name="language">language</string>
+    <string name="Language_settings">Language settings</string>
+    <string name="Default_language">Default language</string>
+    <string name="languagepreference">language preference</string>
+    <string name="youarehere">You are here!</string>
+    <string name="per_km">per km</string>
+    <string name="per_day">per day</string>
+    <string name="location_unknown">Location unknown</string>
+    <string name="cartype_not_found">Cartype not found</string>
+
+>>>>>>> Stashed changes
 
 </resources>

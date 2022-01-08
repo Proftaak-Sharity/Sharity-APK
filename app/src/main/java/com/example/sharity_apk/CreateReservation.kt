@@ -1,5 +1,7 @@
 package com.example.sharity_apk
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +26,7 @@ import com.example.sharity_apk.viewmodel.ReservationViewModel
 import kotlinx.coroutines.launch
 import retrofit2.http.Query
 import java.lang.Exception
+import java.util.*
 
 class CreateReservation : Fragment() {
 
@@ -73,7 +76,21 @@ class CreateReservation : Fragment() {
                 val owner: CustomerModel =
                     customerServiceGenerator.getCustomer(car.customerNumber!!)
 
-                binding.ivCar.setImageResource(R.drawable.ferrari_testarossa)
+                when (val encodedString = carServiceGenerator.getCarImage(car.licensePlate.toString()).image) {
+                    "1" -> binding.ivCar.setImageResource(R.drawable.volvo_xc90)
+                    "2" -> binding.ivCar.setImageResource(R.drawable.landrover_defender)
+                    "3" -> binding.ivCar.setImageResource(R.drawable.tesla_3)
+                    "4" -> binding.ivCar.setImageResource(R.drawable.ford_mustang_convertible)
+                    "5" -> binding.ivCar.setImageResource(R.drawable.cupra_leon)
+                    "6" -> binding.ivCar.setImageResource(R.drawable.mercedes_r350_amg)
+                    "7" -> binding.ivCar.setImageResource(R.drawable.ferrari_testarossa)
+                    "8" -> binding.ivCar.setImageResource(R.drawable.opel_vectra)
+                    "9" -> binding.ivCar.setImageResource(R.drawable.toyota_mirai)
+                    else -> {
+                        val imageCar = decodeImageString(encodedString)
+                        binding.ivCar.setImageBitmap(imageCar)
+                    }
+                }
                 binding.tvMake.text = car.make
                 binding.tvModel.text = car.model
                 binding.tvLicensePlate.text = car.licensePlate
@@ -170,6 +187,13 @@ class CreateReservation : Fragment() {
             }
         }
     }
+
+    private fun decodeImageString(encodedString: String): Bitmap {
+
+        val imageBytes = Base64.getDecoder().decode(encodedString)
+        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+    }
+
 
     private suspend fun addNewReservation(paymentEnum: String): Int {
         val preferences = SharityPreferences(requireContext())
