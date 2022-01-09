@@ -53,14 +53,30 @@ object GPSUtils {
             .create()
             .show()
 
-    @SuppressLint("MissingPermission")
     private fun getLocation(activity: Activity) {
         if (!activity.hasPermission(coarse) && !activity.hasPermission(fine)) {
             initPermissions(activity)
         }
 
         val location = listOf(GPS_PROVIDER, NETWORK_PROVIDER, PASSIVE_PROVIDER)
-            .map { locationManager.getLastKnownLocation(it) }
+            .map { if (ActivityCompat.checkSelfPermission(
+                    activity.applicationContext,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    activity.applicationContext,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return
+            }
+                locationManager.getLastKnownLocation(it) }
             .firstOrNull()
 
         when (location) {
