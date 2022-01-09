@@ -69,7 +69,7 @@ dependencies {
     //test impl for mocking and coroutine testing
     testImplementation "org.mockito:mockito-core:2.1.0"
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0'
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0'
 
     // Email support
     implementation 'com.sun.mail:android-mail:1.6.0'
@@ -99,12 +99,12 @@ dependencies {
 
 
     // Kotlin components
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
 
     // Google
     implementation 'androidx.preference:preference-ktx:1.1.1'
-    implementation 'com.google.android.gms:play-services-maps:18.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
     implementation 'com.google.android.gms:play-services-places:17.0.0'
 
 //    user permission
