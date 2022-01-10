@@ -54,8 +54,8 @@ class SearchCarUnitTest {
 
         launch(Dispatchers.Main){
             var carList = MakeCars(numberOfCars)
-            Mockito.`when`(sut.getCars()).thenReturn(carList)
-            var carListToCount: MutableList<CarModel> = sut.getCars()
+            Mockito.`when`(sut.getCarsFromCustomer()).thenReturn(carList)
+            var carListToCount: MutableList<CarModel> = sut.getCarsFromCustomer()
 
             return@launch assertEquals(carListToCount.size, carList.size )
 
@@ -66,7 +66,6 @@ class SearchCarUnitTest {
 
     fun makeCar() : CarModel {
         var car = CarModel(  licensePlate = "AUTO01",
-            carType = "FUEL",
             customerNumber = 12,
             make = "OPEL",
             model = "Astra",
@@ -92,7 +91,6 @@ class SearchCarUnitTest {
 
         while (i <= number) {
             var car = CarModel(  licensePlate = "AUTO0$i",
-                carType = "FUEL",
                 customerNumber = i,
                 make = "OPEL",
                 model = "Astra",
