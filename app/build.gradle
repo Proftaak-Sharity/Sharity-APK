@@ -86,7 +86,7 @@ dependencies {
     }
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
-    
+
     //test impl for mocking and coroutine testing
     testImplementation "org.mockito:mockito-core:2.19.0"
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0'
