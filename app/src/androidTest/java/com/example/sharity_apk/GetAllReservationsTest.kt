@@ -33,7 +33,7 @@ class GetAllReservationsTest : TestFunctions() {
 
 
     /***
-     * Recyclerview comes into view, check 2
+     * Recyclerview comes into view, check different method
      * */
     @Test
     fun test_selectListItem_isFragmentVisible() {
