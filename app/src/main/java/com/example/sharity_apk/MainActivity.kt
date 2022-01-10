@@ -38,6 +38,14 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+        val preferences = SharityPreferences(this)
+
+//        if(preferences.getCustomerNumber() <= 0) {
+//            navController.navigate(R.id.AccountOverview)
+//        } else {
+//            navController.navigate(R.id.Login)
+//        }
+
 
         binding.fab.setOnClickListener {
             sendEmail()

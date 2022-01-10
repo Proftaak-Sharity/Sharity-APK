@@ -268,4 +268,6 @@ class SharityPreferences(context: Context) {
     fun setImage(image: String) {
         return preference.edit().putString(IMAGE, image).apply()
     }
+
+
 }
