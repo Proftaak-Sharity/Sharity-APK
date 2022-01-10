@@ -1,27 +1,21 @@
 package com.example.sharity_apk
 
-import android.view.View
 import androidx.test.core.app.launchActivity
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.UiController
-import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
-import org.hamcrest.Matcher
-import org.hamcrest.Matchers.allOf
 import org.hamcrest.core.IsEqual.equalTo
 import org.junit.Test
 import org.junit.runner.RunWith
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class CreateAccountTest : BaseTests() {
+class CreateAccountTest : TestFunctions() {
 
     @Test
     fun createCustomerTest() {
@@ -35,7 +29,7 @@ class CreateAccountTest : BaseTests() {
 //        Fill in the edittext
         onView(withHint("Email"))
             .perform(click())
-            .perform(typeText("mijntest@espresso.com"), closeSoftKeyboard())
+            .perform(typeText("tester@sharity.com"), closeSoftKeyboard())
         onView(withHint("Password"))
             .perform(click())
             .perform(typeText("12345678"), closeSoftKeyboard())
@@ -111,24 +105,6 @@ class CreateAccountTest : BaseTests() {
         onView(withId(R.id.btn_add_bankaccount))
             .check(matches(withText("START SHARING")))
   }
-
-
-    private fun forceClick(): ViewAction {
-        return object : ViewAction {
-            override fun getConstraints(): Matcher<View> {
-                return allOf(isClickable(), isEnabled(), isDisplayed())
-            }
-
-            override fun getDescription(): String {
-                return "force click"
-            }
-
-            override fun perform(uiController: UiController, view: View) {
-                view.performClick() // perform click without checking view coordinates.
-                uiController.loopMainThreadUntilIdle()
-            }
-        }
-    }
 
 }
 
