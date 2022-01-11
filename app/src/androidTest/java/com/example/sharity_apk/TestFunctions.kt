@@ -1,9 +1,6 @@
 package com.example.sharity_apk
 
-import android.content.Context
 import android.view.View
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.test.InstrumentationRegistry.getTargetContext
 import androidx.test.core.app.launchActivity
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.UiController
@@ -22,7 +19,6 @@ open class TestFunctions {
 
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
 
-    @Test
     fun testLogin() {
 
         val preference = SharityPreferences(context)
