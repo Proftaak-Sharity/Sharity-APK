@@ -2,8 +2,6 @@ package com.example.sharity_apk
 
 import android.app.AlertDialog
 import android.content.Intent
-import android.content.res.Configuration
-import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -16,10 +14,6 @@ import android.view.MenuItem
 import com.example.sharity_apk.databinding.ActivityMainBinding
 import androidx.navigation.NavController
 import com.example.sharity_apk.config.SharityPreferences
-import java.util.*
-import android.util.DisplayMetrics
-import androidx.appcompat.app.AppCompatDelegate
-import com.google.android.material.switchmaterial.SwitchMaterial
 
 // Starts the application
 class MainActivity : AppCompatActivity() {
@@ -121,7 +115,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-//    inflates logout dialog when pushing logout button
+//    inflates logout dialog when pushing logout button AND clears all shared prefs
 private fun logoutDialog() {
         val preferences = SharityPreferences(this)
 

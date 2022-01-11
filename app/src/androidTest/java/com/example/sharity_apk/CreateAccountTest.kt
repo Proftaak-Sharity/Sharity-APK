@@ -39,10 +39,10 @@ class CreateAccountTest : TestFunctions() {
             .perform(typeText("tester@sharity.com"), closeSoftKeyboard())
         onView(withHint("Password"))
             .perform(click())
-            .perform(typeText("12345678"), closeSoftKeyboard())
+            .perform(typeText("12312312"), closeSoftKeyboard())
         onView(withHint("Confirm password"))
             .perform(click())
-            .perform(typeText("12345678"), closeSoftKeyboard())
+            .perform(typeText("12312312"), closeSoftKeyboard())
 
 //        click next button and go to Create Customer Fragment
         onView(withText("next"))
