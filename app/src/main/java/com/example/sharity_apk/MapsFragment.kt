@@ -2,6 +2,7 @@ package com.example.sharity_apk
 
 import android.location.Address
 import android.location.Geocoder
+import android.location.Location
 import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.example.sharity_apk.service.ServiceGenerator
 import com.example.sharity_apk.utils.GPSUtils
 import com.example.sharity_apk.utils.GPSUtils.latitude
 import com.example.sharity_apk.utils.GPSUtils.longitude
+import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment

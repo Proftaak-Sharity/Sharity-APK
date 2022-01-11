@@ -23,26 +23,24 @@
         <entry key="app/src/main/res/drawable/ic_baseline_add_a_photo_24.xml" value="0.5369791666666667" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3411458333333333" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.4546875" />
-        <entry key="app/src/main/res/drawable/ic_no_image.xml" value="0.5369791666666667" />
         <entry key="app/src/main/res/drawable/ic_sharity.xml" value="0.3416666666666667" />
         <entry key="app/src/main/res/drawable/ic_sharity_txt_compleet.xml" value="0.3411458333333333" />
         <entry key="app/src/main/res/layout-v28/get_customer_details.xml" value="0.32971014492753625" />
         <entry key="app/src/main/res/layout/account_overview.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.325" />
         <entry key="app/src/main/res/layout/activity_vertical_list.xml" value="0.33559782608695654" />
-        <entry key="app/src/main/res/layout/camera_gallery_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/car_card.xml" value="0.335" />
         <entry key="app/src/main/res/layout/car_item.xml" value="0.3428442028985507" />
         <entry key="app/src/main/res/layout/car_item_cardview.xml" value="0.33559782608695654" />
         <entry key="app/src/main/res/layout/card_bankaccount.xml" value="0.33" />
         <entry key="app/src/main/res/layout/card_customer.xml" value="0.45652173913043476" />
-        <entry key="app/src/main/res/layout/card_reservation.xml" value="0.4302536231884058" />
+        <entry key="app/src/main/res/layout/card_reservation.xml" value="0.2128623188405797" />
         <entry key="app/src/main/res/layout/contact_form.xml" value="0.3265625" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.325" />
         <entry key="app/src/main/res/layout/create_account.xml" value="0.5119791666666667" />
         <entry key="app/src/main/res/layout/create_bankaccount.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/create_car.xml" value="0.41032608695652173" />
-        <entry key="app/src/main/res/layout/create_car_dialog.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/create_car_dialog.xml" value="0.24686087393269715" />
         <entry key="app/src/main/res/layout/create_customer.xml" value="0.4106776180698152" />
         <entry key="app/src/main/res/layout/create_drivers_license.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/create_reservation.xml" value="0.41032608695652173" />
@@ -71,7 +69,6 @@
         <entry key="app/src/main/res/layout/search_cars.xml" value="0.33" />
         <entry key="app/src/main/res/layout/search_results.xml" value="0.1" />
         <entry key="app/src/main/res/layout/searched_car_item.xml" value="0.275" />
-        <entry key="app/src/main/res/layout/test_car_image.xml" value="0.38179347826086957" />
         <entry key="app/src/main/res/layout/update_bankaccount.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/update_car.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/update_customer.xml" value="0.165" />
@@ -82,6 +79,7 @@
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.4546875" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.4546875" />
         <entry key="app/src/main/res/xml/root_preferences.xml" value="0.38179347826086957" />
+        <entry key="app/src/main/res/xml/root_preferences.xml" value="0.18009118541033434" />
       </map>
     </option>
   </component>

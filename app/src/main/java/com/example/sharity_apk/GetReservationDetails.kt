@@ -37,7 +37,7 @@ class GetReservationDetails: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        println("In getreservation details")
+//        println("In getreservation details")
         super.onViewCreated(view, savedInstanceState)
 
         val preferences = SharityPreferences(requireContext())
