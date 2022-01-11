@@ -203,4 +203,13 @@
     <string name="per_day">per dag</string>
     <string name="location_unknown">Location onbekend</string>
     <string name="cartype_not_found">Cartype niet gevonden</string>
+    <string name="want_to_logout">Weet u zeker dat u uit wilt loggen?</string>
+    <string name="logout">Uitloggen</string>
+    <string name="select_email_account">Selecteeur je mailapplicatie</string>
+    <string name="switch_mode">wissel mode</string>
+    <string name="delete_bankaccount">Bankrekening verwijderen?</string>
+    <string name="update">Updaten</string>
+    <string name="update_bankaccount_dialog">Wijzig uw bankrekening?</string>
+    <string name="add_bankaccount_dialog">Bankrekening toevoegen?</string>
+    <string name="error_occurred">Er is een fout opgetreden</string>
 </resources>

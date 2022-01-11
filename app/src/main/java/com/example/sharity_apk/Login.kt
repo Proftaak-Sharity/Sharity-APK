@@ -39,7 +39,7 @@ class Login : Fragment() {
 
         val preference = SharityPreferences(requireContext())
 
-//        Keeps user logged in
+//        Keeps user logged in (check if shared prefs are set)
         if (preference.getCustomerNumber() >= 1) {
             findNavController().navigate(R.id.AccountOverview)
         }

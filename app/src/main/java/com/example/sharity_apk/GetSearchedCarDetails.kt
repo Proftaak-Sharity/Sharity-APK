@@ -78,16 +78,12 @@ class GetSearchedCarDetails: Fragment(), CarAdapter.OnCarClickListener {
                 binding.tvAdress.text = owner.address
                 binding.tvCity.text = owner.city
                 binding.tvPostalCode.text = owner.postalCode
-
                 binding.tvPrice.text = "€ ${"%.2f".format(car.pricePerDay?.toDouble())} ${getString(R.string.per_day)}".also { binding.tvPrice.text = it }
                 binding.tvPricePerKm.text = "€ ${"%.2f".format(car.pricePerKm?.toDouble())} ${getString(R.string.per_km)}".also { binding.tvPricePerKm.text = it }
                 binding.tvPhone.text = owner.phoneNumber
                 binding.tvEmail.text = owner.email
-                println(car.pricePerKm)
             } catch (e: Exception) {
-                println(e)
-
-                Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -102,7 +98,6 @@ class GetSearchedCarDetails: Fragment(), CarAdapter.OnCarClickListener {
     }
 
     private fun decodeImageString(encodedString: String): Bitmap {
-
         val imageBytes = Base64.getDecoder().decode(encodedString)
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
     }

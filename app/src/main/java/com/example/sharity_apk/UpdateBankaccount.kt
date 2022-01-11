@@ -61,7 +61,7 @@ class UpdateBankaccount: Fragment() {
                     deleteDialog()
                 } catch (e: Exception) {
                     findNavController().navigate(R.id.GetBankaccounts)
-                    Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT)
                         .show()
                 }
             }
@@ -86,7 +86,7 @@ class UpdateBankaccount: Fragment() {
                     builder.show()
                 } catch (e: Exception) {
                     findNavController().navigate(R.id.GetBankaccounts)
-                    Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT)
                         .show()
                 }
             }

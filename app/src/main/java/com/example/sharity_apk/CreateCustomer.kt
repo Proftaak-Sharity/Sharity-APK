@@ -103,6 +103,8 @@ class CreateCustomer : Fragment() {
                         binding.error.isVisible = true
 
                     } else {
+
+//                        set shared prefs until all create account fragments are filled
                         preferences.setFirstName(evFirstName.toString())
                         preferences.setLastName(evLastName.toString())
                         preferences.setAddress(evAddress.toString())
@@ -119,7 +121,7 @@ class CreateCustomer : Fragment() {
                 } catch (e: Exception) {
                         Toast.makeText(
                             requireContext(),
-                            "An error has occurred",
+                            getString(R.string.error_occurred),
                             Toast.LENGTH_SHORT
                         ).show()
                 }

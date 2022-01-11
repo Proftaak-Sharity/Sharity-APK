@@ -47,7 +47,7 @@ class GetAllCars : Fragment(), CarAdapter.OnCarClickListener {
                 binding.myRecyclerView.layoutManager = LinearLayoutManager(requireContext())
                 binding.myRecyclerView.setHasFixedSize(true)
             } catch (e: Exception) {
-                Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT).show()
             }
         }
 

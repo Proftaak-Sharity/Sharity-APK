@@ -224,6 +224,7 @@
     <string name="update">Update</string>
     <string name="update_bankaccount_dialog">Change your bankaccount details?</string>
     <string name="add_bankaccount_dialog">Add new bankaccount to your account?</string>
+    <string name="error_occurred">An error has occurred</string>
 
 
 </resources>

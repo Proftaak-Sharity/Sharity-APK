@@ -119,7 +119,7 @@ class CreateBankaccount: Fragment() {
                             builder.show()
                         }
                     } catch (e: Exception) {
-                        Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT)
+                        Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT)
                             .show()
                     }
                 }

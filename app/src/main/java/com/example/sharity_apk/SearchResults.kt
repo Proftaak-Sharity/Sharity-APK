@@ -63,7 +63,7 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
                 binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
                 binding.recyclerView.setHasFixedSize(true)
             } catch (e: Exception) {
-                Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -99,10 +99,8 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
     }
 
 
-    suspend fun getCars(fuel: String?): MutableList<CarModel> {
+    private suspend fun getCars(fuel: String?): MutableList<CarModel> {
         val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
-        println("$fuel is being used in getCars")
-
         // make this use start/end/fuel if set
         return when (fuel) {
             getString(R.string.petrol) -> {
@@ -116,7 +114,6 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
             }
             else -> {
                 // search for car in range set
-                println("now we use getCars")
                 carServiceGenerator.getCarsFromCustomer()
             }
         }

@@ -131,7 +131,7 @@ class UpdateCar : Fragment(){
                         findNavController().navigate(R.id.GetCarDetails)
                         Toast.makeText(
                             requireContext(),
-                            "An error has occurred",
+                            getString(R.string.error_occurred),
                             Toast.LENGTH_SHORT
                         )
                             .show()

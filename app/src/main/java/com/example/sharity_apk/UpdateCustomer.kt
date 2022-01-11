@@ -135,7 +135,7 @@ class UpdateCustomer: Fragment() {
                     builder.create().show()
                 } catch (e: Exception) {
                     findNavController().navigate(R.id.GetCustomerDetails)
-                    Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT)
                         .show()
                 }
             }

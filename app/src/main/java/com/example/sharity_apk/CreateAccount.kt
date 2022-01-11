@@ -53,6 +53,7 @@ class CreateAccount : Fragment() {
                     val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
                     val checkedEmail = serviceGenerator.checkEmail(tvEmail.toString())
 
+//                    check if fields are filled
                     if (tvEmail.toString().isEmpty()) {
                         binding.emailError.text = getString(R.string.email_empty)
                         binding.emailError.isVisible = true
@@ -62,17 +63,25 @@ class CreateAccount : Fragment() {
                     } else if (tvPassword.toString().isEmpty() || tvPasswordConfirm.toString().isEmpty()) {
                         binding.passwordError.text = getString(R.string.password_empty)
                         binding.passwordError.isVisible = true
+
+//                      check if passwords are same
                     } else if (tvPassword.toString() != tvPasswordConfirm.toString()) {
                         binding.passwordError.text = getString(R.string.passwords_not_matching)
                         binding.passwordError.isVisible = true
+
+//                      check if passwords are more then 8 chars
                     } else if (tvPassword.toString().length < 8) {
                         binding.passwordCharError.text = getString(R.string.password_char_error)
                         binding.passwordCharError.isVisible = true
+
+//                      set shared prefs
                     } else {
                         preferences.setEmail(tvEmail.toString())
                         preferences.setPassword(tvPassword.toString())
                         findNavController().navigate(R.id.action_CreateAccount_to_CreateCustomer)
                     }
+
+//                     catch exception if email not meet requirements like @ and .
                 } catch (e: Exception) {
                     binding.emailError.text = getString(R.string.email_regex_error)
                     binding.emailError.isVisible = true
