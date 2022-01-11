@@ -40,10 +40,10 @@ class CustomerUnitTests {
 
         launch(Dispatchers.Main){
 
-            Mockito.`when`(sut.getCustomer(5)).thenReturn(customer)
-            val customerToTest: CustomerModel = sut.getCustomer(5)
+            Mockito.`when`(sut.getCustomer(7)).thenReturn(customer)
+            val customerToTest: CustomerModel = sut.getCustomer(7)
 
-            return@launch Assert.assertEquals(customerToTest.customerNumber, customer.customerNumber )
+            return@launch Assert.assertEquals(customerToTest, customer)
 
         }
 
