@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.service.CarApiService
@@ -40,9 +41,15 @@ class MapsFragment : Fragment() {
         val lng = longitude
         val lat = latitude
 
+        if( lng == null && lat == null) {
+            //ToDo correct errorhandling, quickfix fallback Avans Hogeschool
+            val yourLocation = LatLng(51.583700, 4.797110)
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 15f))
+            googleMap.addMarker(MarkerOptions().position(yourLocation).title(getString(R.string.youarehere)))
+            }
         val yourLocation = LatLng(lat!!, lng!!)
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 15f))
 
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 15f))
         googleMap.addMarker(MarkerOptions().position(yourLocation).title(getString(R.string.youarehere)))
 
         googleMap.uiSettings.apply {
