@@ -58,23 +58,10 @@ class UpdateBankaccount: Fragment() {
             binding.btnDelete.setOnClickListener {
 
                 try {
-                    val builder = AlertDialog.Builder(requireContext())
-                    builder.setMessage("Remove bankaccount from your account?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes") { _, _ ->
-                            viewLifecycleOwner.lifecycleScope.launch {
-                                bankaccountViewModel.deleteBankaccount(preferences.getBankaccountId())
-                                findNavController().navigate(R.id.action_UpdateBankaccount_to_GetBankaccounts)
-                            }
-                        }
-                        .setNegativeButton("No") { dialog, _ ->
-                            dialog.dismiss()
-                        }
-                    val alert = builder.create()
-                    alert.show()
+                    deleteDialog()
                 } catch (e: Exception) {
                     findNavController().navigate(R.id.GetBankaccounts)
-                    Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT)
                         .show()
                 }
             }
@@ -82,31 +69,30 @@ class UpdateBankaccount: Fragment() {
             binding.btnSave.setOnClickListener {
                 try {
                     val builder = AlertDialog.Builder(requireContext())
-                    builder.setMessage("Change your bankaccount details?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes") { _, _ ->
-                            viewLifecycleOwner.lifecycleScope.launch {
-                                bankaccountViewModel.updateBankaccount(
-                                    preferences.getBankaccountId(),
-                                    evIban.text.toString(),
-                                    evAccountHolder.text.toString()
-                                )
-                                findNavController().navigate(R.id.action_UpdateBankaccount_to_GetBankaccounts)
-                            }
+                    builder.setTitle(getString(R.string.update))
+                    builder.setIcon(R.mipmap.ic_launcher)
+                    builder.setMessage(getString(R.string.update_bankaccount_dialog))
+                    builder.setPositiveButton(android.R.string.ok) { _, _ ->
+                        viewLifecycleOwner.lifecycleScope.launch {
+                            bankaccountViewModel.updateBankaccount(
+                                preferences.getBankaccountId(),
+                                evIban.text.toString(),
+                                evAccountHolder.text.toString()
+                            )
+                            findNavController().navigate(R.id.action_UpdateBankaccount_to_GetBankaccounts)
                         }
-                        .setNegativeButton("No") { dialog, _ ->
-                            dialog.dismiss()
-                        }
-                    val alert = builder.create()
-                    alert.show()
+                    }
+                    builder.setNegativeButton(android.R.string.cancel) { _, _ -> }
+                    builder.show()
                 } catch (e: Exception) {
                     findNavController().navigate(R.id.GetBankaccounts)
-                    Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT)
                         .show()
                 }
             }
         }
     }
+
     private suspend fun addNewBankaccount() {
         val preferences = SharityPreferences(requireContext())
 
@@ -133,11 +119,25 @@ class UpdateBankaccount: Fragment() {
         }
     }
 
-    private suspend fun deleteBankaccount() {
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun deleteDialog() {
+        val preferences = SharityPreferences(requireContext())
+
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle(getString(R.string.delete))
+        builder.setIcon(R.mipmap.ic_launcher)
+        builder.setMessage(getString(R.string.delete_bankaccount))
+        builder.setPositiveButton(android.R.string.ok) { _, _ ->
+            viewLifecycleOwner.lifecycleScope.launch {
+                bankaccountViewModel.deleteBankaccount(preferences.getBankaccountId())
+                findNavController().navigate(R.id.action_UpdateBankaccount_to_GetBankaccounts)
+            }
+        }
+        builder.setNegativeButton(android.R.string.cancel) { _, _ -> }
+        builder.show()
     }
 }

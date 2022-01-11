@@ -6,13 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RadioButton
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.adapter.CarAdapter
 import com.example.sharity_apk.config.SharityPreferences
@@ -48,7 +44,6 @@ class GetSearchedCarDetails: Fragment(), CarAdapter.OnCarClickListener {
         val preferences = SharityPreferences(requireContext())
         val licensePlate = preferences.getLicensePlate()
 
-
         viewLifecycleOwner.lifecycleScope.launch {
 
             try {
@@ -78,31 +73,25 @@ class GetSearchedCarDetails: Fragment(), CarAdapter.OnCarClickListener {
                 binding.tvAdress.text = owner.address
                 binding.tvCity.text = owner.city
                 binding.tvPostalCode.text = owner.postalCode
-
                 binding.tvPrice.text = "€ ${"%.2f".format(car.pricePerDay?.toDouble())} ${getString(R.string.per_day)}".also { binding.tvPrice.text = it }
                 binding.tvPricePerKm.text = "€ ${"%.2f".format(car.pricePerKm?.toDouble())} ${getString(R.string.per_km)}".also { binding.tvPricePerKm.text = it }
                 binding.tvPhone.text = owner.phoneNumber
                 binding.tvEmail.text = owner.email
-                println(car.pricePerKm)
             } catch (e: Exception) {
-                println(e)
-
-                Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.buttonMakeReservation.setOnClickListener {
             findNavController().navigate(R.id.action_GetSearchedCarDetails_to_CreateReservation)
-
         }
+
         binding.buttonLocate.setOnClickListener {
             findNavController().navigate(R.id.action_GetSearchedCarDetails_to_mapsFragment3)
         }
-
     }
 
     private fun decodeImageString(encodedString: String): Bitmap {
-
         val imageBytes = Base64.getDecoder().decode(encodedString)
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
     }
@@ -111,10 +100,8 @@ class GetSearchedCarDetails: Fragment(), CarAdapter.OnCarClickListener {
         TODO("Not yet implemented")
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

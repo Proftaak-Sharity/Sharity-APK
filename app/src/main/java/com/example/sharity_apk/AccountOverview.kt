@@ -15,8 +15,6 @@ class AccountOverview : Fragment() {
     private var _binding: AccountOverviewBinding? = null
     private val binding get() = _binding!!
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,12 +22,10 @@ class AccountOverview : Fragment() {
         _binding = AccountOverviewBinding.inflate(inflater, container, false)
 
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         val preferences = SharityPreferences(requireContext())
 
@@ -42,7 +38,6 @@ class AccountOverview : Fragment() {
         binding.buttonMyCars.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_GetAllCars) }
         binding.buttonMyReservations.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_GetAllReservations) }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

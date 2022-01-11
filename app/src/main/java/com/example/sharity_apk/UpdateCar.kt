@@ -1,19 +1,16 @@
 package com.example.sharity_apk
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.config.SharityPreferences
-import com.example.sharity_apk.databinding.GetCarDetailsBinding
 import com.example.sharity_apk.databinding.UpdateCarBinding
 import com.example.sharity_apk.service.CarApiService
 import com.example.sharity_apk.service.ServiceGenerator
@@ -62,7 +59,7 @@ class UpdateCar : Fragment(){
             licensePlate.text = car.licensePlate
             make.text = car.make
             model.text = car.model
-            pricePerKm.text = getString(R.string.eur, "%.2f".format(car.pricePerKm?.toDouble()))
+            pricePerKm.text = getString(R.string.eur, "%.2f".format(car.pricePerKm.toDouble()))
             pricePerDay.text = "%.2f".format(car.pricePerDay?.toDouble())
 
             when {
@@ -113,27 +110,25 @@ class UpdateCar : Fragment(){
                 viewLifecycleOwner.lifecycleScope.launch {
                     try {
                         val builder = AlertDialog.Builder(requireContext())
-                        builder
-                            .setMessage(getString(R.string.edit_price))
-                            .setCancelable(false)
-                            .setPositiveButton("Yes") { _, _ ->
-                                viewLifecycleOwner.lifecycleScope.launch {
-                                    serviceGenerator.updateCar(
-                                        car.licensePlate,
-                                        pricePerDay.text.toString().toDouble()
-                                    )
+                        builder.setTitle(getString(R.string.update))
+                        builder.setIcon(R.mipmap.ic_launcher)
+                        builder.setMessage(getString(R.string.edit_price))
+                        builder.setPositiveButton(android.R.string.ok) { _, _ ->
+                            viewLifecycleOwner.lifecycleScope.launch {
+                                serviceGenerator.updateCar(
+                                    car.licensePlate,
+                                    pricePerDay.text.toString().toDouble()
+                                )
                                 findNavController().navigate(R.id.action_UpdateCar_to_GetCarDetails)
-                                }
                             }
-                            .setNegativeButton("No") { dialog, _ ->
-                                dialog.dismiss()
-                            }
-                        builder.create().show()
+                        }
+                        builder.setNegativeButton(android.R.string.cancel) { _, _ -> }
+                        builder.show()
                     } catch (e: Exception) {
                         findNavController().navigate(R.id.GetCarDetails)
                         Toast.makeText(
                             requireContext(),
-                            "An error has occurred",
+                            getString(R.string.error_occurred),
                             Toast.LENGTH_SHORT
                         )
                             .show()

@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Sharity</string>
     <string name="action_settings">instellingen</string>
-
-    <!--     Strings used for fragments for navigation -->
     <string name="first_fragment_label">Sharity</string>
     <string name="start_sharing">Start Sharing</string>
     <string name="login">Inloggen</string>
@@ -85,11 +83,8 @@
     <string name="hydrogen">Waterstof</string>
     <string name="petrol">Benzine</string>
     <string name="any">Elke</string>
-
-
-    <!--    Specific Sharity data:-->
     <string name="sharity_email">info@sharity.nl</string>
-    <string name="sharity_email_subject">Contact via Sharity-application</string>
+    <string name="sharity_email_subject">Contact door klantnummer:</string>
     <string name="car_image">car_afbeelding</string>
     <string name="EndDate">einddatum</string>
     <string name="get">ophalen</string>
@@ -203,4 +198,31 @@
     <string name="per_day">per dag</string>
     <string name="location_unknown">Location onbekend</string>
     <string name="cartype_not_found">Cartype niet gevonden</string>
+    <string name="want_to_logout">Weet u zeker dat u uit wilt loggen?</string>
+    <string name="logout">Uitloggen</string>
+    <string name="select_email_account">Selecteer je mailapplicatie</string>
+    <string name="switch_mode">wissel mode</string>
+    <string name="delete_bankaccount">Bankrekening verwijderen?</string>
+    <string name="update">Updaten</string>
+    <string name="update_bankaccount_dialog">Wijzig uw bankrekening?</string>
+    <string name="add_bankaccount_dialog">Bankrekening toevoegen?</string>
+    <string name="error_occurred">Er is een fout opgetreden</string>
+    <string name="no_cars_matched">Geen voertuigen voldoen aan uw criteria</string>
+    <string name="photo_from_gallery">selecteer foto uit de gallerij</string>
+    <string name="photo_from_camera">Neem foto met camera</string>
+    <string name="set_start_end_date">Start en einddatum verplicht</string>
+    <string name="select_date">Selecteer datum</string>
+    <string name="rentaldates">Startdatum: %1$s \n Einddatum: %2$s</string>
+
+    <string-array name="country_list">
+        <item>NEDERLANDS</item>
+        <item>BELGIE</item>
+        <item>LUXEMBURG</item>
+    </string-array>
+
+    <string-array name="fueltypes">
+        <item>BENZINE</item>
+        <item>LPG</item>
+        <item>DIESEL</item>
+    </string-array>
 </resources>

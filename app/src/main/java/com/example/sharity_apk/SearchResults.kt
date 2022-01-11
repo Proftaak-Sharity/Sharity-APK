@@ -52,7 +52,7 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
             val carList = checkAvailability(start, end, alCarList)
 
             if (carList.isNullOrEmpty()){
-                Toast.makeText(requireContext(), "No cars matched your criteria", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.no_cars_matched), Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_SearchResults_to_SearchCars)
             }
 
@@ -63,15 +63,10 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
                 binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
                 binding.recyclerView.setHasFixedSize(true)
             } catch (e: Exception) {
-                Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT).show()
             }
         }
-
-
-
     }
-
-
 
     override fun onItemClick(position: Int) {
         val preferences = SharityPreferences(requireContext())
@@ -88,8 +83,6 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
             preferences.setLicensePlate(carId)
 
             findNavController().navigate(R.id.action_SearchResults_to_GetSearchedCarDetails)
-
-
         }
     }
 
@@ -99,10 +92,8 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
     }
 
 
-    suspend fun getCars(fuel: String?): MutableList<CarModel> {
+    private suspend fun getCars(fuel: String?): MutableList<CarModel> {
         val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
-        println("$fuel is being used in getCars")
-
         // make this use start/end/fuel if set
         return when (fuel) {
             getString(R.string.petrol) -> {
@@ -116,11 +107,9 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
             }
             else -> {
                 // search for car in range set
-                println("now we use getCars")
                 carServiceGenerator.getCarsFromCustomer()
             }
         }
-
     }
 }
 
