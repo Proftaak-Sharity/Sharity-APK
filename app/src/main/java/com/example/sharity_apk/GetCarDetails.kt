@@ -134,21 +134,19 @@ class GetCarDetails : Fragment(){
                 viewLifecycleOwner.lifecycleScope.launch {
                     try {
                         val builder = AlertDialog.Builder(requireContext())
-                        builder
-                            .setMessage(getString(R.string.delete_car))
-                            .setCancelable(false)
-                            .setPositiveButton("Yes") { _, _ ->
-                                viewLifecycleOwner.lifecycleScope.launch {
-                                    serviceGenerator.deleteCar(
-                                        car.licensePlate
-                                    )
-                                    findNavController().navigate(R.id.action_GetCarDetails_to_GetAllCars)
-                                }
+                        builder.setTitle(getString(R.string.delete))
+                        builder.setIcon(R.mipmap.ic_launcher)
+                        builder.setMessage(getString(R.string.delete_car))
+                        builder.setPositiveButton(android.R.string.ok) { _, _ ->
+                            viewLifecycleOwner.lifecycleScope.launch {
+                                serviceGenerator.deleteCar(
+                                    car.licensePlate
+                                )
+                                findNavController().navigate(R.id.action_GetCarDetails_to_GetAllCars)
                             }
-                            .setNegativeButton("No") { dialog, _ ->
-                                dialog.dismiss()
-                            }
-                        builder.create().show()
+                        }
+                        builder.setNegativeButton(android.R.string.cancel) { _, _ -> }
+                        builder.show()
                     } catch (e: Exception) {
                         findNavController().navigate(R.id.GetCarDetails)
                         Toast.makeText(

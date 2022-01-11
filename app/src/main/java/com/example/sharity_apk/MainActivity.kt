@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -14,18 +13,15 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.*
-import androidx.appcompat.app.AppCompatDelegate
 import com.example.sharity_apk.databinding.ActivityMainBinding
 import androidx.navigation.NavController
 import com.example.sharity_apk.config.SharityPreferences
-import com.google.android.material.switchmaterial.SwitchMaterial
 import java.util.*
 import android.util.DisplayMetrics
-import androidx.preference.PreferenceManager
+import androidx.appcompat.app.AppCompatDelegate
+import com.google.android.material.switchmaterial.SwitchMaterial
 
-
+// Starts the application
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -33,10 +29,11 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = _binding
     private lateinit var navController: NavController
 
-
+// Creates first (and only) activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+//    Binds Mainactivity to layout
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -88,7 +85,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val preferences = SharityPreferences(this)
 
 //      Sets the destination of the buttons in de options menu:
         return when (item.itemId) {
@@ -97,7 +93,6 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.button_logout -> {
-                preferences.clearPreferences()
                 logoutDialog()
                 return true }
             else -> super.onOptionsItemSelected(item)
@@ -127,11 +122,12 @@ class MainActivity : AppCompatActivity() {
 
 
 //    inflates logout dialog when pushing logout button
-    fun logoutDialog() {
+private fun logoutDialog() {
         val preferences = SharityPreferences(this)
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle(getString(R.string.logout))
+        builder.setIcon(R.mipmap.ic_launcher)
         builder.setMessage(getString(R.string.want_to_logout))
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
             preferences.clearPreferences()
@@ -139,17 +135,5 @@ class MainActivity : AppCompatActivity() {
         }
         builder.setNegativeButton(android.R.string.cancel) { _, _ -> }
         builder.show()
-    }
-
-    private fun setAppLocale(localeCode: String) {
-        val resources: Resources = resources
-        val displayMetrics: DisplayMetrics = resources.getDisplayMetrics()
-        val configuration: Configuration = resources.getConfiguration()
-
-        configuration.setLocale(Locale(localeCode.toLowerCase()))
-        resources.updateConfiguration(configuration, displayMetrics)
-
-        configuration.locale = Locale(localeCode.toLowerCase())
-        resources.updateConfiguration(configuration, displayMetrics)
     }
 }

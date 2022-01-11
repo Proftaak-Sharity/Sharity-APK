@@ -113,22 +113,20 @@ class UpdateCar : Fragment(){
                 viewLifecycleOwner.lifecycleScope.launch {
                     try {
                         val builder = AlertDialog.Builder(requireContext())
-                        builder
-                            .setMessage(getString(R.string.edit_price))
-                            .setCancelable(false)
-                            .setPositiveButton("Yes") { _, _ ->
-                                viewLifecycleOwner.lifecycleScope.launch {
-                                    serviceGenerator.updateCar(
-                                        car.licensePlate,
-                                        pricePerDay.text.toString().toDouble()
-                                    )
+                        builder.setTitle(getString(R.string.update))
+                        builder.setIcon(R.mipmap.ic_launcher)
+                        builder.setMessage(getString(R.string.edit_price))
+                        builder.setPositiveButton(android.R.string.ok) { _, _ ->
+                            viewLifecycleOwner.lifecycleScope.launch {
+                                serviceGenerator.updateCar(
+                                    car.licensePlate,
+                                    pricePerDay.text.toString().toDouble()
+                                )
                                 findNavController().navigate(R.id.action_UpdateCar_to_GetCarDetails)
-                                }
                             }
-                            .setNegativeButton("No") { dialog, _ ->
-                                dialog.dismiss()
-                            }
-                        builder.create().show()
+                        }
+                        builder.setNegativeButton(android.R.string.cancel) { _, _ -> }
+                        builder.show()
                     } catch (e: Exception) {
                         findNavController().navigate(R.id.GetCarDetails)
                         Toast.makeText(

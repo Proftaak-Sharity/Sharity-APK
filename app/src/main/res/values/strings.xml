@@ -94,7 +94,7 @@
     <string name="car_image">car_image</string>
     <string name="EndDate">end date</string>
     <string name="get">get</string>
-    <string name="delete">delete</string>
+    <string name="delete">Delete</string>
     <string name="post">add</string>
     <string name="welcome">Welcome %1$s</string>
     <string name="edit_bankaccount">Change bankaccount</string>
@@ -120,7 +120,7 @@
     <string name="total_price">Total price</string>
     <string name="payment_status">Payment status</string>
     <string name="pick_date">Pick date</string>
-    <string name="add">add</string>
+    <string name="add">Add</string>
     <string name="passwords_not_matching">Passwords not matching</string>
     <string name="email_already_in_db">Email address already exists</string>
     <string name="password_empty">Password not filled</string>
@@ -156,7 +156,7 @@
     <string name="kilo">%1$s kilo hydrogen</string>
     <string name="liter">%1$s liter</string>
     <string name="eur">€ %1$s</string>
-    <string name="edit_price">change price?</string>
+    <string name="edit_price">Change price?</string>
     <string name="delete_car">Delete car?</string>
     <string name="car_type">Car type:</string>
     <string name="fuel">Fuel</string>
@@ -220,6 +220,10 @@
     <string name="logout">Logout</string>
     <string name="select_email_account">Select your mail account to send mail for Approval</string>
     <string name="switch_mode">switch mode</string>
+    <string name="delete_bankaccount">Remove bankaccount from your account?</string>
+    <string name="update">Update</string>
+    <string name="update_bankaccount_dialog">Change your bankaccount details?</string>
+    <string name="add_bankaccount_dialog">Add new bankaccount to your account?</string>
 
 
 </resources>
