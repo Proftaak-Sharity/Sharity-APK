@@ -55,6 +55,7 @@ dependencies {
     // Material support
     implementation 'com.google.android.material:material:1.4.0'
     implementation "com.afollestad.material-dialogs:core:3.1.0"
+    debugImplementation 'androidx.fragment:fragment-testing:1.4.0'
 
     // Testing
     testImplementation 'junit:junit:4.13.2'
@@ -68,9 +69,14 @@ dependencies {
     androidTestImplementation 'androidx.test:core-ktx:1.4.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test:rules:1.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.4.0'
+    androidTestImplementation 'androidx.navigation:navigation-testing:2.3.5'
     debugImplementation 'androidx.fragment:fragment-testing:1.4.0'
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
-    androidTestImplementation('com.android.support.test.espresso:espresso-contrib:2.2.2') {
+    androidTestImplementation('com.android.support.test.espresso:espresso-contrib:3.0.2') {
         exclude group: 'com.android.support', module: 'appcompat'
         exclude module: 'support-annotations'
         exclude module: 'support-v4'
@@ -80,7 +86,6 @@ dependencies {
     }
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
-
 
     //test impl for mocking and coroutine testing
     testImplementation "org.mockito:mockito-core:2.19.0"
@@ -119,8 +124,9 @@ dependencies {
 
     // Google
     implementation 'androidx.preference:preference-ktx:1.1.1'
-    implementation 'com.google.android.gms:play-services-maps:18.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
     implementation 'com.google.android.gms:play-services-places:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
 
 //    user permission
     implementation 'com.karumi:dexter:6.2.2'

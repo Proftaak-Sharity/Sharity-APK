@@ -1,5 +1,6 @@
 package com.example.sharity_apk
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -56,7 +57,7 @@ class CreateBankaccount: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = CreateBankaccountBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -104,11 +105,21 @@ class CreateBankaccount: Fragment() {
                             preferences.clearPreferences()
                             findNavController().navigate(R.id.action_CreateBankaccount_to_LoginFragment)
                         } else {
-                            addNewBankaccount()
-                            findNavController().navigate(R.id.action_CreateBankaccount_to_GetBankaccounts)
+                            val builder = AlertDialog.Builder(requireContext())
+                            builder.setTitle(getString(R.string.add))
+                            builder.setIcon(R.mipmap.ic_launcher)
+                            builder.setMessage(getString(R.string.add_bankaccount_dialog))
+                            builder.setPositiveButton(android.R.string.ok) { _, _ ->
+                                viewLifecycleOwner.lifecycleScope.launch {
+                                    addNewBankaccount()
+                                    findNavController().navigate(R.id.action_CreateBankaccount_to_GetBankaccounts)
+                                }
+                            }
+                            builder.setNegativeButton(android.R.string.cancel) { _, _ -> }
+                            builder.show()
                         }
                     } catch (e: Exception) {
-                        Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT)
+                        Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT)
                             .show()
                     }
                 }
@@ -175,7 +186,6 @@ class CreateBankaccount: Fragment() {
             }
         }
     }
-
 
         // Called before fragment is destroyed.
     override fun onDestroyView() {

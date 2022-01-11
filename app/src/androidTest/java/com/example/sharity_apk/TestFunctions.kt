@@ -1,6 +1,9 @@
 package com.example.sharity_apk
 
+import android.content.Context
 import android.view.View
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.test.InstrumentationRegistry.getTargetContext
 import androidx.test.core.app.launchActivity
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.UiController
@@ -9,15 +12,25 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.platform.app.InstrumentationRegistry
+import com.example.sharity_apk.config.SharityPreferences
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
+import org.junit.Test
 
 open class TestFunctions {
 
+    private val context = InstrumentationRegistry.getInstrumentation().targetContext
+
+    @Test
     fun testLogin() {
+
+        val preference = SharityPreferences(context)
+        preference.clearPreferences()
 
 //        Launch application
         launchActivity<MainActivity>()
+
 
 //        Fill email en password
         onView(withId(R.id.login_email_text))

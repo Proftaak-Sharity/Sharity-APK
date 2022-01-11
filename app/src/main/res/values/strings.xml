@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Sharity</string>
     <string name="action_settings">Settings</string>
-
-<!--     Strings used for fragments for navigation -->
     <string name="first_fragment_label">Sharity</string>
     <string name="start_sharing">Start Sharing</string>
     <string name="back">Back</string>
@@ -86,15 +84,12 @@
     <string name="hydrogen">Hydrogen</string>
     <string name="petrol">Petrol</string>
     <string name="any">Any</string>
-
-
-<!--    Specific Sharity data:-->
     <string name="sharity_email">info@sharity.nl</string>
-    <string name="sharity_email_subject">Contact via Sharity-application</string>
+    <string name="sharity_email_subject">Contact by customer number:</string>
     <string name="car_image">car_image</string>
     <string name="EndDate">end date</string>
     <string name="get">get</string>
-    <string name="delete">delete</string>
+    <string name="delete">Delete</string>
     <string name="post">add</string>
     <string name="welcome">Welcome %1$s</string>
     <string name="edit_bankaccount">Change bankaccount</string>
@@ -120,7 +115,7 @@
     <string name="total_price">Total price</string>
     <string name="payment_status">Payment status</string>
     <string name="pick_date">Pick date</string>
-    <string name="add">add</string>
+    <string name="add">Add</string>
     <string name="passwords_not_matching">Passwords not matching</string>
     <string name="email_already_in_db">Email address already exists</string>
     <string name="password_empty">Password not filled</string>
@@ -156,7 +151,7 @@
     <string name="kilo">%1$s kilo hydrogen</string>
     <string name="liter">%1$s liter</string>
     <string name="eur">€ %1$s</string>
-    <string name="edit_price">change price?</string>
+    <string name="edit_price">Change price?</string>
     <string name="delete_car">Delete car?</string>
     <string name="car_type">Car type:</string>
     <string name="fuel">Fuel</string>
@@ -190,19 +185,6 @@
     <string name="add_from_camera_or_gallery">Add picture from camera or gallery?</string>
     <string name="gallery">Gallery</string>
     <string name="dont_forget">(don\'t forget the photo)</string>
-
-    <string-array name="country_list">
-        <item>NETHERLANDS</item>
-        <item>BELGIUM</item>
-        <item>LUXEMBOURG</item>
-    </string-array>
-
-    <string-array name="fueltypes">
-        <item>PETROL</item>
-        <item>LPG</item>
-        <item>DIESEL</item>
-    </string-array>
-
     <string name="update_bankaccount">update bankaccount</string>
     <string name="create_account_password_textview"><![CDATA[Use 8 or more characters with a mix of letters, numbers & symbols]]></string>
     <string name="bankaccount_title">Bankaccount:</string>
@@ -216,7 +198,31 @@
     <string name="per_day">per day</string>
     <string name="location_unknown">Location unknown</string>
     <string name="cartype_not_found">Cartype not found</string>
+    <string name="want_to_logout">Are you sure you want to logout?</string>
+    <string name="logout">Logout</string>
+    <string name="select_email_account">Select your mail account to send mail for Approval</string>
+    <string name="switch_mode">switch mode</string>
+    <string name="delete_bankaccount">Remove bankaccount from your account?</string>
+    <string name="update">Update</string>
+    <string name="update_bankaccount_dialog">Change your bankaccount details?</string>
+    <string name="add_bankaccount_dialog">Add new bankaccount to your account?</string>
+    <string name="error_occurred">An error has occurred</string>
+    <string name="no_cars_matched">No cars matched your criteria</string>
+    <string name="photo_from_gallery">Select photo from gallery</string>
+    <string name="photo_from_camera">Capture photo from camera</string>
+    <string name="set_start_end_date">Start and enddate required</string>
+    <string name="select_date">Select date</string>
+    <string name="rentaldates">Start date: %1$s \n End date: %2$s</string>
 
+    <string-array name="country_list">
+        <item>NETHERLANDS</item>
+        <item>BELGIUM</item>
+        <item>LUXEMBOURG</item>
+    </string-array>
 
-
+    <string-array name="fueltypes">
+        <item>PETROL</item>
+        <item>LPG</item>
+        <item>DIESEL</item>
+    </string-array>
 </resources>

@@ -13,7 +13,6 @@ import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import com.example.sharity_apk.config.SharityPreferences
 import kotlinx.coroutines.launch
-import java.util.*
 
 class GetCustomerDetails: Fragment() {
 
@@ -80,7 +79,5 @@ class GetCustomerDetails: Fragment() {
         super.onDestroy()
         _binding = null
     }
-
-
 }
 

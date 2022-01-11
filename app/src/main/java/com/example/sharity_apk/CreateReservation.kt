@@ -46,11 +46,10 @@ class CreateReservation : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = CreateReservationBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,7 +61,7 @@ class CreateReservation : Fragment() {
         ) {
             Toast.makeText(
                 requireContext(),
-                "To rent a car we need a start and end date",
+                getString(R.string.set_start_end_date),
                 Toast.LENGTH_SHORT
             ).show()
             findNavController().navigate(R.id.action_CreateReservation_to_SearchCars)

@@ -1,6 +1,5 @@
 package com.example.sharity_apk
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,15 +16,12 @@ import com.example.sharity_apk.viewmodel.BankaccountViewModel
 import com.example.sharity_apk.viewmodel.BankaccountViewModelFactory
 import com.example.sharity_apk.databinding.GetBankaccountsBinding
 import com.example.sharity_apk.service.SharityApplication
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class GetBankaccounts: Fragment() {
 
     private var _binding: GetBankaccountsBinding? = null
-
     private val binding get() = _binding!!
-
     private lateinit var recyclerView: RecyclerView
 
     private val viewModel: BankaccountViewModel by activityViewModels {
@@ -38,7 +34,7 @@ class GetBankaccounts: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = GetBankaccountsBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
@@ -74,5 +70,4 @@ class GetBankaccounts: Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

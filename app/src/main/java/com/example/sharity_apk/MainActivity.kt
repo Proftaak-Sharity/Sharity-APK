@@ -1,7 +1,6 @@
 package com.example.sharity_apk
 
-import android.annotation.SuppressLint
-import android.content.Context
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -14,10 +13,9 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.sharity_apk.databinding.ActivityMainBinding
 import androidx.navigation.NavController
-import android.content.SharedPreferences
 import com.example.sharity_apk.config.SharityPreferences
 
-
+// Starts the application
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -25,10 +23,11 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = _binding
     private lateinit var navController: NavController
 
-
+// Creates first (and only) activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+//    Binds Mainactivity to layout
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -38,15 +37,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        val preferences = SharityPreferences(this)
-
-//        if(preferences.getCustomerNumber() <= 0) {
-//            navController.navigate(R.id.AccountOverview)
-//        } else {
-//            navController.navigate(R.id.Login)
-//        }
-
-
+//      send email function by pushing fab
         binding.fab.setOnClickListener {
             sendEmail()
         }
@@ -80,8 +71,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.CreateAccount,
                 R.id.CreateCustomer,
                 R.id.CreateDriversLicense,
-                R.id.CreateBankaccount,
-                R.id.AccountOverview -> menu.findItem(R.id.button_home).isVisible = false
+                R.id.CreateBankaccount -> menu.findItem(R.id.button_home).isVisible = false
             else -> menu.findItem(R.id.button_home).isVisible = true
             }
         }
@@ -89,7 +79,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val preferences = SharityPreferences(this)
 
 //      Sets the destination of the buttons in de options menu:
         return when (item.itemId) {
@@ -97,11 +86,8 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.AccountOverview)
                 return true
             }
-            R.id.action_settings -> true
-            R.id.action_contact -> true
-            R.id.action_logout -> {
-                preferences.clearPreferences()
-                navController.navigate(R.id.Login)
+            R.id.button_logout -> {
+                logoutDialog()
                 return true }
             else -> super.onOptionsItemSelected(item)
         }
@@ -112,17 +98,36 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 
-    @SuppressLint("QueryPermissionsNeeded")
-    private fun sendEmail() {
 
-//      Opens an popup to select email application and send email to Sharity:
-        val intent = Intent(Intent.ACTION_SENDTO).apply {
-            data = Uri.parse("mailto:info@sharity.nl")
-            putExtra(Intent.EXTRA_EMAIL, resources.getString(R.string.sharity_email))
-            putExtra(Intent.EXTRA_SUBJECT, resources.getString(R.string.sharity_email_subject))
+//    Function to send email by pushing the fab
+    private fun sendEmail() {
+        val preferences = SharityPreferences(this)
+
+        val intent = Intent(Intent.ACTION_SENDTO)
+        intent.data = Uri.parse(
+            "mailto:info@sharity.nl" +
+                    "?subject=${getString(R.string.sharity_email_subject)} " + preferences.getCustomerNumber())
+        intent.putExtra(
+            Intent.EXTRA_SUBJECT,
+            "${getString(R.string.sharity_email_subject)} ${preferences.getCustomerNumber()}")
+
+        startActivity(Intent.createChooser(intent, getString(R.string.select_email_account)))
+    }
+
+
+//    inflates logout dialog when pushing logout button AND clears all shared prefs
+private fun logoutDialog() {
+        val preferences = SharityPreferences(this)
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.logout))
+        builder.setIcon(R.mipmap.ic_launcher)
+        builder.setMessage(getString(R.string.want_to_logout))
+        builder.setPositiveButton(android.R.string.ok) { _, _ ->
+            preferences.clearPreferences()
+            navController.navigate(R.id.Login)
         }
-        if (intent.resolveActivity(packageManager) != null) {
-            startActivity(intent)
-        }
+        builder.setNegativeButton(android.R.string.cancel) { _, _ -> }
+        builder.show()
     }
 }

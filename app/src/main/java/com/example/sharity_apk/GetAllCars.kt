@@ -22,7 +22,6 @@ class GetAllCars : Fragment(), CarAdapter.OnCarClickListener {
     private var _binding: GetAllCarsBinding? = null
     private val binding get() = _binding!!
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,7 +46,7 @@ class GetAllCars : Fragment(), CarAdapter.OnCarClickListener {
                 binding.myRecyclerView.layoutManager = LinearLayoutManager(requireContext())
                 binding.myRecyclerView.setHasFixedSize(true)
             } catch (e: Exception) {
-                Toast.makeText(requireContext(), "An error has occurred", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT).show()
             }
         }
 
