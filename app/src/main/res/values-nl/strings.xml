@@ -89,7 +89,7 @@
 
     <!--    Specific Sharity data:-->
     <string name="sharity_email">info@sharity.nl</string>
-    <string name="sharity_email_subject">Contact via Sharity-application</string>
+    <string name="sharity_email_subject">Contact door klantnummer:</string>
     <string name="car_image">car_afbeelding</string>
     <string name="EndDate">einddatum</string>
     <string name="get">ophalen</string>

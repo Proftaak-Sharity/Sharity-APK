@@ -90,7 +90,7 @@
 
 <!--    Specific Sharity data:-->
     <string name="sharity_email">info@sharity.nl</string>
-    <string name="sharity_email_subject">Contact via Sharity-application</string>
+    <string name="sharity_email_subject">Contact by customer number:</string>
     <string name="car_image">car_image</string>
     <string name="EndDate">end date</string>
     <string name="get">get</string>
@@ -216,7 +216,10 @@
     <string name="per_day">per day</string>
     <string name="location_unknown">Location unknown</string>
     <string name="cartype_not_found">Cartype not found</string>
-
+    <string name="want_to_logout">Are you sure you want to logout?</string>
+    <string name="logout">Logout</string>
+    <string name="select_email_account">Select your mail account to send mail for Approval</string>
+    <string name="switch_mode">switch mode</string>
 
 
 </resources>

@@ -1,8 +1,10 @@
 package com.example.sharity_apk
 
-import android.annotation.SuppressLint
-import android.content.Context
+import android.app.AlertDialog
 import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -12,10 +14,16 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.*
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.sharity_apk.databinding.ActivityMainBinding
 import androidx.navigation.NavController
-import android.content.SharedPreferences
 import com.example.sharity_apk.config.SharityPreferences
+import com.google.android.material.switchmaterial.SwitchMaterial
+import java.util.*
+import android.util.DisplayMetrics
+import androidx.preference.PreferenceManager
 
 
 class MainActivity : AppCompatActivity() {
@@ -38,15 +46,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        val preferences = SharityPreferences(this)
-
-//        if(preferences.getCustomerNumber() <= 0) {
-//            navController.navigate(R.id.AccountOverview)
-//        } else {
-//            navController.navigate(R.id.Login)
-//        }
-
-
+//      send email function by pushing fab
         binding.fab.setOnClickListener {
             sendEmail()
         }
@@ -80,8 +80,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.CreateAccount,
                 R.id.CreateCustomer,
                 R.id.CreateDriversLicense,
-                R.id.CreateBankaccount,
-                R.id.AccountOverview -> menu.findItem(R.id.button_home).isVisible = false
+                R.id.CreateBankaccount -> menu.findItem(R.id.button_home).isVisible = false
             else -> menu.findItem(R.id.button_home).isVisible = true
             }
         }
@@ -97,11 +96,9 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.AccountOverview)
                 return true
             }
-            R.id.action_settings -> true
-            R.id.action_contact -> true
-            R.id.action_logout -> {
+            R.id.button_logout -> {
                 preferences.clearPreferences()
-                navController.navigate(R.id.Login)
+                logoutDialog()
                 return true }
             else -> super.onOptionsItemSelected(item)
         }
@@ -112,17 +109,47 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 
-    @SuppressLint("QueryPermissionsNeeded")
-    private fun sendEmail() {
 
-//      Opens an popup to select email application and send email to Sharity:
-        val intent = Intent(Intent.ACTION_SENDTO).apply {
-            data = Uri.parse("mailto:info@sharity.nl")
-            putExtra(Intent.EXTRA_EMAIL, resources.getString(R.string.sharity_email))
-            putExtra(Intent.EXTRA_SUBJECT, resources.getString(R.string.sharity_email_subject))
+//    Function to send email by pushing the fab
+    private fun sendEmail() {
+        val preferences = SharityPreferences(this)
+
+        val intent = Intent(Intent.ACTION_SENDTO)
+        intent.data = Uri.parse(
+            "mailto:info@sharity.nl" +
+                    "?subject=${getString(R.string.sharity_email_subject)} " + preferences.getCustomerNumber())
+        intent.putExtra(
+            Intent.EXTRA_SUBJECT,
+            "${getString(R.string.sharity_email_subject)} ${preferences.getCustomerNumber()}")
+
+        startActivity(Intent.createChooser(intent, getString(R.string.select_email_account)))
+    }
+
+
+//    inflates logout dialog when pushing logout button
+    fun logoutDialog() {
+        val preferences = SharityPreferences(this)
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.logout))
+        builder.setMessage(getString(R.string.want_to_logout))
+        builder.setPositiveButton(android.R.string.ok) { _, _ ->
+            preferences.clearPreferences()
+            navController.navigate(R.id.Login)
         }
-        if (intent.resolveActivity(packageManager) != null) {
-            startActivity(intent)
-        }
+        builder.setNegativeButton(android.R.string.cancel) { _, _ -> }
+        builder.show()
+    }
+
+    private fun setAppLocale(localeCode: String) {
+        val resources: Resources = resources
+        val displayMetrics: DisplayMetrics = resources.getDisplayMetrics()
+        val configuration: Configuration = resources.getConfiguration()
+
+        configuration.setLocale(Locale(localeCode.toLowerCase()))
+        resources.updateConfiguration(configuration, displayMetrics)
+
+        configuration.locale = Locale(localeCode.toLowerCase())
+        resources.updateConfiguration(configuration, displayMetrics)
     }
 }

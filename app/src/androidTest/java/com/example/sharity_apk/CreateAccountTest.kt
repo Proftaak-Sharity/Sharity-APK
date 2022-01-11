@@ -9,6 +9,8 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
+import androidx.test.platform.app.InstrumentationRegistry
+import com.example.sharity_apk.config.SharityPreferences
 import org.hamcrest.core.IsEqual.equalTo
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,8 +19,13 @@ import org.junit.runner.RunWith
 @LargeTest
 class CreateAccountTest : TestFunctions() {
 
+    private val context = InstrumentationRegistry.getInstrumentation().targetContext
+
     @Test
     fun createCustomerTest() {
+
+        val preference = SharityPreferences(context)
+        preference.clearPreferences()
 
         launchActivity<MainActivity>()
 

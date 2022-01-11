@@ -23,13 +23,6 @@
             app:destination="@id/CreateAccount" />
     </fragment>
 
-    <fragment
-        android:id="@+id/TestCarImage"
-        android:name="com.example.sharity_apk.TestCarImage"
-        android:label="Add Car Image"
-        tools:layout="@layout/test_car_image"/>
-
-
 
 <!--    Account Overview Fragment-->
     <fragment

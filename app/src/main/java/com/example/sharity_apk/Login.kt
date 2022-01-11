@@ -38,7 +38,11 @@ class Login : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val preference = SharityPreferences(requireContext())
-        preference.clearPreferences()
+
+//        Keeps user logged in
+        if (preference.getCustomerNumber() >= 1) {
+            findNavController().navigate(R.id.AccountOverview)
+        }
 
         binding.signIn.setOnClickListener { findNavController().navigate(R.id.action_LoginFragment_to_createAccount) }
         binding.buttonLogin.setOnClickListener {
