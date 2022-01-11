@@ -1,19 +1,16 @@
 package com.example.sharity_apk
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.config.SharityPreferences
-import com.example.sharity_apk.databinding.GetCarDetailsBinding
 import com.example.sharity_apk.databinding.UpdateCarBinding
 import com.example.sharity_apk.service.CarApiService
 import com.example.sharity_apk.service.ServiceGenerator
@@ -62,7 +59,7 @@ class UpdateCar : Fragment(){
             licensePlate.text = car.licensePlate
             make.text = car.make
             model.text = car.model
-            pricePerKm.text = getString(R.string.eur, "%.2f".format(car.pricePerKm?.toDouble()))
+            pricePerKm.text = getString(R.string.eur, "%.2f".format(car.pricePerKm.toDouble()))
             pricePerDay.text = "%.2f".format(car.pricePerDay?.toDouble())
 
             when {

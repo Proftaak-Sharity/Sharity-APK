@@ -3,7 +3,6 @@ package com.example.sharity_apk
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -167,7 +166,7 @@ class CreateCar : Fragment() {
         binding.buttonAddImage.setOnClickListener {
             val pictureDialog = AlertDialog.Builder(requireContext())
             pictureDialog.setTitle("Select Action")
-            val pictureDialogItems = arrayOf("Select photo from Gallery", "Capture photo from Camera")
+            val pictureDialogItems = arrayOf(getString(R.string.photo_from_gallery), getString(R.string.photo_from_camera))
             pictureDialog.setItems(pictureDialogItems) {
                     _, which ->
                 when (which) {

@@ -6,13 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RadioButton
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.adapter.CarAdapter
 import com.example.sharity_apk.config.SharityPreferences
@@ -47,7 +43,6 @@ class GetSearchedCarDetails: Fragment(), CarAdapter.OnCarClickListener {
         val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
         val preferences = SharityPreferences(requireContext())
         val licensePlate = preferences.getLicensePlate()
-
 
         viewLifecycleOwner.lifecycleScope.launch {
 
@@ -89,12 +84,11 @@ class GetSearchedCarDetails: Fragment(), CarAdapter.OnCarClickListener {
 
         binding.buttonMakeReservation.setOnClickListener {
             findNavController().navigate(R.id.action_GetSearchedCarDetails_to_CreateReservation)
-
         }
+
         binding.buttonLocate.setOnClickListener {
             findNavController().navigate(R.id.action_GetSearchedCarDetails_to_mapsFragment3)
         }
-
     }
 
     private fun decodeImageString(encodedString: String): Bitmap {
@@ -106,10 +100,8 @@ class GetSearchedCarDetails: Fragment(), CarAdapter.OnCarClickListener {
         TODO("Not yet implemented")
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

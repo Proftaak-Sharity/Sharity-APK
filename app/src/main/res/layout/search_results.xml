@@ -12,8 +12,6 @@
         tools:listitem="@layout/car_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/textview_border"
-
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 

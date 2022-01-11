@@ -52,7 +52,7 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
             val carList = checkAvailability(start, end, alCarList)
 
             if (carList.isNullOrEmpty()){
-                Toast.makeText(requireContext(), "No cars matched your criteria", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.no_cars_matched), Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_SearchResults_to_SearchCars)
             }
 
@@ -66,12 +66,7 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
                 Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT).show()
             }
         }
-
-
-
     }
-
-
 
     override fun onItemClick(position: Int) {
         val preferences = SharityPreferences(requireContext())
@@ -88,8 +83,6 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
             preferences.setLicensePlate(carId)
 
             findNavController().navigate(R.id.action_SearchResults_to_GetSearchedCarDetails)
-
-
         }
     }
 
@@ -117,7 +110,6 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
                 carServiceGenerator.getCarsFromCustomer()
             }
         }
-
     }
 }
 

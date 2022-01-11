@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment import androidx.lifecycle.lifecycleScope
@@ -20,7 +19,6 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 class UpdateCustomer: Fragment() {
 
@@ -41,9 +39,6 @@ class UpdateCustomer: Fragment() {
 
         val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
         val preferences = SharityPreferences(requireContext())
-
-
-
 
 //        Building Material DatePicker
         val outputDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).apply {
@@ -77,12 +72,9 @@ class UpdateCustomer: Fragment() {
         val evCity: TextView = binding.evCity
         val evPhone: TextView = binding.evPhone
 
-
-
         viewLifecycleOwner.lifecycleScope.launch {
 
             val customer = serviceGenerator.getCustomer(preferences.getCustomerNumber())
-
 
             evFirstName.text = customer.firstName
             evLastName.text = customer.lastName
@@ -109,30 +101,28 @@ class UpdateCustomer: Fragment() {
 
                 try {
                     val builder = AlertDialog.Builder(requireContext())
-                    builder
-                        .setMessage(getString(R.string.change_account))
-                        .setCancelable(false)
-                        .setPositiveButton("Yes") { _, _ ->
-                            viewLifecycleOwner.lifecycleScope.launch {
-                                
-                                serviceGenerator.updateCustomer(
-                                    customer.customerNumber,
-                                    evFirstName.text.toString(),
-                                    evLastName.text.toString(),
-                                    evAddress.text.toString(),
-                                    evHouseNumber.text.toString(),
-                                    evPostalCode.text.toString(),
-                                    evCity.text.toString(),
-                                    evCountry.text.toString(),
-                                    evDateOfBirth.text.toString(),
-                                    evPhone.text.toString())
-                                findNavController().navigate(R.id.action_UpdateCustomer_to_GetCustomerDetails)
-                            }
+                    builder.setTitle(getString(R.string.update))
+                    builder.setIcon(R.mipmap.ic_launcher)
+                    builder.setMessage(getString(R.string.change_account))
+                    builder.setPositiveButton(android.R.string.ok) { _, _ ->
+                        viewLifecycleOwner.lifecycleScope.launch {
+
+                            serviceGenerator.updateCustomer(
+                                customer.customerNumber,
+                                evFirstName.text.toString(),
+                                evLastName.text.toString(),
+                                evAddress.text.toString(),
+                                evHouseNumber.text.toString(),
+                                evPostalCode.text.toString(),
+                                evCity.text.toString(),
+                                evCountry.text.toString(),
+                                evDateOfBirth.text.toString(),
+                                evPhone.text.toString())
+                            findNavController().navigate(R.id.action_UpdateCustomer_to_GetCustomerDetails)
                         }
-                        .setNegativeButton("No") { dialog, _ ->
-                            dialog.dismiss()
-                        }
-                    builder.create().show()
+                    }
+                    builder.setNegativeButton(android.R.string.cancel) { _, _ -> }
+                    builder.show()
                 } catch (e: Exception) {
                     findNavController().navigate(R.id.GetCustomerDetails)
                     Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT)

@@ -212,4 +212,5 @@
     <string name="update_bankaccount_dialog">Wijzig uw bankrekening?</string>
     <string name="add_bankaccount_dialog">Bankrekening toevoegen?</string>
     <string name="error_occurred">Er is een fout opgetreden</string>
+    <string name="no_cars_matched">Geen autos voldoen aan uw criteria</string>
 </resources>

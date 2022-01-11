@@ -22,7 +22,6 @@ class GetAllCars : Fragment(), CarAdapter.OnCarClickListener {
     private var _binding: GetAllCarsBinding? = null
     private val binding get() = _binding!!
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

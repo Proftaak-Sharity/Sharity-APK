@@ -92,6 +92,7 @@ class UpdateBankaccount: Fragment() {
             }
         }
     }
+
     private suspend fun addNewBankaccount() {
         val preferences = SharityPreferences(requireContext())
 

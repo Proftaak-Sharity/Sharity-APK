@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.config.SharityPreferences
-import com.example.sharity_apk.databinding.SearchCarsBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.RadioButton
+import com.example.sharity_apk.databinding.SearchCarsBinding
 
 class SearchCars : Fragment() {
 
@@ -33,12 +33,10 @@ class SearchCars : Fragment() {
         preferences.setFuelType(getString(R.string.electric))
 
         // binding the radiogroup to get the fueltype the user wants
-        binding.carOptions.setOnCheckedChangeListener { radioGroup, i ->
-            val radioButton: RadioButton? = binding.carOptions.findViewById<RadioButton>(i)
-            if (radioButton != null) {
-                binding.tvOption.text = radioButton.text.toString()
-            }
-            preferences.setFuelType(radioButton?.text.toString())
+        binding.carOptions.setOnCheckedChangeListener { _, i ->
+            val radioButton: RadioButton = binding.carOptions.findViewById(i)
+            binding.tvOption.text = radioButton.text.toString()
+            preferences.setFuelType(radioButton.text.toString())
         }
 
         //make datepicker buton and bind datpicker
@@ -66,7 +64,7 @@ class SearchCars : Fragment() {
         val dateRangePicker =
             MaterialDatePicker
                 .Builder.dateRangePicker()
-                .setTitleText("Select Date")
+                .setTitleText(getString(R.string.select_date))
                 .build()
 
         dateRangePicker.show(
@@ -81,9 +79,7 @@ class SearchCars : Fragment() {
 
             // show dates on the button
             if (startDate != null && endDate != null) {
-                binding.datePicker.text =
-                    "StartDate: $startDate\n" +
-                            "EndDate: $endDate"
+                binding.datePicker.text = getString(R.string.rentaldates, startDate, endDate)
             }
             //set the startdate and enddate so the next screens can use this
             preferences.setStartDate(startDate)

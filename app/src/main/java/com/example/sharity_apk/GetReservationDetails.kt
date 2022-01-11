@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -18,11 +16,9 @@ import com.example.sharity_apk.service.CarApiService
 import com.example.sharity_apk.service.ReservationApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import java.util.*
 
 class GetReservationDetails: Fragment() {
-
 
     private var _binding: GetReservationDetailsBinding? = null
     private val binding get() = _binding!!
@@ -43,8 +39,6 @@ class GetReservationDetails: Fragment() {
         val serviceGenerator = ServiceGenerator.buildService(ReservationApiService::class.java)
         val serviceGenerator2 = ServiceGenerator.buildService(CarApiService::class.java)
 
-
-
 //        Connect textfields to variables:
         val reservationStart: TextView = binding.reservationStartDb
         val reservationEnd: TextView = binding.reservationEndDb
@@ -60,8 +54,6 @@ class GetReservationDetails: Fragment() {
         val paymentStatus: TextView = binding.paymentStatusDb
 
         viewLifecycleOwner.lifecycleScope.launch {
-
-
 
 //            connecting reservation number from shared preference to variable
             val reservationNumber = preferences.getReservationNumber()
@@ -108,12 +100,9 @@ class GetReservationDetails: Fragment() {
                     findNavController().navigate(R.id.action_GetReservationDetails_to_mapsFragment3)
               }
         }
-
-
     }
 
     private fun decodeImageString(encodedString: String): Bitmap {
-
         val imageBytes = Base64.getDecoder().decode(encodedString)
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
     }
@@ -122,5 +111,4 @@ class GetReservationDetails: Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

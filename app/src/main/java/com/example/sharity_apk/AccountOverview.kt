@@ -27,7 +27,6 @@ class AccountOverview : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val preferences = SharityPreferences(requireContext())
 
         val tvTitle: TextView = binding.title

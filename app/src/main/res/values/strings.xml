@@ -225,6 +225,12 @@
     <string name="update_bankaccount_dialog">Change your bankaccount details?</string>
     <string name="add_bankaccount_dialog">Add new bankaccount to your account?</string>
     <string name="error_occurred">An error has occurred</string>
+    <string name="no_cars_matched">No cars matched your criteria</string>
+    <string name="photo_from_gallery">Select photo from Gallery</string>
+    <string name="photo_from_camera">Capture photo from Camera</string>
+    <string name="set_start_end_date">Start and enddate required</string>
+    <string name="select_date">Select date</string>
+    <string name="rentaldates">Start date: %1$s \n End date %2$s</string>
 
 
 </resources>

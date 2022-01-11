@@ -77,5 +77,4 @@ class GetAllReservations: Fragment(), ReservationAdapter.OnReservationClickListe
         super.onDestroy()
         _binding = null
     }
-
 }
