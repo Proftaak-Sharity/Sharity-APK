@@ -13,4 +13,5 @@
         android:title="@string/action_logout"
         android:icon="@drawable/outline_logout_white_24"
         app:showAsAction="ifRoom"/>
+
 </menu>

@@ -1,4 +1,4 @@
-package com.example.sharity_apk
+package com.example.sharity_apk.fragment.customer
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.sharity_apk.R
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.CreateCustomerBinding
 import com.google.android.material.datepicker.MaterialDatePicker

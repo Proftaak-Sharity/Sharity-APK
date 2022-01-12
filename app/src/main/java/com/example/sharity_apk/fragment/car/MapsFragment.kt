@@ -1,4 +1,4 @@
-package com.example.sharity_apk
+package com.example.sharity_apk.fragment.car
 
 import android.location.Address
 import android.location.Geocoder
@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.example.sharity_apk.R
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.utils.GPSUtils
 import com.example.sharity_apk.utils.GPSUtils.latitude

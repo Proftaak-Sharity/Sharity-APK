@@ -1,4 +1,4 @@
-package com.example.sharity_apk
+package com.example.sharity_apk.fragment.customer
 
 import android.app.AlertDialog
 import android.content.Context
@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.example.sharity_apk.R
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.CreateBankaccountBinding
 import com.example.sharity_apk.model.BankaccountModel

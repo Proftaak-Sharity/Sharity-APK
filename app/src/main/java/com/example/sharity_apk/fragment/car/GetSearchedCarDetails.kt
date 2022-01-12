@@ -1,7 +1,5 @@
-package com.example.sharity_apk
+package com.example.sharity_apk.fragment.car
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.sharity_apk.R
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.GetSearchedCarDetailsBinding
 import com.example.sharity_apk.utils.ImageDecoder
@@ -18,7 +17,6 @@ import com.example.sharity_apk.viewmodel.CarViewModel
 import com.example.sharity_apk.viewmodel.CustomerViewModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
-import java.util.*
 
 
 class GetSearchedCarDetails: Fragment() {
@@ -73,8 +71,12 @@ class GetSearchedCarDetails: Fragment() {
                 binding.tvAdress.text = owner.address
                 binding.tvCity.text = owner.city
                 binding.tvPostalCode.text = owner.postalCode
-                binding.tvPrice.text = "€ ${"%.2f".format(car.pricePerDay?.toDouble())} ${getString(R.string.per_day)}".also { binding.tvPrice.text = it }
-                binding.tvPricePerKm.text = "€ ${"%.2f".format(car.pricePerKm?.toDouble())} ${getString(R.string.per_km)}".also { binding.tvPricePerKm.text = it }
+                binding.tvPrice.text = "€ ${"%.2f".format(car.pricePerDay?.toDouble())} ${getString(
+                    R.string.per_day
+                )}".also { binding.tvPrice.text = it }
+                binding.tvPricePerKm.text = "€ ${"%.2f".format(car.pricePerKm?.toDouble())} ${getString(
+                    R.string.per_km
+                )}".also { binding.tvPricePerKm.text = it }
                 binding.tvPhone.text = owner.phoneNumber
                 binding.tvEmail.text = owner.email
             } catch (e: Exception) {

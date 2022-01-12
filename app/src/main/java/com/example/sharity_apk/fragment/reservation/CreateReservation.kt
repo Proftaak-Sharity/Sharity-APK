@@ -1,4 +1,4 @@
-package com.example.sharity_apk
+package com.example.sharity_apk.fragment.reservation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.sharity_apk.R
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.CreateReservationBinding
 import com.example.sharity_apk.utils.ImageDecoder
@@ -41,17 +42,6 @@ class CreateReservation : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val preferences = SharityPreferences(requireContext())
-
-        if (preferences.getStartDate().isNullOrEmpty() or preferences.getEndDate()
-                .isNullOrEmpty()
-        ) {
-            Toast.makeText(
-                requireContext(),
-                getString(R.string.set_start_end_date),
-                Toast.LENGTH_SHORT
-            ).show()
-            findNavController().navigate(R.id.action_CreateReservation_to_SearchCars)
-        }
 
         viewLifecycleOwner.lifecycleScope.launch {
 

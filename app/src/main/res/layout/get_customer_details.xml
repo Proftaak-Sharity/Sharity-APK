@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GetCustomerDetails"
+    tools:context=".fragment.customer.GetCustomerDetails"
     android:layout_margin="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,14 +37,16 @@
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/iv_profile"
-            app:civ_border_color="@color/sharity_red"
+            app:civ_border_color="@color/sharity_green"
             app:civ_border_width="2dp"
             android:layout_width="75dp"
             android:layout_height="75dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:contentDescription="@string/logo_sharity"/>
+            android:contentDescription="@string/logo_sharity"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

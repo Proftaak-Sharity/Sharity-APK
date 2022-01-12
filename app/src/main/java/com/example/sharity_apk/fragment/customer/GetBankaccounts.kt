@@ -1,4 +1,4 @@
-package com.example.sharity_apk
+package com.example.sharity_apk.fragment.customer
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sharity_apk.R
 import com.example.sharity_apk.adapter.BankaccountAdapter
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.viewmodel.BankaccountViewModel

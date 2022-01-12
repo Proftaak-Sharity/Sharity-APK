@@ -1,4 +1,4 @@
-package com.example.sharity_apk
+package com.example.sharity_apk.fragment.car
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -19,6 +19,7 @@ import java.io.ByteArrayOutputStream
 import java.util.*
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.sharity_apk.R
 import com.example.sharity_apk.dialog.EmptyFieldDialog
 import kotlinx.coroutines.launch
 

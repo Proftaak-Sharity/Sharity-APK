@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_margin="20dp"
     android:paddingBottom="20dp"
-    tools:context=".CreateReservation">
+    tools:context=".fragment.reservation.CreateReservation">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/image_logo_profile"
