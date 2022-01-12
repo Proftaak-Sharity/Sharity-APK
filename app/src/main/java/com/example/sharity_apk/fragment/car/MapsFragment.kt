@@ -79,7 +79,7 @@ class MapsFragment : Fragment() {
             //         toast to see the address of the car - can be deleted when marker works
 //            Toast.makeText(requireContext(), customerAddress, Toast.LENGTH_LONG).show()
 
-            //ToDo shout not run on main thread
+            //ToDo should not run on main thread
             try { val geoCoder = Geocoder(
                 context
             )
@@ -108,16 +108,14 @@ class MapsFragment : Fragment() {
                     )
                 }
 
-
                     } catch (e: IOException) {
-//                        findNavController().navigate(R.id.AccountOverview)
+//                        findNavController().navigate(R.id.GetReservationDetails)
                         Toast.makeText(
                             requireContext(),
                             getString(R.string.error_occurred),
                             Toast.LENGTH_SHORT)
                             .show()
                     }
-
 
             }
         }
