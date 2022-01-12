@@ -57,9 +57,8 @@ class SearchCars : Fragment() {
                     getString(R.string.set_start_end_date),
                     Toast.LENGTH_SHORT
                 ).show()
-            } else {
-                findNavController().navigate(R.id.action_SearchCars_to_SearchResults)
             }
+            findNavController().navigate(R.id.action_SearchCars_to_SearchResults)
         }
     }
 

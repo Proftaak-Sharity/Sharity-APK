@@ -26,7 +26,7 @@ class SearchAndLocateCarTest: TestFunctions() {
     }
 
     @Test
-    fun SearchAndLocateCarTest(){
+    fun searchAndLocateCarTest(){
 
         //go to searchCars
         onView(withId(R.id.button_make_reservation)).perform(click())

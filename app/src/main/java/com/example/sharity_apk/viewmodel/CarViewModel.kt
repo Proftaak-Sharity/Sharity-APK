@@ -1,8 +1,6 @@
 package com.example.sharity_apk.viewmodel
 
-import android.content.res.Resources
 import androidx.lifecycle.ViewModel
-import com.example.sharity_apk.R
 import com.example.sharity_apk.model.CarImageModel
 import com.example.sharity_apk.model.CarModel
 import com.example.sharity_apk.service.CarApiService
