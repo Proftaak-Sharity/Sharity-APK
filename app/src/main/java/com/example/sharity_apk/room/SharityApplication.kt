@@ -1,7 +1,6 @@
-package com.example.sharity_apk.service
+package com.example.sharity_apk.room
 
 import android.app.Application
-import com.example.sharity_apk.room.AppDatabase
 
 class SharityApplication: Application() {
 

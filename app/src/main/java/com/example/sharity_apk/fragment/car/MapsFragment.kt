@@ -44,6 +44,7 @@ class MapsFragment : Fragment() {
         val lat = latitude
 
         val yourLocation = LatLng(lat!!, lng!!)
+
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 15f))
 
         googleMap.addMarker(MarkerOptions().position(yourLocation).title(getString(R.string.youarehere)))
