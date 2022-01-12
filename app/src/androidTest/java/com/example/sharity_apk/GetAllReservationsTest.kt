@@ -25,7 +25,7 @@ class GetAllReservationsTest : TestFunctions() {
      * Recyclerview comes into view
      * */
     @Test
-    fun test_isListFragmentVisible_onLaunch() {
+    fun test_isFragmentVisible_inIsolation() {
         val scenario: FragmentScenario<GetAllReservations> =
             launchFragmentInContainer(themeResId = R.style.Theme_SharityAPK)
         scenario.moveToState(Lifecycle.State.STARTED)
@@ -37,13 +37,13 @@ class GetAllReservationsTest : TestFunctions() {
      * Recyclerview comes into view, check different method
      * */
     @Test
-    fun test_selectListItem_isFragmentVisible() {
+    fun test_isFragmentVisible() {
         testLogin()
 
         onView(withText("MY RESERVATIONS"))
             .perform(click())
 
-        onView(withId(R.id.tv_reservation_number)).check(matches(withText("Reservationnumber")))
+        onView(withId(R.id.recycler_view_reservation)).check((matches(isDisplayed())))
     }
 
     /***
@@ -51,7 +51,7 @@ class GetAllReservationsTest : TestFunctions() {
      * Correct reservation is in view?
      * */
     @Test
-    fun test_selectListItem_isDetailFragmentVisible() {
+    fun test_isDetailFragmentVisible() {
         testLogin()
 
         onView(withText("MY RESERVATIONS"))

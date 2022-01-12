@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.R
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.utils.GPSUtils
@@ -21,6 +23,8 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import kotlinx.coroutines.launch
+import okio.IOException
+import java.lang.Exception
 
 class MapsFragment : Fragment() {
 
@@ -43,9 +47,15 @@ class MapsFragment : Fragment() {
         val lng = longitude
         val lat = latitude
 
+        if (lng == null || lat == null)  {
+            //ToDo correct errorhandling, quickfix fallback Avans Hogeschool
+            val yourLocation = LatLng(51.583700, 4.797110)
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 15f))
+            googleMap.addMarker(MarkerOptions().position(yourLocation).title(getString(R.string.youarehere)))
+        }
         val yourLocation = LatLng(lat!!, lng!!)
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 15f))
 
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 15f))
         googleMap.addMarker(MarkerOptions().position(yourLocation).title(getString(R.string.youarehere)))
 
         googleMap.uiSettings.apply {
@@ -69,10 +79,12 @@ class MapsFragment : Fragment() {
             //         toast to see the address of the car - can be deleted when marker works
 //            Toast.makeText(requireContext(), customerAddress, Toast.LENGTH_LONG).show()
 
-           val geoCoder = Geocoder(
+            //ToDo shout not run on main thread
+            try { val geoCoder = Geocoder(
                 context
             )
-                val addressList = geoCoder.getFromLocationName(
+                var addressList =
+                    geoCoder.getFromLocationName(
                     customerAddress,
                     1
                 )
@@ -94,9 +106,23 @@ class MapsFragment : Fragment() {
                             .position(customerLatLng)
                             .title(getString(R.string.yourcarishere))
                     )
+                }
+
+
+                    } catch (e: IOException) {
+//                        findNavController().navigate(R.id.AccountOverview)
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.error_occurred),
+                            Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+
             }
         }
-    }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
