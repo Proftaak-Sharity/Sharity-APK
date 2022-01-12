@@ -22,26 +22,6 @@ interface CustomerApiService {
                             @Query("dateOfBirth") dateOfBirth: String,
                             @Query("country") country: String)
 
-//    using Query so that email en query are used in query url, like: customers/login?email={email}&password={password}
-    @GET ("customers/login")
-    suspend fun getUser(@Query("email") email: String,
-                        @Query("password") password: String) : LoginModel
-
-    @GET("customers/license/{customerNumber}")
-    suspend fun getDriversLicense(@Path ("customerNumber") customerNumber: Long) : DriversLicenseModel
-
-    @GET("customers/emailcheck")
-    suspend fun checkEmail(@Query("email") email: String) :Boolean
-
-    @GET("customers/driverslicense/check")
-    suspend fun checkLicense(@Query("licenseNumber") licenseNumber: String) :Boolean
-
-    @POST ("customers/driverslicense")
-    suspend fun addDriversLicense(@Query("customerNumber") customerNumber: Long,
-                                  @Query("licenseNumber") licenseNumber: String,
-                                  @Query("country") country: String,
-                                  @Query("validUntil") validUntil: String)
-
     @PUT("customers/update")
     suspend fun updateCustomer(@Query("customerNumber") customerNumber: Long,
                                @Query("firstName") firstName : String,
@@ -54,6 +34,14 @@ interface CustomerApiService {
                                @Query("dateOfBirth") dateOfBirth: String,
                                @Query("phoneNumber") phoneNumber: String)
 
+//    using Query so that email en query are used in query url, like: customers/login?email={email}&password={password}
+    @GET ("customers/login")
+    suspend fun getUser(@Query("email") email: String,
+                        @Query("password") password: String) : LoginModel
+
+    @GET("customers/emailcheck")
+    suspend fun checkEmail(@Query("email") email: String) :Boolean
+
     @POST("customers/image")
     suspend fun addCustomerImage(@Query ("customerNumber") customerNumber: Long,
                             @Query ("image") image: String)
@@ -61,5 +49,16 @@ interface CustomerApiService {
     @GET("customers/image/{customerNumber}")
     suspend fun getCustomerImage(@Path ("customerNumber") customerNumber: Long) : CustomerImageModel
 
+    @POST ("customers/driverslicense")
+    suspend fun addDriversLicense(@Query("customerNumber") customerNumber: Long,
+                                  @Query("licenseNumber") licenseNumber: String,
+                                  @Query("country") country: String,
+                                  @Query("validUntil") validUntil: String)
 
+    @GET("customers/driverslicense/check")
+    suspend fun checkLicense(@Query("licenseNumber") licenseNumber: String) :Boolean
+
+
+    @GET("customers/license/{customerNumber}")
+    suspend fun getDriversLicense(@Path ("customerNumber") customerNumber: Long) : DriversLicenseModel
 }

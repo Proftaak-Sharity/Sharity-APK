@@ -16,7 +16,7 @@ import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.viewmodel.BankaccountViewModel
 import com.example.sharity_apk.viewmodel.BankaccountViewModelFactory
 import com.example.sharity_apk.databinding.GetBankaccountsBinding
-import com.example.sharity_apk.service.SharityApplication
+import com.example.sharity_apk.room.SharityApplication
 import kotlinx.coroutines.launch
 
 class GetBankaccounts: Fragment() {

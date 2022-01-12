@@ -14,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.R
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.UpdateBankaccountBinding
-import com.example.sharity_apk.service.SharityApplication
+import com.example.sharity_apk.room.SharityApplication
 import com.example.sharity_apk.viewmodel.BankaccountViewModel
 import com.example.sharity_apk.viewmodel.BankaccountViewModelFactory
 import kotlinx.coroutines.launch

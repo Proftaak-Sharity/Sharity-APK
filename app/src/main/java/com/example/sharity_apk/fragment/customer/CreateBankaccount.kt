@@ -21,7 +21,7 @@ import com.example.sharity_apk.model.BankaccountModel
 import com.example.sharity_apk.viewmodel.BankaccountViewModel
 import com.example.sharity_apk.viewmodel.BankaccountViewModelFactory
 import com.example.sharity_apk.viewmodel.CustomerViewModel
-import com.example.sharity_apk.service.SharityApplication
+import com.example.sharity_apk.room.SharityApplication
 import com.example.sharity_apk.viewmodel.DriversLicenseViewModel
 import kotlinx.coroutines.launch
 
