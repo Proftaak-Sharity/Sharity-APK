@@ -1,4 +1,4 @@
-package com.example.sharity_apk
+package com.example.sharity_apk.fragment.car
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -19,6 +19,7 @@ import java.io.ByteArrayOutputStream
 import java.util.*
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.sharity_apk.R
 import com.example.sharity_apk.dialog.EmptyFieldDialog
 import kotlinx.coroutines.launch
 
@@ -50,9 +51,7 @@ class CreateCar : Fragment() {
         val preferences = SharityPreferences(requireContext())
         val customerNumber = preferences.getCustomerNumber()
         val carType = preferences.getAddedCarType()
-
-
-
+        
         //        Implementing Exposed dropdown
         val make = resources.getStringArray(R.array.car_make_list)
         val arrayAdapterMake = ArrayAdapter(requireContext(), R.layout.dropdown_item, make)
@@ -86,7 +85,6 @@ class CreateCar : Fragment() {
                 binding.capacityLayout.hint = getString(R.string.size_fueltank)
                 binding.usageLayout.hint = getString(R.string.km_per_liter)
                 binding.fueltypeLayout.isVisible = true
-
             }
         }
 

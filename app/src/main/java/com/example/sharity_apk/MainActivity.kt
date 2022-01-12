@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.CreateBankaccount,
                 R.id.CreateReservation,
                 R.id.CreateCar,
+                R.id.GetCustomerDetails,
                 R.id.GetReservationDetails,
                 R.id.GetSearchedCarDetails,
                 R.id.GetCustomerDetails,

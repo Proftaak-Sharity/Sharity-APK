@@ -1,4 +1,4 @@
-package com.example.sharity_apk
+package com.example.sharity_apk.fragment.car
 
 import android.location.Address
 import android.location.Geocoder
@@ -7,15 +7,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.example.sharity_apk.R
 import com.example.sharity_apk.config.SharityPreferences
-import com.example.sharity_apk.service.CarApiService
-import com.example.sharity_apk.service.CustomerApiService
-import com.example.sharity_apk.service.ServiceGenerator
 import com.example.sharity_apk.utils.GPSUtils
 import com.example.sharity_apk.utils.GPSUtils.latitude
 import com.example.sharity_apk.utils.GPSUtils.longitude
+import com.example.sharity_apk.viewmodel.CarViewModel
+import com.example.sharity_apk.viewmodel.CustomerViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -24,6 +24,8 @@ import kotlinx.coroutines.launch
 
 class MapsFragment : Fragment() {
 
+    private val customerViewModel: CustomerViewModel by lazy { ViewModelProvider(this)[CustomerViewModel::class.java] }
+    private val carViewModel: CarViewModel by lazy { ViewModelProvider(this)[CarViewModel::class.java] }
     private val callback = OnMapReadyCallback { googleMap ->
         /**
          * Manipulates the map once available.
@@ -41,15 +43,9 @@ class MapsFragment : Fragment() {
         val lng = longitude
         val lat = latitude
 
-        if( lng == null && lat == null) {
-            //ToDo correct errorhandling, quickfix fallback Avans Hogeschool
-            val yourLocation = LatLng(51.583700, 4.797110)
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 15f))
-            googleMap.addMarker(MarkerOptions().position(yourLocation).title(getString(R.string.youarehere)))
-            }
         val yourLocation = LatLng(lat!!, lng!!)
-
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 15f))
+
         googleMap.addMarker(MarkerOptions().position(yourLocation).title(getString(R.string.youarehere)))
 
         googleMap.uiSettings.apply {
@@ -58,17 +54,15 @@ class MapsFragment : Fragment() {
         }
         //looking for the car and customer adress
         val preferences = SharityPreferences(requireContext())
-        val serviceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
-        val serviceGenerator2 = ServiceGenerator.buildService(CustomerApiService::class.java)
 
 //      connecting licenseplate from shared preference to variable
         val licensePlate = preferences.getLicensePlate()
 
 //   using shared preference to retrieve reservation data from api
         viewLifecycleOwner.lifecycleScope.launch {
-            val car = serviceGenerator.getCar(licensePlate)
+            val car = carViewModel.getCar(licensePlate)
             val customerNumber = car.customerNumber
-            val customer = serviceGenerator2.getCustomer(customerNumber!!)
+            val customer = customerViewModel.getCustomer(customerNumber!!)
 
             val customerAddress = customer.address + customer.houseNumber + ", " + customer.city
 

@@ -23,9 +23,9 @@ class ReservationAdapter(
 ):
     RecyclerView.Adapter<ReservationAdapter.ReservationViewHolder>() {
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservationViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.card_reservation, parent, false)
-
         return ReservationViewHolder(view)
     }
 
@@ -62,11 +62,7 @@ class ReservationAdapter(
             holder.tvEndDateDb.text = currentReservation.endDate.toString()
             holder.tvRent.setText(R.string.total_price)
             holder.tvRentDb.text = "€ ${"%.2f".format(currentReservation.rent)}".also { holder.tvRentDb.text = it }
-
-
-
         }
-
     }
 
     override fun getItemCount(): Int {
@@ -99,7 +95,6 @@ class ReservationAdapter(
     }
 
     private fun decodeImageString(encodedString: String): Bitmap {
-
         val imageBytes = Base64.getDecoder().decode(encodedString)
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
     }

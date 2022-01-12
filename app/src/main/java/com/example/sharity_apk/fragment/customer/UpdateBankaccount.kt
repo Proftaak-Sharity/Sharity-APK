@@ -1,4 +1,4 @@
-package com.example.sharity_apk
+package com.example.sharity_apk.fragment.customer
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -11,10 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.sharity_apk.R
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.UpdateBankaccountBinding
-import com.example.sharity_apk.service.CustomerApiService
-import com.example.sharity_apk.service.ServiceGenerator
 import com.example.sharity_apk.service.SharityApplication
 import com.example.sharity_apk.viewmodel.BankaccountViewModel
 import com.example.sharity_apk.viewmodel.BankaccountViewModelFactory
@@ -89,32 +88,6 @@ class UpdateBankaccount: Fragment() {
                     Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT)
                         .show()
                 }
-            }
-        }
-    }
-
-    private suspend fun addNewBankaccount() {
-        val preferences = SharityPreferences(requireContext())
-
-        if (preferences.getCustomerNumber() <= 0) {
-            viewLifecycleOwner.lifecycleScope.launch {
-                val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
-                val customer = serviceGenerator.getUser(
-                    preferences.getEmail().toString(),
-                    preferences.getPassword().toString())
-                bankaccountViewModel.addNewItem(
-                    customer.customerNumber,
-                    binding.ibanEdittext.text.toString(),
-                    binding.accountHolderEdittext.text.toString()
-                )
-            }
-        } else {
-            viewLifecycleOwner.lifecycleScope.launch {
-                bankaccountViewModel.addNewItem(
-                    preferences.getCustomerNumber(),
-                    binding.ibanEdittext.text.toString(),
-                    binding.accountHolderEdittext.text.toString()
-                )
             }
         }
     }

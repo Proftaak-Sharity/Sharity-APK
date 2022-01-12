@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_margin="20dp"
     android:orientation="vertical"
-    tools:context=".Login">
+    tools:context=".fragment.Login">
 
     <ImageView
         android:id="@+id/logo_sharity"

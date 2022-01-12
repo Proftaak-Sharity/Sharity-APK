@@ -1,4 +1,4 @@
-package com.example.sharity_apk
+package com.example.sharity_apk.fragment.car
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,25 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sharity_apk.R
 import com.example.sharity_apk.adapter.CarAdapter
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.SearchResultsBinding
 import com.example.sharity_apk.model.CarModel
-import com.example.sharity_apk.service.ServiceGenerator
-import com.example.sharity_apk.service.CarApiService
-import com.example.sharity_apk.service.ReservationApiService
+import com.example.sharity_apk.viewmodel.CarViewModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
 
     private var _binding: SearchResultsBinding? = null
     private val binding get() = _binding!!
+    private val carViewModel: CarViewModel by lazy { ViewModelProvider(this)[CarViewModel::class.java] }
 
 
     override fun onCreateView(
@@ -48,8 +47,8 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
         viewLifecycleOwner.lifecycleScope.launch {
 
             //get all cars from fueltype and check if they are available
-            val alCarList = getCars(fuel)
-            val carList = checkAvailability(start, end, alCarList)
+            val alCarList = getSearchedCars(fuel)
+            val carList = carViewModel.checkAvailability(start, end, alCarList)
 
             if (carList.isNullOrEmpty()){
                 Toast.makeText(requireContext(), getString(R.string.no_cars_matched), Toast.LENGTH_SHORT).show()
@@ -68,6 +67,17 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
         }
     }
 
+    private suspend fun getSearchedCars(fuel: String?): MutableList<CarModel> {
+        // make this use start/end/fuel if set
+        return when (fuel) {
+            getString(R.string.petrol)-> { carViewModel.getFuelCars() }
+            getString(R.string.electric) -> { carViewModel.getElectricCars() }
+            getString(R.string.hydrogen) -> { carViewModel.getHydrogenCars() }
+            // search for car in range set
+            else -> { carViewModel.getCars() }
+        }
+    }
+
     override fun onItemClick(position: Int) {
         val preferences = SharityPreferences(requireContext())
         val start = preferences.getStartDate()
@@ -75,8 +85,8 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
         val fuel = preferences.getFuelType()
 
         viewLifecycleOwner.lifecycleScope.launch {
-            val alCarList = getCars(fuel)
-            val carList = checkAvailability(start, end, alCarList)
+            val alCarList = getSearchedCars(fuel)
+            val carList = carViewModel.checkAvailability(start, end, alCarList)
             val clickedCar = carList[position]
             val carId = clickedCar.licensePlate.toString()
 
@@ -91,61 +101,7 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
         _binding = null
     }
 
-
-    private suspend fun getCars(fuel: String?): MutableList<CarModel> {
-        val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
-        // make this use start/end/fuel if set
-        return when (fuel) {
-            getString(R.string.petrol) -> {
-                carServiceGenerator.getFuelCars()
-            }
-            getString(R.string.electric) -> {
-                carServiceGenerator.getElectricCars()
-            }
-            getString(R.string.hydrogen) -> {
-                carServiceGenerator.getHydrogenCars()
-            }
-            else -> {
-                // search for car in range set
-                carServiceGenerator.getCarsFromCustomer()
-            }
-        }
-    }
 }
 
-suspend fun checkAvailability(start: String?, end: String?, carList: MutableList<CarModel>): MutableList<CarModel> {
-    val reservationServiceGenerator = ServiceGenerator.buildService(ReservationApiService::class.java)
 
-    val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-
-    val licensePlates = mutableListOf<String?>()
-    val carsToBeRemoved = mutableListOf<CarModel?>()
-
-    // if we have no start or end date we show all cars
-    if ((start.isNullOrEmpty()) and (end.isNullOrEmpty())){
-        return carList
-    } else {
-        // check which cars are rented out
-        val startDate = LocalDate.parse(start, formatter)
-        val endDate = LocalDate.parse(end, formatter)
-        try {
-            // get all reservations and append licenses to list, check list and remove car if needed
-            val reserved =
-                reservationServiceGenerator.getRentedCars(startDate = startDate, endDate = endDate)
-            for (car in reserved) {
-                licensePlates += car.licensePlate
-            }
-            for (car in carList){
-                if (car.licensePlate in licensePlates) {
-                    carsToBeRemoved += car
-                }
-            }
-            carList.removeAll(carsToBeRemoved.toSet())
-        }  catch (e: Exception) {
-            return carList
-        }
-        carList.removeAll(carsToBeRemoved.toSet())
-    }
-    return carList
-}
 

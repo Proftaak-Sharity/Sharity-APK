@@ -1,28 +1,27 @@
-package com.example.sharity_apk
+package com.example.sharity_apk.fragment.customer
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.sharity_apk.R
 import com.example.sharity_apk.config.SharityPreferences
-import com.example.sharity_apk.databinding.CreateDriversLicenseBinding
-import com.example.sharity_apk.service.CustomerApiService
-import com.example.sharity_apk.service.ServiceGenerator
+import com.example.sharity_apk.databinding.CreateCustomerBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CreateDriversLicense : Fragment() {
+class CreateCustomer : Fragment() {
 
-    private var _binding: CreateDriversLicenseBinding? = null
+    private var _binding: CreateCustomerBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -30,7 +29,7 @@ class CreateDriversLicense : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = CreateDriversLicenseBinding.inflate(inflater, container, false)
+        _binding = CreateCustomerBinding.inflate(inflater, container, false)
         binding.error.isVisible = false
 
         return binding.root
@@ -38,7 +37,6 @@ class CreateDriversLicense : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
 //        Implementing Exposed dropdown
         val country = resources.getStringArray(R.array.country_list)
@@ -59,52 +57,68 @@ class CreateDriversLicense : Fragment() {
             .build()
 
 //        OnClickListener for Date of Birth
-        binding.evValidUntil.setOnClickListener {
-            datePicker.show(parentFragmentManager, "DATE_PICKER")
+        binding.evDob.setOnClickListener {
+            datePicker.show(parentFragmentManager, "")
             datePicker.addOnPositiveButtonClickListener {
                 val dateSelected = outputDateFormat.format(it)
-                binding.evValidUntil.setText(dateSelected)
-            }
-            datePicker.addOnNegativeButtonClickListener {
-                datePicker.clearOnCancelListeners()
+                binding.evDob.setText(dateSelected)
             }
         }
 
         val preferences = SharityPreferences(requireContext())
-        val evLicenseNumber = binding.licenseNumberEdittext.text
-        val evValidUntil = binding.evValidUntil
+        val evFirstName = binding.evFirstName.text
+        val evLastName = binding.evLastName.text
+        val evAddress = binding.evAddress.text
+        val evHouseNumber = binding.evHouseNumber.text
+        val evPostalCode = binding.evPostalCode.text
         val evCountry = binding.evCountry
+        val evDateOfBirth = binding.evDob
+        val evCity = binding.evCity.text
+        val evPhone = binding.evPhone.text
 
-//      Button bindings:
+
+//        OnclickListener on next-button
         binding.buttonNext.setOnClickListener {
 
+//            Start coroutine
             viewLifecycleOwner.lifecycleScope.launch {
-                val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
                 binding.error.isVisible = false
                 try {
+                    if (evFirstName.toString().isEmpty() ||
+                        evLastName.toString().isEmpty() ||
+                        evAddress.toString().isEmpty() ||
+                        evHouseNumber.toString().isEmpty() ||
+                        evPostalCode.toString().isEmpty() ||
+                        evCity.toString().isEmpty() ||
+                        evCountry.text.isEmpty() ||
+                        evDateOfBirth.text.isNullOrEmpty() ||
+                        evPhone.toString().isEmpty()) {
 
-//                Checks if license already connected to other account
-                    try {
-                        serviceGenerator.checkLicense(evLicenseNumber.toString())
-                    } catch (e: Exception) {
-                        binding.error.text = getString(R.string.license_already_database)
-                        binding.error.isVisible = true
-                    }
-
-                    if (evLicenseNumber.toString().isEmpty() ||
-                        evValidUntil.text.toString().isEmpty() ||
-                        evCountry.text.toString().isEmpty()) {
                         binding.error.text = getString(R.string.all_fields_required)
                         binding.error.isVisible = true
-                    } else {
-                        preferences.setLicenseNumber(evLicenseNumber.toString())
-                        preferences.setValidUntil(evValidUntil.text.toString())
-                        preferences.setCountryLicense(evCountry.text.toString())
 
-                        findNavController().navigate(R.id.action_CreateDriversLicense_to_CreateBankaccount)
+                    } else {
+
+//                        set shared prefs until all create account fragments are filled
+                        preferences.setFirstName(evFirstName.toString())
+                        preferences.setLastName(evLastName.toString())
+                        preferences.setAddress(evAddress.toString())
+                        preferences.setHouseNumber(evHouseNumber.toString())
+                        preferences.setPostalCode(evPostalCode.toString())
+                        preferences.setCity(evCity.toString())
+                        preferences.setCountry(evCountry.text.toString())
+                        preferences.setDateOfBirth(evDateOfBirth.text.toString())
+                        preferences.setPhone(evPhone.toString())
+
+
+                        findNavController().navigate(R.id.action_CreateCustomer_to_CreateDriversLicense)
                     }
                 } catch (e: Exception) {
-                    Toast.makeText(requireContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.error_occurred),
+                            Toast.LENGTH_SHORT
+                        ).show()
                 }
             }
         }
@@ -114,6 +128,4 @@ class CreateDriversLicense : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }

@@ -1,8 +1,6 @@
 package com.example.sharity_apk.adapter
 
-import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +12,7 @@ import com.example.sharity_apk.model.CarModel
 import com.example.sharity_apk.service.CarApiService
 import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
+import com.example.sharity_apk.utils.ImageDecoder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,10 +25,7 @@ class CarAdapter(
     RecyclerView.Adapter<CarAdapter.CarViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarViewHolder {
-
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.car_card, parent, false)
-
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.car_card, parent, false)
         return CarViewHolder(itemView)
     }
 
@@ -52,7 +48,7 @@ class CarAdapter(
                 "8" -> holder.ivCar.setImageResource(R.drawable.opel_vectra)
                 "9" -> holder.ivCar.setImageResource(R.drawable.toyota_mirai)
                 else -> {
-                    val imageCar = decodeImageString(encodedString)
+                    val imageCar = ImageDecoder().decodeImageString(encodedString)
                     holder.ivCar.setImageBitmap(imageCar)
                 }
             }
@@ -60,25 +56,29 @@ class CarAdapter(
             holder.tvMake.text = currentCar.make
             holder.tvModel.text = currentCar.model
             "€ ${"%.2f".format(currentCar.pricePerDay?.toDouble())} per day".also { holder.tvPrice.text = it }
-
+            holder.tvCarType.isAllCaps = true
 
 
             if (currentCar.customerNumber != null) {
-                val carCity =  getCustomerCity(currentCar.customerNumber)
-                holder.tvLocation.text = carCity
+                holder.tvLocation.text = getCustomerCity(currentCar.customerNumber)
             } else {
                 holder.tvLocation.setText(R.string.location_unknown)
             }
         }
 
-        if ( currentCar.batteryCapacity != null) {
-            holder.tvCarType.setText(R.string.electric)
-        } else if (currentCar.fuelType != null) {
-            holder.tvCarType.text = currentCar.fuelType
-        } else if (currentCar.kmPerKilo != null) {
-            holder.tvCarType.setText(R.string.hydrogen)
-        } else {
-            holder.tvCarType.setText(R.string.cartype_not_found)
+        when {
+            currentCar.batteryCapacity != null -> {
+                holder.tvCarType.setText(R.string.electric)
+            }
+            currentCar.fuelType != null -> {
+                holder.tvCarType.text = currentCar.fuelType
+            }
+            currentCar.kmPerKilo != null -> {
+                holder.tvCarType.setText(R.string.hydrogen).toString()
+            }
+            else -> {
+                holder.tvCarType.setText(R.string.cartype_not_found).toString()
+            }
         }
     }
 
@@ -87,11 +87,9 @@ class CarAdapter(
         return  (serviceGenerator.getCustomer(customerNumber)).city
     }
 
-
     override fun getItemCount(): Int {
         return carList.size
     }
-
 
     inner class CarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
@@ -114,12 +112,6 @@ class CarAdapter(
 
             }
         }
-    }
-
-    private fun decodeImageString(encodedString: String): Bitmap {
-
-        val imageBytes = Base64.getDecoder().decode(encodedString)
-        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
     }
 
     interface OnCarClickListener {

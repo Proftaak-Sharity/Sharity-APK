@@ -1,4 +1,4 @@
-package com.example.sharity_apk
+package com.example.sharity_apk.fragment.car
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +11,8 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.RadioButton
+import android.widget.Toast
+import com.example.sharity_apk.R
 import com.example.sharity_apk.databinding.SearchCarsBinding
 
 class SearchCars : Fragment() {
@@ -46,7 +48,18 @@ class SearchCars : Fragment() {
 
 //      Button bindings:
         binding.searchButton.setOnClickListener {
-            findNavController().navigate(R.id.action_SearchCars_to_SearchResults)
+
+            if (preferences.getStartDate().isNullOrEmpty() || preferences.getEndDate()
+                    .isNullOrEmpty()
+            ) {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.set_start_end_date),
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                findNavController().navigate(R.id.action_SearchCars_to_SearchResults)
+            }
         }
     }
 
@@ -85,15 +98,5 @@ class SearchCars : Fragment() {
             preferences.setStartDate(startDate)
             preferences.setEndDate(endDate)
         }
-    }
-
-
-    // convert the time we got from datepicker to a string
-    private fun convertLongToTime(time: Long): String {
-        val date = Date(time)
-        val format = SimpleDateFormat(
-            "dd-MM-yyyy",
-            Locale.getDefault())
-        return format.format(date)
     }
 }

@@ -1,4 +1,4 @@
-package com.example.sharity_apk
+package com.example.sharity_apk.fragment.customer
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,18 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.sharity_apk.R
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.GetDriversLicenseDetailsBinding
-import com.example.sharity_apk.service.CustomerApiService
-import com.example.sharity_apk.service.ServiceGenerator
+import com.example.sharity_apk.viewmodel.DriversLicenseViewModel
 import kotlinx.coroutines.launch
 
 class GetDriversLicenseDetails: Fragment() {
 
     private var _binding: GetDriversLicenseDetailsBinding? = null
     private val binding get() = _binding!!
+    private val driversLicenseViewModel: DriversLicenseViewModel by lazy { ViewModelProvider(this)[DriversLicenseViewModel::class.java] }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +34,6 @@ class GetDriversLicenseDetails: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val preferences = SharityPreferences(requireContext())
-        val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
 
 //        Connect texfields to vars
         val licenseNumber: TextView = binding.licenseNumberDb
@@ -42,7 +43,7 @@ class GetDriversLicenseDetails: Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
 
             val customerNumber = preferences.getCustomerNumber()
-            val driversLicense = serviceGenerator.getDriversLicense(customerNumber)
+            val driversLicense = driversLicenseViewModel.getDriversLicense(customerNumber)
 
             licenseNumber.text = driversLicense.licenseNumber
             country.text = driversLicense.country

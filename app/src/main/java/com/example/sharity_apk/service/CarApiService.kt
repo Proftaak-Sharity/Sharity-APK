@@ -8,7 +8,7 @@ import retrofit2.http.*
 interface CarApiService {
 
     @GET("cars")
-    suspend fun getCarsFromCustomer(): MutableList<CarModel>
+    suspend fun getCars(): MutableList<CarModel>
 
     //    using @path so that customer_number becomes the number in the path of the GET
     @GET("cars/{licensePlate}")

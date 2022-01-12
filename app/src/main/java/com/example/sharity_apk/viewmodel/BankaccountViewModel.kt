@@ -11,13 +11,6 @@ class BankaccountViewModel(private val bankaccountDao: BankaccountDao): ViewMode
 
     fun getAllBankaccounts(customerNumber: Long): Flow<List<BankaccountModel>> = bankaccountDao.getAllBankaccounts(customerNumber)
 
-    fun isEntryValid(iban: String, accountHolder: String): Boolean {
-        if (iban.isBlank() || accountHolder.isBlank()) {
-            return false
-        }
-        return true
-    }
-
     fun addNewItem(customerNumber: Long, iban: String, accountHolder: String) {
         val newBankaccount = getNewItemEntry(customerNumber, iban, accountHolder)
         insertItem(newBankaccount)
@@ -37,13 +30,11 @@ class BankaccountViewModel(private val bankaccountDao: BankaccountDao): ViewMode
         }
     }
 
-
     suspend fun getBankaccount(id: Int): BankaccountModel = bankaccountDao.getBankaccount(id)
 
     suspend fun deleteBankaccount(id: Int) = bankaccountDao.deleteBankaccount(id)
 
     suspend fun updateBankaccount(id: Int, iban: String, account_holder: String) = bankaccountDao.updateBankaccount(id, iban, account_holder)
-
 
 }
 

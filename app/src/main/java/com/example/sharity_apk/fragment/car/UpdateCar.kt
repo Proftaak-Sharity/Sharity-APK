@@ -1,4 +1,4 @@
-package com.example.sharity_apk
+package com.example.sharity_apk.fragment.car
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -8,12 +8,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.sharity_apk.R
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.UpdateCarBinding
-import com.example.sharity_apk.service.CarApiService
-import com.example.sharity_apk.service.ServiceGenerator
+import com.example.sharity_apk.viewmodel.CarViewModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.util.*
@@ -22,6 +23,10 @@ class UpdateCar : Fragment(){
 
     private var _binding: UpdateCarBinding? = null
     private val binding get() = _binding!!
+
+    private val carViewModel: CarViewModel by lazy {
+        ViewModelProvider(this)[CarViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,10 +55,9 @@ class UpdateCar : Fragment(){
 
         viewLifecycleOwner.lifecycleScope.launch {
             val preferences = SharityPreferences(requireContext())
-            val serviceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
 
 //          using shared preference to retrieve customerdata from api
-            val car = serviceGenerator.getCar(preferences.getLicensePlate())
+            val car = carViewModel.getCar(preferences.getLicensePlate())
 
 //          connecting customer api-data to textfield
             licensePlate.text = car.licensePlate
@@ -115,7 +119,7 @@ class UpdateCar : Fragment(){
                         builder.setMessage(getString(R.string.edit_price))
                         builder.setPositiveButton(android.R.string.ok) { _, _ ->
                             viewLifecycleOwner.lifecycleScope.launch {
-                                serviceGenerator.updateCar(
+                                carViewModel.updateCar(
                                     car.licensePlate,
                                     pricePerDay.text.toString().toDouble()
                                 )

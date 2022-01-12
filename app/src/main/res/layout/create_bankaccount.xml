@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".CreateBankaccount"
+    tools:context=".fragment.customer.CreateBankaccount"
     android:layout_margin="20dp">
 
     <ImageView

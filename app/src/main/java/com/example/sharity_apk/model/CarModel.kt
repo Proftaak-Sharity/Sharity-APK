@@ -28,9 +28,6 @@ data class CarModel(
     @field:Json(name = "battery_capacity")
     val batteryCapacity: String?,
 
-    @field:Json(name = "fast_charging_time")
-    val fatsChargingTime: String?,
-
     @field:Json(name = "km_per_kw")
     val kmPerKw: String?,
 
