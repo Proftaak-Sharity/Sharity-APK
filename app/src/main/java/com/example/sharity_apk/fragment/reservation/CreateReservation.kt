@@ -43,6 +43,17 @@ class CreateReservation : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val preferences = SharityPreferences(requireContext())
 
+        if (preferences.getStartDate().isNullOrEmpty() or preferences.getEndDate()
+                .isNullOrEmpty()
+        ) {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.set_start_end_date),
+                Toast.LENGTH_SHORT
+            ).show()
+            findNavController().navigate(R.id.action_CreateReservation_to_SearchCars)
+        }
+        
         viewLifecycleOwner.lifecycleScope.launch {
 
             val car = carViewModel.getCar(preferences.getLicensePlate())
