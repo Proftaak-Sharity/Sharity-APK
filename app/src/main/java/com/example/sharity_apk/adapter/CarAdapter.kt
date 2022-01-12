@@ -16,6 +16,7 @@ import com.example.sharity_apk.utils.ImageDecoder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.*
 
 class CarAdapter(
     private val carList: MutableList<CarModel>,
@@ -55,25 +56,29 @@ class CarAdapter(
             holder.tvMake.text = currentCar.make
             holder.tvModel.text = currentCar.model
             "€ ${"%.2f".format(currentCar.pricePerDay?.toDouble())} per day".also { holder.tvPrice.text = it }
-
+            holder.tvCarType.isAllCaps = true
 
 
             if (currentCar.customerNumber != null) {
-                val carCity =  getCustomerCity(currentCar.customerNumber)
-                holder.tvLocation.text = carCity
+                holder.tvLocation.text = getCustomerCity(currentCar.customerNumber)
             } else {
                 holder.tvLocation.setText(R.string.location_unknown)
             }
         }
 
-        if ( currentCar.batteryCapacity != null) {
-            holder.tvCarType.setText(R.string.electric)
-        } else if (currentCar.fuelType != null) {
-            holder.tvCarType.text = currentCar.fuelType
-        } else if (currentCar.kmPerKilo != null) {
-            holder.tvCarType.setText(R.string.hydrogen)
-        } else {
-            holder.tvCarType.setText(R.string.cartype_not_found)
+        when {
+            currentCar.batteryCapacity != null -> {
+                holder.tvCarType.setText(R.string.electric)
+            }
+            currentCar.fuelType != null -> {
+                holder.tvCarType.text = currentCar.fuelType
+            }
+            currentCar.kmPerKilo != null -> {
+                holder.tvCarType.setText(R.string.hydrogen).toString()
+            }
+            else -> {
+                holder.tvCarType.setText(R.string.cartype_not_found).toString()
+            }
         }
     }
 
