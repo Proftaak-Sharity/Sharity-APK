@@ -1,43 +1,29 @@
 package com.example.sharity_apk
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.CreateReservationBinding
-import com.example.sharity_apk.model.CarModel
-import com.example.sharity_apk.model.CustomerModel
-import com.example.sharity_apk.model.ReservationModel
-import com.example.sharity_apk.service.CarApiService
-import com.example.sharity_apk.service.CustomerApiService
-import com.example.sharity_apk.service.ReservationApiService
-import com.example.sharity_apk.service.ServiceGenerator
+import com.example.sharity_apk.utils.ImageDecoder
+import com.example.sharity_apk.viewmodel.CarViewModel
 import com.example.sharity_apk.viewmodel.CustomerViewModel
 import com.example.sharity_apk.viewmodel.ReservationViewModel
 import kotlinx.coroutines.launch
-import retrofit2.http.Query
-import java.lang.Exception
-import java.util.*
 
 class CreateReservation : Fragment() {
 
     private var _binding: CreateReservationBinding? = null
 
-    private val reservationViewModel: ReservationViewModel by lazy {
-        ViewModelProvider(this)[ReservationViewModel::class.java]
-    }
-
-    private val carServiceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
-    private val customerServiceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
+    private val reservationViewModel: ReservationViewModel by lazy { ViewModelProvider(this)[ReservationViewModel::class.java] }
+    private val customerViewModel: CustomerViewModel by lazy { ViewModelProvider(this)[CustomerViewModel::class.java] }
+    private val carViewModel: CarViewModel by lazy { ViewModelProvider(this)[CarViewModel::class.java] }
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -69,10 +55,10 @@ class CreateReservation : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
 
-            val car = carServiceGenerator.getCar(preferences.getLicensePlate())
-            val owner = customerServiceGenerator.getCustomer(car.customerNumber!!)
+            val car = carViewModel.getCar(preferences.getLicensePlate())
+            val owner = customerViewModel.getCustomer(car.customerNumber!!)
 
-            when (val encodedString = carServiceGenerator.getCarImage(car.licensePlate.toString()).image) {
+            when (val encodedString = carViewModel.getCarImage(car.licensePlate.toString()).image) {
                 "1" -> binding.ivCar.setImageResource(R.drawable.volvo_xc90)
                 "2" -> binding.ivCar.setImageResource(R.drawable.landrover_defender)
                 "3" -> binding.ivCar.setImageResource(R.drawable.tesla_3)
@@ -83,8 +69,7 @@ class CreateReservation : Fragment() {
                 "8" -> binding.ivCar.setImageResource(R.drawable.opel_vectra)
                 "9" -> binding.ivCar.setImageResource(R.drawable.toyota_mirai)
                 else -> {
-                    val imageCar = encodedString?.let { decodeImageString(it) }
-                    binding.ivCar.setImageBitmap(imageCar)
+                    binding.ivCar.setImageBitmap(ImageDecoder().decodeImageString(encodedString))
                 }
             }
             binding.tvMake.text = car.make
@@ -120,12 +105,6 @@ class CreateReservation : Fragment() {
                 }
             }
         }
-    }
-
-    private fun decodeImageString(encodedString: String): Bitmap {
-
-        val imageBytes = Base64.getDecoder().decode(encodedString)
-        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
     }
 
     private suspend fun addNewReservation(paymentEnum: String) : Int{

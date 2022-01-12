@@ -213,6 +213,8 @@
     <string name="set_start_end_date">Start en einddatum verplicht</string>
     <string name="select_date">Selecteer datum</string>
     <string name="rentaldates">Startdatum: %1$s \n Einddatum: %2$s</string>
+    <string name="select_action">Selecteer actie</string>
+    <string name="balance">Uit te betalen</string>
 
     <string-array name="country_list">
         <item>NEDERLANDS</item>

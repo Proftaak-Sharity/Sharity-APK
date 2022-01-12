@@ -3,48 +3,47 @@ package com.example.sharity_apk
 import com.example.sharity_apk.model.CarModel
 import com.example.sharity_apk.service.CarApiService
 import junit.framework.Assert.assertEquals
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.newSingleThreadContext
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.After
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
 
 class SearchCarUnitTest {
+    @DelicateCoroutinesApi
     private val mainThreadSurrogate = newSingleThreadContext("UI thread")
-    val sut = Mockito.mock(CarApiService::class.java)
+    private val sut: CarApiService = Mockito.mock(CarApiService::class.java)
 
+    @DelicateCoroutinesApi
+    @ExperimentalCoroutinesApi
     @Before
     fun setUp() {
         Dispatchers.setMain(mainThreadSurrogate)
     }
 
+    @DelicateCoroutinesApi
+    @ExperimentalCoroutinesApi
     @After
     fun tearDown() {
         Dispatchers.resetMain() // reset the main dispatcher to the original Main dispatcher
         mainThreadSurrogate.close()
     }
 
-
     @Test
     fun getCarUnitTest(): Unit = runBlocking {
 
-        var car = makeCar()
+        val car = makeCar()
 
         launch(Dispatchers.Main){
 
             Mockito.`when`(sut.getCar("test")).thenReturn(car)
-            var carToTest: CarModel = sut.getCar("test")
+            val carToTest: CarModel = sut.getCar("test")
 
             return@launch assertEquals(carToTest.customerNumber, car.customerNumber )
 
         }
-
     }
 
     @Test
@@ -53,23 +52,23 @@ class SearchCarUnitTest {
 
 
         launch(Dispatchers.Main){
-            var carList = MakeCars(numberOfCars)
-            Mockito.`when`(sut.getCarsFromCustomer()).thenReturn(carList)
-            var carListToCount: MutableList<CarModel> = sut.getCarsFromCustomer()
+            val carList = makeCars(numberOfCars)
+            Mockito.`when`(sut.getCars()).thenReturn(carList)
+            val carListToCount: MutableList<CarModel> = sut.getCars()
 
             return@launch assertEquals(carListToCount.size, carList.size )
 
         }
-
     }
 
+    private fun makeCar(): CarModel {
 
-    fun makeCar() : CarModel {
-        var car = CarModel(  licensePlate = "AUTO01",
+        return CarModel(
+            licensePlate = "AUTO01",
             customerNumber = 12,
             make = "OPEL",
             model = "Astra",
-            pricePerDay = "50" ,
+            pricePerDay = "50",
             pricePerKm = "0.23",
             fuelType = "Petrol",
             kmPerLiterFuel = "20",
@@ -77,20 +76,17 @@ class SearchCarUnitTest {
             batteryCapacity = "",
             kmPerKilo = "",
             kmPerKw = "",
-            fatsChargingTime = ""
         )
-
-        return car
     }
 
-    fun MakeCars(number: Long): MutableList<CarModel> {
+    private fun makeCars(number: Long): MutableList<CarModel> {
 
-        var carList = mutableListOf<CarModel>()
+        val carList = mutableListOf<CarModel>()
 
         var i: Long = 1
 
         while (i <= number) {
-            var car = CarModel(  licensePlate = "AUTO0$i",
+            val car = CarModel(  licensePlate = "AUTO0$i",
                 customerNumber = i,
                 make = "OPEL",
                 model = "Astra",
@@ -102,7 +98,6 @@ class SearchCarUnitTest {
                 batteryCapacity = "",
                 kmPerKilo = "",
                 kmPerKw = "",
-                fatsChargingTime = ""
             )
 
             carList.add(car)
@@ -112,4 +107,3 @@ class SearchCarUnitTest {
     }
 
 }
-

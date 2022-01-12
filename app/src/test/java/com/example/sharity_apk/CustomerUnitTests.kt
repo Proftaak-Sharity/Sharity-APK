@@ -63,7 +63,8 @@ class CustomerUnitTests {
             country = "NETHERLANDS",
             phoneNumber = "0658911456",
             email = "c.ronaldo@voetbal.nl",
-            password = "welkom01"
+            password = "welkom01",
+            balance = 0.0
         )
     }
 

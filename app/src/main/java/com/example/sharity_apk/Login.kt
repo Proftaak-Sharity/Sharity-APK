@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.databinding.LoginBinding
 import com.example.sharity_apk.config.SharityPreferences
-import com.example.sharity_apk.service.CustomerApiService
-import com.example.sharity_apk.service.ServiceGenerator
+import com.example.sharity_apk.viewmodel.CustomerViewModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -19,6 +19,7 @@ class Login : Fragment() {
 
     private var _binding: LoginBinding? = null
     private val binding get() = _binding!!
+    private val customerViewModel: CustomerViewModel by lazy { ViewModelProvider(this)[CustomerViewModel::class.java] }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +45,6 @@ class Login : Fragment() {
             binding.error.isVisible = false
             val emailInput = binding.loginEmailText.text
             val passwordInput = binding.loginPasswordText.text
-            val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
 
             if (emailInput.isNullOrEmpty() || passwordInput.isNullOrEmpty()) {
                 binding.error.text = getString(R.string.password_email_empty)
@@ -53,7 +53,7 @@ class Login : Fragment() {
                 viewLifecycleOwner.lifecycleScope.launch {
                     try {
                         val customer =
-                        serviceGenerator.getUser(emailInput.toString(), passwordInput.toString())
+                        customerViewModel.getUser(emailInput.toString(), passwordInput.toString())
 
                         preference.setCustomerNumber(customer.customerNumber)
                         preference.setLastName(customer.lastName!!)

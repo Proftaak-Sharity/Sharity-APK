@@ -8,12 +8,12 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.CreateDriversLicenseBinding
-import com.example.sharity_apk.service.CustomerApiService
-import com.example.sharity_apk.service.ServiceGenerator
+import com.example.sharity_apk.viewmodel.DriversLicenseViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -24,6 +24,8 @@ class CreateDriversLicense : Fragment() {
 
     private var _binding: CreateDriversLicenseBinding? = null
     private val binding get() = _binding!!
+    private val driversLicenseViewModel: DriversLicenseViewModel by lazy { ViewModelProvider(this)[DriversLicenseViewModel::class.java] }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +41,7 @@ class CreateDriversLicense : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val preferences = SharityPreferences(requireContext())
 
 //        Implementing Exposed dropdown
         val country = resources.getStringArray(R.array.country_list)
@@ -70,7 +73,6 @@ class CreateDriversLicense : Fragment() {
             }
         }
 
-        val preferences = SharityPreferences(requireContext())
         val evLicenseNumber = binding.licenseNumberEdittext.text
         val evValidUntil = binding.evValidUntil
         val evCountry = binding.evCountry
@@ -79,13 +81,12 @@ class CreateDriversLicense : Fragment() {
         binding.buttonNext.setOnClickListener {
 
             viewLifecycleOwner.lifecycleScope.launch {
-                val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
                 binding.error.isVisible = false
                 try {
 
 //                Checks if license already connected to other account
                     try {
-                        serviceGenerator.checkLicense(evLicenseNumber.toString())
+                        driversLicenseViewModel.checkLicense(evLicenseNumber.toString())
                     } catch (e: Exception) {
                         binding.error.text = getString(R.string.license_already_database)
                         binding.error.isVisible = true

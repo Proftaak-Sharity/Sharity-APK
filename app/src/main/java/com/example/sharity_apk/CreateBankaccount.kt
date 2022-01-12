@@ -20,8 +20,6 @@ import com.example.sharity_apk.model.BankaccountModel
 import com.example.sharity_apk.viewmodel.BankaccountViewModel
 import com.example.sharity_apk.viewmodel.BankaccountViewModelFactory
 import com.example.sharity_apk.viewmodel.CustomerViewModel
-import com.example.sharity_apk.service.CustomerApiService
-import com.example.sharity_apk.service.ServiceGenerator
 import com.example.sharity_apk.service.SharityApplication
 import com.example.sharity_apk.viewmodel.DriversLicenseViewModel
 import kotlinx.coroutines.launch
@@ -30,6 +28,8 @@ import kotlinx.coroutines.launch
 class CreateBankaccount: Fragment() {
 
     lateinit var bankaccount: BankaccountModel
+    private val customerViewModel: CustomerViewModel by lazy { ViewModelProvider(this)[CustomerViewModel::class.java] }
+    private val driversLicenseViewModel: DriversLicenseViewModel by lazy { ViewModelProvider(this)[DriversLicenseViewModel::class.java] }
 
     // Use the 'by activityViewModels()' Kotlin property delegate from the fragment-ktx artifact
     // to share the ViewModel across fragments.
@@ -37,14 +37,6 @@ class CreateBankaccount: Fragment() {
         BankaccountViewModelFactory(
             (activity?.application as SharityApplication).database.bankaccountDao()
         )
-    }
-
-    private val customerViewModel: CustomerViewModel by lazy {
-        ViewModelProvider(this)[CustomerViewModel::class.java]
-    }
-
-    private val driversLicenseViewModel: DriversLicenseViewModel by lazy {
-        ViewModelProvider(this)[DriversLicenseViewModel::class.java]
     }
 
     // Binding object instance corresponding to the layout
@@ -146,8 +138,7 @@ class CreateBankaccount: Fragment() {
     private suspend fun addNewDriversLicense() {
         val preferences = SharityPreferences(requireContext())
         viewLifecycleOwner.lifecycleScope.launch {
-            val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
-            val customer = serviceGenerator.getUser(
+            val customer = customerViewModel.getUser(
                 preferences.getEmail().toString(),
                 preferences.getPassword().toString()
             )
@@ -166,8 +157,7 @@ class CreateBankaccount: Fragment() {
 
         if (preferences.getCustomerNumber() <= 0) {
             viewLifecycleOwner.lifecycleScope.launch {
-                val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
-                val customer = serviceGenerator.getUser(
+                val customer = customerViewModel.getUser(
                     preferences.getEmail().toString(),
                     preferences.getPassword().toString())
                 bankaccountViewModel.addNewItem(

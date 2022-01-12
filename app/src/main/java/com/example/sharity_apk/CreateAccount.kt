@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.CreateAccountBinding
-import com.example.sharity_apk.service.CustomerApiService
-import com.example.sharity_apk.service.ServiceGenerator
+import com.example.sharity_apk.viewmodel.CustomerViewModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -19,6 +19,7 @@ class CreateAccount : Fragment() {
 
     private var _binding: CreateAccountBinding? = null
     private val binding get() = _binding!!
+    private val customerViewModel: CustomerViewModel by lazy { ViewModelProvider(this)[CustomerViewModel::class.java] }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,8 +51,7 @@ class CreateAccount : Fragment() {
 
             viewLifecycleOwner.lifecycleScope.launch {
                 try {
-                    val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
-                    val checkedEmail = serviceGenerator.checkEmail(tvEmail.toString())
+                    val checkedEmail = customerViewModel.checkEmail(tvEmail.toString())
 
 //                    check if fields are filled
                     if (tvEmail.toString().isEmpty()) {

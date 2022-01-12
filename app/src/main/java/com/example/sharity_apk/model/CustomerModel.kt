@@ -38,5 +38,8 @@ data class CustomerModel(
     val email: String?,
 
     @field:Json(name = "password")
-    val password: String?
+    val password: String?,
+
+    @field:Json(name = "balance")
+    val balance: Double?
     )

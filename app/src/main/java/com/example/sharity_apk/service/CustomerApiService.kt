@@ -1,8 +1,6 @@
 package com.example.sharity_apk.service
 
-import com.example.sharity_apk.model.CustomerModel
-import com.example.sharity_apk.model.DriversLicenseModel
-import com.example.sharity_apk.model.LoginModel
+import com.example.sharity_apk.model.*
 import retrofit2.http.*
 
 interface CustomerApiService {
@@ -55,4 +53,13 @@ interface CustomerApiService {
                                @Query("country") country: String?,
                                @Query("dateOfBirth") dateOfBirth: String,
                                @Query("phoneNumber") phoneNumber: String)
+
+    @POST("customers/image")
+    suspend fun addCustomerImage(@Query ("customerNumber") customerNumber: Long,
+                            @Query ("image") image: String)
+
+    @GET("customers/image/{customerNumber}")
+    suspend fun getCustomerImage(@Path ("customerNumber") customerNumber: Long) : CustomerImageModel
+
+
 }

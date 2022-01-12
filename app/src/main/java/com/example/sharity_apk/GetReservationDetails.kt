@@ -1,20 +1,19 @@
 package com.example.sharity_apk
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.GetReservationDetailsBinding
-import com.example.sharity_apk.service.CarApiService
-import com.example.sharity_apk.service.ReservationApiService
-import com.example.sharity_apk.service.ServiceGenerator
+import com.example.sharity_apk.utils.ImageDecoder
+import com.example.sharity_apk.viewmodel.CarViewModel
+import com.example.sharity_apk.viewmodel.ReservationViewModel
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -22,6 +21,9 @@ class GetReservationDetails: Fragment() {
 
     private var _binding: GetReservationDetailsBinding? = null
     private val binding get() = _binding!!
+    private val reservationViewModel: ReservationViewModel by lazy { ViewModelProvider(this)[ReservationViewModel::class.java] }
+    private val carViewModel: CarViewModel by lazy { ViewModelProvider(this)[CarViewModel::class.java] }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,8 +38,6 @@ class GetReservationDetails: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val preferences = SharityPreferences(requireContext())
-        val serviceGenerator = ServiceGenerator.buildService(ReservationApiService::class.java)
-        val serviceGenerator2 = ServiceGenerator.buildService(CarApiService::class.java)
 
 //        Connect textfields to variables:
         val reservationStart: TextView = binding.reservationStartDb
@@ -59,14 +59,14 @@ class GetReservationDetails: Fragment() {
             val reservationNumber = preferences.getReservationNumber()
 
 //            using shared preference to retrieve reservation data from api
-            val reservation = serviceGenerator.getReservation(reservationNumber)
+            val reservation = reservationViewModel.getReservation(reservationNumber)
 
             //      connecting licenseplate from shared preference to variable
             val licensePlateCar = preferences.getLicensePlate()
-            val car = serviceGenerator2.getCar(licensePlateCar)
+            val car = carViewModel.getCar(licensePlateCar)
 //            connecting reservation api-data to textfield
 
-            when (val encodedString = serviceGenerator2.getCarImage(car.licensePlate.toString()).image) {
+            when (val encodedString = carViewModel.getCarImage(car.licensePlate.toString()).image) {
                 "1" -> binding.imageCar.setImageResource(R.drawable.volvo_xc90)
                 "2" -> binding.imageCar.setImageResource(R.drawable.landrover_defender)
                 "3" -> binding.imageCar.setImageResource(R.drawable.tesla_3)
@@ -77,7 +77,7 @@ class GetReservationDetails: Fragment() {
                 "8" -> binding.imageCar.setImageResource(R.drawable.opel_vectra)
                 "9" -> binding.imageCar.setImageResource(R.drawable.toyota_mirai)
                 else -> {
-                    val imageCar = decodeImageString(encodedString)
+                    val imageCar = ImageDecoder().decodeImageString(encodedString)
                     binding.imageCar.setImageBitmap(imageCar)
                 }
             }
@@ -100,11 +100,6 @@ class GetReservationDetails: Fragment() {
                     findNavController().navigate(R.id.action_GetReservationDetails_to_mapsFragment3)
               }
         }
-    }
-
-    private fun decodeImageString(encodedString: String): Bitmap {
-        val imageBytes = Base64.getDecoder().decode(encodedString)
-        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
     }
 
     override fun onDestroyView() {
