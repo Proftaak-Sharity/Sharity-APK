@@ -50,9 +50,7 @@ class CreateCar : Fragment() {
         val preferences = SharityPreferences(requireContext())
         val customerNumber = preferences.getCustomerNumber()
         val carType = preferences.getAddedCarType()
-
-
-
+        
         //        Implementing Exposed dropdown
         val make = resources.getStringArray(R.array.car_make_list)
         val arrayAdapterMake = ArrayAdapter(requireContext(), R.layout.dropdown_item, make)
@@ -86,7 +84,6 @@ class CreateCar : Fragment() {
                 binding.capacityLayout.hint = getString(R.string.size_fueltank)
                 binding.usageLayout.hint = getString(R.string.km_per_liter)
                 binding.fueltypeLayout.isVisible = true
-
             }
         }
 
