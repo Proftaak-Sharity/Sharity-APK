@@ -20,27 +20,27 @@ data class CarModel(
     val model: String?,
 
     @field:Json(name = "pricePerDay")
-    val pricePerDay: String?,
+    val pricePerDay: Double?,
 
     @field:Json(name = "price_per_km")
-    val pricePerKm: String,
+    val pricePerKm: Double,
 
     @field:Json(name = "battery_capacity")
     val batteryCapacity: String?,
 
     @field:Json(name = "km_per_kw")
-    val kmPerKw: String?,
+    val kmPerKw: Int?,
 
     @field:Json(name = "fuel_type")
     val fuelType: String?,
 
     @field:Json(name = "km_per_liter")
-    val kmPerLiterFuel: String?,
+    val kmPerLiterFuel: Int?,
 
     @field:Json(name = "size_fueltank")
-    val sizeFueltank: String?,
+    val sizeFueltank: Int?,
 
     @field:Json(name = "km_per_kilo")
-    val kmPerKilo: String?
+    val kmPerKilo: Int?
 
     )

@@ -41,7 +41,9 @@ class CreateReservation : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val preferences = SharityPreferences(requireContext())
+
 
         if (preferences.getStartDate().isNullOrEmpty() or preferences.getEndDate()
                 .isNullOrEmpty()
@@ -53,7 +55,7 @@ class CreateReservation : Fragment() {
             ).show()
             findNavController().navigate(R.id.action_CreateReservation_to_SearchCars)
         }
-        
+
         viewLifecycleOwner.lifecycleScope.launch {
 
             val car = carViewModel.getCar(preferences.getLicensePlate())
@@ -82,12 +84,7 @@ class CreateReservation : Fragment() {
             binding.tvPrice.text = "€ ${"%.2f".format(car.pricePerDay?.toDouble())}"
             binding.tvStartDate.text = preferences.getStartDate()
             binding.tvEndDate.text = preferences.getEndDate()
-            val rent = car.pricePerDay
-            val pricePerKm = car.pricePerKm
-            val kmPackage = binding.txtInputKmPackage.text.toString().toInt()
-            preferences.setKmPackage(kmPackage)
-            preferences.setPackagePrice((kmPackage.toDouble() * pricePerKm.toDouble()).toString())
-            preferences.setRent(rent.toString())
+            val test = binding.txtInputKmPackage
 
             binding.buttonPayNow.setOnClickListener {
 
@@ -110,15 +107,16 @@ class CreateReservation : Fragment() {
 
     private suspend fun addNewReservation(paymentEnum: String) : Int{
         val preferences = SharityPreferences(requireContext())
+        val car = carViewModel.getCar(preferences.getLicensePlate())
 
         return reservationViewModel.addReservation(
             preferences.getCustomerNumber(),
             preferences.getLicensePlate(),
-            preferences.getKmPackage(),
+            binding.txtInputKmPackage.text.toString().toInt(),
             preferences.getStartDate(),
             preferences.getEndDate(),
-            preferences.getRent()?.toDouble(),
-            preferences.getPackagePrice()?.toDouble(),
+            car.pricePerDay,
+            binding.txtInputKmPackage.text.toString().toDouble() * car.pricePerKm,
             paymentEnum)
     }
 }

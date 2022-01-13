@@ -107,6 +107,7 @@ class GetReservationDetails: Fragment() {
                         reservation.reservationNumber,
                         getString(R.string.paid)
                     )
+                    binding.btnPay.isVisible = false
                     paymentStatus.text = newStatus
                 }
             }
