@@ -7,8 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.customer.GetCustomerDetails"
-    android:layout_margin="20dp"
-    android:paddingBottom="20dp">
+    android:layout_margin="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/image_logo_profile"
@@ -33,15 +32,14 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/image_logo_profile"
         android:text="@string/drivers_license_details"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:layout_marginTop="20dp"/>
+        android:textAppearance="?attr/textAppearanceHeadline5"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/license_number_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="10dp">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/license_number"
@@ -59,7 +57,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
-            android:text="DFAP51056F"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/license_number"
             app:layout_constraintTop_toTopOf="parent"
@@ -90,7 +87,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
-            android:text="NETHERLANDS"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/license_country"
             app:layout_constraintTop_toTopOf="parent"
@@ -121,7 +117,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
-            android:text="22-04-2031"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/valid_until"
             app:layout_constraintTop_toTopOf="parent"
@@ -165,15 +160,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:contentDescription="@string/profile_image_demo"
             android:layout_marginStart="10dp"/>
+<!--        TODO: CAMERAFUNCTION IMPLEMENTATION-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="15dp"
-        android:paddingBottom="20dp">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
             android:id="@+id/button_personal"

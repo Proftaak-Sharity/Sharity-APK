@@ -43,15 +43,14 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/image_logo_profile"
         android:text="@string/car_details"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:layout_marginTop="20dp"/>
+        android:textAppearance="?attr/textAppearanceHeadline5"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@id/license_plate_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="10dp">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/license_plate"
@@ -264,7 +263,7 @@
         app:layout_constraintTop_toBottomOf="@+id/range_details"
         android:text="@string/pricing"
         android:textAppearance="?attr/textAppearanceHeadline5"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="10dp"/>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -272,7 +271,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/title2"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="10dp">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/price_per_day"

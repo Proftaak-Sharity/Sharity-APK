@@ -43,15 +43,14 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/image_logo_profile"
         android:text="@string/car_details"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:layout_marginTop="20dp"/>
+        android:textAppearance="?attr/textAppearanceHeadline5"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@id/tvMake_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="10dp">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/Make"
@@ -70,7 +69,6 @@
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textStyle="italic"
-            tools:text="Opel"
             app:layout_constraintStart_toEndOf="@+id/Make"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
@@ -100,7 +98,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
-            tools:text="Astra"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/model"
             app:layout_constraintTop_toTopOf="parent"
@@ -131,7 +128,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
-            tools:text="KTKN01"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/license_plate"
             app:layout_constraintTop_toTopOf="parent"
@@ -162,7 +158,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
-            tools:text="Waterhoen 35"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/location"
             app:layout_constraintTop_toTopOf="parent"
@@ -194,7 +189,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
-            tools:text="4821SC"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/postal_code"
             app:layout_constraintTop_toTopOf="parent"
@@ -205,7 +199,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
-            android:text="Etten-Leur"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/tvPostalCode"
             app:layout_constraintTop_toTopOf="parent"
@@ -236,7 +229,6 @@
             android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="100,00"
             android:textStyle="italic"
             android:textAppearance="?attr/textAppearanceBody2"
             app:layout_constraintTop_toTopOf="parent"
@@ -267,7 +259,6 @@
             android:id="@+id/tvPricePerKm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="1,50"
             android:textStyle="italic"
             android:textAppearance="?attr/textAppearanceBody2"
             app:layout_constraintTop_toTopOf="parent"
@@ -284,7 +275,7 @@
         app:layout_constraintTop_toBottomOf="@+id/price_ker_km_details"
         android:text="@string/owner_details"
         android:textAppearance="?attr/textAppearanceHeadline5"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="10dp"/>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -292,7 +283,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/title2"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="10dp">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/phone_number"
@@ -309,7 +300,6 @@
             android:id="@+id/tvPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+31644793244"
             android:textStyle="italic"
             android:textAppearance="?attr/textAppearanceBody2"
             app:layout_constraintTop_toTopOf="parent"
@@ -340,7 +330,6 @@
             android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="rpl.vanderhorst@student.avans.nl"
             android:textStyle="italic"
             android:textAppearance="?attr/textAppearanceBody2"
             app:layout_constraintTop_toTopOf="parent"
@@ -362,8 +351,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="?attr/colorSecondary"
-            android:drawableLeft="@drawable/ic_baseline_edit_24"
-            android:text="@string/rent"
+            android:text="@string/rent_car"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_locate"
             app:layout_constraintStart_toStartOf="parent"

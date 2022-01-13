@@ -218,6 +218,7 @@
     <string name="image">image</string>
     <string name="pay">pay</string>
     <string name="paid">PAID</string>
+    <string name="rent_car">rent car</string>
 
     <string-array name="country_list">
         <item>NETHERLANDS</item>

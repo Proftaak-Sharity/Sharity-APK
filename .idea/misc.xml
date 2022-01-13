@@ -55,6 +55,7 @@
         <entry key="app/src/main/res/layout/empty_field_dialog.xml" value="0.24686087393269715" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.325" />
+        <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.40625" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.25" />
         <entry key="app/src/main/res/layout/get_all_cars.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/get_all_reservations.xml" value="0.41032608695652173" />

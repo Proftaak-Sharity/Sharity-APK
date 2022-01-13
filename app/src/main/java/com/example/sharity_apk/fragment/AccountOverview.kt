@@ -62,6 +62,7 @@ class AccountOverview : Fragment() {
         binding.buttonMyDetails.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_GetCustomerDetails) }
         binding.buttonMyCars.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_GetAllCars) }
         binding.buttonMyReservations.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_GetAllReservations) }
+        binding.ivProfile.setOnClickListener { findNavController().navigate(R.id.action_AccountOverview_to_GetCustomerDetails) }
     }
 
     override fun onDestroyView() {

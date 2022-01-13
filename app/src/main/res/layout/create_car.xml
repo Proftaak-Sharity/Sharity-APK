@@ -53,8 +53,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/image_logo_profile"
         android:text="@string/add_cartype_car"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:layout_marginTop="10dp"/>
+        android:textAppearance="?attr/textAppearanceHeadline5"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/make_layout"
@@ -62,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/title"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="10dp">
 
         <AutoCompleteTextView
             android:id="@+id/et_make"

@@ -15,7 +15,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:src="@drawable/ic_sharity"
-        android:layout_marginTop="0dp"
         android:contentDescription="@string/logo_sharity" />
 
     <TextView
@@ -24,8 +23,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/logo_sharity"
         android:text="@string/add_drivers_license"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:layout_marginTop="20dp"/>
+        android:textAppearance="?attr/textAppearanceHeadline5"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/license_number"
@@ -35,8 +33,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:boxBackgroundColor="@color/white"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginTop="10dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/license_number_edittext"
