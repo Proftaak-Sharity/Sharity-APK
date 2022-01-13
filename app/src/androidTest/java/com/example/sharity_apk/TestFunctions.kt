@@ -13,7 +13,6 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.example.sharity_apk.config.SharityPreferences
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
-import org.junit.Test
 
 open class TestFunctions {
 

@@ -1,9 +1,6 @@
 package com.example.sharity_apk.model
 
-import android.graphics.Picture
 import com.squareup.moshi.Json
-
-
 
 data class Car(
 

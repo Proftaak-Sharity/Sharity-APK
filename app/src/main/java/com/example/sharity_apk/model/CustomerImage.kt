@@ -2,7 +2,7 @@ package com.example.sharity_apk.model
 
 import com.squareup.moshi.Json
 
-class CustomerImage (
+data class CustomerImage (
 
     @field:Json(name = "customerNumber")
     val customerNumber: Long,
