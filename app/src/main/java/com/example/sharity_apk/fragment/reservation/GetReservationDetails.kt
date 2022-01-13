@@ -94,9 +94,9 @@ class GetReservationDetails: Fragment() {
             kmPackage.text = reservation.kmPackage.toString() + " km"
             packagePrice.text = "€ ${"%.2f".format(reservation.packagePrice)}"
             totalPrice.text = "€ ${"%.2f".format(reservation.rent)}"
-            paymentStatus.text = reservation.paymentEnum
+            paymentStatus.text = reservation.payment
 
-            when (reservation.paymentEnum) {
+            when (reservation.payment) {
                 "OPEN" -> binding.btnPay.isVisible = true
                 else -> binding.btnPay.isVisible = false
             }

@@ -32,6 +32,6 @@ data class ReservationModel(
     val rent: Double?,
 
     @field:Json(name = "payment_enum")
-    val paymentEnum: String?,
+    val payment: String?,
 
-)
+    )

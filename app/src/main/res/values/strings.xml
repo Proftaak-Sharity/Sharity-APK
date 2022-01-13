@@ -219,6 +219,8 @@
     <string name="pay">pay</string>
     <string name="paid">PAID</string>
     <string name="rent_car">rent car</string>
+    <string name="_500">500</string>
+    <string name="must_be_more">Km package must be more then zero</string>
 
     <string-array name="country_list">
         <item>NETHERLANDS</item>

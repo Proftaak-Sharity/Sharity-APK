@@ -17,12 +17,12 @@ class ReservationViewModel: ViewModel() {
         return serviceGenerator.getReservation(reservationNumber)
     }
 
-    suspend fun addReservation(customerNumber: Long?, licensePlate: String?, kmPackage: Int?, startDate: String?, endDate: String?, rent: Double?, packagePrice: Double?, paymentEnum: String?) : Int {
-        return serviceGenerator.addReservation(customerNumber, licensePlate, kmPackage, startDate, endDate, rent, packagePrice, paymentEnum)
+    suspend fun addReservation(customerNumber: Long?, licensePlate: String?, kmPackage: Int?, startDate: String?, endDate: String?, rent: Double?, packagePrice: Double?, payment: String?) : Int {
+        return serviceGenerator.addReservation(customerNumber, licensePlate, kmPackage, startDate, endDate, rent, packagePrice, payment)
     }
 
-    suspend fun updatePayment(reservationNumber: Int, paymentEnum: String?) : String {
-        return serviceGenerator.updatePayment(reservationNumber, paymentEnum)
+    suspend fun updatePayment(reservationNumber: Int, payment: String?) : String {
+        return serviceGenerator.updatePayment(reservationNumber, payment)
     }
 
 

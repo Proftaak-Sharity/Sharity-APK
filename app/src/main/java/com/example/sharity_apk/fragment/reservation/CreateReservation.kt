@@ -81,42 +81,50 @@ class CreateReservation : Fragment() {
             binding.tvAdress.text = owner.address
             binding.tvCity.text = owner.city
             binding.tvPostalCode.text = owner.postalCode
-            binding.tvPrice.text = "€ ${"%.2f".format(car.pricePerDay?.toDouble())}"
+            binding.tvPrice.text = "€ ${"%.2f".format(car.pricePerDay)}"
             binding.tvStartDate.text = preferences.getStartDate()
             binding.tvEndDate.text = preferences.getEndDate()
-            val test = binding.txtInputKmPackage
 
             binding.buttonPayNow.setOnClickListener {
-
                 viewLifecycleOwner.lifecycleScope.launch {
+                    val kmPackage = binding.txtInputKmPackage.text.toString()
 
-                    preferences.setReservationNumber(addNewReservation("PAID"))
-                    findNavController().navigate(R.id.action_CreateReservation_to_GetReservationDetails)
+                    if (kmPackage.isEmpty() || kmPackage == "0")  {
+                        Toast.makeText(requireContext(), getString(R.string.must_be_more), Toast.LENGTH_SHORT).show()
+                    } else {
+                        preferences.setReservationNumber(addNewReservation("PAID"))
+                        findNavController().navigate(R.id.action_CreateReservation_to_GetReservationDetails)
+                    }
                 }
             }
 
             binding.buttonPayLater.setOnClickListener {
-
                 viewLifecycleOwner.lifecycleScope.launch {
-                    preferences.setReservationNumber(addNewReservation("OPEN"))
-                    findNavController().navigate(R.id.action_CreateReservation_to_GetReservationDetails)
+                    val kmPackage = binding.txtInputKmPackage.text.toString()
+
+                    if (kmPackage.isEmpty() || kmPackage == "0") {
+                        Toast.makeText(requireContext(), getString(R.string.must_be_more), Toast.LENGTH_SHORT).show()
+                    } else {
+                        preferences.setReservationNumber(addNewReservation("OPEN"))
+                        findNavController().navigate(R.id.action_CreateReservation_to_GetReservationDetails)
+                    }
                 }
             }
         }
     }
 
-    private suspend fun addNewReservation(paymentEnum: String) : Int{
+    private suspend fun addNewReservation(payment: String) : Int{
         val preferences = SharityPreferences(requireContext())
         val car = carViewModel.getCar(preferences.getLicensePlate())
 
         return reservationViewModel.addReservation(
             preferences.getCustomerNumber(),
             preferences.getLicensePlate(),
-            binding.txtInputKmPackage.text.toString().toInt(),
+            binding.txtInputKmPackage.toString().toInt(),
             preferences.getStartDate(),
             preferences.getEndDate(),
             car.pricePerDay,
             binding.txtInputKmPackage.text.toString().toDouble() * car.pricePerKm,
-            paymentEnum)
+            payment)
     }
 }

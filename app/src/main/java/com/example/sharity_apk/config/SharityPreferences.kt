@@ -2,40 +2,33 @@ package com.example.sharity_apk.config
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.graphics.Bitmap
-
 
 class SharityPreferences(context: Context) {
 
-    val PREFERENCE_NAME = "SharedPreference"
-    val CUSTOMER_NUMBER = "CustomerNumber"
-    val CUSTOMER_LAST_NAME = "FirstName"
-    val CUSTOMER_FIRST_NAME = "LastName"
-    val LICENSE_PLATE = "LicencePlate"
-    val RESERVATION_NUMBER = "ReservationNumber"
-    val START_DATE = "StartDate"
-    val END_DATE = "EndDate"
-    val FUEL_TYPE = "FuelType"
-    val CUSTOMER_PASSWORD = "Password"
-    val CUSTOMER_EMAIL = "Email"
-    val CUSTOMER_ADDRESS = "Address"
-    val CUSTOMER_HOUSE_NUMBER = "HouseNumber"
-    val CUSTOMER_POSTAL_CODE = "PostalCode"
-    val CUSTOMER_CITY = "City"
-    val CUSTOMER_DATE_OF_BIRTH = "DateOfBirth"
-    val CUSTOMER_PHONE = "Phone"
-    val CUSTOMER_COUNTRY = "Country"
-    val LICENSE_COUNTRY = "LicenseCountry"
-    val LICENSE_NUMBER = "LicenseNumber"
-    val LICENSE_VALID_UNTIL = "ValidUntil"
-    val BANKACCOUNT_ID = "BankaccountId"
-    val CARTYPE = "CarType"
-    val LICENSEPLATE = "LicensePlate"
-    val KM_PACKAGE = "KmPackage"
-    val RENT = "Rent"
-    val PACKAGE_PRICE = "PackagePrice"
-    val PAYMENT_ENUM = "PaymentEnum"
-    val IMAGE = "Image"
+    private val PREFERENCE_NAME = "SharedPreference"
+    private val CUSTOMER_NUMBER = "CustomerNumber"
+    private val CUSTOMER_LAST_NAME = "FirstName"
+    private val CUSTOMER_FIRST_NAME = "LastName"
+    private val LICENSE_PLATE = "LicencePlate"
+    private val RESERVATION_NUMBER = "ReservationNumber"
+    private val START_DATE = "StartDate"
+    private val END_DATE = "EndDate"
+    private val FUEL_TYPE = "FuelType"
+    private val CUSTOMER_PASSWORD = "Password"
+    private val CUSTOMER_EMAIL = "Email"
+    private val CUSTOMER_ADDRESS = "Address"
+    private val CUSTOMER_HOUSE_NUMBER = "HouseNumber"
+    private val CUSTOMER_POSTAL_CODE = "PostalCode"
+    private val CUSTOMER_CITY = "City"
+    private val CUSTOMER_DATE_OF_BIRTH = "DateOfBirth"
+    private val CUSTOMER_PHONE = "Phone"
+    private val CUSTOMER_COUNTRY = "Country"
+    private val LICENSE_COUNTRY = "LicenseCountry"
+    private val LICENSE_NUMBER = "LicenseNumber"
+    private val LICENSE_VALID_UNTIL = "ValidUntil"
+    private val BANKACCOUNT_ID = "BankaccountId"
+    private val CARTYPE = "CarType"
+    private val IMAGE = "Image"
 
     private val preference: SharedPreferences =
         context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
@@ -146,7 +139,6 @@ class SharityPreferences(context: Context) {
 
     fun setLicensePlate(carId: String?) {
         preference.edit().putString(LICENSE_PLATE, carId).apply()
-
     }
 
     fun setCity(city: String) {
@@ -179,7 +171,6 @@ class SharityPreferences(context: Context) {
 
     fun getFuelType(): String? {
         return preference.getString(FUEL_TYPE, "")
-
     }
 
     fun setCountry(country: String) {
@@ -220,45 +211,6 @@ class SharityPreferences(context: Context) {
 
     fun getAddedCarType(): String? {
         return preference.getString(CARTYPE, "")
-    }
-
-    fun setReservationLicensePlate(licensePlate: String){
-        return preference.edit().putString(LICENSEPLATE, licensePlate).apply()
-    }
-    fun getReservationLicensePlate(): String? {
-        return preference.getString(LICENSEPLATE, "")
-    }
-
-    fun setKmPackage(kmPackage: Int) {
-        return preference.edit().putInt(KM_PACKAGE, kmPackage).apply()
-    }
-
-    fun getKmPackage(): Int {
-        return preference.getInt(KM_PACKAGE, 0)
-    }
-
-    fun setRent(rent: String) {
-        return preference.edit().putString(RENT, rent).apply()
-    }
-
-    fun getRent(): String? {
-        return preference.getString(RENT, "")
-    }
-
-    fun setPackagePrice(packagePrice: String) {
-        return preference.edit().putString(PACKAGE_PRICE, packagePrice).apply()
-    }
-
-    fun getPackagePrice(): String? {
-        return preference.getString(PACKAGE_PRICE, "")
-    }
-
-    fun getPaymentEnum(): String? {
-        return preference.getString(PAYMENT_ENUM, "")
-    }
-
-    fun setPaymentEnum(paymentEnum: String) {
-        return preference.edit().putString(PAYMENT_ENUM, paymentEnum).apply()
     }
 
     fun getImage(): String? {
