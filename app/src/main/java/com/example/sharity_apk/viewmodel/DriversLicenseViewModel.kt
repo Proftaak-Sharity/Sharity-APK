@@ -1,18 +1,15 @@
 package com.example.sharity_apk.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.sharity_apk.model.DriversLicenseModel
+import com.example.sharity_apk.model.DriversLicense
 import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 class DriversLicenseViewModel(): ViewModel() {
 
     private val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
 
-    suspend fun getDriversLicense(customerNumber: Long) : DriversLicenseModel {
+    suspend fun getDriversLicense(customerNumber: Long) : DriversLicense {
         return serviceGenerator.getDriversLicense(customerNumber)
     }
 

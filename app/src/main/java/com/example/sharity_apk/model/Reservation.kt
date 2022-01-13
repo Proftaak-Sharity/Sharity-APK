@@ -2,7 +2,7 @@ package com.example.sharity_apk.model
 
 import com.squareup.moshi.Json
 
-data class ReservationModel(
+data class Reservation(
 
     @field:Json(name = "reservation_number")
     val reservationNumber: Int,

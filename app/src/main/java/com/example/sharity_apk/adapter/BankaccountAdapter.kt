@@ -7,23 +7,23 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sharity_apk.R
 import com.example.sharity_apk.databinding.CardBankaccountBinding
-import com.example.sharity_apk.model.BankaccountModel
+import com.example.sharity_apk.model.Bankaccount
 
-class BankaccountAdapter(private val onItemClicked: (BankaccountModel) -> Unit
-): ListAdapter<BankaccountModel, BankaccountAdapter.BankaccountViewHolder>(DiffCallback) {
+class BankaccountAdapter(private val onItemClicked: (Bankaccount) -> Unit
+): ListAdapter<Bankaccount, BankaccountAdapter.BankaccountViewHolder>(DiffCallback) {
 
     companion object {
-        private val DiffCallback = object : DiffUtil.ItemCallback<BankaccountModel>() {
+        private val DiffCallback = object : DiffUtil.ItemCallback<Bankaccount>() {
             override fun areItemsTheSame(
-                oldItem: BankaccountModel,
-                newItem: BankaccountModel
+                oldItem: Bankaccount,
+                newItem: Bankaccount
             ): Boolean {
                 return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(
-                oldItem: BankaccountModel,
-                newItem: BankaccountModel
+                oldItem: Bankaccount,
+                newItem: Bankaccount
             ): Boolean {
                 return oldItem == newItem
             }
@@ -53,28 +53,28 @@ class BankaccountAdapter(private val onItemClicked: (BankaccountModel) -> Unit
         private var binding: CardBankaccountBinding
         ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(bankaccountModel: BankaccountModel) {
+        fun bind(bankaccount: Bankaccount) {
 
-            if (bankaccountModel.iban.contains("ABNA")) {
+            if (bankaccount.iban.contains("ABNA")) {
                 binding.imageBankcard.setImageResource(R.drawable.abn_amro)
-            } else if (bankaccountModel.iban.contains("RABO")) {
+            } else if (bankaccount.iban.contains("RABO")) {
                 binding.imageBankcard.setImageResource(R.drawable.rabobank)
-            } else if (bankaccountModel.iban.contains("INGB")) {
+            } else if (bankaccount.iban.contains("INGB")) {
                 binding.imageBankcard.setImageResource(R.drawable.ing)
-            } else if (bankaccountModel.iban.contains("BUNQ")) {
+            } else if (bankaccount.iban.contains("BUNQ")) {
                 binding.imageBankcard.setImageResource(R.drawable.bunq)
-            } else if (bankaccountModel.iban.contains("KNAB")) {
+            } else if (bankaccount.iban.contains("KNAB")) {
                 binding.imageBankcard.setImageResource(R.drawable.knab)
-            } else if (bankaccountModel.iban.contains("SNSB")) {
+            } else if (bankaccount.iban.contains("SNSB")) {
                 binding.imageBankcard.setImageResource(R.drawable.sns)
             } else {
                 binding.imageBankcard.setImageResource(R.drawable.unknown_bank)
             }
-            val number = bankaccountModel.iban
+            val number = bankaccount.iban
             val mask = number.replace("\\w(?=\\w{4})".toRegex(), "*")
 
             binding.tvIban.text = mask
-            binding.tvAccountHolder.text = bankaccountModel.accountHolder
+            binding.tvAccountHolder.text = bankaccount.accountHolder
         }
     }
 }

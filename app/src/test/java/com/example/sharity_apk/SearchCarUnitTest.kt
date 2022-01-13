@@ -1,6 +1,6 @@
 package com.example.sharity_apk
 
-import com.example.sharity_apk.model.CarModel
+import com.example.sharity_apk.model.Car
 import com.example.sharity_apk.service.CarApiService
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.*
@@ -39,7 +39,7 @@ class SearchCarUnitTest {
         launch(Dispatchers.Main){
 
             Mockito.`when`(sut.getCar("test")).thenReturn(car)
-            val carToTest: CarModel = sut.getCar("test")
+            val carToTest: Car = sut.getCar("test")
 
             return@launch assertEquals(carToTest.customerNumber, car.customerNumber )
 
@@ -54,50 +54,50 @@ class SearchCarUnitTest {
         launch(Dispatchers.Main){
             val carList = makeCars(numberOfCars)
             Mockito.`when`(sut.getCars()).thenReturn(carList)
-            val carListToCount: MutableList<CarModel> = sut.getCars()
+            val carListToCount: MutableList<Car> = sut.getCars()
 
             return@launch assertEquals(carListToCount.size, carList.size )
 
         }
     }
 
-    private fun makeCar(): CarModel {
+    private fun makeCar(): Car {
 
-        return CarModel(
+        return Car(
             licensePlate = "AUTO01",
             customerNumber = 12,
             make = "OPEL",
             model = "Astra",
-            pricePerDay = "50",
-            pricePerKm = "0.23",
+            pricePerDay = 50.00,
+            pricePerKm = 0.23,
             fuelType = "Petrol",
-            kmPerLiterFuel = "20",
-            sizeFueltank = "35",
-            batteryCapacity = "",
-            kmPerKilo = "",
-            kmPerKw = "",
+            kmPerLiterFuel = 20,
+            sizeFueltank = 35,
+            batteryCapacity = 0,
+            kmPerKilo = 0,
+            kmPerKw = 0,
         )
     }
 
-    private fun makeCars(number: Long): MutableList<CarModel> {
+    private fun makeCars(number: Long): MutableList<Car> {
 
-        val carList = mutableListOf<CarModel>()
+        val carList = mutableListOf<Car>()
 
         var i: Long = 1
 
         while (i <= number) {
-            val car = CarModel(  licensePlate = "AUTO0$i",
+            val car = Car(  licensePlate = "AUTO0$i",
                 customerNumber = i,
                 make = "OPEL",
                 model = "Astra",
-                pricePerDay = "50" ,
-                pricePerKm = "0.23",
+                pricePerDay = 50.00,
+                pricePerKm = 0.23,
                 fuelType = "Petrol",
-                kmPerLiterFuel = "20",
-                sizeFueltank = "35",
-                batteryCapacity = "",
-                kmPerKilo = "",
-                kmPerKw = "",
+                kmPerLiterFuel = 20,
+                sizeFueltank = 35,
+                batteryCapacity = 0,
+                kmPerKilo = 0,
+                kmPerKw = 0,
             )
 
             carList.add(car)

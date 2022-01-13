@@ -4,33 +4,33 @@ import androidx.lifecycle.*
 import com.example.sharity_apk.room.BankaccountDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import com.example.sharity_apk.model.BankaccountModel
+import com.example.sharity_apk.model.Bankaccount
 import java.lang.IllegalStateException
 
 class BankaccountViewModel(private val bankaccountDao: BankaccountDao): ViewModel() {
 
-    fun getAllBankaccounts(customerNumber: Long): Flow<List<BankaccountModel>> = bankaccountDao.getAllBankaccounts(customerNumber)
+    fun getAllBankaccounts(customerNumber: Long): Flow<List<Bankaccount>> = bankaccountDao.getAllBankaccounts(customerNumber)
 
     fun addNewItem(customerNumber: Long, iban: String, accountHolder: String) {
         val newBankaccount = getNewItemEntry(customerNumber, iban, accountHolder)
         insertItem(newBankaccount)
     }
 
-    private fun getNewItemEntry(customerNumber: Long, iban: String, accountHolder: String): BankaccountModel {
-        return BankaccountModel(
+    private fun getNewItemEntry(customerNumber: Long, iban: String, accountHolder: String): Bankaccount {
+        return Bankaccount(
             customerNumber = customerNumber,
             iban = iban,
             accountHolder = accountHolder
         )
     }
 
-    private fun insertItem(bankaccount: BankaccountModel) {
+    private fun insertItem(bankaccount: Bankaccount) {
         viewModelScope.launch {
             bankaccountDao.insert(bankaccount)
         }
     }
 
-    suspend fun getBankaccount(id: Int): BankaccountModel = bankaccountDao.getBankaccount(id)
+    suspend fun getBankaccount(id: Int): Bankaccount = bankaccountDao.getBankaccount(id)
 
     suspend fun deleteBankaccount(id: Int) = bankaccountDao.deleteBankaccount(id)
 

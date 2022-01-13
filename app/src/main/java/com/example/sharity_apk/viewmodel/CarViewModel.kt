@@ -1,8 +1,8 @@
 package com.example.sharity_apk.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.sharity_apk.model.CarImageModel
-import com.example.sharity_apk.model.CarModel
+import com.example.sharity_apk.model.CarImage
+import com.example.sharity_apk.model.Car
 import com.example.sharity_apk.service.CarApiService
 import com.example.sharity_apk.service.ReservationApiService
 import com.example.sharity_apk.service.ServiceGenerator
@@ -14,23 +14,23 @@ class CarViewModel(): ViewModel() {
 
     private val serviceGenerator = ServiceGenerator.buildService(CarApiService::class.java)
 
-    suspend fun getCars(): MutableList<CarModel> {
+    suspend fun getCars(): MutableList<Car> {
         return serviceGenerator.getCars()
     }
 
-    suspend fun getFuelCars(): MutableList<CarModel> {
+    suspend fun getFuelCars(): MutableList<Car> {
         return serviceGenerator.getFuelCars()
     }
 
-    suspend fun getElectricCars(): MutableList<CarModel> {
+    suspend fun getElectricCars(): MutableList<Car> {
         return serviceGenerator.getElectricCars()
     }
 
-    suspend fun getHydrogenCars(): MutableList<CarModel> {
+    suspend fun getHydrogenCars(): MutableList<Car> {
         return serviceGenerator.getHydrogenCars()
     }
 
-    suspend fun getCarsFromCustomer(customerNumber: Long): MutableList<CarModel> {
+    suspend fun getCarsFromCustomer(customerNumber: Long): MutableList<Car> {
         return serviceGenerator.getCarsFromCustomer(customerNumber)
     }
 
@@ -54,23 +54,23 @@ class CarViewModel(): ViewModel() {
         serviceGenerator.updateCar(licensePlate, pricePerDay)
     }
 
-    suspend fun getCar(licensePlate: String?) : CarModel {
+    suspend fun getCar(licensePlate: String?) : Car {
         return serviceGenerator.getCar(licensePlate)
     }
 
     suspend fun addCarImage(licensePlate: String, image: String) {
          serviceGenerator.addCarImage(licensePlate, image) }
 
-    suspend fun getCarImage(licensePlate: String): CarImageModel {
+    suspend fun getCarImage(licensePlate: String): CarImage {
         return serviceGenerator.getCarImage(licensePlate)
     }
 
-    suspend fun checkAvailability(start: String?, end: String?, carList: MutableList<CarModel>): MutableList<CarModel> {
+    suspend fun checkAvailability(start: String?, end: String?, carList: MutableList<Car>): MutableList<Car> {
         val serviceGenerator = ServiceGenerator.buildService(ReservationApiService::class.java)
         val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
 
         val licensePlates = mutableListOf<String?>()
-        val carsToBeRemoved = mutableListOf<CarModel?>()
+        val carsToBeRemoved = mutableListOf<Car?>()
 
         // if we have no start or end date we show all cars
         if ((start.isNullOrEmpty()) and (end.isNullOrEmpty())){

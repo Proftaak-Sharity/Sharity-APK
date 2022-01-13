@@ -14,7 +14,7 @@ import com.example.sharity_apk.R
 import com.example.sharity_apk.adapter.CarAdapter
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.SearchResultsBinding
-import com.example.sharity_apk.model.CarModel
+import com.example.sharity_apk.model.Car
 import com.example.sharity_apk.viewmodel.CarViewModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -67,7 +67,7 @@ class SearchResults: Fragment(), CarAdapter.OnCarClickListener {
         }
     }
 
-    private suspend fun getSearchedCars(fuel: String?): MutableList<CarModel> {
+    private suspend fun getSearchedCars(fuel: String?): MutableList<Car> {
         // make this use start/end/fuel if set
         return when (fuel) {
             getString(R.string.petrol)-> { carViewModel.getFuelCars() }

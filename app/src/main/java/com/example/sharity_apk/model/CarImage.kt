@@ -2,7 +2,7 @@ package com.example.sharity_apk.model
 
 import com.squareup.moshi.Json
 
-class CarImageModel (
+class CarImage (
 
         @field:Json(name = "licensePlate")
         val licensePlate: String,

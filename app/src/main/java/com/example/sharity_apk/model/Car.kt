@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 
 
 
-data class CarModel(
+data class Car(
 
     @field:Json(name = "licensePlate")
     val licensePlate: String?,
@@ -26,7 +26,7 @@ data class CarModel(
     val pricePerKm: Double,
 
     @field:Json(name = "battery_capacity")
-    val batteryCapacity: String?,
+    val batteryCapacity: Int?,
 
     @field:Json(name = "km_per_kw")
     val kmPerKw: Int?,

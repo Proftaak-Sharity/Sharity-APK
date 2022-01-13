@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sharity_apk.R
-import com.example.sharity_apk.model.CarModel
+import com.example.sharity_apk.model.Car
 import com.example.sharity_apk.service.CarApiService
 import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
@@ -18,7 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CarAdapter(
-    private val carList: MutableList<CarModel>,
+    private val carList: MutableList<Car>,
     private val listener: OnCarClickListener
 ):
     RecyclerView.Adapter<CarAdapter.CarViewHolder>() {

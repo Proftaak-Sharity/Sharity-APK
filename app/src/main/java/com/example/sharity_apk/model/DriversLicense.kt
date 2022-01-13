@@ -2,7 +2,7 @@ package com.example.sharity_apk.model
 
 import com.squareup.moshi.Json
 
-data class DriversLicenseModel(
+data class DriversLicense(
 
     @field:Json(name = "country")
     val country: String?,

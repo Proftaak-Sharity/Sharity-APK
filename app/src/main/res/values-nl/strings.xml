@@ -216,6 +216,11 @@
     <string name="select_action">Selecteer actie</string>
     <string name="balance">Uit te betalen</string>
     <string name="image">foto</string>
+    <string name="pay">betalen</string>
+    <string name="paid">PAID</string>
+    <string name="rent_car">huur auto</string>
+    <string name="_500">500</string>
+    <string name="must_be_more">Km pakket moet meer zijn dan nul</string>
 
     <string-array name="country_list">
         <item>NEDERLANDS</item>

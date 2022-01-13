@@ -1,7 +1,7 @@
 package com.example.sharity_apk.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.sharity_apk.model.ReservationModel
+import com.example.sharity_apk.model.Reservation
 import com.example.sharity_apk.service.ReservationApiService
 import com.example.sharity_apk.service.ServiceGenerator
 
@@ -9,11 +9,11 @@ class ReservationViewModel: ViewModel() {
 
     private val serviceGenerator = ServiceGenerator.buildService(ReservationApiService::class.java)
 
-    suspend fun getReservations(customerNumber: Long) : MutableList<ReservationModel> {
+    suspend fun getReservations(customerNumber: Long) : MutableList<Reservation> {
         return serviceGenerator.getReservations(customerNumber)
     }
 
-    suspend fun getReservation(reservationNumber: Int) : ReservationModel {
+    suspend fun getReservation(reservationNumber: Int) : Reservation {
         return serviceGenerator.getReservation(reservationNumber)
     }
 

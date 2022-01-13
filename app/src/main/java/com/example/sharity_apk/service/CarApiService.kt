@@ -1,30 +1,30 @@
 package com.example.sharity_apk.service
 
 
-import com.example.sharity_apk.model.CarImageModel
-import com.example.sharity_apk.model.CarModel
+import com.example.sharity_apk.model.CarImage
+import com.example.sharity_apk.model.Car
 import retrofit2.http.*
 
 interface CarApiService {
 
     @GET("cars")
-    suspend fun getCars(): MutableList<CarModel>
+    suspend fun getCars(): MutableList<Car>
 
     //    using @path so that customer_number becomes the number in the path of the GET
     @GET("cars/{licensePlate}")
-    suspend fun getCar(@Path("licensePlate") licensePlate: String?) : CarModel
+    suspend fun getCar(@Path("licensePlate") licensePlate: String?) : Car
 
     @GET("cars/fuelcars")
-    suspend fun getFuelCars(): MutableList<CarModel>
+    suspend fun getFuelCars(): MutableList<Car>
 
     @GET("cars/electriccars")
-    suspend fun getElectricCars(): MutableList<CarModel>
+    suspend fun getElectricCars(): MutableList<Car>
 
     @GET("cars/hydrogencars")
-    suspend fun getHydrogenCars(): MutableList<CarModel>
+    suspend fun getHydrogenCars(): MutableList<Car>
 
     @GET("cars/customer/{customerNumber}")
-    suspend fun getCarsFromCustomer(@Path ("customerNumber")customerNumber: Long): MutableList<CarModel>
+    suspend fun getCarsFromCustomer(@Path ("customerNumber")customerNumber: Long): MutableList<Car>
 
     @PUT("cars/{licensePlate}")
     suspend fun updateCar(@Path ("licensePlate") licensePlate: String?,
@@ -66,5 +66,5 @@ interface CarApiService {
                             @Query ("image") image: String)
 
     @GET("cars/image/{licensePlate}")
-    suspend fun getCarImage(@Path ("licensePlate") licensePlate: String) : CarImageModel
+    suspend fun getCarImage(@Path ("licensePlate") licensePlate: String) : CarImage
 }

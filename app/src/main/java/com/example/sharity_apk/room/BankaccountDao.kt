@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.sharity_apk.model.BankaccountModel
+import com.example.sharity_apk.model.Bankaccount
 import kotlinx.coroutines.flow.Flow
 
 
@@ -13,13 +13,13 @@ import kotlinx.coroutines.flow.Flow
 interface BankaccountDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(item: BankaccountModel)
+    suspend fun insert(item: Bankaccount)
 
     @Query("SELECT * FROM bankaccount WHERE customer_number = :customerNumber ORDER BY id ASC")
-    fun getAllBankaccounts(customerNumber: Long): Flow<List<BankaccountModel>>
+    fun getAllBankaccounts(customerNumber: Long): Flow<List<Bankaccount>>
 
     @Query("SELECT * FROM bankaccount WHERE id = :id")
-    suspend fun getBankaccount(id: Int): BankaccountModel
+    suspend fun getBankaccount(id: Int): Bankaccount
 
     @Query("DELETE FROM bankaccount WHERE id = :id")
     suspend fun deleteBankaccount(id: Int)

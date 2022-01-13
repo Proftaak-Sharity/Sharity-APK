@@ -7,7 +7,7 @@ interface CustomerApiService {
 
 //    using @path so that customer_number becomes the number in the path of the GET
     @GET("customers/{customer_number}")
-    suspend fun getCustomer(@Path("customer_number") customerNumber: Long) : CustomerModel
+    suspend fun getCustomer(@Path("customer_number") customerNumber: Long) : Customer
 
     @POST("customers")
     suspend fun addCustomer(@Query("firstName") firstName : String,
@@ -37,7 +37,7 @@ interface CustomerApiService {
 //    using Query so that email en query are used in query url, like: customers/login?email={email}&password={password}
     @GET ("customers/login")
     suspend fun getUser(@Query("email") email: String,
-                        @Query("password") password: String) : LoginModel
+                        @Query("password") password: String) : Login
 
     @GET("customers/emailcheck")
     suspend fun checkEmail(@Query("email") email: String) :Boolean
@@ -47,7 +47,7 @@ interface CustomerApiService {
                             @Query ("image") image: String)
 
     @GET("customers/image/{customerNumber}")
-    suspend fun getCustomerImage(@Path ("customerNumber") customerNumber: Long) : CustomerImageModel
+    suspend fun getCustomerImage(@Path ("customerNumber") customerNumber: Long) : CustomerImage
 
     @POST ("customers/driverslicense")
     suspend fun addDriversLicense(@Query("customerNumber") customerNumber: Long,
@@ -60,5 +60,5 @@ interface CustomerApiService {
 
 
     @GET("customers/license/{customerNumber}")
-    suspend fun getDriversLicense(@Path ("customerNumber") customerNumber: Long) : DriversLicenseModel
+    suspend fun getDriversLicense(@Path ("customerNumber") customerNumber: Long) : DriversLicense
 }

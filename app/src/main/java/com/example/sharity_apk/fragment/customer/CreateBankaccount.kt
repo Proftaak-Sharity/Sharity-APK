@@ -17,7 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.sharity_apk.R
 import com.example.sharity_apk.config.SharityPreferences
 import com.example.sharity_apk.databinding.CreateBankaccountBinding
-import com.example.sharity_apk.model.BankaccountModel
+import com.example.sharity_apk.model.Bankaccount
 import com.example.sharity_apk.viewmodel.BankaccountViewModel
 import com.example.sharity_apk.viewmodel.BankaccountViewModelFactory
 import com.example.sharity_apk.viewmodel.CustomerViewModel
@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 
 class CreateBankaccount: Fragment() {
 
-    lateinit var bankaccount: BankaccountModel
+    lateinit var bankaccount: Bankaccount
     private val customerViewModel: CustomerViewModel by lazy { ViewModelProvider(this)[CustomerViewModel::class.java] }
     private val driversLicenseViewModel: DriversLicenseViewModel by lazy { ViewModelProvider(this)[DriversLicenseViewModel::class.java] }
 

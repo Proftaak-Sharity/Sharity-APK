@@ -1,18 +1,17 @@
 package com.example.sharity_apk.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.sharity_apk.model.CustomerImageModel
-import com.example.sharity_apk.model.CustomerModel
-import com.example.sharity_apk.model.LoginModel
+import com.example.sharity_apk.model.CustomerImage
+import com.example.sharity_apk.model.Customer
+import com.example.sharity_apk.model.Login
 import com.example.sharity_apk.service.CustomerApiService
 import com.example.sharity_apk.service.ServiceGenerator
-import retrofit2.http.*
 
 class CustomerViewModel(): ViewModel() {
 
     private val serviceGenerator = ServiceGenerator.buildService(CustomerApiService::class.java)
 
-    suspend fun getCustomer(customerNumber: Long) : CustomerModel {
+    suspend fun getCustomer(customerNumber: Long) : Customer {
         return serviceGenerator.getCustomer(customerNumber)
     }
 
@@ -20,7 +19,7 @@ class CustomerViewModel(): ViewModel() {
         return serviceGenerator.checkEmail(email)
     }
 
-    suspend fun getUser(email: String, password: String) : LoginModel {
+    suspend fun getUser(email: String, password: String) : Login {
         return serviceGenerator.getUser(email, password)
     }
 
@@ -36,7 +35,7 @@ class CustomerViewModel(): ViewModel() {
         serviceGenerator.addCustomerImage(customerNumber, image)
     }
 
-    suspend fun getCustomerImage(customerNumber: Long) : CustomerImageModel {
+    suspend fun getCustomerImage(customerNumber: Long) : CustomerImage {
         return serviceGenerator.getCustomerImage(customerNumber)
     }
 }

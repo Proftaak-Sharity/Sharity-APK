@@ -1,31 +1,27 @@
 package com.example.sharity_apk
 
-import com.example.sharity_apk.model.CarModel
-import com.example.sharity_apk.model.ReservationModel
-import com.example.sharity_apk.service.CarApiService
+import com.example.sharity_apk.model.Reservation
 import com.example.sharity_apk.service.ReservationApiService
 import junit.framework.Assert.assertEquals
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.newSingleThreadContext
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.After
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
 
 class ReservationUnitTest {
     private val mainThreadSurrogate = newSingleThreadContext("UI thread")
-    val sut = Mockito.mock(ReservationApiService::class.java)
+    private val sut: ReservationApiService = Mockito.mock(ReservationApiService::class.java)
 
+    @ExperimentalCoroutinesApi
     @Before
     fun setUp() {
         Dispatchers.setMain(mainThreadSurrogate)
     }
 
+    @ExperimentalCoroutinesApi
     @After
     fun tearDown() {
         Dispatchers.resetMain() // reset the main dispatcher to the original Main dispatcher
@@ -36,12 +32,12 @@ class ReservationUnitTest {
     @Test
     fun getReservationUnitTest(): Unit = runBlocking {
 
-        var reservation = makeReservation()
+        val reservation = makeReservation()
 
         launch(Dispatchers.Main){
 
             Mockito.`when`(sut.getReservation(1)).thenReturn(reservation)
-            var reservationToTest: ReservationModel = sut.getReservation(1)
+            val reservationToTest: Reservation = sut.getReservation(1)
 
             return@launch assertEquals(reservationToTest.customerNumber, reservation.customerNumber )
         }
@@ -53,9 +49,9 @@ class ReservationUnitTest {
 
 
         launch(Dispatchers.Main){
-            var reservationList = makeReservations(numberOfReservations)
+            val reservationList = makeReservations(numberOfReservations)
             Mockito.`when`(sut.getReservations(3L)).thenReturn(reservationList)
-            var reservationListToCount: MutableList<ReservationModel> = sut.getReservations(3L)
+            val reservationListToCount: MutableList<Reservation> = sut.getReservations(3L)
 
             return@launch assertEquals(reservationListToCount.size, reservationList.size )
 
@@ -64,8 +60,8 @@ class ReservationUnitTest {
     }
 
 
-    fun makeReservation() : ReservationModel {
-        var reservation = ReservationModel(
+    private fun makeReservation() : Reservation {
+        val reservation = Reservation(
             1,
             3L,
             "2022-10-29",
@@ -81,14 +77,14 @@ class ReservationUnitTest {
         return reservation
     }
 
-    fun makeReservations(number: Long): MutableList<ReservationModel> {
+    private fun makeReservations(number: Long): MutableList<Reservation> {
 
-        var reservationList = mutableListOf<ReservationModel>()
+        val reservationList = mutableListOf<Reservation>()
 
         var i: Long = 1
 
         while (i <= number) {
-            var reservation = ReservationModel(
+            val reservation = Reservation(
                 1,
                 3L,
                 "2022-10-29",

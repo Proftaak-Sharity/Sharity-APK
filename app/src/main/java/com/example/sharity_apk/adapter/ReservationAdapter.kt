@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sharity_apk.R
-import com.example.sharity_apk.model.ReservationModel
+import com.example.sharity_apk.model.Reservation
 import com.example.sharity_apk.service.CarApiService
 import com.example.sharity_apk.service.ServiceGenerator
 import kotlinx.coroutines.CoroutineScope
@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class ReservationAdapter(
-    private val reservationList: MutableList<ReservationModel>,
+    private val reservationList: MutableList<Reservation>,
     private val listener: OnReservationClickListener
 ):
     RecyclerView.Adapter<ReservationAdapter.ReservationViewHolder>() {
