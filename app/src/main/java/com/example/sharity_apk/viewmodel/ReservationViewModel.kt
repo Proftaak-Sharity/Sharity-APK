@@ -21,6 +21,10 @@ class ReservationViewModel: ViewModel() {
         return serviceGenerator.addReservation(customerNumber, licensePlate, kmPackage, startDate, endDate, rent, packagePrice, paymentEnum)
     }
 
+    suspend fun updatePayment(reservationNumber: Int, paymentEnum: String?) : String {
+        return serviceGenerator.updatePayment(reservationNumber, paymentEnum)
+    }
+
 
 
 

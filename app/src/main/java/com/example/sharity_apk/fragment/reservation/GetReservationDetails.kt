@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -94,6 +95,21 @@ class GetReservationDetails: Fragment() {
             packagePrice.text = "€ ${"%.2f".format(reservation.packagePrice)}"
             totalPrice.text = "€ ${"%.2f".format(reservation.rent)}"
             paymentStatus.text = reservation.paymentEnum
+
+            when (reservation.paymentEnum) {
+                "OPEN" -> binding.btnPay.isVisible = true
+                else -> binding.btnPay.isVisible = false
+            }
+
+            binding.btnPay.setOnClickListener {
+                viewLifecycleOwner.lifecycleScope.launch {
+                    val newStatus = reservationViewModel.updatePayment(
+                        reservation.reservationNumber,
+                        getString(R.string.paid)
+                    )
+                    paymentStatus.text = newStatus
+                }
+            }
 
             //Button bindings:
             binding.btnfindCaronMap.setOnClickListener {

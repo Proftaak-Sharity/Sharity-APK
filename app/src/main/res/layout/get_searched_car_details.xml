@@ -7,8 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.customer.GetCustomerDetails"
-    android:layout_margin="20dp"
-    android:paddingBottom="20dp">
+    android:layout_margin="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/image_logo_profile"
@@ -120,7 +119,7 @@
             android:id="@+id/license_plate"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="@string/car_model"
+            android:text="@string/license_plate"
             android:textStyle="bold"
             android:textAppearance="?attr/textAppearanceBody2"
             app:layout_constraintTop_toTopOf="parent"

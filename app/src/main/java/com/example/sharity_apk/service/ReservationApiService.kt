@@ -25,4 +25,8 @@ interface ReservationApiService {
                                @Query("rent") rent: Double?,
                                @Query("packagePrice") packagePrice: Double?,
                                @Query("paymentEnum") paymentEnum: String?) : Int
+
+    @PUT("reservations/payment/{reservation_number}")
+    suspend fun updatePayment(@Path ("reservation_number") reservationNumber: Int,
+                              @Query ("paymentEnum") paymentEnum: String?) : String
 }

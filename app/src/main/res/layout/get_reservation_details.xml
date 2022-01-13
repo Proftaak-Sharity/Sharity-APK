@@ -344,6 +344,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/payment_status"/>
 
+        <Button
+            android:id="@+id/btn_pay"
+            style="@style/button"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:textSize="11sp"
+            android:text="@string/pay"
+            android:backgroundTint="@color/sharity_red"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="invisible"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

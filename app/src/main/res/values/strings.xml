@@ -172,7 +172,7 @@
     <string name="Language_preference">Languagepreference</string>
     <string name="Defaultlanguage">Default language</string>
     <string name="LanguageSettings">Language settings</string>
-    <string name="ShowCarOnMap">Show car in Google Maps</string>
+    <string name="ShowCarOnMap">car location</string>
     <string name="dateAndPrice">Date and Price</string>
     <string name="start_date">Start rental</string>
     <string name="end_date">End rental</string>
@@ -216,6 +216,8 @@
     <string name="select_action">Select action</string>
     <string name="balance">Balance in account</string>
     <string name="image">image</string>
+    <string name="pay">pay</string>
+    <string name="paid">PAID</string>
 
     <string-array name="country_list">
         <item>NETHERLANDS</item>
