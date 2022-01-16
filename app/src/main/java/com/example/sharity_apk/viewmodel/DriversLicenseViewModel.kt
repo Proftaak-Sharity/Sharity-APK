@@ -13,7 +13,7 @@ class DriversLicenseViewModel(): ViewModel() {
         return serviceGenerator.getDriversLicense(customerNumber)
     }
 
-    suspend fun checkLicense(licenseNumber: String) :Boolean {
+    suspend fun checkLicense(licenseNumber: String) : Boolean {
         return serviceGenerator.checkLicense(licenseNumber)
     }
 

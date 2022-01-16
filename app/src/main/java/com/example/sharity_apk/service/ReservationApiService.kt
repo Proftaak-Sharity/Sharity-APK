@@ -12,11 +12,11 @@ interface ReservationApiService {
     @GET ("reservations/{reservation_number}")
     suspend fun getReservation(@Path("reservation_number") reservationNumber: Int) : Reservation
 
-    @GET ("reservations/rentedLicensePlates")
+    @GET ("reservations/rentedlicenseplates")
     suspend fun getRentedCars(@Query("startDate") startDate: LocalDate?,
                               @Query("endDate") endDate: LocalDate?) : MutableList<Reservation>
 
-    @POST("reservations/addReservation")
+    @POST("reservations/addreservation")
     suspend fun addReservation(@Query("customerNumber") customerNumber: Long?,
                                @Query("licensePlate") licensePlate: String?,
                                @Query("kmPackage") kmPackage: Int?,
