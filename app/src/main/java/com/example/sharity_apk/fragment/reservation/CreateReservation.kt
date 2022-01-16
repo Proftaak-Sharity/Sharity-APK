@@ -120,7 +120,7 @@ class CreateReservation : Fragment() {
         return reservationViewModel.addReservation(
             preferences.getCustomerNumber(),
             preferences.getLicensePlate(),
-            binding.txtInputKmPackage.toString().toInt(),
+            binding.txtInputKmPackage.text.toString().toInt(),
             preferences.getStartDate(),
             preferences.getEndDate(),
             car.pricePerDay,
