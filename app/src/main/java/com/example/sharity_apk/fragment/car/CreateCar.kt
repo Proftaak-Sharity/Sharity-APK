@@ -180,7 +180,6 @@ class CreateCar : Fragment() {
     private fun camera()  {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(intent, CAMERA_REQUEST_CODE)
-
     }
 
     private fun gallery() {
